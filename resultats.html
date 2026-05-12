@@ -1389,7 +1389,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
       </div>
       <div style="background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:14px 16px;margin-bottom:20px;text-align:left">
         <p style="font-size:11px;font-weight:600;color:var(--gold);margin-bottom:6px">Ce rapport s'appuie sur des instruments de mesure reconnus</p>
-        <p style="font-size:12px;color:var(--txt2);line-height:1.75">Chaque masque correspond à des construits psychologiques mesurés par des échelles validées en psychologie du comportement. Ce portrait traduit votre profil en langage humain et concret — sans jargon, sans diagnostic.</p>
+        <p style="font-size:12px;color:var(--txt2);line-height:1.75">Chaque masque correspond à des construits psychologiques mesurés par des échelles validées en psychologie du comportement. Ce portrait traduit votre profil en langage humain et concret — sans jargon, sans étiquette.</p>
       </div>
       <div class="paywall-price">39 €</div>
       <div class="paywall-price-note">Rapport généré immédiatement · 12 pages · Usage personnel</div>
@@ -1740,7 +1740,7 @@ const CONTENT={
     origine:"À un moment de votre histoire, quelque chose dans votre identité a été menacé. Peut-être que changer signifiait trahir — des personnes, des valeurs, un groupe. Peut-être que vous avez dû jouer tant de rôles différents que vous ne saviez plus lequel était le vrai. Peut-être que rester le même était la seule façon de garder le fil de vous-même dans un monde qui changeait trop vite. Votre nature authentique a alors construit une stratégie : maintenir. Préserver. Ne pas bouger pour ne pas se perdre.",
     prison:"Ce masque fait deux choses. Il <strong>préserve le sentiment d'identité</strong> — s'accroche aux rôles, aux routines, aux certitudes qui donnent le sentiment de savoir qui l'on est. Et il <strong>résiste à tout ce qui pourrait le remettre en question</strong> — le changement, l'inconnu, les expériences nouvelles, les personnes qui vous voient différemment de l'image que vous avez construite.",
     descriptor:'Qui suis-je, vraiment ?',
-    mirror:'Il y a en vous quelqu\'un qui cherche. Quelqu\'un qui se demande <em>qui il est vraiment</em> — en dehors des rôles qu\'il joue. En dehors de ce qu\'on attend de lui dans sa famille, au travail, dans ses relations.<br><br>Vous portez parfois un sentiment étrange d\'être <strong>spectateur·rice de votre propre vie</strong>. Comme si vous y participiez — consciencieusement, habilement — sans vraiment l\'habiter. Comme si le vrai vous était quelque part en retrait, à observer, sans tout à fait oser entrer.<br><br>Ce n\'est pas une pathologie. C\'est une peur profonde : <em>que si vous changez, si vous devenez vraiment vous-même, quelque chose d\'essentiel se perde.</em> Ou que vous ne vous reconnaissiez plus. Ou que les autres cessent de vous reconnaître.',
+    mirror:'Il y a en vous quelqu\'un qui cherche. Quelqu\'un qui se demande <em>qui il est vraiment</em> — en dehors des rôles qu\'il joue. En dehors de ce qu\'on attend de lui dans sa famille, au travail, dans ses relations.<br><br>Vous portez parfois un sentiment étrange d\'être <strong>spectateur·rice de votre propre vie</strong>. Comme si vous y participiez — consciencieusement, habilement — sans vraiment l\'habiter. Comme si le vrai vous était quelque part en retrait, à observer, sans tout à fait oser entrer.<br><br>Ce n\'est pas un signe de faiblesse. C\'est une peur profonde : <em>que si vous changez, si vous devenez vraiment vous-même, quelque chose d\'essentiel se perde.</em> Ou que vous ne vous reconnaissiez plus. Ou que les autres cessent de vous reconnaître.',
     nature_authentique:"Sous ce masque vit quelqu'un d'une profondeur existentielle rare, d'une quête authentique de sens et d'une capacité à se transformer qui, libérée de la peur, est l'une des formes d'intelligence les plus précieuses. Quand ce masque s'assouplira, vous découvrirez que vous pouvez changer — et rester vous-même. Que l'identité n'est pas un point fixe à protéger, mais une présence vivante, en mouvement, qui se renforce à mesure qu'elle s'exprime vraiment.",
     scene1_title:'Scène · « Qu\'est-ce qui te rend heureux·se ? »',
     scene1:'Quelqu\'un vous pose la question directement : <em>« Qu\'est-ce qui te rend vraiment heureux·se ? »</em><br><br>Vous cherchez. Vous trouvez des réponses génériques — les choses que vous êtes censé·e aimer. <strong>Mais quelque chose en vous sait que ce ne sont pas les vraies réponses.</strong> Les vraies, vous ne savez plus très bien où elles sont.',
@@ -2033,7 +2033,7 @@ const TRIADES_DATA = {
   'jaune_orange_rouge': {
     name:'Anxiété Généralisée Somatisée',
     tagline:'Ruminations, corps en alerte — sans accès aux émotions',
-    desc:'Triple verrouillage : corps en vigilance permanente, anticipation obsessionnelle, déconnexion émotionnelle. L\'anxiété ne peut ni être ressentie, ni être pensée autrement que comme menace corporelle. Ce n\'est pas un trouble mental — c\'est la logique implacable de trois protections qui ne savent pas s\'arrêter.',
+    desc:'Triple verrouillage : corps en vigilance permanente, anticipation obsessionnelle, déconnexion émotionnelle. L\'anxiété ne peut ni être ressentie, ni être pensée autrement que comme menace corporelle. Ce n\'est pas un dysfonctionnement — c\'est la logique implacable de trois protections qui ne savent pas s\'arrêter.',
     manifestations:['Ruminations obsessives sur la santé et le futur simultanément','Vigilance corporelle couplée à une planification excessive','Incapacité à ressentir l\'anxiété émotionnellement — elle passe uniquement par le corps','Épuisement physique et mental permanent, difficile à nommer précisément','Somatisation massive d\'une anxiété qui ne trouve pas d\'autre canal de sortie']
   },
   'bleu_indigo_jaune': {
@@ -2217,7 +2217,7 @@ function buildSecondaryMasks(dominant, scores, meta){
   var html='<div class="all-scores-card fu">';
   html+='<div class="asc-eyebrow">Lecture complète de votre cartographie</div>';
   html+='<h2 class="asc-title">Ce que <em>l\'ensemble</em> de vos scores révèle</h2>';
-  html+='<p class="asc-intro">Vous avez répondu à 112 questions. Chaque score mérite une lecture. Voici ce que vos masques actifs vous disent — et ce que vos masques faibles révèlent comme forces.</p>';
+  html+='<p class="asc-intro">Vous avez répondu à 129 questions. Chaque score mérite une lecture. Voici ce que vos masques actifs vous disent — et ce que vos masques faibles révèlent comme forces.</p>';
   
   if(secondary.length>0){
     html+='<div class="asc-section-label">Masques actifs — au-delà du dominant</div>';
@@ -2595,7 +2595,7 @@ function buildAmplificationSection(dominant, scores, profile){
 // STRIPE_LINKS obsolète supprimé — utiliser STRIPE_LINKS_RAPPORT
 /* rétrocompatibilité */
 var STRIPE_VALEUR='https://buy.stripe.com/cNi14g6nz4lp98b1hCcwg05';
-var VERCEL_API='https://valeur-backend-api.vercel.app/api';
+// VERCEL_API — utiliser VALEUR_API défini plus bas
 var _currentDominant='vert';
 function ampHTML(dom,sc,prof){
   var pt=prof?prof.type:'mono', pm=prof?(prof.masks||[]):[dom];
@@ -3295,7 +3295,7 @@ function buildPageFromOld(dominant,meta,data,playlist,scores,prenom,profile){
     c+='<h2 class="st" style="margin-bottom:4mm">Ce que vous\u00a0<br><em style="color:'+col+'">tenez entre les mains</em></h2>';
     c+='<div style="width:24px;height:2px;background:'+col+';margin-bottom:6mm"></div>';
     c+='<div style="background:rgba('+rgb.r+','+rgb.g+','+rgb.b+',.05);border-left:2.5px solid '+col+';padding:4.5mm 5.5mm;margin-bottom:5mm;border-radius:0 5px 5px 0">';
-    c+='<p class="tli" style="margin:0">Un masque n\u2019est pas une pathologie. C\u2019est une strat\u00e9gie que votre cerveau a construite \u00e0 un moment o\u00f9 vous aviez besoin de protection. Il a fonctionn\u00e9 \u2014 il vous a permis de traverser ce que vous avez travers\u00e9. Ce portrait mesure, dans les situations li\u00e9es \u00e0 chacune de vos sept peurs fondamentales, \u00e0 quel point ce masque prend le contr\u00f4le \u00e0 votre place.</p>';
+    c+='<p class="tli" style="margin:0">Un masque n\u2019est pas un d\u00e9faut. C\u2019est une strat\u00e9gie que votre cerveau a construite \u00e0 un moment o\u00f9 vous aviez besoin de protection. Il a fonctionn\u00e9 \u2014 il vous a permis de traverser ce que vous avez travers\u00e9. Ce portrait mesure, dans les situations li\u00e9es \u00e0 chacune de vos sept peurs fondamentales, \u00e0 quel point ce masque prend le contr\u00f4le \u00e0 votre place.</p>';
     c+='</div>';
     c+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-bottom:5mm">';
     c+='<div style="background:rgba(240,235,225,.4);border-radius:5px;padding:4mm 4.5mm"><p style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:'+col+';margin-bottom:2mm">Score \u00e9lev\u00e9 (ex\u00a0: 70%)</p><p class="tli" style="font-size:12px;margin:0">Dans 70% des situations li\u00e9es \u00e0 cette peur, le masque r\u00e9agit \u00e0 votre place avant que vous ayez eu le temps de choisir. Il ne vous reste que 30% d\u2019espace pour r\u00e9pondre librement.</p></div>';
@@ -4336,7 +4336,7 @@ async function buildPage(){
       <div><strong>Pourquoi ce masque en priorité ?</strong> Votre ${meta0.name} et votre ${m2.name} sont proches (${diff} points d'écart). 
       Quand deux défenses sont aussi actives, la recherche en psychologie du comportement suggère de commencer par celle qui s'active dans le plus grand nombre de domaines de vie. 
       Le ${meta0.name} structure davantage vos réactions automatiques — c'est lui qui oriente le travail en premier.
-      <em class="tb-caveat">Cette priorité est indicative et non un diagnostic.</em></div>
+      <em class="tb-caveat">Cette priorité est indicative — elle oriente, elle ne définit pas.</em></div>
     </div>`;
   }
 
@@ -4378,7 +4378,7 @@ async function buildPage(){
       </p>
       <div style="background:rgba(240,234,225,.04);border:1px solid var(--line);border-radius:12px;padding:28px 32px;margin-bottom:24px">
         <p style="font-size:12.5px;color:var(--txt2);line-height:1.85;margin-bottom:16px">
-          <strong style="color:var(--txt)">Ces 7 peurs existent en chacun de nous.</strong> Elles sont des défenses naturelles forgées par l'expérience — pas des pathologies, pas des faiblesses. Toute personne humaine porte ces mécanismes adaptatifs.
+          <strong style="color:var(--txt)">Ces 7 peurs existent en chacun de nous.</strong> Elles sont des défenses naturelles forgées par l'expérience — pas des défauts, pas des faiblesses. Toute personne humaine porte ces mécanismes adaptatifs.
         </p>
         <p style="font-size:12.5px;color:var(--txt2);line-height:1.85;margin-bottom:16px">
           Ce que vos résultats indiquent, c'est que ces défenses ne prennent pas le contrôle de façon significative dans votre fonctionnement actuel. Elles coexistent avec votre liberté de choix.
@@ -4403,7 +4403,7 @@ async function buildPage(){
       </div>
       <p style="font-size:10px;color:var(--txt3);text-align:center;margin-top:20px;line-height:1.6">
         © Céline Bourbon · Psychologue · Méthode V.A.L.E.U.R©<br>
-        Ce questionnaire est un outil de psychoéducation, pas un diagnostic.
+        Ce questionnaire est un outil de psychoéducation, pas une évaluation clinique.
       </p>
     </div>`;
     document.getElementById('loading').style.display='none';
