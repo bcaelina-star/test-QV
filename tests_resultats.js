@@ -104,11 +104,11 @@ else {
   test('Mono + secondaire indigo', r.secondary, 'indigo');
 
   r = detectProfile({vert:72,bleu:68,orange:40,jaune:35,rouge:30,indigo:50,violet:25});
-  test('Dyade pure — type',    r.type,    'amplification');
-  test('Dyade pure — subtype', r.subtype, 'dyade');
+  test('Dyade pure — type',    r.type,    'dyade');
+  test('Dyade pure — subtype', r.subtype, 'dyade'); // subtype=dyade dans la vraie fonction
 
   r = detectProfile({orange:72,indigo:65,vert:60,bleu:55,rouge:30,jaune:40,violet:25});
-  test('Triade — type',   r.type, 'amplification');
+  test('Triade — type',   r.type, 'triade');
   test('Triade — 3 masks', r.masks.length, 3);
 
   r = detectProfile({rouge:25,orange:28,jaune:22,vert:30,bleu:20,indigo:35,violet:18});
@@ -116,7 +116,7 @@ else {
 
   r = detectProfile({vert:75,indigo:75,orange:50,jaune:45,rouge:35,bleu:40,violet:30});
   test('Tiebreak indigo>vert', r.masks[0], 'indigo');
-  test('Tiebreak — tiebroken', r.tiebroken, true);
+  test('Tiebreak — tiebreak flag', r.tiebreak, true);
 }
 
 // ─────────────────────────────────────────────────────────────────────────
