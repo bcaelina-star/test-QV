@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Le premier questionnaire de personnalité qui ne vous dit pas qui vous êtes — mais ce qui vous empêche d'être vous-même. Méthode V.A.L.E.U.R© de Céline Bourbon.">
+<meta name="description" content="Questionnaire V.A.L.E.U.R© — Identifiez les 7 peurs qui vous empêchent d'être vous-même. Méthode Céline Bourbon, Psychologue.">
 <meta property="og:title" content="Les 7 peurs qui empêchent d'être soi — Questionnaire V.A.L.E.U.R©">
-<meta property="og:description" content="Identifiez les masques qui vous empêchent d'être vous-même. Méthode V.A.L.E.U.R© · Céline Bourbon, Psychologue.">
-<title>Questionnaire V.A.L.E.U.R© — Les 7 peurs qui empêchent d'être soi</title>
+<meta property="og:description" content="Questionnaire psychoéducatif · Méthode V.A.L.E.U.R© · Céline Bourbon, Psychologue.">
+<title>Questionnaire V.A.L.E.U.R© — Céline Bourbon</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 (function(){
@@ -29,7 +29,7 @@ input,textarea,select{-webkit-user-select:text;user-select:text}
 :root{
   --ivory:#F7F4EE;--ivory2:#F0EBE1;--ivory3:#E8E1D4;
   --ink:#1A1814;--ink2:#2C2820;--ink3:#5A534A;--ink4:#8C8278;--ink5:#B8B0A5;
-  --gold:#A8873A;--gold2:#C9A84C;--gold3:#D4B96A;
+  --gold:#A8873A;--gold2:#C9A84C;
   --line:rgba(26,24,20,.1);--line2:rgba(26,24,20,.06);
   --rouge:#B5312A;--orange:#C4581F;--jaune:#B8930A;
   --vert:#2D7A4F;--bleu:#1D5F8A;--indigo:#5C3280;--violet:#7A3594;
@@ -39,36 +39,37 @@ input,textarea,select{-webkit-user-select:text;user-select:text}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes pulse-dot{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
 @keyframes spin{to{transform:rotate(360deg)}}
-@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+/* Pause modal */
 #pause-modal{position:fixed;inset:0;z-index:960;background:rgba(26,24,20,.6);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;padding:24px}
 #pause-modal.open{display:flex}
 .pm-box{background:var(--ivory);border:1px solid var(--line);max-width:400px;width:100%;padding:44px 36px;text-align:center;position:relative;animation:fadeIn .3s ease}
 .pm-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
-.pm-icon{font-size:26px;margin-bottom:16px}
-.pm-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:10px}
-.pm-body{font-size:13px;font-weight:300;color:var(--ink3);line-height:1.8;margin-bottom:20px}
-.pm-info{padding:14px 16px;background:rgba(168,135,58,.06);border:1px solid rgba(168,135,58,.16);font-size:12px;font-weight:300;color:var(--ink3);line-height:1.7;margin-bottom:24px;text-align:left}
-.pm-btn-primary{display:block;width:100%;background:var(--ink);color:var(--ivory);border:none;padding:14px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:10px;transition:background .2s}
-.pm-btn-primary:hover{background:var(--ink2)}
-.pm-btn-ghost{background:none;border:none;font-size:11px;color:var(--ink5);cursor:pointer;letter-spacing:1px;text-transform:uppercase;padding:4px}
+.pm-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:10px}
+.pm-body{font-size:13px;font-weight:300;color:var(--ink3);line-height:1.8;margin-bottom:16px}
+.pm-info{padding:12px 14px;background:rgba(168,135,58,.06);border:1px solid rgba(168,135,58,.16);font-size:12px;color:var(--ink3);margin-bottom:22px;text-align:left}
+.pm-btn{display:block;width:100%;background:var(--ink);color:var(--ivory);border:none;padding:14px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-bottom:10px}
+.pm-ghost{background:none;border:none;font-size:11px;color:var(--ink5);cursor:pointer;letter-spacing:1px;text-transform:uppercase;padding:4px}
+/* Nav */
 nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(247,244,238,.94);backdrop-filter:blur(20px);border-bottom:1px solid var(--line)}
-.nav-logo{display:flex;align-items:center;gap:10px;font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:4px;text-transform:uppercase;text-decoration:none}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:var(--ink);letter-spacing:4px;text-transform:uppercase;text-decoration:none}
 .nav-logo sup{font-size:10px;vertical-align:super}
-.nav-links{display:flex;align-items:center;gap:32px}
-.nav-link{font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--ink4);text-decoration:none;transition:color .2s}
-.nav-link:hover,.nav-link.active{color:var(--ink)}
-.nav-cta{background:var(--ink);color:var(--ivory);border:none;border-radius:2px;padding:9px 22px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:all .25s}
-.nav-cta:hover{background:var(--ink2)}
-@media(max-width:768px){.nav-links{display:none}.nav-cta{display:none}}
+.nav-cta{background:var(--ink);color:var(--ivory);border:none;border-radius:2px;padding:9px 22px;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-link{font-size:11px;font-weight:400;letter-spacing:2px;text-transform:uppercase;color:var(--ink4);text-decoration:none}
+.nav-link.active{color:var(--ink)}
+@media(max-width:768px){.nav-links{display:none}.nav-cta{display:none}nav{padding:0 20px}}
+/* Chroma */
 .chroma{display:flex;height:5px;margin-top:62px}
 .cs{flex:1}
+/* Screens */
 .screen{display:none}
-.screen.active{display:block;animation:fadeIn .35s ease}
+.screen.active{display:block;animation:fadeIn .3s ease}
 .app{max-width:860px;margin:0 auto;padding:0 24px 80px}
-.welcome-hero{padding:64px 0 48px;text-align:center;border-bottom:1px solid var(--line);margin-bottom:40px;position:relative}
-.wh-eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;animation:riseUp .7s .1s both}
+/* Welcome */
+.welcome-hero{padding:60px 0 44px;text-align:center;border-bottom:1px solid var(--line);margin-bottom:36px}
+.wh-eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;animation:riseUp .7s .1s both}
 .wh-eyebrow::before,.wh-eyebrow::after{content:'';width:28px;height:1px;background:var(--gold);opacity:.5}
-.wh-dots{display:flex;gap:7px;justify-content:center;margin-bottom:20px;animation:riseUp .7s .2s both}
+.wh-dots{display:flex;gap:7px;justify-content:center;margin-bottom:18px;animation:riseUp .7s .2s both}
 .wh-dot{width:11px;height:11px;border-radius:50%;animation:pulse-dot 2.2s infinite}
 .wh-dot:nth-child(1){background:var(--rouge);animation-delay:0s}
 .wh-dot:nth-child(2){background:var(--orange);animation-delay:.18s}
@@ -77,130 +78,136 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
 .wh-dot:nth-child(5){background:var(--bleu);animation-delay:.72s}
 .wh-dot:nth-child(6){background:var(--indigo);animation-delay:.9s}
 .wh-dot:nth-child(7){background:var(--violet);animation-delay:1.08s}
-.wh-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,6vw,70px);font-weight:300;line-height:1.05;color:var(--ink);margin-bottom:8px;animation:riseUp .8s .3s both}
+.wh-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,6vw,68px);font-weight:300;line-height:1.05;color:var(--ink);margin-bottom:8px;animation:riseUp .8s .3s both}
 .wh-h1 em{font-style:italic;color:var(--gold)}
-.wh-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:22px auto 26px;animation:riseUp .7s .45s both}
+.wh-sep{display:flex;align-items:center;justify-content:center;gap:12px;margin:20px auto 24px;animation:riseUp .7s .45s both}
 .wh-sep-line{width:36px;height:1px;background:var(--gold);opacity:.45}
 .wh-sep-dot{width:5px;height:5px;border:1px solid var(--gold);transform:rotate(45deg);opacity:.6}
-.leitmotiv{max-width:640px;margin:0 auto;background:var(--ivory2);border-left:3px solid var(--gold);padding:24px 30px;text-align:left;animation:riseUp .8s .55s both}
-.leitmotiv-text{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.5vw,21px);font-style:italic;color:var(--ink3);line-height:1.85;margin-bottom:14px}
+.leitmotiv{max-width:640px;margin:0 auto;background:var(--ivory2);border-left:3px solid var(--gold);padding:22px 28px;text-align:left;animation:riseUp .8s .55s both}
+.leitmotiv-text{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.3vw,20px);font-style:italic;color:var(--ink3);line-height:1.85;margin-bottom:12px}
 .leitmotiv-text em{color:var(--ink);font-style:normal;font-weight:400}
 .leitmotiv-author{display:flex;align-items:center;gap:10px}
 .leitmotiv-line{width:24px;height:1px;background:var(--gold);opacity:.5}
-.leitmotiv-name{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
-.welcome-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:36px;margin-bottom:20px}
-.welcome-card h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;margin-bottom:16px;color:var(--ink)}
-.welcome-card p{color:var(--ink3);margin-bottom:12px;font-size:.95rem;line-height:1.75}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:22px 0}
-.info-chip{background:var(--ivory2);border:1px solid var(--line);border-radius:var(--r);padding:16px;text-align:center}
-.info-chip .value{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;color:var(--ink)}
-.info-chip .label{font-size:.72rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
-.warn-box{background:rgba(168,135,58,.06);border:1px solid rgba(168,135,58,.2);border-radius:var(--r);padding:14px 18px;font-size:.85rem;color:var(--gold);margin-top:14px}
-.warn-box strong{display:block;margin-bottom:3px;color:var(--ink2)}
-.form-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:36px;margin-bottom:20px}
-.form-card h2{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;margin-bottom:16px;color:var(--ink)}
-.form-card p{color:var(--ink3);margin-bottom:12px;font-size:.9rem}
-.progress-wrapper{position:sticky;top:62px;z-index:50;background:rgba(247,244,238,.96);backdrop-filter:blur(12px);padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:28px}
-.progress-info{display:flex;justify-content:space-between;margin-bottom:7px;font-size:.8rem;color:var(--ink4);font-weight:500}
-.progress-bar{height:6px;background:var(--ivory3);border-radius:99px;overflow:hidden;position:relative}
+.leitmotiv-name{font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
+/* Cards */
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:32px;margin-bottom:18px}
+.card h2{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:400;margin-bottom:14px;color:var(--ink)}
+.card p{color:var(--ink3);margin-bottom:10px;font-size:.92rem;line-height:1.75}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.info-chip{background:var(--ivory2);border:1px solid var(--line);border-radius:var(--r);padding:14px;text-align:center}
+.info-chip .value{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:300;color:var(--ink)}
+.info-chip .label{font-size:.7rem;color:var(--ink4);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.warn-box{background:rgba(168,135,58,.06);border:1px solid rgba(168,135,58,.2);border-radius:var(--r);padding:12px 16px;font-size:.84rem;color:var(--gold);margin-top:12px}
+.warn-box strong{display:block;margin-bottom:2px;color:var(--ink2)}
+/* Form */
+.form-section{margin-bottom:22px}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.form-field{display:flex;flex-direction:column;gap:4px}
+.form-field label{font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);font-weight:500}
+.form-field input,.form-field select{background:#fff;border:1px solid rgba(26,24,20,.18);border-radius:var(--r);padding:11px 14px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.9rem;-webkit-user-select:text;user-select:text;-webkit-appearance:none}
+.form-field input:focus,.form-field select:focus{outline:none;border-color:var(--gold)}
+.required-star{color:var(--rouge)}
+.field-hint{font-size:.7rem;color:var(--ink5)}
+/* Progress */
+.progress-wrapper{position:sticky;top:62px;z-index:50;background:rgba(247,244,238,.96);backdrop-filter:blur(12px);padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:24px}
+.progress-info{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.78rem;color:var(--ink4);font-weight:500}
+.progress-bar{height:5px;background:var(--ivory3);border-radius:99px;overflow:hidden}
 .progress-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,#B5312A 0%,#C4581F 17%,#B8930A 33%,#2D7A4F 50%,#1D5F8A 67%,#5C3280 83%,#7A3594 100%);transition:width .5s ease}
-.step-dots{display:flex;justify-content:center;gap:7px;margin-top:8px}
+.step-dots{display:flex;justify-content:center;gap:6px;margin-top:6px}
 .step-dot{width:7px;height:7px;border-radius:50%;background:var(--ivory3);border:1px solid var(--line);transition:all .3s}
 .step-dot.active{transform:scale(1.4);border-color:var(--ink);background:var(--ink)}
 .step-dot.done{background:var(--gold);border-color:var(--gold)}
-.form-section{margin-bottom:28px}
-.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.form-field{display:flex;flex-direction:column;gap:5px}
-.form-field label{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3);font-weight:500}
-.form-field input,.form-field select{background:#fff;border:1px solid rgba(26,24,20,.18);border-radius:var(--r);padding:12px 16px;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.93rem;transition:border-color .2s;-webkit-user-select:text;user-select:text;-webkit-appearance:none}
-.form-field input:focus,.form-field select:focus{outline:none;border-color:var(--gold)}
-.required-star{color:var(--rouge);margin-left:2px}
-.field-hint{font-size:.72rem;color:var(--ink5)}
-.page-header{padding:20px 0 22px;border-bottom:1px solid var(--line);margin-bottom:24px}
-.page-badge{display:inline-block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;background:rgba(168,135,58,.08);border:1px solid rgba(168,135,58,.2);color:var(--gold);padding:4px 12px;border-radius:3px;margin-bottom:12px;font-weight:500}
-.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3.5vw,2rem);font-weight:300;color:var(--ink);margin-bottom:6px}
-.page-desc{font-size:.88rem;color:var(--ink4);font-style:italic;line-height:1.6}
-.items-container{display:flex;flex-direction:column;gap:14px}
-.item-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:20px 24px;transition:border-color .2s,box-shadow .2s}
-.item-card:hover{border-color:rgba(168,135,58,.25);box-shadow:0 2px 12px rgba(26,24,20,.05)}
+/* Page header */
+.page-header{padding:16px 0 20px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.page-badge{display:inline-block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;background:rgba(168,135,58,.08);border:1px solid rgba(168,135,58,.2);color:var(--gold);padding:3px 10px;border-radius:3px;margin-bottom:10px;font-weight:500}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:300;color:var(--ink);margin-bottom:4px}
+.page-desc{font-size:.85rem;color:var(--ink4);font-style:italic}
+/* Items */
+.items-container{display:flex;flex-direction:column;gap:12px}
+.item-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 22px;transition:border-color .2s,box-shadow .2s}
+.item-card:hover{border-color:rgba(168,135,58,.25);box-shadow:0 2px 10px rgba(26,24,20,.05)}
 .item-card.answered{border-color:rgba(168,135,58,.35);background:rgba(168,135,58,.02)}
-.item-header{display:flex;gap:12px;margin-bottom:16px;align-items:flex-start}
-.item-num{flex-shrink:0;font-size:.68rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;padding:3px 9px;background:rgba(168,135,58,.08);border:1px solid rgba(168,135,58,.18);border-radius:3px;margin-top:2px;font-weight:600}
-.item-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.2vw,1.18rem);line-height:1.7;color:var(--ink);font-weight:400}
-.likert{display:grid;gap:8px}
-.likert-option{display:flex;flex-direction:column;align-items:center;gap:6px}
+.item-card.spa-card{border-color:rgba(168,135,58,.15);background:rgba(168,135,58,.015)}
+.item-card.spa-card.answered{border-color:rgba(168,135,58,.5);background:rgba(168,135,58,.04)}
+.item-header{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
+.item-num{flex-shrink:0;font-size:.66rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;background:rgba(168,135,58,.08);border:1px solid rgba(168,135,58,.18);border-radius:3px;margin-top:2px;font-weight:600}
+.item-num.spa{background:rgba(168,135,58,.15);border-color:rgba(168,135,58,.35);color:var(--gold2)}
+.item-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.98rem,2.1vw,1.14rem);line-height:1.7;color:var(--ink);font-weight:400}
+/* Likert 0-5 */
+.likert{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+.likert-option{display:flex;flex-direction:column;align-items:center;gap:5px}
 .likert-option input[type="radio"]{display:none}
-.likert-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(26,24,20,.18);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:400;color:var(--ink4);transition:all .18s;user-select:none}
+.likert-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(26,24,20,.18);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:400;color:var(--ink4);transition:all .18s;user-select:none}
 .likert-btn:hover{border-color:var(--gold);color:var(--ink);box-shadow:0 0 0 3px rgba(168,135,58,.1)}
-.likert-option input:checked + .likert-btn{border-color:var(--gold);color:#fff;background:var(--gold);box-shadow:0 2px 10px rgba(168,135,58,.3)}
-.likert-label{font-size:.6rem;text-align:center;color:var(--ink5);max-width:52px;line-height:1.3;font-weight:400}
-.unanswered-msg{background:rgba(181,49,42,.06);border:1px solid rgba(181,49,42,.2);border-radius:var(--r);padding:12px 16px;font-size:.85rem;color:var(--rouge);margin-top:14px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:2px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
-.btn-primary{background:var(--ink);color:var(--ivory);box-shadow:0 2px 12px rgba(26,24,20,.15)}
-.btn-primary:hover{background:var(--ink2);transform:translateY(-1px);box-shadow:0 4px 18px rgba(26,24,20,.2)}
+.likert-option input:checked+.likert-btn{border-color:var(--gold);color:#fff;background:var(--gold);box-shadow:0 2px 8px rgba(168,135,58,.3)}
+.likert-label{font-size:.55rem;text-align:center;color:var(--ink5);max-width:52px;line-height:1.25;font-weight:400}
+/* Warn */
+.unanswered-msg{background:rgba(181,49,42,.06);border:1px solid rgba(181,49,42,.2);border-radius:var(--r);padding:10px 14px;font-size:.84rem;color:var(--rouge);margin-top:12px}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:2px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.83rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:all .2s}
+.btn-primary{background:var(--ink);color:var(--ivory);box-shadow:0 2px 10px rgba(26,24,20,.15)}
+.btn-primary:hover{background:var(--ink2);transform:translateY(-1px)}
 .btn-secondary{background:transparent;color:var(--ink3);border:1px solid rgba(26,24,20,.2)}
 .btn-secondary:hover{color:var(--ink);border-color:rgba(26,24,20,.4)}
-.btn-gold{background:var(--gold);color:#fff;box-shadow:0 2px 12px rgba(168,135,58,.3)}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-1px)}
-.btn-group{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
 .btn-full{width:100%;justify-content:center}
-.sending-overlay{position:fixed;inset:0;z-index:1000;background:rgba(247,244,238,.94);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px}
-.sending-spinner{width:44px;height:44px;border-radius:50%;border:2px solid rgba(168,135,58,.2);border-top-color:var(--gold);animation:spin 1s linear infinite}
-.sending-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:300;color:var(--ink3)}
-.footer-disclaimer{text-align:center;padding:22px 0;border-top:1px solid var(--line);font-size:.75rem;color:var(--ink5);letter-spacing:.04em;line-height:1.8;margin-top:20px}
-.hidden{display:none!important}
-#milestone-toast{position:fixed;top:72px;left:50%;transform:translateX(-50%);z-index:950;max-width:480px;width:calc(100% - 32px);background:var(--ink);color:var(--ivory);border-radius:3px;padding:0;box-shadow:0 8px 36px rgba(26,24,20,.28);display:none;animation:milestoneIn .4s ease;overflow:hidden}
+.btn-group{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+/* Overlay */
+.sending-overlay{position:fixed;inset:0;z-index:1000;background:rgba(247,244,238,.94);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+.sending-spinner{width:40px;height:40px;border-radius:50%;border:2px solid rgba(168,135,58,.2);border-top-color:var(--gold);animation:spin 1s linear infinite}
+.sending-text{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:300;color:var(--ink3)}
+/* Milestone toast */
+#milestone-toast{position:fixed;top:72px;left:50%;transform:translateX(-50%);z-index:950;max-width:480px;width:calc(100%-32px);background:var(--ink);color:var(--ivory);border-radius:3px;padding:0;box-shadow:0 8px 32px rgba(26,24,20,.28);display:none;overflow:hidden}
 @keyframes milestoneIn{from{opacity:0;transform:translateX(-50%) translateY(-12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-.milestone-inner{display:flex;align-items:center;gap:16px;padding:16px 20px}
-.milestone-bar{width:4px;align-self:stretch;border-radius:2px;flex-shrink:0}
-.milestone-emoji{font-size:22px;flex-shrink:0}
-.milestone-text{flex:1}
-.milestone-pct{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
-.milestone-msg{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;line-height:1.4}
-.milestone-close{background:none;border:none;color:rgba(247,244,238,.5);font-size:18px;cursor:pointer;padding:4px;flex-shrink:0;transition:color .2s}
-.milestone-close:hover{color:var(--ivory)}
-.milestone-progress{height:3px;background:rgba(247,244,238,.08)}
-.milestone-progress-fill{height:100%;transition:width .6s ease}
+#milestone-toast.show{display:block;animation:milestoneIn .4s ease}
+.mt-bar{height:3px}.mt-fill{height:100%;transition:width .5s ease}
+.mt-inner{display:flex;align-items:center;gap:14px;padding:14px 18px}
+.mt-accent{width:4px;align-self:stretch;border-radius:2px;flex-shrink:0}
+.mt-emoji{font-size:20px;flex-shrink:0}
+.mt-text{flex:1}
+.mt-pct{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:3px}
+.mt-msg{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;line-height:1.4}
+.mt-close{background:none;border:none;color:rgba(247,244,238,.5);font-size:16px;cursor:pointer;padding:4px;flex-shrink:0}
+/* Footer */
+.footer-disclaimer{text-align:center;padding:20px 0;border-top:1px solid var(--line);font-size:.72rem;color:var(--ink5);letter-spacing:.04em;line-height:1.8;margin-top:16px}
+.hidden{display:none!important}
 @media(max-width:600px){
-  nav{padding:0 20px}
-  .likert{gap:2px}.likert-btn{width:32px;height:32px;font-size:.85rem}.likert-label{display:block;font-size:.5rem;max-width:36px}
-  .welcome-card,.form-card{padding:22px 18px}
-  .app{padding:0 16px 60px}
-  .leitmotiv{padding:18px 22px}
-  .wh-h1{font-size:clamp(28px,8vw,48px)}
+  .app{padding:0 14px 60px}
+  .card{padding:20px 16px}
+  .likert{gap:3px}.likert-btn{width:30px;height:30px;font-size:.8rem}
+  .likert-label{display:none}
 }
 </style>
 </head>
 <body>
 
+<!-- Pause modal -->
 <div id="pause-modal">
   <div class="pm-box">
-    <div class="pm-icon">⏸</div>
+    <div style="font-size:24px;margin-bottom:14px">⏸</div>
     <p class="pm-title">Votre progression est sauvegardée</p>
-    <p class="pm-body" id="pm-email-txt">Toutes vos réponses sont conservées sur cet appareil. Rouvrez cette page dans le même navigateur pour reprendre exactement là où vous en étiez.</p>
-    <div class="pm-info">🔒 Sauvegarde automatique activée — aucune action requise de votre part.</div>
-    <button class="pm-btn-primary" onclick="closePauseModal()">Continuer le questionnaire →</button>
-    <button class="pm-btn-ghost" onclick="closePauseModal()">Fermer</button>
+    <p class="pm-body" id="pm-txt">Toutes vos réponses sont conservées sur cet appareil. Rouvrez cette page dans le même navigateur pour reprendre exactement là où vous en étiez.</p>
+    <div class="pm-info">🔒 Sauvegarde automatique — aucune action requise.</div>
+    <button class="pm-btn" onclick="closePauseModal()">Continuer le questionnaire →</button>
+    <button class="pm-ghost" onclick="closePauseModal()">Fermer</button>
   </div>
 </div>
 
-<div id="milestone-toast" role="status" aria-live="polite">
-  <div class="milestone-progress"><div class="milestone-progress-fill" id="milestone-progress-fill"></div></div>
-  <div class="milestone-inner">
-    <div class="milestone-bar" id="milestone-bar"></div>
-    <span class="milestone-emoji" id="milestone-emoji"></span>
-    <div class="milestone-text">
-      <div class="milestone-pct" id="milestone-pct"></div>
-      <div class="milestone-msg" id="milestone-msg"></div>
+<!-- Milestone toast -->
+<div id="milestone-toast">
+  <div class="mt-bar"><div class="mt-fill" id="mt-fill"></div></div>
+  <div class="mt-inner">
+    <div class="mt-accent" id="mt-accent"></div>
+    <span class="mt-emoji" id="mt-emoji"></span>
+    <div class="mt-text">
+      <div class="mt-pct" id="mt-pct"></div>
+      <div class="mt-msg" id="mt-msg"></div>
     </div>
-    <button class="milestone-close" onclick="closeMilestone()" aria-label="Fermer">✕</button>
+    <button class="mt-close" onclick="closeMilestone()">✕</button>
   </div>
 </div>
 
 <nav>
-  <a href="https://valeur.psyh.fr" class="nav-logo" rel="noopener">
-    <span>V.A.L.E.U.R<sup>©</sup></span>
-  </a>
+  <a href="https://valeur.psyh.fr" class="nav-logo">V.A.L.E.U.R<sup>©</sup></a>
   <div class="nav-links">
     <a href="https://valeur.psyh.fr" class="nav-link">Les 7 peurs</a>
     <a href="#" class="nav-link active">Questionnaire</a>
@@ -221,11 +228,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
 
 <div class="sending-overlay hidden" id="sending-overlay">
   <div class="sending-spinner"></div>
-  <div class="sending-text" id="overlay-text">Analyse de vos résultats…</div>
+  <div class="sending-text" id="overlay-text">Analyse de votre cartographie…</div>
 </div>
 
 <div class="app">
 
+<!-- ── WELCOME ─────────────────────────────────── -->
 <div id="screen-welcome" class="screen active">
   <div class="welcome-hero">
     <div class="wh-eyebrow">Méthode V.A.L.E.U.R© · Céline Bourbon, Psychologue</div>
@@ -241,40 +249,40 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
       <div class="leitmotiv-author"><div class="leitmotiv-line"></div><span class="leitmotiv-name">Céline Bourbon · V.A.L.E.U.R©</span></div>
     </div>
   </div>
-  <div class="welcome-card">
+  <div class="card">
     <h2>Votre cartographie des masques</h2>
-    <p>Ce questionnaire d'auto-évaluation identifie vos stratégies de protection psychologique selon la Méthode V.A.L.E.U.R©. Ces mécanismes sont universels — ils ont tous été utiles à un moment de notre vie. L'objectif est de mieux les comprendre pour retrouver liberté et authenticité.</p>
+    <p>Ce questionnaire d'auto-évaluation identifie vos stratégies de protection psychologique selon la Méthode V.A.L.E.U.R©. Ces mécanismes sont universels — ils ont tous été utiles à un moment. L'objectif est de mieux les comprendre pour retrouver liberté et authenticité.</p>
     <div class="info-grid">
-      <div class="info-chip"><div class="value">51</div><div class="label">Affirmations</div></div>
+      <div class="info-chip"><div class="value">85</div><div class="label">Affirmations</div></div>
       <div class="info-chip"><div class="value">7</div><div class="label">Masques</div></div>
-      <div class="info-chip"><div class="value">~10-15 min</div><div class="label">Durée estimée</div></div>
+      <div class="info-chip"><div class="value">~15-20 min</div><div class="label">Durée estimée</div></div>
     </div>
     <div class="warn-box">
       <strong>Information importante</strong>
       Outil d'auto-exploration psychoéducative. Non validé comme instrument diagnostique autonome — ne remplace pas une évaluation professionnelle.
     </div>
   </div>
-  <div class="welcome-card">
+  <div class="card">
     <h2>Consignes de passation</h2>
     <p>· Choisissez un lieu calme, sans interruptions<br>
        · Répondez selon votre fonctionnement réel ces <strong>6 derniers mois</strong><br>
        · Privilégiez votre premier ressenti plutôt que l'analyse intellectuelle<br>
        · Suspendez tout jugement — toutes les réponses sont valides</p>
-    <p style="margin-top:14px"><strong>Échelle :</strong> 1 = Pas du tout vrai pour moi → 6 = Décrit parfaitement mon expérience. Répondez spontanément selon ce qui correspond le mieux à votre fonctionnement habituel.</p>
+    <p style="margin-top:12px"><strong>Échelle :</strong> 0 = Pas du tout vrai pour moi → 5 = Décrit parfaitement mon expérience</p>
   </div>
   <button class="btn btn-primary btn-full" onclick="goToScreen('screen-demo')">Commencer le questionnaire →</button>
 </div>
 
+<!-- ── DEMO / INFOS ────────────────────────────── -->
 <div id="screen-demo" class="screen">
   <div class="progress-wrapper">
-    <div class="progress-info"><span>Vos informations</span><span>Étape 1 / 4</span></div>
-    <div class="progress-bar"><div class="progress-fill" style="width:25%"></div></div>
-    <div class="step-dots" id="dots-demo"></div>
+    <div class="progress-info"><span>Vos informations</span><span>Étape 1 / 6</span></div>
+    <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
   </div>
-  <div class="form-card">
+  <div class="card">
     <h2>Vos informations</h2>
-    <p style="color:var(--rouge);font-size:.82rem;margin-bottom:4px">★ Champs obligatoires</p>
-    <div class="form-section" style="margin-top:18px">
+    <p style="color:var(--rouge);font-size:.8rem;margin-bottom:4px">★ Champs obligatoires</p>
+    <div class="form-section" style="margin-top:16px">
       <div class="form-grid">
         <div class="form-field">
           <label>Prénom / Initiales <span class="required-star">*</span></label>
@@ -300,12 +308,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
       </div>
     </div>
   </div>
-  <div style="margin:0 0 16px;background:rgba(168,135,58,.06);border:1px solid rgba(168,135,58,.2);border-radius:8px;padding:14px 16px">
+  <div style="margin:0 0 14px;background:rgba(168,135,58,.06);border:1px solid rgba(168,135,58,.2);border-radius:8px;padding:12px 16px">
     <label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">
       <input type="checkbox" id="rgpd-consent" style="margin-top:3px;flex-shrink:0;accent-color:#A8873A">
       <span style="font-size:12px;color:var(--ink3);line-height:1.6">
-        J'accepte de recevoir des ressources sur la méthode V.A.L.E.U.R© de Céline Bourbon.
-        Je peux me désabonner à tout moment.
+        J'accepte de recevoir des ressources sur la méthode V.A.L.E.U.R© de Céline Bourbon. Je peux me désabonner à tout moment.
         <a href="https://valeur.psyh.fr/mentions-legales.html" target="_blank" style="color:#A8873A">Mentions légales →</a>
       </span>
     </label>
@@ -316,664 +323,686 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
   </div>
 </div>
 
+<!-- ── PAGES QUESTIONNAIRE (injectées dynamiquement) ── -->
 <div id="screen-pages-container"></div>
 
 <div class="footer-disclaimer">
   Outil psychoéducatif · Ne remplace pas une évaluation ou un suivi professionnel<br>
-  Méthode V.A.L.E.U.R© · Instruments inspirés de : SHAI · TAS-20 · IUS-12 · ECR-R · LOC+NPI · FMPS+Clance · MSI<br>
-  <span style="color:rgba(26,24,20,.3);font-size:.68rem">
-    © Céline Bourbon — Méthode V.A.L.E.U.R© — Tous droits réservés<br>
-    Toute reproduction sans autorisation écrite est interdite
+  Méthode V.A.L.E.U.R© · Instruments : SHAI · TAS-20 · IUS-12 · ECR-R · LOC+NPI · FMPS+Clance · MSI · Wood et al. (2008)<br>
+  <span style="color:rgba(26,24,20,.25);font-size:.66rem">
+    © Céline Bourbon — Méthode V.A.L.E.U.R© — questionnaire.psyh.fr — Tous droits réservés
   </span>
 </div>
 
 </div><!-- .app -->
 
 <script>
-/* ============================================================
+/* ================================================================
    © Céline Bourbon — Méthode V.A.L.E.U.R©
-   Questionnaire v3.0 — 51 items · échelle 1-6 · 7 masques
-   ============================================================ */
+   Questionnaire V3.0 — 85 items (78 masques + 7 SPA)
+   Échelle 0-5 · IONOS : questionnaire.psyh.fr
+   ================================================================ */
 
+// ── CONFIG (inchangé IONOS) ──────────────────────────────────────
 const CONFIG = {
   EMAILJS_PUBLIC_KEY:  'Qamyb35cCRJ5Pulqs',
   EMAILJS_SERVICE_ID:  'Questionnaire VALEUR',
   EMAILJS_TEMPLATE_ID: 'template_xp8cfww',
   ADMIN_EMAIL:         'celine.bourbon@gmail.com',
-  ADMIN_NAME:          'Céline Bourbon — V.A.L.E.U.R©',
-  RESULTS_URL:         'resultats.html',
-  ITEMS_PP:            17,
+  RESULTS_URL:         'resultats.html',   // chemin relatif IONOS
+  ITEMS_PP:            17,                  // 17 items/page → 5 pages
 };
+const VERCEL_API = 'https://valeur-backend-api.vercel.app/api';
 
-const INTERPRETATIONS = {
-  rouge:{
-    faible:'Relation équilibrée avec le corps et la santé. Les sensations physiques ne déclenchent pas d\'inquiétude chronique.',
-    modéré:'Vigilance normale à la santé, mais certaines situations déclenchent une inquiétude accrue.',
-    élevé:'Surveillance constante du corps générant une anxiété significative. Accompagnement recommandé.',
-    dominant:'L\'anxiété de santé envahit la vie quotidienne. Accompagnement intensif recommandé.'
-  },
-  orange:{
-    faible:'Bonne capacité d\'identification et d\'expression émotionnelle.',
-    modéré:'Capacité émotionnelle variable selon le contexte.',
-    élevé:'Difficultés significatives à identifier et nommer les émotions.',
-    dominant:'Dissociation affective majeure. Accompagnement spécialisé recommandé.'
-  },
-  jaune:{
-    faible:'Bonne tolérance à l\'incertitude et l\'imprévu.',
-    modéré:'Préférence pour la clarté, mais adaptable.',
-    élevé:'Besoin marqué de prévisibilité. L\'incertitude génère une anxiété significative.',
-    dominant:'Hypercontrôle cognitif et comportemental constant. Accompagnement intensif recommandé.'
-  },
-  vert:{
-    faible:'Sécurité affective établie. Tolérance sereine à la solitude.',
-    modéré:'Le regard des autres compte. Sensibilité au rejet.',
-    élevé:'La peur du rejet structure significativement les relations.',
-    dominant:'La solitude vécue comme menace profonde. Accompagnement recommandé.'
-  },
-  bleu:{
-    faible:'Direction sans rigidité. Délégation et confiance avec aisance.',
-    modéré:'Préférence pour garder la main, mais délégation possible.',
-    élevé:'La perte de contrôle génère de la colère ou de l\'anxiété.',
-    dominant:'Domination ou contrôle devenus stratégies centrales. Accompagnement recommandé.'
-  },
-  indigo:{
-    faible:'Possibilité de viser l\'excellence sans se dévaloriser.',
-    modéré:'Exigence élevée envers soi. Peur du jugement ponctuellement limitante.',
-    élevé:'L\'erreur remet en question la valeur personnelle. Perfectionnisme paralysant.',
-    dominant:'Doute chronique et autocritique structurant l\'identité. Accompagnement recommandé.'
-  },
-  violet:{
-    faible:'Sentiment relativement stable de son identité.',
-    modéré:'Doutes ponctuels sur sa propre authenticité.',
-    élevé:'Sentiment d\'être étranger·ère à soi-même. Vide intérieur.',
-    dominant:'Sentiment de vide ou de perte d\'identité prédominent. Accompagnement indispensable.'
-  }
-};
-
-// ── MASK_MAX : max bruts par masque (échelle 1-6) ──────────────────
+// ── MASK_MAX (échelle 0-5) ────────────────────────────────────────
+// MAX = nb_items × 5
 const MASK_MAX = {
-  rouge:  48,   // 8 items × 6
-  orange: 36,   // 6 items × 6
-  jaune:  42,   // 7 items × 6
-  vert:   48,   // 8 items × 6
-  bleu:   42,   // 7 items × 6
-  indigo: 48,   // 8 items × 6
-  violet: 42,   // 7 items × 6
+  rouge:  50,   // 10 items × 5
+  orange: 65,   // 13 items × 5
+  jaune:  45,   //  9 items × 5
+  vert:   55,   // 11 items × 5
+  bleu:   55,   // 11 items × 5
+  indigo: 60,   // 12 items × 5
+  violet: 60,   // 12 items × 5
 };
+const SPA_MAX = 35;  // 7 items × 5
 
-// ── ALL_ITEMS : 51 questions · échelle 1-6 · 7 masques ────────────
-// inv:true → score ajusté = 7 − réponse  (★ inversé)
-// inv:false → score ajusté = réponse
-const ALL_ITEMS = [
+// ── ALL_ITEMS — 78 items masques ─────────────────────────────────
+// inv:true → score corrigé = 5 − raw
+// inv:false → score corrigé = raw
+const MASQUE_ITEMS = [
+  // 🔴 ROUGE — 10 items
+  {id:'R1', mask:'rouge', inv:false, text:"Je surveille régulièrement les signaux de mon corps (rythme cardiaque, sensations) pour détecter un problème de santé."},
+  {id:'R2', mask:'rouge', inv:false, text:"Quand j'observe une sensation physique inhabituelle, ma pensée va rapidement vers une maladie grave."},
+  {id:'R3', mask:'rouge', inv:false, text:"Je consulte régulièrement des sources médicales (internet, médecins) pour vérifier mes symptômes."},
+  {id:'R4', mask:'rouge', inv:false, text:"La peur de développer une maladie grave (cancer, AVC…) occupe une place significative dans mes pensées."},
+  {id:'R5', mask:'rouge', inv:false, text:"J'ai déjà consulté plusieurs médecins pour les mêmes symptômes, en espérant trouver une rassurance définitive."},
+  {id:'R6', mask:'rouge', inv:false, text:"Je cherche fréquemment à être rassuré(e) par des professionnels de santé sur mon état physique."},
+  {id:'R7', mask:'rouge', inv:false, text:"Si j'apprenais avoir une maladie grave, je pense que je ne pourrais pas y faire face émotionnellement."},
+  {id:'R8', mask:'rouge', inv:false, text:"Je crois qu'une maladie grave ruinerait ma vie de façon permanente et irrémédiable."},
+  {id:'R9', mask:'rouge', inv:false, text:"Je pense souvent que je pourrais avoir une maladie grave sans le savoir encore."},
+  {id:'R10',mask:'rouge', inv:false, text:"Lorsqu'un proche est malade, je crains rapidement de contracter la même chose."},
+  // 🟠 ORANGE — 13 items
+  {id:'O1', mask:'orange', inv:false, text:"Lorsqu'une conversation devient émotionnelle, je change naturellement de sujet ou je m'en détache."},
+  {id:'O2', mask:'orange', inv:false, text:"Je me sens plus à l'aise en m'occupant (travail, écrans) qu'en restant seul(e) avec mes émotions."},
+  {id:'O3', mask:'orange', inv:false, text:"Il m'est difficile de décrire précisément ce que je ressens émotionnellement dans une situation donnée."},
+  {id:'O4', mask:'orange', inv:false, text:"Même lors d'événements difficiles (deuil, échec important), je reste souvent sans larmes ni affect visible."},
+  {id:'O5', mask:'orange', inv:false, text:"Je préfère analyser les situations de façon logique plutôt que d'explorer les émotions qu'elles génèrent."},
+  {id:'O6', mask:'orange', inv:false, text:"Je me sens davantage observateur(trice) de ma propre vie que réellement acteur(trice) de mes émotions."},
+  {id:'O7', mask:'orange', inv:false, text:"Je préfère me concentrer sur les événements extérieurs et les faits concrets plutôt que sur mes états intérieurs."},
+  {id:'O8', mask:'orange', inv:false, text:"Face à un problème, je préfère l'analyser rationnellement plutôt que d'explorer les émotions qu'il génère."},
+  {id:'O9', mask:'orange', inv:false, text:"Je me demande souvent pourquoi je réagis émotionnellement comme je le fais."},
+  {id:'O10',mask:'orange', inv:false, text:"Mes émotions me déconcertent souvent."},
+  {id:'O11',mask:'orange', inv:false, text:"Il m'est difficile de révéler mes sentiments intimes, même à des personnes proches."},
+  {id:'O12',mask:'orange', inv:false, text:"Mon imagination et ma vie intérieure me semblent limitées."},
+  {id:'O13',mask:'orange', inv:false, text:"Je préfère laisser les choses se passer naturellement plutôt que de les comprendre émotionnellement."},
+  // 🟡 JAUNE — 9 items (J6 inversé)
+  {id:'J1', mask:'jaune', inv:false, text:"Je me sens très mal à l'aise lorsqu'un événement prévu est modifié sans préavis."},
+  {id:'J2', mask:'jaune', inv:false, text:"Avant de décider, je dois réunir le maximum d'informations, même pour des décisions mineures."},
+  {id:'J3', mask:'jaune', inv:false, text:"Je prépare systématiquement des plans alternatifs (B, C, D) en cas d'imprévu."},
+  {id:'J4', mask:'jaune', inv:false, text:"Les situations ambiguës ou sans issue claire me sont particulièrement difficiles à tolérer."},
+  {id:'J5', mask:'jaune', inv:false, text:"Je prévois et planifie les activités du quotidien de façon très détaillée pour éviter tout imprévu."},
+  {id:'J6', mask:'jaune', inv:true,  text:"Je tolère bien de ne pas savoir comment les choses vont se dérouler et j'avance malgré l'incertitude."},
+  {id:'J7', mask:'jaune', inv:false, text:"Il m'est difficile d'agir quand je ne sais pas ce qui va se passer."},
+  {id:'J8', mask:'jaune', inv:false, text:"Il faut que je sache ce que l'avenir me réserve."},
+  {id:'J9', mask:'jaune', inv:false, text:"Je dois toujours être en mesure d'anticiper les événements."},
+  // 🟢 VERT — 11 items (V5, V11 inversés)
+  {id:'V1', mask:'vert', inv:false, text:"J'accepte le point de vue d'autrui même si je ne le partage pas, pour éviter tout conflit."},
+  {id:'V2', mask:'vert', inv:false, text:"La pensée d'être seul(e) ou abandonné(e) me provoque une angoisse significative."},
+  {id:'V3', mask:'vert', inv:false, text:"Je maintiens parfois des relations insatisfaisantes car la rupture me semblerait encore plus difficile."},
+  {id:'V4', mask:'vert', inv:false, text:"Je ressens un besoin fort d'être rassuré(e) par mes proches sur leur affection pour moi."},
+  {id:'V5', mask:'vert', inv:true,  text:"Je me sens généralement bien dans ma peau et capable d'assumer les défis relationnels."},
+  {id:'V6', mask:'vert', inv:false, text:"J'analyse en permanence les signes d'acceptation ou de rejet dans les comportements de mon entourage."},
+  {id:'V7', mask:'vert', inv:false, text:"J'ai peur que les personnes importantes pour moi ne souhaitent pas rester avec moi aussi longtemps que je le souhaite avec elles."},
+  {id:'V8', mask:'vert', inv:false, text:"Il m'est difficile de faire confiance totalement à mes partenaires ou proches."},
+  {id:'V9', mask:'vert', inv:false, text:"Il m'est difficile de me sentir vraiment à l'aise avec mes proches."},
+  {id:'V10',mask:'vert', inv:false, text:"Mes désirs d'être très proche des autres les effraient parfois."},
+  {id:'V11',mask:'vert', inv:true,  text:"J'ai confiance dans la capacité des autres à m'aimer de façon stable et durable."},
+  // 🔵 BLEU — 11 items (B8 inversé)
+  {id:'B1', mask:'bleu', inv:false, text:"Lorsque je vois quelqu'un faire une tâche « de travers », j'ai une forte impulsion à reprendre le contrôle."},
+  {id:'B2', mask:'bleu', inv:false, text:"J'ai tendance à diriger les groupes ou situations, même sans y avoir été invité(e)."},
+  {id:'B3', mask:'bleu', inv:false, text:"Lorsque quelqu'un prend une décision sans me consulter dans un domaine me concernant, je ressens une irritation marquée."},
+  {id:'B4', mask:'bleu', inv:false, text:"J'ai besoin de sentir que je suis indispensable dans mes relations professionnelles ou personnelles."},
+  {id:'B5', mask:'bleu', inv:false, text:"Quand je confie une tâche, j'ai régulièrement envie de vérifier ou corriger le travail de l'autre."},
+  {id:'B6', mask:'bleu', inv:false, text:"Je ressens de la colère ou une forte frustration lorsqu'une situation m'échappe ou ne se déroule pas comme prévu."},
+  {id:'B7', mask:'bleu', inv:false, text:"J'ai l'impression que ce qui m'arrive dépend surtout des autres ou du hasard, et peu de moi-même."},
+  {id:'B8', mask:'bleu', inv:true,  text:"Je me sens maître(sse) de ce qui se passe dans ma vie et de mes choix importants."},
+  {id:'B9', mask:'bleu', inv:false, text:"La perspective de ne pas contrôler mes émotions m'angoisse."},
+  {id:'B10',mask:'bleu', inv:false, text:"Je préfère tout faire moi-même pour éviter de dépendre du jugement ou de l'action des autres."},
+  {id:'B11',mask:'bleu', inv:false, text:"Je préfère prendre les risques moi-même plutôt que de laisser les autres décider à ma place."},
+  // 🟣 INDIGO — 12 items
+  {id:'I1', mask:'indigo', inv:false, text:"Je retravaille mes productions (projets, présentations) bien au-delà de ce qui est objectivement nécessaire."},
+  {id:'I2', mask:'indigo', inv:false, text:"Je reporte souvent le démarrage d'un projet car je crains de ne pas être à la hauteur."},
+  {id:'I3', mask:'indigo', inv:false, text:"Je minimise spontanément mes réussites en les attribuant à la chance ou aux autres plutôt qu'à moi."},
+  {id:'I4', mask:'indigo', inv:false, text:"J'ai du mal à me sentir légitime dans mon rôle professionnel, même quand mes résultats sont objectivement bons."},
+  {id:'I5', mask:'indigo', inv:false, text:"Je sabote parfois inconsciemment une opportunité de réussite juste avant qu'elle se concrétise."},
+  {id:'I6', mask:'indigo', inv:false, text:"Mon dialogue intérieur est souvent très critique envers moi-même lorsque je n'atteins pas mes propres standards."},
+  {id:'I7', mask:'indigo', inv:false, text:"Lorsque j'échoue, j'ai honte de moi-même."},
+  {id:'I8', mask:'indigo', inv:false, text:"Lorsque j'échoue, je commence à me demander si je suis capable de faire quoi que ce soit correctement."},
+  {id:'I9', mask:'indigo', inv:false, text:"Quand je n'atteins pas mon objectif, j'ai l'impression d'être moins bien que les autres."},
+  {id:'I10',mask:'indigo', inv:false, text:"Lorsque j'échoue, je remets en question mes aptitudes et mes capacités profondes."},
+  {id:'I11',mask:'indigo', inv:false, text:"Quand j'échoue, je m'imagine perdre des opportunités importantes qui ne reviendront pas."},
+  {id:'I12',mask:'indigo', inv:false, text:"Quand j'échoue, je me sens coupable d'avoir déçu les personnes qui comptaient sur moi."},
+  // 💜 VIOLET — 12 items
+  {id:'Vi1', mask:'violet', inv:false, text:"J'ai l'impression de vivre ma vie « en pilote automatique », comme si je me regardais de l'extérieur."},
+  {id:'Vi2', mask:'violet', inv:false, text:"Il m'est difficile d'exprimer des préférences authentiques car je ne sais plus ce que je veux vraiment."},
+  {id:'Vi3', mask:'violet', inv:false, text:"J'ai abandonné progressivement des passions ou centres d'intérêt qui me définissaient autrefois."},
+  {id:'Vi4', mask:'violet', inv:false, text:"En situation de silence ou de solitude, je ressens un vide intérieur difficile à définir."},
+  {id:'Vi5', mask:'violet', inv:false, text:"Je refuse souvent des opportunités de changement (nouveau poste, déménagement) pour ne pas perturber ma stabilité."},
+  {id:'Vi6', mask:'violet', inv:false, text:"J'ai la sensation d'être une personne différente selon les périodes de ma vie, sans véritable fil conducteur."},
+  {id:'Vi7', mask:'violet', inv:false, text:"Je serais incapable de décrire clairement qui j'étais il y a 5 ans et qui je serai dans 5 ans."},
+  {id:'Vi8', mask:'violet', inv:false, text:"L'idée de changer profondément qui je suis me provoque une crainte existentielle que j'évite d'explorer."},
+  {id:'Vi9', mask:'violet', inv:false, text:"Je me sens déconnecté(e) de la personne que j'étais dans le passé."},
+  {id:'Vi10',mask:'violet', inv:false, text:"Je me sens comme une personne différente de celle que j'étais autrefois."},
+  {id:'Vi11',mask:'violet', inv:false, text:"J'ai souvent l'impression de ne pas savoir qui je suis vraiment."},
+  {id:'Vi12',mask:'violet', inv:false, text:"L'idée de me définir ou d'expliquer qui je suis m'angoisse ou me laisse dans le vide."},
+];
 
-  /* ── 🔴 ROUGE — 8 items · max 48 · SHAI (Salkovskis 2002) ── */
-  {id:'R1',mask:'rouge',inv:false,text:"Quand je ressens une sensation physique inhabituelle — une douleur, une palpitation, un vertige — j'imagine presque spontanément que cela pourrait signaler quelque chose de grave."},
-  {id:'R2',mask:'rouge',inv:false,text:"Il m'arrive de consulter des informations médicales sur internet pour tenter de comprendre ce que je ressens dans mon corps, même pour des symptômes qui semblent bénins."},
-  {id:'R3',mask:'rouge',inv:false,text:"J'ai tendance à éviter certains sujets de conversation, contenus ou situations qui me rappellent la maladie grave ou la mort."},
-  {id:'R4',mask:'rouge',inv:false,text:"Même après qu'un médecin m'a rassuré(e), le doute revient rapidement : « et si c'était quand même quelque chose de sérieux ? »"},
-  {id:'R5',mask:'rouge',inv:false,text:"La pensée que je pourrais tomber gravement malade, ou mourir soudainement, traverse mon esprit de façon récurrente, même dans des moments calmes."},
-  {id:'R6',mask:'rouge',inv:false,text:"Je surveille les signaux de mon corps — rythme cardiaque, respiration, sensations — souvent sans l'avoir vraiment décidé."},
-  {id:'R7',mask:'rouge',inv:true, text:"Quand j'ai une petite douleur passagère, je peux généralement passer à autre chose sans qu'elle continue à me préoccuper."},
-  {id:'R8',mask:'rouge',inv:false,text:"Quand j'entends parler d'une maladie grave dans mon entourage ou dans les médias, il m'arrive de me demander si des symptômes que je ressens ne pourraient pas en être le signe."},
+// ✦ SPA — 7 items (textes exacts PDF, aucune inversion)
+// Fondement : Wood et al. (2008) / Kernis & Goldman (2006)
+const SPA_ITEMS = [
+  {id:'SPA-1', mask:'spa', inv:false, fenetre:'État de flux',
+   text:"Il m'arrive d'être tellement absorbé(e) par ce que je fais que je perds la notion du temps et du regard des autres."},
+  {id:'SPA-2', mask:'spa', inv:false, fenetre:'Résonance corporelle',
+   text:"Je ressens parfois dans mon corps un signal clair — légèreté, élan, soulagement — et je lui fais confiance sans chercher à l'analyser."},
+  {id:'SPA-3', mask:'spa', inv:false, fenetre:'Opinion spontanée',
+   text:"Il m'arrive de savoir ce que je pense ou ce que je veux avant de me demander ce que les autres en penseraient."},
+  {id:'SPA-4', mask:'spa', inv:false, fenetre:'Joie sans témoin',
+   text:"Je peux éprouver de la joie ou de la satisfaction dans un moment, sans avoir besoin de le partager ou de le faire valider."},
+  {id:'SPA-5', mask:'spa', inv:false, fenetre:'Élan sans raison',
+   text:"Il m'arrive d'être attiré(e) vers quelque chose — une idée, une activité, une direction — sans pouvoir l'expliquer rationnellement, et de le suivre quand même."},
+  {id:'SPA-6', mask:'spa', inv:false, fenetre:'Présence à soi',
+   text:"Dans certains moments, j'ai la sensation claire d'être moi-même — sans effort, sans rôle à tenir."},
+  {id:'SPA-7', mask:'spa', inv:false, fenetre:'Authenticité relationnelle',
+   text:"Il m'arrive d'exprimer une opinion, une émotion ou un besoin — même si je sais que ce n'est pas ce que l'autre attendait d'entendre."},
+];
 
-  /* ── 🟠 ORANGE — 6 items · max 36 · TAS-20 (Bagby 1994) ── */
-  {id:'O1',mask:'orange',inv:false,text:"Quand une conversation devient chargée émotionnellement, je change de sujet, je plaisante ou je me tourne vers autre chose, presque sans y penser."},
-  {id:'O2',mask:'orange',inv:false,text:"J'ai du mal à identifier avec précision ce que je ressens sur le moment — je perçois une tension ou un malaise, mais je ne saurais pas vraiment le nommer."},
-  {id:'O3',mask:'orange',inv:false,text:"Je remarque que je préfère être occupé(e) — par le travail, les écrans, les activités — plutôt que de rester seul(e) avec ce que je ressens à l'intérieur."},
-  {id:'O4',mask:'orange',inv:false,text:"Quand quelque chose me touche, j'ai du mal à trouver les mots pour l'exprimer, même à quelqu'un en qui j'ai confiance."},
-  {id:'O5',mask:'orange',inv:true, text:"Je peux mettre assez facilement des mots sur ce que je ressens et le partager avec une personne de confiance."},
-  {id:'O6',mask:'orange',inv:false,text:"Je me retrouve à éviter certains films, certaines lectures ou certaines situations susceptibles de me toucher trop fort émotionnellement — pas toujours consciemment."},
+// SPA insérés aux positions 11, 22, 33, 44, 55, 66, 77
+// (espacement ~10 items masques entre chaque SPA sur 85 items total)
+const SPA_POSITIONS = {11:'SPA-1', 22:'SPA-4', 33:'SPA-2', 44:'SPA-5', 55:'SPA-3', 66:'SPA-6', 77:'SPA-7'};
+const SPA_MAP = {};
+SPA_ITEMS.forEach(s => { SPA_MAP[s.id] = s; });
 
-  /* ── 🟡 JAUNE — 7 items · max 42 · IUS-12 (Carleton 2007) ── */
-  {id:'J1',mask:'jaune',inv:false,text:"Ne pas savoir comment une situation va se dérouler génère en moi une anxiété que je ne peux pas vraiment mettre de côté, même quand les enjeux sont mineurs."},
-  {id:'J2',mask:'jaune',inv:false,text:"Je prépare des plans détaillés — parfois avec des alternatives — pour limiter au maximum les imprévus, y compris dans des situations ordinaires."},
-  {id:'J3',mask:'jaune',inv:false,text:"Quand je dois prendre une décision sans disposer de toutes les informations nécessaires, je reste bloqué(e) ou je reporte la décision aussi longtemps que possible."},
-  {id:'J4',mask:'jaune',inv:false,text:"Un changement de dernière minute dans mes plans — même mineur — déclenche une réaction de stress que j'ai du mal à m'expliquer rationnellement."},
-  {id:'J5',mask:'jaune',inv:false,text:"Il m'arrive de refaire des vérifications — ai-je bien fermé la porte, bien éteint l'appareil, bien envoyé ce message — même en sachant que j'ai probablement tout fait correctement."},
-  {id:'J6',mask:'jaune',inv:true, text:"Quand quelque chose d'imprévu survient dans ma journée, il m'arrive de trouver ça plutôt stimulant que déstabilisant."},
-  {id:'J7',mask:'jaune',inv:false,text:"L'idée d'une journée ou d'une situation dont je ne maîtrise pas le déroulement me pèse bien avant qu'elle ne commence."},
-
-  /* ── 🟢 VERT — 8 items · max 48 · ECR-R (Fraley 2000) ── */
-  {id:'V1',mask:'vert',inv:false,text:"Je dis oui à des demandes qui ne me correspondent pas vraiment, parce que refuser me semble risqué pour la relation."},
-  {id:'V2',mask:'vert',inv:false,text:"Quand quelqu'un que j'apprécie tarde à répondre à un message, je commence à envisager qu'il est peut-être fâché(e) contre moi, ou qu'il/elle s'éloigne."},
-  {id:'V3',mask:'vert',inv:false,text:"J'ajuste ce que je dis, mon attitude ou mes opinions selon mon interlocuteur, pour qu'il/elle m'apprécie ou ne soit pas déçu(e)."},
-  {id:'V4',mask:'vert',inv:false,text:"Il m'arrive de rester dans des relations qui ne me conviennent plus, parce que la perspective de me retrouver seul(e) me pèse davantage encore."},
-  {id:'V5',mask:'vert',inv:false,text:"J'ai besoin, de façon régulière, que les personnes proches me montrent qu'elles m'apprécient — un manque de signe d'affection me déstabilise rapidement."},
-  {id:'V6',mask:'vert',inv:false,text:"Je me surprends à surveiller les réactions des autres pour détecter des signes de désapprobation ou de rejet, même discrets."},
-  {id:'V7',mask:'vert',inv:true, text:"Je suis capable d'exprimer mes besoins ou mes désaccords à quelqu'un que j'apprécie, sans craindre que ça mette notre relation en danger."},
-  {id:'V8',mask:'vert',inv:false,text:"Je me rends indispensable dans mes relations — j'aide, je donne, j'anticipe — en partie pour ne pas risquer d'être mis(e) de côté."},
-
-  /* ── 🔵 BLEU — 7 items · max 42 · LOC+NPI (Rotter 1966 / Raskin 1988) ── */
-  {id:'B1',mask:'bleu',inv:false,text:"Quand quelqu'un fait quelque chose différemment de ma façon de faire, il m'arrive de reprendre la main ou de rectifier, même si ce n'est pas mon rôle."},
-  {id:'B2',mask:'bleu',inv:false,text:"Je me retrouve à avoir du mal à laisser une tâche entièrement à quelqu'un d'autre — je continue à me demander si ça va être bien fait."},
-  {id:'B3',mask:'bleu',inv:false,text:"Quand on critique mon travail ou mes décisions, ma réaction intérieure est intense, même si je ne le laisse pas forcément paraître."},
-  {id:'B4',mask:'bleu',inv:false,text:"Je remarque que, quand mes contributions ne sont pas reconnues ou que je ne suis pas consulté(e), je ressens une irritation ou une frustration difficile à ignorer."},
-  {id:'B5',mask:'bleu',inv:false,text:"Je me retrouve à prendre les rênes ou à organiser naturellement, même dans des contextes où ce n'est pas attendu de moi — l'absence de cadre me met mal à l'aise."},
-  {id:'B6',mask:'bleu',inv:true, text:"Je peux laisser quelqu'un d'autre prendre les décisions sans ressentir d'inconfort particulier."},
-  {id:'B7',mask:'bleu',inv:false,text:"Le fait de devoir compter sur quelqu'un — pour un résultat, une décision, un service — crée en moi un malaise difficile à expliquer."},
-
-  /* ── 🟣 INDIGO — 8 items · max 48 · FMPS+Clance (Frost 1990 / Clance 1985) ── */
-  {id:'I1',mask:'indigo',inv:false,text:"Je reporte une tâche ou un projet parce que, si je ne peux pas le faire comme il se doit, j'ai du mal à commencer du tout."},
-  {id:'I2',mask:'indigo',inv:false,text:"Quand quelqu'un me complimente sur mon travail, mon réflexe est de minimiser ou de trouver une raison qui retire le mérite à ce que j'ai fait."},
-  {id:'I3',mask:'indigo',inv:false,text:"J'ai parfois le sentiment d'être un(e) imposteur(e) — que les autres vont finir par réaliser que je ne suis pas aussi compétent(e) ou légitime qu'ils le pensent."},
-  {id:'I4',mask:'indigo',inv:false,text:"Je me compare souvent aux autres et je me retrouve à me sentir insuffisant(e) ou en retard, même quand objectivement les choses se passent bien."},
-  {id:'I5',mask:'indigo',inv:false,text:"Une erreur, même mineure, peut me faire douter de ma valeur globale — pas seulement de ce point précis, mais de moi en général."},
-  {id:'I6',mask:'indigo',inv:false,text:"Je reviens sur mon travail encore et encore, parce qu'il ne me semble jamais vraiment « à la hauteur » — et pourtant, il ne s'améliore plus vraiment."},
-  {id:'I7',mask:'indigo',inv:true, text:"Je peux livrer un travail sans qu'il soit parfait et rester serein(e) avec ça — le « suffisamment bien » me convient tout à fait."},
-  {id:'I8',mask:'indigo',inv:false,text:"La perspective d'être jugé(e) ou critiqué(e) devant d'autres personnes est une source d'anxiété réelle qui influence parfois mes choix."},
-
-  /* ── 💜 VIOLET — 7 items · max 42 · MSI (Schrader 2014) ── */
-  {id:'Vi1',mask:'violet',inv:false,text:"Quand le silence s'installe et que je n'ai rien à faire, il m'arrive de ressentir un vide difficile à expliquer — comme si, sans mes rôles ou mes occupations, je ne savais plus très bien qui je suis."},
-  {id:'Vi2',mask:'violet',inv:false,text:"J'ai l'impression d'être différent(e) selon les contextes — plusieurs « versions » de moi-même — et je me demande parfois laquelle est vraiment moi."},
-  {id:'Vi3',mask:'violet',inv:false,text:"Il m'arrive de réaliser que j'ai renoncé à des désirs ou des projets qui me correspondaient vraiment, parce qu'ils ne correspondaient pas à ce que les autres attendaient de moi."},
-  {id:'Vi4',mask:'violet',inv:false,text:"L'idée de changer profondément — ma façon de vivre, mes croyances, qui je suis fondamentalement — me fait peur, même quand je sens que ce changement pourrait m'être bénéfique."},
-  {id:'Vi5',mask:'violet',inv:false,text:"Je fais beaucoup de choses par habitude ou par obligation, sans que ce soit un choix que j'ai réellement fait en connaissance de cause."},
-  {id:'Vi6',mask:'violet',inv:true, text:"Il y a quelque chose de stable et de cohérent dans ma façon d'être et de choisir, qui reste présent quel que soit le contexte."},
-  {id:'Vi7',mask:'violet',inv:false,text:"Il m'arrive de me sentir étranger(ère) à ma propre vie — comme si je regardais de l'extérieur quelqu'un d'autre qui vit à ma place."},
-
-]; // END ALL_ITEMS — 51 items
-
-// ── ÉTAT GLOBAL ──────────────────────────────────────────────────────
+// ── ÉTAT GLOBAL ───────────────────────────────────────────────────
 let responses     = {};
 let demographics  = {};
-let shuffledItems = [];
-let pages         = [];
+let shuffledItems = []; // séquence complète 85 items (masques mélangés + SPA aux positions fixes)
+let pages         = []; // tableaux de 17 items
 
-function shuffle(arr){
-  const a=[...arr];
-  for(let i=a.length-1;i>0;i--){
-    const j=Math.floor(Math.random()*(i+1));
-    [a[i],a[j]]=[a[j],a[i]];
+// ── INIT ──────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  emailjs.init({ publicKey: CONFIG.EMAILJS_PUBLIC_KEY });
+  let wip = null;
+  try { wip = JSON.parse(localStorage.getItem('valeur_wip')); } catch(e){}
+  const wipFresh = wip && wip.ts && (Date.now() - wip.ts < 7 * 24 * 60 * 60 * 1000);
+  if (wipFresh && wip.responses && Object.keys(wip.responses).length > 0 && wip.shuffleOrder) {
+    // Restaurer
+    const itemMap = {};
+    [...MASQUE_ITEMS, ...SPA_ITEMS].forEach(it => { itemMap[it.id] = it; });
+    shuffledItems = wip.shuffleOrder.map(id => itemMap[id]).filter(Boolean);
+    responses = wip.responses || {};
+    if (wip.demographics && wip.demographics.prenom) demographics = wip.demographics;
+    buildPages();
+    buildPageScreens();
+    restoreResponses();
+    showResumePrompt(Object.keys(responses).length, wip.pageIdx || 0);
+  } else {
+    buildShuffledSequence();
+    buildPages();
+    buildPageScreens();
+  }
+});
+
+// ── SÉQUENCE 85 ITEMS ────────────────────────────────────────────
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
 }
 
-document.addEventListener('DOMContentLoaded',()=>{
-  emailjs.init({publicKey:CONFIG.EMAILJS_PUBLIC_KEY});
-  let wip=null;
-  try{ wip=JSON.parse(localStorage.getItem('valeur_wip')); }catch(e){}
-  const wipFresh=wip&&wip.ts&&(Date.now()-wip.ts<7*24*60*60*1000);
-  if(wipFresh&&wip.responses&&Object.keys(wip.responses).length>0&&wip.shuffleOrder){
-    const itemMap={};
-    ALL_ITEMS.forEach(it=>{itemMap[it.id]=it;});
-    shuffledItems=wip.shuffleOrder.map(id=>itemMap[id]).filter(Boolean);
-    if(shuffledItems.length<ALL_ITEMS.length){
-      const seen=new Set(shuffledItems.map(it=>it.id));
-      ALL_ITEMS.forEach(it=>{if(!seen.has(it.id))shuffledItems.push(it);});
+function buildShuffledSequence() {
+  const shuffledMasques = shuffle(MASQUE_ITEMS); // 78 items mélangés
+  shuffledItems = [];
+  let mi = 0;
+  for (let pos = 1; pos <= 85; pos++) {
+    if (SPA_POSITIONS[pos]) {
+      shuffledItems.push(SPA_MAP[SPA_POSITIONS[pos]]);
+    } else {
+      shuffledItems.push(shuffledMasques[mi++]);
     }
-    responses=wip.responses||{};
-    if(wip.demographics&&wip.demographics.prenom) demographics=wip.demographics;
-    for(let i=0;i<shuffledItems.length;i+=CONFIG.ITEMS_PP){
-      pages.push(shuffledItems.slice(i,i+CONFIG.ITEMS_PP));
-    }
-    buildPageScreens();
-    buildStepDots();
-    Object.keys(responses).forEach(id=>{
-      const val=responses[id];
-      const radio=document.querySelector(`input[name="item_${id}"][value="${val}"]`);
-      if(radio){radio.checked=true;document.getElementById(`card-${id}`)?.classList.add('answered');}
-    });
-    showResumePrompt(Object.keys(responses).length,wip.pageIdx||0);
-  } else {
-    shuffledItems=shuffle(ALL_ITEMS);
-    for(let i=0;i<shuffledItems.length;i+=CONFIG.ITEMS_PP){
-      pages.push(shuffledItems.slice(i,i+CONFIG.ITEMS_PP));
-    }
-    buildPageScreens();
-    buildStepDots();
-  }
-});
-
-function showResumePrompt(answered,lastPageIdx){
-  const target=document.getElementById('screen-welcome');
-  if(!target)return;
-  const banner=document.createElement('div');
-  banner.style.cssText='background:rgba(72,187,120,.1);border:1px solid rgba(72,187,120,.35);border-radius:14px;padding:20px 24px;margin:0 0 24px;text-align:center';
-  banner.innerHTML=`
-    <div style="font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#48BB78;margin-bottom:8px">Session en cours détectée</div>
-    <div style="font-size:15px;color:var(--ink);margin-bottom:14px">
-      Vous avez déjà répondu à <strong style="color:#48BB78">${answered} questions sur 51</strong>.<br>
-      Voulez-vous reprendre où vous en étiez ?
-    </div>
-    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <button onclick="resumeQuestionnaire(${lastPageIdx})"
-        style="background:#48BB78;color:#fff;border:none;border-radius:8px;padding:11px 24px;font-size:13px;font-weight:600;cursor:pointer">
-        Reprendre (${answered}/51) →
-      </button>
-      <button onclick="startFresh()"
-        style="background:rgba(0,0,0,.05);color:var(--ink3);border:1px solid rgba(0,0,0,.12);border-radius:8px;padding:11px 20px;font-size:13px;cursor:pointer">
-        Recommencer depuis le début
-      </button>
-    </div>`;
-  target.insertBefore(banner,target.firstChild);
-}
-function resumeQuestionnaire(lastPageIdx){
-  if(demographics&&demographics.prenom&&demographics.email){goToScreen(`screen-page-${lastPageIdx}`);}
-  else{goToScreen('screen-demo');}
-}
-function startFresh(){
-  localStorage.removeItem('valeur_wip');
-  responses={};demographics={};location.reload();
-}
-
-const MILESTONES={
-  1:{pct:'~50 %',color:'var(--bleu)',emoji:'◈',msg:'La moitié du chemin — votre portrait se précise.'},
-  2:{pct:'~83 %',color:'var(--indigo)',emoji:'◉',msg:'Votre rapport est presque prêt — encore quelques affirmations.'},
-};
-const shownMilestones=new Set();
-
-function showMilestone(pageIdx){
-  const m=MILESTONES[pageIdx];
-  if(!m||shownMilestones.has(pageIdx))return;
-  shownMilestones.add(pageIdx);
-  document.getElementById('milestone-pct').textContent=m.pct+' complétés';
-  document.getElementById('milestone-msg').textContent=m.msg;
-  document.getElementById('milestone-emoji').textContent=m.emoji;
-  document.getElementById('milestone-bar').style.background=m.color;
-  document.getElementById('milestone-pct').style.color=m.color;
-  const fill=document.getElementById('milestone-progress-fill');
-  fill.style.background=m.color;fill.style.width=m.pct;
-  const toast=document.getElementById('milestone-toast');
-  toast.style.display='block';
-  setTimeout(closeMilestone,6000);
-}
-function showPauseModal(){
-  const modal=document.getElementById('pause-modal');
-  if(demographics&&demographics.email){
-    document.getElementById('pm-email-txt').innerHTML='Toutes vos réponses sont conservées sur cet appareil. Rouvrez cette page dans <strong>le même navigateur</strong> pour reprendre exactement là où vous en étiez.<br><br>Email enregistré : <strong style="color:var(--gold)">'+demographics.email+'</strong>';
-  }
-  modal.classList.add('open');
-}
-function closePauseModal(){document.getElementById('pause-modal').classList.remove('open');}
-function closeMilestone(){
-  const toast=document.getElementById('milestone-toast');
-  toast.style.opacity='0';toast.style.transition='opacity .3s';
-  setTimeout(()=>{toast.style.display='none';toast.style.opacity='';toast.style.transition='';},300);
-}
-function goToScreen(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  const el=document.getElementById(id);
-  if(el){el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
-  const m=id.match(/^screen-page-(\d+)$/);
-  if(m)showMilestone(parseInt(m[1]));
-}
-function buildStepDots(){
-  const el=document.getElementById('dots-demo');
-  if(!el)return;
-  for(let i=0;i<4;i++){
-    const d=document.createElement('span');
-    d.className='step-dot'+(i===0?' active':'');
-    el.appendChild(d);
   }
 }
-function updateDots(pageIdx){
-  const el=document.getElementById(`dots-p-${pageIdx}`);
-  if(!el)return;
-  const dots=el.querySelectorAll('.step-dot');
-  dots.forEach((d,i)=>{d.className='step-dot'+(i===pageIdx+1?' active':i<=pageIdx?' done':'');});
+
+function buildPages() {
+  pages = [];
+  for (let i = 0; i < shuffledItems.length; i += CONFIG.ITEMS_PP) {
+    pages.push(shuffledItems.slice(i, i + CONFIG.ITEMS_PP));
+  }
 }
-function startQuestionnaire(){
-  const prenom=document.getElementById('d-prenom').value.trim();
-  const age=document.getElementById('d-age').value.trim();
-  const email=document.getElementById('d-email').value.trim();
-  if(!prenom||!age||!email){alert('Merci de remplir les champs obligatoires (Prénom, Âge, Email).');return;}
-  const consent=document.getElementById('rgpd-consent')?.checked||false;
-  demographics={prenom,age,genre:document.getElementById('d-genre').value||'Non précisé',email,consent};
-  try{localStorage.setItem('valeur_lead',JSON.stringify({prenom,email,ts:Date.now(),status:'started'}));}catch(e){}
-  goToScreen('screen-page-0');
+
+// ── LABELS LIKERT 0-5 ─────────────────────────────────────────────
+const LIKERT_LABELS = [
+  'Pas du tout\nvrai pour moi',
+  'Rarement\nvrai pour moi',
+  'Parfois\nvrai pour moi',
+  'Souvent\nvrai pour moi',
+  'Généralement\nvrai pour moi',
+  'Décrit parfaitement\nmon expérience'
+];
+
+function buildLikert(item, pageIdx) {
+  return `<div class="likert">
+    ${[0,1,2,3,4,5].map((v,i) => `
+      <label class="likert-option">
+        <input type="radio" name="item_${item.id}" value="${v}"
+               onchange="onAnswer('${item.id}',${v},${pageIdx})">
+        <div class="likert-btn">${v}</div>
+        <span class="likert-label">${LIKERT_LABELS[i].replace('\n','<br>')}</span>
+      </label>`).join('')}
+  </div>`;
 }
-function buildPageScreens(){
-  const container=document.getElementById('screen-pages-container');
-  pages.forEach((pageItems,idx)=>{
-    const div=document.createElement('div');
-    div.id=`screen-page-${idx}`;
-    div.className='screen';
-    div.innerHTML=buildPageHTML(pageItems,idx);
+
+// ── CONSTRUCTION DES PAGES ────────────────────────────────────────
+function buildPageScreens() {
+  const container = document.getElementById('screen-pages-container');
+  pages.forEach((pageItems, idx) => {
+    const div = document.createElement('div');
+    div.id = `screen-page-${idx}`;
+    div.className = 'screen';
+    div.innerHTML = buildPageHTML(pageItems, idx);
     container.appendChild(div);
   });
 }
 
-// ── Échelle 1-6 (YSQ-style) ──────────────────────────────────────────
-const LIKERT_LABELS=[
-  'Pas du tout vrai',
-  'Rarement vrai',
-  'Parfois vrai',
-  'Souvent vrai',
-  'Généralement vrai',
-  'Décrit parfaitement'
-];
+function buildPageHTML(items, idx) {
+  const total = pages.length;
+  const answered = Object.keys(responses).length;
+  const pct = Math.round(answered / 85 * 100);
+  const isLast = idx === total - 1;
 
-function buildLikert(it,idx){
-  return `<div class="likert" style="grid-template-columns:repeat(6,1fr)">
-    ${[1,2,3,4,5,6].map((v,i)=>`
-          <label class="likert-option">
-            <input type="radio" name="item_${it.id}" value="${v}"
-                   onchange="onAnswer('${it.id}',${v},${idx})">
-            <div class="likert-btn">${v}</div>
-            <span class="likert-label">${LIKERT_LABELS[i]}</span>
-          </label>`).join('')}
-        </div>`;
-}
-
-function buildPageHTML(items,idx){
-  const total=pages.length;
-  const totalAnswered=Object.keys(responses).length;
-  const globalPct=Math.round(totalAnswered/51*100);
-  const isLast=idx===total-1;
-  const dots=Array.from({length:total+1},(_,i)=>{
-    let cls=i===idx+1?' active':i<=idx?' done':'';
+  const dots = Array.from({length: total + 1}, (_, i) => {
+    const cls = i === idx + 1 ? ' active' : i <= idx ? ' done' : '';
     return `<span class="step-dot${cls}"></span>`;
   }).join('');
-  const itemsHTML=items.map((it,i)=>{
-    const qn=idx*CONFIG.ITEMS_PP+(i+1);
+
+  const itemsHTML = items.map((it, i) => {
+    const qn = idx * CONFIG.ITEMS_PP + (i + 1);
+    const isSpa = it.mask === 'spa';
     return `
-    <div class="item-card" id="card-${it.id}">
+    <div class="item-card${isSpa?' spa-card':''}" id="card-${it.id}">
       <div class="item-header">
-        <span class="item-num">${String(qn).padStart(2,'0')}</span>
+        <span class="item-num${isSpa ? ' spa' : ''}">${String(qn).padStart(2,'0')}</span>
         <span class="item-text">${it.text}</span>
       </div>
-      ${buildLikert(it,idx)}
+      ${buildLikert(it, idx)}
     </div>`;
   }).join('');
+
   return `
   <div class="progress-wrapper">
     <div class="progress-info">
-      <span id="global-label-${idx}">${totalAnswered} / 51 affirmations répondues</span>
-      <span id="pc-${idx}">Partie ${idx+1} / ${total}</span>
+      <span id="lbl-${idx}">${answered} / 85 affirmations répondues</span>
+      <span>Partie ${idx+1} / ${total}</span>
     </div>
-    <div class="progress-bar"><div class="progress-fill" id="global-fill-${idx}" style="width:${globalPct}%"></div></div>
-    <div class="step-dots" id="dots-p-${idx}">${dots}</div>
-    <div style="display:flex;justify-content:flex-end;padding-top:6px">
-      <button onclick="showPauseModal()" style="background:none;border:none;font-size:11px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink5);cursor:pointer;padding:2px 0;transition:color .2s" onmouseover="this.style.color='var(--ink4)'" onmouseout="this.style.color='var(--ink5)'">⏸ Faire une pause</button>
+    <div class="progress-bar"><div class="progress-fill" id="fill-${idx}" style="width:${pct}%"></div></div>
+    <div class="step-dots" id="dots-${idx}">${dots}</div>
+    <div style="display:flex;justify-content:flex-end;padding-top:5px">
+      <button onclick="showPauseModal()"
+        style="background:none;border:none;font-size:10px;font-weight:400;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink5);cursor:pointer">
+        ⏸ Faire une pause
+      </button>
     </div>
   </div>
   <div class="page-header">
     <span class="page-badge">Partie ${idx+1} / ${total}</span>
     <h2 class="page-title">Répondez spontanément</h2>
-    <p class="page-desc">Sélectionnez la réponse qui correspond le mieux à votre fonctionnement habituel ces 6 derniers mois.<br>
-    <span style="font-size:.8rem;color:var(--ink5)">1 = Pas du tout vrai · 6 = Décrit parfaitement mon expérience</span></p>
+    <p class="page-desc">0 = Pas du tout vrai · 5 = Décrit parfaitement mon expérience — ces 6 derniers mois</p>
   </div>
   <div class="items-container">${itemsHTML}</div>
   <div id="warn-${idx}" class="unanswered-msg hidden">
     ⚠ Merci de répondre à toutes les affirmations avant de continuer.
   </div>
-  <div class="btn-group" style="margin-top:32px">
+  <div class="btn-group" style="margin-top:28px">
     <button class="btn btn-secondary" onclick="prevPage(${idx})">← Précédent</button>
     <button class="btn btn-primary" onclick="nextPage(${idx})">
-      ${isLast?'✔ Voir mes résultats →':'Partie suivante →'}
+      ${isLast ? '✔ Voir mes résultats →' : 'Partie suivante →'}
     </button>
   </div>`;
 }
 
-function onAnswer(id,val,pageIdx){
-  responses[id]=parseInt(val);
-  document.getElementById(`card-${id}`)?.classList.add('answered');
-  const totalAnswered=Object.keys(responses).length;
-  const globalPct=Math.round(totalAnswered/51*100);
-  const fillEl=document.getElementById(`global-fill-${pageIdx}`);
-  const labelEl=document.getElementById(`global-label-${pageIdx}`);
-  if(fillEl)fillEl.style.width=globalPct+'%';
-  if(labelEl)labelEl.textContent=`${totalAnswered} / 51 affirmations répondues`;
-  updateDots(pageIdx);
-  try{
-    localStorage.setItem('valeur_wip',JSON.stringify({
-      responses,pageIdx,shuffleOrder:shuffledItems.map(it=>it.id),
-      demographics,ts:Date.now()
-    }));
-  }catch(e){}
+// ── NAVIGATION ────────────────────────────────────────────────────
+const MILESTONES = {
+  2: {pct:'~40 %', color:'var(--bleu)', emoji:'◈', msg:'La moitié du chemin — votre portrait se précise.'},
+  4: {pct:'~80 %', color:'var(--indigo)', emoji:'◉', msg:'Votre rapport est presque prêt — encore quelques affirmations.'},
+};
+const shownMilestones = new Set();
+
+function showMilestone(pageIdx) {
+  const m = MILESTONES[pageIdx];
+  if (!m || shownMilestones.has(pageIdx)) return;
+  shownMilestones.add(pageIdx);
+  document.getElementById('mt-pct').textContent = m.pct + ' complétés';
+  document.getElementById('mt-msg').textContent = m.msg;
+  document.getElementById('mt-emoji').textContent = m.emoji;
+  document.getElementById('mt-accent').style.background = m.color;
+  document.getElementById('mt-pct').style.color = m.color;
+  document.getElementById('mt-fill').style.background = m.color;
+  document.getElementById('mt-fill').style.width = m.pct;
+  const t = document.getElementById('milestone-toast');
+  t.classList.add('show');
+  setTimeout(closeMilestone, 6000);
 }
-function prevPage(idx){
-  idx===0?goToScreen('screen-demo'):goToScreen(`screen-page-${idx-1}`);
+function closeMilestone() {
+  const t = document.getElementById('milestone-toast');
+  t.style.opacity = '0'; t.style.transition = 'opacity .3s';
+  setTimeout(() => { t.classList.remove('show'); t.style.opacity = ''; t.style.transition = ''; }, 300);
 }
 
-async function nextPage(idx){
-  const pageItems=pages[idx];
-  const allOk=pageItems.every(it=>responses[it.id]!==undefined);
-  const warn=document.getElementById(`warn-${idx}`);
-  if(!allOk){
+function goToScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  if (el) { el.classList.add('active'); window.scrollTo({top:0,behavior:'smooth'}); }
+  const m = id.match(/^screen-page-(\d+)$/);
+  if (m) showMilestone(parseInt(m[1]));
+}
+
+function prevPage(idx) {
+  idx === 0 ? goToScreen('screen-demo') : goToScreen(`screen-page-${idx-1}`);
+}
+
+function showPauseModal() {
+  const el = document.getElementById('pm-txt');
+  if (demographics.email) {
+    el.innerHTML = `Toutes vos réponses sont conservées sur cet appareil.<br>Email enregistré : <strong style="color:var(--gold)">${demographics.email}</strong>`;
+  }
+  document.getElementById('pause-modal').classList.add('open');
+}
+function closePauseModal() { document.getElementById('pause-modal').classList.remove('open'); }
+
+function startQuestionnaire() {
+  const prenom = document.getElementById('d-prenom').value.trim();
+  const age    = document.getElementById('d-age').value.trim();
+  const email  = document.getElementById('d-email').value.trim();
+  if (!prenom || !age || !email) { alert('Merci de remplir les champs obligatoires.'); return; }
+  demographics = {
+    prenom, age,
+    genre:   document.getElementById('d-genre').value || 'Non précisé',
+    email,
+    consent: document.getElementById('rgpd-consent')?.checked || false
+  };
+  try { localStorage.setItem('valeur_lead', JSON.stringify({prenom, email, ts: Date.now()})); } catch(e){}
+  goToScreen('screen-page-0');
+}
+
+// ── RÉPONSES ──────────────────────────────────────────────────────
+function onAnswer(id, val, pageIdx) {
+  responses[id] = parseInt(val);
+  document.getElementById(`card-${id}`)?.classList.add('answered');
+  const answered = Object.keys(responses).length;
+  const pct = Math.round(answered / 85 * 100);
+  const fill = document.getElementById(`fill-${pageIdx}`);
+  const lbl  = document.getElementById(`lbl-${pageIdx}`);
+  if (fill) fill.style.width = pct + '%';
+  if (lbl)  lbl.textContent = `${answered} / 85 affirmations répondues`;
+  updateDots(pageIdx);
+  saveWIP(pageIdx);
+}
+
+function updateDots(pageIdx) {
+  const el = document.getElementById(`dots-${pageIdx}`);
+  if (!el) return;
+  el.querySelectorAll('.step-dot').forEach((d, i) => {
+    d.className = 'step-dot' + (i === pageIdx + 1 ? ' active' : i <= pageIdx ? ' done' : '');
+  });
+}
+
+function saveWIP(pageIdx) {
+  try {
+    localStorage.setItem('valeur_wip', JSON.stringify({
+      responses, pageIdx,
+      shuffleOrder: shuffledItems.map(it => it.id),
+      demographics, ts: Date.now()
+    }));
+  } catch(e){}
+}
+
+function restoreResponses() {
+  Object.keys(responses).forEach(id => {
+    const val = responses[id];
+    const radio = document.querySelector(`input[name="item_${id}"][value="${val}"]`);
+    if (radio) {
+      radio.checked = true;
+      document.getElementById(`card-${id}`)?.classList.add('answered');
+    }
+  });
+}
+
+function showResumePrompt(answered, lastPageIdx) {
+  const target = document.getElementById('screen-welcome');
+  if (!target) return;
+  const banner = document.createElement('div');
+  banner.style.cssText = 'background:rgba(72,187,120,.1);border:1px solid rgba(72,187,120,.35);border-radius:12px;padding:18px 22px;margin:0 0 22px;text-align:center';
+  banner.innerHTML = `
+    <div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#48BB78;margin-bottom:6px">Session en cours détectée</div>
+    <div style="font-size:14px;color:var(--ink);margin-bottom:12px">
+      Vous avez déjà répondu à <strong style="color:#48BB78">${answered} questions sur 85</strong>.<br>Voulez-vous reprendre ?
+    </div>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button onclick="resumeQuestionnaire(${lastPageIdx})"
+        style="background:#48BB78;color:#fff;border:none;border-radius:6px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer">
+        Reprendre (${answered}/85) →
+      </button>
+      <button onclick="startFresh()"
+        style="background:rgba(0,0,0,.05);color:var(--ink3);border:1px solid rgba(0,0,0,.12);border-radius:6px;padding:10px 16px;font-size:13px;cursor:pointer">
+        Recommencer
+      </button>
+    </div>`;
+  target.insertBefore(banner, target.firstChild);
+}
+function resumeQuestionnaire(lastPageIdx) {
+  if (demographics.prenom && demographics.email) goToScreen(`screen-page-${lastPageIdx}`);
+  else goToScreen('screen-demo');
+}
+function startFresh() {
+  localStorage.removeItem('valeur_wip');
+  responses = {}; demographics = {};
+  location.reload();
+}
+
+// ── NAVIGATION PAGE SUIVANTE ─────────────────────────────────────
+async function nextPage(idx) {
+  const pageItems = pages[idx];
+  const allOk = pageItems.every(it => responses[it.id] !== undefined);
+  const warn = document.getElementById(`warn-${idx}`);
+  if (!allOk) {
     warn.classList.remove('hidden');
-    const first=pageItems.find(it=>responses[it.id]===undefined);
-    document.getElementById(`card-${first.id}`)?.scrollIntoView({behavior:'smooth',block:'center'});
+    const first = pageItems.find(it => responses[it.id] === undefined);
+    document.getElementById(`card-${first.id}`)?.scrollIntoView({behavior:'smooth', block:'center'});
     return;
   }
   warn.classList.add('hidden');
-  if(idx<pages.length-1){goToScreen(`screen-page-${idx+1}`);return;}
+  if (idx < pages.length - 1) { goToScreen(`screen-page-${idx+1}`); return; }
 
-  const overlay=document.getElementById('sending-overlay');
+  // Dernière page → calcul + envoi
+  const overlay = document.getElementById('sending-overlay');
   overlay.classList.remove('hidden');
-  document.getElementById('overlay-text').textContent='Analyse de votre cartographie…';
+  document.getElementById('overlay-text').textContent = 'Analyse de votre cartographie…';
 
-  const sc=computeScores();
-  const masks=['rouge','orange','jaune','vert','bleu','indigo','violet'];
-  const scPct={};
-  masks.forEach(m=>{scPct[m]=sc[m];});
+  const sc = computeScores();
 
-  try{
-    localStorage.setItem('valeur_scores',JSON.stringify(scPct));
-    localStorage.setItem('valeur_prenom',demographics.prenom);
-    localStorage.setItem('valeur_email',demographics.email);
-    localStorage.setItem('valeur_ts',Date.now().toString());
+  // Sauvegarde locale des scores
+  // valeur_scores = clé lue par resultats.html (compatibilité)
+  // spa inclus dans le payload pour computeSPA direct dans resultats.html
+  try {
+    const _scorePayload = JSON.stringify({
+      rouge:  sc.rouge,
+      orange: sc.orange,
+      jaune:  sc.jaune,
+      vert:   sc.vert,
+      bleu:   sc.bleu,
+      indigo: sc.indigo,
+      violet: sc.violet,
+      spa:    sc.spa,
+    });
+    localStorage.setItem('valeur_scores',    _scorePayload);
+    localStorage.setItem('valeur_prenom',    demographics.prenom);
+    localStorage.setItem('valeur_email',     demographics.email);
+    localStorage.setItem('valeur_ts',        Date.now().toString());
     localStorage.removeItem('valeur_wip');
-  }catch(e){}
+  } catch(e){}
 
-  const urlP = new URLSearchParams(window.location.search);
-  const pid   = urlP.get('pid');
-  const dom   = Object.keys(scPct).sort((a,b)=>scPct[b]-scPct[a])[0];
-  const profil= {type:'auto', masks:[dom]};
-  const jobs  = [
-    sendEmail(sc, scPct),
-    saveResult(pid, scPct, sc.spa, dom, profil, demographics.consent||false)
-  ];
-  Promise.allSettled(jobs).finally(()=>{
-    window.location.href = CONFIG.RESULTS_URL + (pid ? '?pid='+encodeURIComponent(pid) : '');
+  const urlP    = new URLSearchParams(window.location.search);
+  const pid     = urlP.get('pid');
+  const masks   = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
+  const scPct   = {};
+  masks.forEach(m => { scPct[m] = sc[m]; });
+  const dom     = masks.sort((a,b) => scPct[b]-scPct[a])[0];
+  const profil  = detectConfigExcel(scPct);
+
+  Promise.allSettled([
+    sendEmailAdmin(sc, scPct),
+    saveResult(pid, scPct, sc.spa, dom, profil, demographics.consent || false)
+  ]).finally(() => {
+    window.location.href = 'https://questionnaire.psyh.fr/resultats.html' +
+      (pid ? '?pid=' + encodeURIComponent(pid) : '');
   });
 }
 
-// ══ SCORING V3 ════════════════════════════════════════════════════════
-// Échelle 1-6 · adj(item,raw) = inv ? 7−raw : raw
-// pct_masque = round(Σadj / MAX[mask] × 100)
-// SPA = 100 − round(Σ7masques / 7)
-// ════════════════════════════════════════════════════════════════════
-function adj(item,raw){return item.inv?(7-raw):raw;}
+// ════════════════════════════════════════════════════════
+// SCORING V3 — Échelle 0-5
+// adj(item, raw) = inv ? 5-raw : raw
+// score_masque% = round(Σadj / MASK_MAX[mask] × 100)
+// score_SPA%    = round(Σ7_SPA / SPA_MAX × 100)  — indépendant
+// ════════════════════════════════════════════════════════
+function adj(item, raw) {
+  return item.inv ? (5 - raw) : raw;
+}
 
-function computeScores(){
-  const masks=['rouge','orange','jaune','vert','bleu','indigo','violet'];
-  const sc={};
-  masks.forEach(m=>{
-    const items=ALL_ITEMS.filter(it=>it.mask===m);
-    if(!items.length){sc[m]=0;return;}
-    const sum=items.reduce((acc,it)=>acc+adj(it,responses[it.id]??1),0);
-    sc[m]=Math.round(sum/MASK_MAX[m]*100);
+function computeScores() {
+  const masks = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
+  const sc = {};
+
+  // Scores masques
+  masks.forEach(m => {
+    const items = [...MASQUE_ITEMS].filter(it => it.mask === m);
+    const sum   = items.reduce((acc, it) => acc + adj(it, responses[it.id] ?? 0), 0);
+    sc[m] = Math.round(sum / MASK_MAX[m] * 100);
   });
-  const sumPct=masks.reduce((s,m)=>s+(sc[m]||0),0);
-  sc.spa=Math.max(0,Math.min(100,Math.round(100-sumPct/7)));
-  sc.total=sumPct;
+
+  // Score SPA — INDÉPENDANT, aucun item inversé
+  const spaSum = SPA_ITEMS.reduce((acc, it) => acc + (responses[it.id] ?? 0), 0);
+  sc.spa = Math.round(spaSum / SPA_MAX * 100);
+
   return sc;
 }
 
-function getLevelFromBrut(pct){
-  if(pct>=80)return{label:'Dominant',   key:'dominant'};
-  if(pct>=65)return{label:'Élevé',      key:'élevé'};
-  if(pct>=50)return{label:'Significatif',key:'élevé'};
-  if(pct>=30)return{label:'Modéré',     key:'modéré'};
-  return            {label:'Faible',    key:'faible'};
+// ── NIVEAU D'EMPRISE ─────────────────────────────────────────────
+// Seuils du test actuel — INCHANGÉS
+function getLevelFromBrut(pct) {
+  if (pct < 30) return { label: 'FAIBLE',       key: 'faible' };
+  if (pct < 50) return { label: 'MODÉRÉ',       key: 'modéré' };
+  if (pct < 70) return { label: 'SIGNIFICATIF', key: 'significatif' };
+  if (pct < 85) return { label: 'ÉLEVÉ',        key: 'élevé' };
+  return           { label: 'DOMINANT',      key: 'dominant' };
 }
 
-// ══ EMAIL PRATICIEN ══════════════════════════════════════════════════
-const MASK_NAMES={rouge:'Masque Rouge',orange:'Masque Orange',jaune:'Masque Jaune',
-                  vert:'Masque Vert',bleu:'Masque Bleu',indigo:'Masque Indigo',violet:'Masque Violet'};
+// ── DÉTECTION PROFIL ──────────────────────────────────────────────
+function detectConfigExcel(scPct) {
+  const masks = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
+  const sorted = masks.map(m => ({key:m, pct:scPct[m]||0})).sort((a,b) => b.pct-a.pct);
+  const [m0,m1,m2] = sorted;
+  const violetNote = (scPct.violet||0) >= 80;
 
-// ── ENREGISTREMENT RÉSULTAT (Neon) ──────────────────────────────────
-const VERCEL_API = 'https://valeur-backend-api.vercel.app/api';
+  // Pan-masques : ≥ 6 masques ≥ 60 %, aucun < 50 %, écart ≤ 20
+  const above60 = sorted.filter(m => m.pct >= 60);
+  const minPct  = sorted[sorted.length-1].pct;
+  if (above60.length >= 6 && minPct >= 50 && (m0.pct - minPct) <= 20) {
+    return { type:'Pan-masques', masks: above60.map(m=>m.key), violetNote };
+  }
+  // Triade : ≥ 3 masques ≥ 50 %, écart ≤ 15 entre les 3
+  if (m0.pct >= 50 && m1 && m1.pct >= 50 && m2 && m2.pct >= 50 && (m0.pct - m2.pct) <= 15) {
+    return { type:'Triade', masks:[m0.key,m1.key,m2.key], violetNote };
+  }
+  // Dyade : ≥ 2 masques ≥ 60 %, écart ≤ 10
+  if (m0.pct >= 60 && m1 && m1.pct >= 60 && (m0.pct - m1.pct) <= 10) {
+    return { type:'Dyade', masks:[m0.key,m1.key], violetNote };
+  }
+  // Mono dominant : 1 masque ≥ 70 %
+  if (m0.pct >= 70) {
+    const secondary = (m1 && m1.pct >= 50 && (m0.pct - m1.pct) >= 10) ? m1.key : null;
+    return { type:'Mono', masks:[m0.key], secondary, violetNote };
+  }
+  // Résiduel
+  return { type:'Résiduel', masks:[m0.key], violetNote };
+}
 
-async function saveResult(pid, sc, spa, dominant, profil, consent){
+// ── SAUVEGARDE RÉSULTAT (Neon via Vercel) ────────────────────────
+async function saveResult(pid, scPct, spa, dominant, profil, consent) {
   try {
-    const r = await fetch(VERCEL_API+'/save-result', {
+    const r = await fetch(VERCEL_API + '/save-result', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
         patient_id: pid || null,
-        prenom: demographics.prenom || null,
-        email:  demographics.email  || null,
-        age:    demographics.age    || null,
-        genre:  demographics.genre  || null,
-        scores: sc,
-        spa:    spa,
-        dominant: dominant,
-        profil: profil,
-        source: pid ? 'cabinet' : 'public',
-        consent: consent===true
+        prenom:     demographics.prenom || null,
+        email:      demographics.email  || null,
+        age:        demographics.age    || null,
+        genre:      demographics.genre  || null,
+        scores:     scPct,
+        spa:        spa,
+        dominant:   dominant,
+        profil:     profil,
+        source:     pid ? 'cabinet' : 'public',
+        consent:    consent === true,
+        version:    'v3'
       })
     });
     const data = await r.json();
-    if(pid && data.success){
-      await fetch(VERCEL_API+'/save-scores', {
+    if (pid && data.success) {
+      await fetch(VERCEL_API + '/save-scores', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({patient_id:pid, scores:sc, spa, dominant, profil,
-          prenom:demographics.prenom||null, source:'questionnaire'})
+        body: JSON.stringify({
+          patient_id: pid, scores: scPct, spa, dominant, profil,
+          prenom: demographics.prenom || null, source: 'questionnaire'
+        })
       });
     }
     return data;
-  } catch(e) {
-    console.warn('saveResult error:', e);
-    return null;
-  }
+  } catch(e) { console.warn('saveResult:', e); return null; }
 }
 
-async function sendEmail(sc,scPct){
-  const masks=['rouge','orange','jaune','vert','bleu','indigo','violet'];
-  const dateStr=new Date().toLocaleDateString('fr-FR',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'});
-  const sorted=masks.map(m=>({key:m,pct:scPct[m]||0})).sort((a,b)=>b.pct-a.pct);
-  const dom=sorted[0].key;
-  const domName=MASK_NAMES[dom]||'Masque Vert';
+// ── EMAIL PRATICIEN ───────────────────────────────────────────────
+const MASK_NAMES = {
+  rouge:'Masque Rouge', orange:'Masque Orange', jaune:'Masque Jaune',
+  vert:'Masque Vert',   bleu:'Masque Bleu',     indigo:'Masque Indigo', violet:'Masque Violet'
+};
+const PEURS = {
+  rouge:  'la peur de la maladie et de la mort',
+  orange: "la peur de la souffrance émotionnelle",
+  jaune:  "la peur de l'inconnu et de l'incertitude",
+  vert:   "la peur du rejet et de l'abandon",
+  bleu:   "la peur de l'impuissance et de la perte de contrôle",
+  indigo: "la peur de l'échec et du jugement",
+  violet: "la peur de se perdre et de perdre son identité"
+};
 
-  const PEURS={
-    rouge:'la peur de la maladie et de la mort',
-    orange:"la peur de la souffrance émotionnelle",
-    jaune:"la peur de l'inconnu et de l'incertitude",
-    vert:"la peur du rejet et de l'abandon",
-    bleu:"la peur de l'impuissance et de la perte de contrôle",
-    indigo:"la peur de l'échec et du jugement",
-    violet:"la peur de se perdre et de perdre son identité"
-  };
+async function sendEmailAdmin(sc, scPct) {
+  const masks   = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
+  const dateStr = new Date().toLocaleDateString('fr-FR', {
+    weekday:'long', year:'numeric', month:'long', day:'numeric',
+    hour:'2-digit', minute:'2-digit'
+  });
+  const sorted  = masks.map(m => ({key:m, pct:scPct[m]||0})).sort((a,b)=>b.pct-a.pct);
+  const dom     = sorted[0].key;
+  const profil  = detectConfigExcel(scPct);
+  const config  = profil.type + ' — ' + profil.masks.map(m=>MASK_NAMES[m]).join(' + ');
 
-  // Items critiques — score max (6) sur items directs ou min (1) sur items inversés
-  let itemsCritiques='';
-  masks.forEach(m=>{
-    const crits=ALL_ITEMS.filter(it=>
-      it.mask===m &&
-      ((!it.inv&&(responses[it.id]??-1)===6)||(it.inv&&(responses[it.id]??-1)===1))
+  // Items à score extrême (5 sur directs, 0 sur inversés)
+  let itemsCritiques = '';
+  masks.forEach(m => {
+    const crits = MASQUE_ITEMS.filter(it =>
+      it.mask === m &&
+      ((!it.inv && (responses[it.id] ?? -1) === 5) || (it.inv && (responses[it.id] ?? -1) === 0))
     );
-    if(crits.length){
-      itemsCritiques+='['+MASK_NAMES[m]+']\n';
-      crits.forEach(it=>{itemsCritiques+='  • '+it.text.slice(0,75)+'\n';});
-      itemsCritiques+='\n';
+    if (crits.length) {
+      itemsCritiques += '[' + MASK_NAMES[m] + ']\n';
+      crits.forEach(it => { itemsCritiques += '  • ' + it.text.slice(0, 80) + '\n'; });
+      itemsCritiques += '\n';
     }
   });
-  if(!itemsCritiques) itemsCritiques='Aucun item à score extrême.';
+  if (!itemsCritiques) itemsCritiques = 'Aucun item à score extrême.';
 
-  const profil=detectConfigExcel(scPct);
-  const configuration=profil.type+' — '+(profil.masks.map(m=>MASK_NAMES[m]).join(' + '));
+  const secondaires = masks
+    .filter(m => m !== dom && (scPct[m]||0) >= 50)
+    .map(m => MASK_NAMES[m] + ' (' + scPct[m] + '%)');
 
-  const INTERPRET={
-    'Mono dominant':'Emprise forte et ciblée. Un seul masque concentre l\'activation défensive.',
-    'Dyade':'Deux masques renforcés se potentialisent mutuellement.',
-    'Triade':'Activation sur trois axes — profil à forte emprise globale.',
-    'Pan-masques':'Activation diffuse sur 6-7 masques — profil adaptatif, fort besoin de sécurité.',
-    'Résiduel':'Masque présent mais non dominant — flexibilité psychologique significative.'
-  };
-  const interpretation=(INTERPRET[profil.type]||'')+' SPA: '+sc.spa+'% — '+(sc.spa>=70?'présence authentique bien développée':sc.spa>=45?'espace de croissance identifié':'mobilisation défensive importante');
-
-  const secondaires=masks.filter(m=>m!==dom&&(scPct[m]||0)>=50).map(m=>MASK_NAMES[m]+' ('+scPct[m]+'%)');
-  const masquesSecondaires=secondaires.length?secondaires.join(', '):'Aucun masque secondaire significatif (≥50%).';
-  const lienConstellation='https://questionnaire.psyh.fr/resultats.html?admin=VALEUR-ADMIN-2025&email='+encodeURIComponent(demographics.email||'');
-
-  try{
-    emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
-      to_email:         demographics.email||'',
-      prenom:           demographics.prenom||'Prénom non renseigné',
-      date_passation:   dateStr,
-      masque_dominant:  domName,
-      peur_centrale:    PEURS[dom]||'peur profonde',
-      spa:              sc.spa+'%',
-      score_rouge:      (scPct.rouge||0)+'%',
-      score_orange:     (scPct.orange||0)+'%',
-      score_jaune:      (scPct.jaune||0)+'%',
-      score_vert:       (scPct.vert||0)+'%',
-      score_bleu:       (scPct.bleu||0)+'%',
-      score_indigo:     (scPct.indigo||0)+'%',
-      score_violet:     (scPct.violet||0)+'%',
-      configuration:    configuration,
-      interpretation:   interpretation,
-      items_critiques:  itemsCritiques.slice(0,2000),
-      masques_secondaires: masquesSecondaires,
-      lien_constellation:  lienConstellation,
+  try {
+    await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
+      to_email:           demographics.email || '',
+      prenom:             demographics.prenom || 'Prénom non renseigné',
+      date_passation:     dateStr,
+      masque_dominant:    MASK_NAMES[dom] || dom,
+      peur_centrale:      PEURS[dom] || '',
+      spa:                sc.spa + '%',
+      score_rouge:        (scPct.rouge  || 0) + '%',
+      score_orange:       (scPct.orange || 0) + '%',
+      score_jaune:        (scPct.jaune  || 0) + '%',
+      score_vert:         (scPct.vert   || 0) + '%',
+      score_bleu:         (scPct.bleu   || 0) + '%',
+      score_indigo:       (scPct.indigo || 0) + '%',
+      score_violet:       (scPct.violet || 0) + '%',
+      configuration:      config,
+      items_critiques:    itemsCritiques.slice(0, 2000),
+      masques_secondaires: secondaires.length ? secondaires.join(', ') : 'Aucun (≥ 50 %).',
+      lien_constellation: 'https://questionnaire.psyh.fr/resultats.html?admin=VALEUR-ADMIN-2025&email='
+                          + encodeURIComponent(demographics.email || ''),
     });
-  }catch(e){console.warn('EmailJS praticien:',e);}
+  } catch(e) { console.warn('EmailJS:', e); }
 }
-
-function detectConfigExcel(scPct){
-  const masks=['rouge','orange','jaune','vert','bleu','indigo','violet'];
-  const sorted=masks.map(m=>({key:m,pct:scPct[m]||0})).sort((a,b)=>b.pct-a.pct);
-  const [m0,m1,m2]=sorted;
-  const violet_note=scPct.violet>=80;
-  if(m0.pct>=80){
-    return{type:'Mono dominant',masks:[m0.key],violet_note};
-  }
-  if(m0.pct>=60&&m1&&m1.pct>=60&&m2&&m2.pct>=60&&(m0.pct-m2.pct)<=15){
-    return{type:'Triade',masks:[m0.key,m1.key,m2.key],violet_note};
-  }
-  if(m0.pct>=65&&m1&&m1.pct>=65&&(m0.pct-m1.pct)<=10){
-    return{type:'Dyade',masks:[m0.key,m1.key],violet_note};
-  }
-  const above65=sorted.filter(m=>m.pct>=65);
-  if(above65.length>=6&&m0.pct<80){
-    return{type:'Pan-masques',masks:above65.map(m=>m.key),violet_note};
-  }
-  return{type:'Résiduel',masks:[m0.key],violet_note};
-}
-
-function getInstrument(m){
-  const i={
-    rouge:'SHAI (Salkovskis et al., 2002)',
-    orange:'TAS-20 (Bagby, Parker, Taylor, 1994)',
-    jaune:'IUS-12 (Carleton et al., 2007)',
-    vert:'ECR-R Anxiety (Fraley et al., 2000)',
-    bleu:'LOC+NPI (Rotter 1966 / Raskin & Terry 1988)',
-    indigo:'FMPS+Clance (Frost et al. 1990 / Clance 1985)',
-    violet:'MSI (Schrader et al., 2014)'
-  };
-  return i[m]||'—';
-}
-
-function getRecos(m,level){
-  const r={
-    rouge:{significatif:'TCC anxiété santé · Exposition intéroceptive · Mindfulness',
-           élevé:'TCC spécialisée anxiété santé · Exposition intéroceptive · Suivi coordonné',
-           dominant:'TCC spécialisée anxiété santé · EMDR si traumatismes · Suivi médical coordonné'},
-    orange:{significatif:'Régulation émotionnelle · Travail sur l\'alexithymie',
-            élevé:'Thérapie EFT + régulation émotionnelle (DBT) · Travail sur alexithymie',
-            dominant:'ACT évitement expérientiel · EMDR si trauma · Thérapie centrée émotions'},
-    jaune:{significatif:'Tolérance à l\'incertitude · Flexibilité cognitive',
-           élevé:'TCC-TAG avec expo à l\'incertitude · ERP si rituels · Flexibilité cognitive',
-           dominant:'TCC-TAG intensive · ACT acceptation imprévu · Exposition graduée'},
-    vert:{significatif:'Affirmation de soi · Travail sur les limites',
-          élevé:'Thérapie des schémas (abandon/dépendance) · Affirmation de soi · Travail limites',
-          dominant:'Thérapie de l\'attachement · Exploration blessures d\'abandon · TCC anxiété sociale'},
-    bleu:{significatif:'Gestion du besoin de contrôle · Développement de la confiance',
-          élevé:'Thérapie des schémas · Gestion colère (Novaco) · Développement empathie',
-          dominant:'Thérapie relationnelle · ACT lâcher-prise · Reconstruction interdépendance'},
-    indigo:{significatif:'Travail sur le syndrome d\'imposteur · Auto-compassion',
-            élevé:'TCC perfectionnisme · Travail syndrome imposteur · Auto-compassion (Neff)',
-            dominant:'Thérapie des schémas imperfection/honte · Exposition vulnérabilité'},
-    violet:{significatif:'Exploration identitaire · Thérapie narrative',
-            élevé:'Psychothérapie existentielle · Exploration identitaire · Thérapie narrative',
-            dominant:'Thérapie des schémas · Vrai self vs faux self · Accompagnement long (24-40 séances)'}
-  };
-  return (r[m]?.[level])||(r[m]?.élevé)||'Voir plan thérapeutique adapté.';
-}
-
 </script>
 </body>
 </html>
