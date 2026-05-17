@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
 <title>V.A.L.E.U.R© — Vos Résultats</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ══ FREE SECTION ══ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -1078,10 +1078,10 @@ footer{border-top:1px solid var(--border2);padding:28px 24px;text-align:center}
 @media(max-width:560px){.asc-mask-card{grid-template-columns:1fr}.asc-mask-left{border-right:none;padding-right:0;border-bottom:1px solid rgba(255,255,255,.05);padding-bottom:12px;margin-bottom:12px}.asc-mask-right{padding-left:0}}
 .asc-low-intro{font-family:var(--font-b);font-size:13px;color:rgba(56,161,105,.75);font-style:italic;margin-bottom:14px;line-height:1.7;border-left:2px solid rgba(56,161,105,.3);padding-left:14px}
 .asc-low-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px}
-.asc-low-card{display:flex;align-items:flex-start;gap:12px;background:rgba(56,161,105,.04);border:1px solid rgba(56,161,105,.12);border-radius:var(--rs);padding:14px}
+.asc-low-card{display:flex;align-items:flex-start;gap:12px;background:rgba(56,161,105,.04);border:1px solid rgba(56,161,105,.12);border-radius:var(--rs);padding:14px;height:auto;overflow:visible}
 .asc-low-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px;opacity:.7}
 .asc-low-name{font-family:var(--font-b);font-size:11px;font-weight:600;color:rgba(56,161,105,.8);letter-spacing:.5px;margin-bottom:4px;text-transform:uppercase;font-size:9px;letter-spacing:2px}
-.asc-low-strength{font-family:var(--font-b);font-size:12px;color:rgba(200,240,210,.8);line-height:1.65}
+.asc-low-strength{font-family:var(--font-b);font-size:12px;color:rgba(200,240,210,.8);line-height:1.65;word-break:break-word;overflow-wrap:break-word;white-space:normal;display:block}
 
 /* ══ AMPLIFICATION CARD ═══════════════════════════════ */
 .amplification-card{
@@ -1329,7 +1329,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
   <div class="hero">
     <div class="hero-eyebrow">Résultats · Méthode V.A.L.E.U.R©</div>
     <h1 class="hero-prenom" id="hero-prenom"><em>Votre</em> cartographie</h1>
-    <p class="hero-sub">129 affirmations · Analyse des 7 peurs fondamentales</p>
+    <p class="hero-sub">85 affirmations · 7 masques + Score de Présence Authentique</p>
   </div>
 
   <!-- Barres de scores -->
@@ -1354,8 +1354,11 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
         </div>
       </div>
       <div class="spa-text">
-        <div class="spa-label">SPA — Présence Authentique</div>
+        <div class="spa-label">Score de Présence Authentique (SPA)</div>
         <div class="spa-desc" id="spa-desc">Mesure votre degré de présence à vous-même, libre des masques adaptatifs.</div>
+      <div style="font-size:11px;font-style:italic;color:var(--txt3);margin-top:6px;line-height:1.6">
+        "Ce score ne mesure pas si vous êtes bien ou mal. Il mesure à quelle fréquence vous êtes déjà vous-même — malgré tout."
+      </div>
       </div>
     </div>
   </div>
@@ -1417,7 +1420,7 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
   <div class="footer-note">
     Outil psychoéducatif — Ne remplace pas une évaluation ou un suivi professionnel<br>
     Méthode V.A.L.E.U.R© · © Céline Bourbon — Tous droits réservés<br>
-    <span style="font-size:.7rem;opacity:.5">Instruments inspirés de SHAI · TAS-20 · IUS-12 · ECR-R · BALCI · PFAI · DS-6 · SCIM</span>
+    <span style="font-size:.7rem;opacity:.5">Instruments : SHAI · TAS-20 · IUS-12 · ECR-R · LOC+NPI · FMPS+Clance · MSI · Wood et al. (2008)</span>
   </div>
 
 </div><!-- .app -->
@@ -1434,7 +1437,11 @@ input,textarea{-webkit-user-select:text!important;user-select:text!important}
    ═════════════════════════════════════════════════════════════════════ */
 
 // ── SCORING (129 questions · 0-4 · % par masque) ──────────────────────
+// V3 — SPA mesuré directement (7 items · Wood et al. 2008)
+// score_SPA% = (Σ7 items / 35) × 100 · Aucune inversion
 function computeSPA(sc) {
+  if (sc.spa !== undefined && sc.spa !== null) return sc.spa;
+  // Fallback V1/V2
   const masks = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
   const t = masks.reduce((s,m)=>s+(sc[m]||0),0);
   return Math.max(0,Math.min(100,Math.round(100-t/7)));
@@ -1569,9 +1576,10 @@ function hexToRgba(hex,a){
 }
 
 // ══ BUILD PAGE ════════════════════════════════════════════════════════════
+// V3 : <30 Non sig · <50 Modéré · <70 Significatif · <85 Élevé · ≥85 Dominant
 function lv(p) {
-  if (p >= 80) return 'Dominant';
-  if (p >= 65) return 'Élevé';
+  if (p >= 85) return 'Dominant';
+  if (p >= 70) return 'Élevé';
   if (p >= 50) return 'Significatif';
   if (p >= 30) return 'Modéré';
   return 'Non significatif';
@@ -2163,12 +2171,13 @@ const LOOP_STORY={"jaune_rouge": "Un signal corporel surgit → Rouge crie au da
 
 // ── UTILS ────────────────────────────────────────────────────────────
 function hexToRgb(h){return{r:parseInt(h.slice(1,3),16),g:parseInt(h.slice(3,5),16),b:parseInt(h.slice(5,7),16)};}
+// V3
 function getLvl(p){
-  if(p>=80)return{t:'Dominant',bg:'rgba(181,49,42,.12)',c:'#B5312A'};
-  if(p>=65)return{t:'\u00c9lev\u00e9',bg:'rgba(184,147,10,.12)',c:'#B8930A'};
-  if(p>=50)return{t:'Significatif',bg:'rgba(45,122,79,.12)',c:'#2D7A4F'};
-  if(p>=30)return{t:'Mod\u00e9r\u00e9',bg:'rgba(29,95,138,.12)',c:'#1D5F8A'};
-  return{t:'Non signif.',bg:'rgba(154,146,136,.1)',c:'#9A9288'};
+  if(p>=85)return{t:'Dominant',     bg:'rgba(181,49,42,.12)', c:'#B5312A'};
+  if(p>=70)return{t:'\u00c9lev\u00e9',        bg:'rgba(184,147,10,.12)',c:'#B8930A'};
+  if(p>=50)return{t:'Significatif', bg:'rgba(45,122,79,.12)', c:'#2D7A4F'};
+  if(p>=30)return{t:'Mod\u00e9r\u00e9',       bg:'rgba(29,95,138,.12)', c:'#1D5F8A'};
+  return     {t:'Non signif.',   bg:'rgba(154,146,136,.1)',c:'#9A9288'};
 }
 
 
@@ -2184,19 +2193,23 @@ function genReportID(dominant){
 }
 var _reportSPA=0;
 var _reportID='VLR-000000-XX0000';
+// V3 — seuils PDF calcul_spa.pdf (Wood et al. 2008)
 function getSPALevel(spa){
-  if(spa>=75)return{label:'Élevée',color:'#38A169',
-    desc:'Vous êtes majoritairement vous-même. Vos peurs existent, mais elles ne gérent plus votre vie à votre place. Vous faites des choix vrais — pas des réflexes de survie.',
+  if(spa>=80)return{label:'Très élevé',color:'#38A169',titre:'Nature authentique largement active',
+    desc:"Votre nature profonde s'exprime fréquemment et librement. Le travail V.A.L.E.U.R© consiste ici moins à trouver qui vous êtes qu'à protéger et élargir cet espace d'authenticité déjà présent — et à comprendre dans quels contextes les masques se réactivent encore.",
     tagline:'Vous êtes là.'};
-  if(spa>=55)return{label:'En croissance',color:'#C9A84C',
-    desc:'Vous êtes conscient·e de vos réflexes. Vous les voyez. Parfois vous leur obéissez encore — mais vous commencez à choisir autrement. C’est exactement là que la transformation devient possible.',
+  if(spa>=65)return{label:'Élevé',color:'#2D7A4F',titre:'Nature authentique accessible',
+    desc:"Vous vivez déjà souvent en accord avec ce que vous êtes vraiment. Vos masques protègent quelque chose de vivant et souvent accessible. Cette lucidité est une ressource rare — elle accélère le travail de libération des derniers obstacles.",
     tagline:'Vous vous voyez.'};
-  if(spa>=35)return{label:'En construction',color:'#ED8936',
-    desc:'Une bonne partie de votre énergie est absorbée par vos défenses. Pas parce que vous êtes faible — parce que votre cerveau fait son travail de protection. Ce travail peut être redélégué.',
-    tagline:'Vous avez tout pour changer.'};
-  return{label:'À transformer',color:'#E53E3E',
-    desc:'Vos réflexes de protection occupent presque tout l’espace. Ce n’est pas qui vous êtes — c’est ce qui vous a protégé·e. Et ce que ce programme est précisément fait pour libérer.',
-    tagline:'Le changement est possible ici.'};
+  if(spa>=45)return{label:'Modéré',color:'#C9A84C',titre:'Présence authentique intermittente',
+    desc:"Votre nature authentique s'exprime déjà dans plusieurs domaines de votre vie. Elle coexiste avec vos mécanismes de protection. Vous avez les ressources intérieures pour avancer — le travail consiste à reconnaître ces moments quand ils arrivent, et à leur faire confiance davantage.",
+    tagline:'Vous avancez.'};
+  if(spa>=25)return{label:'Faible',color:'#ED8936',titre:'Des éclairs existent',
+    desc:"Il y a déjà des moments dans votre vie où quelque chose de vrai passe — un instant d'absorption totale, une impulsion suivie, une vérité dite. Ces éclairs sont réels. Ils sont le point de départ. Le travail V.A.L.E.U.R© ne crée pas ces moments — il élargit l'espace qu'ils ont déjà commencé à ouvrir.",
+    tagline:'Les éclairs existent.'};
+  return{label:'Très faible',color:'#E53E3E',titre:'Nature authentique très voilée',
+    desc:"Ces moments où vous êtes pleinement vous-même — sans rôle, sans calcul, sans regard — sont encore rares dans votre quotidien. Ce n'est pas un manque. C'est le signe que vos mécanismes de protection ont pris beaucoup de place. La nature authentique est là, sous les masques — le travail V.A.L.E.U.R© consiste à créer les conditions pour qu'elle puisse s'exprimer à nouveau.",
+    tagline:'La nature authentique est là.'};
 }
 function getLowMaskStrength(key){
   var strengths={
@@ -2447,9 +2460,10 @@ function getMeta(key) {
   };
 }
 // ── Alias getLevel() → retourne le label de niveau ────────────────────────────
+// V3
 function getLevel(pct) {
-  if (pct >= 80) return 'Dominant';
-  if (pct >= 65) return 'Élevé';
+  if (pct >= 85) return 'Dominant';
+  if (pct >= 70) return 'Élevé';
   if (pct >= 50) return 'Significatif';
   if (pct >= 30) return 'Modéré';
   return 'Non significatif';
@@ -2952,7 +2966,7 @@ function buildAdaptatif(scores,prenom,profile){
     var pct=m.pct;
     var col=COLORS[m.key]||'#C9A84C';
     var lbl=LABELS[m.key]||m.key;
-    var level=pct<30?'Non significatif':(pct<50?'Mod\u00e9r\u00e9':(pct<65?'Significatif':(pct<80?'\u00c9lev\u00e9':'Dominant')));
+    var level=pct<30?'Non significatif':(pct<50?'Mod\u00e9r\u00e9':(pct<70?'Significatif':(pct<85?'\u00c9lev\u00e9':'Dominant')));
     var levelSuffix=(pct>=45&&pct<50)?' \u2191':'';
     var desc=(pct<30)?DESC_FAIBLE[m.key]:(pct>=45?DESC_MODERE_HIGH[m.key]:DESC_MODERE[m.key]);
     var r2=parseInt(col.slice(1,3),16),g2=parseInt(col.slice(3,5),16),b2=parseInt(col.slice(5,7),16);
@@ -3504,7 +3518,7 @@ function buildPageFromOld(dominant,meta,data,playlist,scores,prenom,profile){
     // BLOC 3 — SPA traduit + point d'entrée VALEUR
     c+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:3mm;margin-bottom:4mm">';
     c+='<div style="background:rgba('+rgb.r+','+rgb.g+','+rgb.b+',.04);border:1px solid rgba('+rgb.r+','+rgb.g+','+rgb.b+',.15);border-radius:5px;padding:3.5mm 4mm">';
-    c+='<p style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:'+col+';margin-bottom:2mm">Votre SPA\u00a0: ce que \u00e7a signifie</p>';
+    c+='<p style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:'+col+';margin-bottom:2mm">Score de Pr\u00e9sence Authentique (SPA)\u00a0: ce que cela signifie</p>';
     c+='<p class="tli" style="font-size:12px;margin:0">Dans <strong>'+spa+'%</strong> de vos situations, vous r\u00e9pondez depuis votre nature authentique. Dans les <strong>'+(100-spa)+'%</strong> restants, vos masques d\u00e9cident \u00e0 votre place.</p>';
     c+='</div>';
     if(D.step_key&&D.step_note){
@@ -4166,9 +4180,10 @@ function getScoreReading(pct, mask) {
   };
   const texts = r[mask];
   if (!texts) return '';
+  // V3 seuils
   let idx;
-  if      (pct >= 80) idx = 0;
-  else if (pct >= 65) idx = 1;
+  if      (pct >= 85) idx = 0;
+  else if (pct >= 70) idx = 1;
   else if (pct >= 50) idx = 2;
   else if (pct >= 30) idx = 3;
   else                idx = 4;
@@ -4326,10 +4341,9 @@ async function buildPage(){
     document.getElementById('spa-arc').style.strokeDashoffset=offset;
     document.getElementById('spa-arc').style.transition='stroke-dashoffset 1.5s ease';
   },300);
-  const spaDesc = spa>=70?'Votre présence à vous-même est significative. Les masques coexistent avec une capacité d\'authenticité réelle.':
-    spa>=50?'Votre présence à vous-même est modérée. Les masques occupent une part importante de l\'espace psychique.':
-    spa>=30?'Les masques défensifs réduisent significativement l\'accès à votre nature authentique.':
-    'Les masques défensifs occupent une place majeure. L\'accompagnement V.A.L.E.U.R© peut ouvrir un espace de présence plus grand.';
+  // V3 — niveaux SPA depuis getSPALevel (PDF calcul_spa.pdf)
+  const _spaLvl = getSPALevel(spa);
+  const spaDesc = _spaLvl.titre + ' — ' + _spaLvl.desc;
   document.getElementById('spa-desc').textContent = spaDesc;
 
   // ── Profil ────────────────────────────────────────────────────────────
@@ -4557,23 +4571,65 @@ async function V_downloadPDF() {
   try { prenom = document.getElementById('hero-prenom')?.textContent?.replace(/[^a-zA-ZÀ-ÿ]/g,' ').trim().split(' ')[0] || ''; } catch(_) {}
   btn.textContent = 'Génération en cours…';
   btn.disabled = true;
-  // Attendre que les fonts soient prêtes (Cormorant Garamond, DM Sans)
+
+  // S'assurer que les fonts sont chargées (Lora + Poppins + Cormorant)
   try { await document.fonts.ready; } catch(_) {}
+
+  // Forcer le fond clair sur le wrap pour html2canvas
+  var prevBg = wrap.style.background;
+  wrap.style.background = '#FDFAF6';
+  // Pause pour que le navigateur applique le style
+  await new Promise(r => setTimeout(r, 80));
+
+  var prenom_lc = prenom ? '-' + prenom.toLowerCase() : '';
   var opt = {
     margin: 0,
-    filename: 'portrait-valeur' + (prenom ? '-' + prenom.toLowerCase() : '') + '.pdf',
-    image: { type: 'jpeg', quality: 0.97 },
-    html2canvas: { scale: 2, useCORS: true, letterRendering: true, backgroundColor: '#F7F2EB', windowWidth: 794 },
+    filename: 'portrait-valeur' + prenom_lc + '.pdf',
+    image: { type: 'jpeg', quality: 0.96 },
+    html2canvas: {
+      scale: 2.5,
+      useCORS: true,
+      letterRendering: true,
+      backgroundColor: '#FDFAF6',
+      windowWidth: 794,
+      logging: false,
+      onclone: function(clonedDoc) {
+        // Dans le clone, forcer les variables CSS light pour les pages intérieures
+        var style = clonedDoc.createElement('style');
+        style.textContent = [
+          '#premium-report-wrap { background:#FDFAF6!important; }',
+          '.book { background:#FDFAF6!important; }',
+          '.page { background:#FDFAF6!important; box-shadow:none!important; }',
+          // Forcer la couleur de texte correcte pour les classes du rapport
+          '.tl,.tli { font-family:"Lora",serif!important; color:#1A1814!important; }',
+          '.tb,.ts { color:#1A1814!important; }',
+          '.ey { color:#2D7A4F!important; }',
+          '.st { color:#1A1814!important; }',
+          '.pn,.pf { color:#8C8278!important; }',
+          // Cover sombre : laisser telle quelle
+          '.cover { background:#1C1814!important; }',
+          '.cover .tl, .cover .tli, .cover .tb, .cover p { color:#F9F6F1!important; }',
+        ].join('\n');
+        clonedDoc.head.appendChild(style);
+      }
+    },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: 'legacy', before: '.page', avoid: ['p','li','h2','h3'] }
+    pagebreak: { mode: 'css', before: '.page' }
   };
+
   html2pdf().set(opt).from(wrap).save()
     .then(function() {
+      wrap.style.background = prevBg;
       btn.innerHTML = '✓ Portrait téléchargé';
       btn.disabled = false;
       setTimeout(function() { btn.innerHTML = '↓ Télécharger mon portrait PDF'; }, 3000);
     })
-    .catch(function() { btn.textContent = 'Erreur — réessayer'; btn.disabled = false; });
+    .catch(function(e) {
+      wrap.style.background = prevBg;
+      console.error('PDF error:', e);
+      btn.textContent = 'Erreur — réessayer';
+      btn.disabled = false;
+    });
 }
 </script>
 <div id="pdf-fab" style="display:none;position:fixed;bottom:24px;right:24px;z-index:999">
