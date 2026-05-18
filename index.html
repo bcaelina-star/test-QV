@@ -337,14 +337,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
 </div><!-- .app -->
 
 <script>
+// ── Détection code cadeau V.A.L.E.U.R© ─────────────────────────────
+(function() {
+  try {
+    var _gp = new URLSearchParams(window.location.search);
+    var _gc = _gp.get('gift');
+    if (_gc && _gc.toUpperCase().indexOf('VALEUR-') === 0) {
+      localStorage.setItem('valeur_gift_code', _gc.trim().toUpperCase());
+    }
+  } catch(e) {}
+})();
+ 
 /* ================================================================
    © Céline Bourbon — Méthode V.A.L.E.U.R©
    Questionnaire V3.0 — 85 items (78 masques + 7 SPA)
    Échelle 0-5 · IONOS : questionnaire.psyh.fr
    ================================================================ */
-
-// ── CONFIG (inchangé IONOS) ──────────────────────────────────────
-const CONFIG = {
+ 
+// ── CONFIG (inchangé IONOS) ──────────────────────────────────────const CONFIG = {
   EMAILJS_PUBLIC_KEY:  'Qamyb35cCRJ5Pulqs',
   EMAILJS_SERVICE_ID:  'Questionnaire VALEUR',
   EMAILJS_TEMPLATE_ID: 'template_xp8cfww',
