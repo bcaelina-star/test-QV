@@ -354,7 +354,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
    Échelle 0-5 · IONOS : questionnaire.psyh.fr
    ================================================================ */
  
-// ── CONFIG (inchangé IONOS) ──────────────────────────────────────const CONFIG = {
+// ── CONFIG (inchangé IONOS) ──────────────────────────────────────
+const CONFIG = {
   EMAILJS_PUBLIC_KEY:  'Qamyb35cCRJ5Pulqs',
   EMAILJS_SERVICE_ID:  'Questionnaire VALEUR',
   EMAILJS_TEMPLATE_ID: 'template_xp8cfww',
@@ -382,90 +383,90 @@ const SPA_MAX = 35;  // 7 items × 5
 // inv:false → score corrigé = raw
 const MASQUE_ITEMS = [
   // 🔴 ROUGE — 10 items
-  {id:'R1', mask:'rouge', inv:false, text:"Je surveille régulièrement les signaux de mon corps (rythme cardiaque, sensations) pour détecter un problème de santé."},
+  {id:'R1', mask:'rouge', inv:false, text:"Je surveille constamment les battements de mon cœur, ma respiration, ou ma température corporelle"},
   {id:'R2', mask:'rouge', inv:false, text:"Quand j'observe une sensation physique inhabituelle, ma pensée va rapidement vers une maladie grave."},
   {id:'R3', mask:'rouge', inv:false, text:"Je consulte régulièrement des sources médicales (internet, médecins) pour vérifier mes symptômes."},
-  {id:'R4', mask:'rouge', inv:false, text:"La peur de développer une maladie grave (cancer, AVC…) occupe une place significative dans mes pensées."},
-  {id:'R5', mask:'rouge', inv:false, text:"J'ai déjà consulté plusieurs médecins pour les mêmes symptômes, en espérant trouver une rassurance définitive."},
-  {id:'R6', mask:'rouge', inv:false, text:"Je cherche fréquemment à être rassuré(e) par des professionnels de santé sur mon état physique."},
+  {id:'R4', mask:'rouge', inv:false, text:"La moindre douleur me fait immédiatement penser à une maladie grave (cancer, infarctus, AVC)"},
+  {id:'R5', mask:'rouge', inv:false, text:"J'ai déjà consulté plusieurs médecins pour les mêmes symptômes, car aucun n'a pu me rassurer."},
+  {id:'R6', mask:'rouge', inv:false, text:" J'évite certaines activités physiques (déplacements, sport,transports) par appréhension qu'un événement grave survienne"},
   {id:'R7', mask:'rouge', inv:false, text:"Si j'apprenais avoir une maladie grave, je pense que je ne pourrais pas y faire face émotionnellement."},
-  {id:'R8', mask:'rouge', inv:false, text:"Je crois qu'une maladie grave ruinerait ma vie de façon permanente et irrémédiable."},
+  {id:'R8', mask:'rouge', inv:false, text:"Je fais des bilans de santé très réguliers, même sans symptômes particuliers."},
   {id:'R9', mask:'rouge', inv:false, text:"Je pense souvent que je pourrais avoir une maladie grave sans le savoir encore."},
-  {id:'R10',mask:'rouge', inv:false, text:"Lorsqu'un proche est malade, je crains rapidement de contracter la même chose."},
+  {id:'R10',mask:'rouge', inv:false, text:"J'ai peur de mourir subitement"},
   // 🟠 ORANGE — 13 items
-  {id:'O1', mask:'orange', inv:false, text:"Lorsqu'une conversation devient émotionnelle, je change naturellement de sujet ou je m'en détache."},
-  {id:'O2', mask:'orange', inv:false, text:"Je me sens plus à l'aise en m'occupant (travail, écrans) qu'en restant seul(e) avec mes émotions."},
-  {id:'O3', mask:'orange', inv:false, text:"Il m'est difficile de décrire précisément ce que je ressens émotionnellement dans une situation donnée."},
-  {id:'O4', mask:'orange', inv:false, text:"Même lors d'événements difficiles (deuil, échec important), je reste souvent sans larmes ni affect visible."},
-  {id:'O5', mask:'orange', inv:false, text:"Je préfère analyser les situations de façon logique plutôt que d'explorer les émotions qu'elles génèrent."},
-  {id:'O6', mask:'orange', inv:false, text:"Je me sens davantage observateur(trice) de ma propre vie que réellement acteur(trice) de mes émotions."},
-  {id:'O7', mask:'orange', inv:false, text:"Je préfère me concentrer sur les événements extérieurs et les faits concrets plutôt que sur mes états intérieurs."},
+  {id:'O1', mask:'orange', inv:false, text:"Je change de sujet ou me retire lorsqu'une conversation devient trop émotionnelle."},
+  {id:'O2', mask:'orange', inv:false, text:" Je me garde constamment occupée pour ne pas être seule avec mes émotions."},
+  {id:'O3', mask:'orange', inv:false, text:"J'ai du mal à identifier et à nommer ce que je ressens vraiment (peur, colère, tristesse)"},
+  {id:'O4', mask:'orange', inv:false, text:" Je n'ai pas pleuré depuis une période prolongée, même lors d'événements objectivement difficiles."},
+  {id:'O5', mask:'orange', inv:false, text:"Je minimise systématiquement mes difficultés en répondant "ça va" même quand ça ne va pas"},
+  {id:'O6', mask:'orange', inv:false, text:"Je me sens mal à l'aise quand quelqu'un pleure ou exprime de fortes émotions devant moi."},
+  {id:'O7', mask:'orange', inv:false, text:"Je préfère me concentrer sur les événements extérieurs et les faits concrets plutôt que sur mes émotions."},
   {id:'O8', mask:'orange', inv:false, text:"Face à un problème, je préfère l'analyser rationnellement plutôt que d'explorer les émotions qu'il génère."},
-  {id:'O9', mask:'orange', inv:false, text:"Je me demande souvent pourquoi je réagis émotionnellement comme je le fais."},
+  {id:'O9', mask:'orange', inv:false, text:"J'utilise l'humour ou la dérision pour éviter d'affronter les moments difficiles."},
   {id:'O10',mask:'orange', inv:false, text:"Mes émotions me déconcertent souvent."},
-  {id:'O11',mask:'orange', inv:false, text:"Il m'est difficile de révéler mes sentiments intimes, même à des personnes proches."},
-  {id:'O12',mask:'orange', inv:false, text:"Mon imagination et ma vie intérieure me semblent limitées."},
-  {id:'O13',mask:'orange', inv:false, text:"Je préfère laisser les choses se passer naturellement plutôt que de les comprendre émotionnellement."},
+  {id:'O11',mask:'orange', inv:false, text:"Il m'est difficile de révéler mes sentiments profonds et/ou intimes, même à des personnes proches."},
+  {id:'O12',mask:'orange', inv:false, text:"Je me garde constamment occupé.e pour ne pas être seul.e avec mes émotions"},
+  {id:'O13',mask:'orange', inv:false, text:"Je me sens déconnecté.e de mon propre corps et de ses sensations physiques"},
   // 🟡 JAUNE — 9 items (J6 inversé)
-  {id:'J1', mask:'jaune', inv:false, text:"Je me sens très mal à l'aise lorsqu'un événement prévu est modifié sans préavis."},
-  {id:'J2', mask:'jaune', inv:false, text:"Avant de décider, je dois réunir le maximum d'informations, même pour des décisions mineures."},
-  {id:'J3', mask:'jaune', inv:false, text:"Je prépare systématiquement des plans alternatifs (B, C, D) en cas d'imprévu."},
-  {id:'J4', mask:'jaune', inv:false, text:"Les situations ambiguës ou sans issue claire me sont particulièrement difficiles à tolérer."},
-  {id:'J5', mask:'jaune', inv:false, text:"Je prévois et planifie les activités du quotidien de façon très détaillée pour éviter tout imprévu."},
-  {id:'J6', mask:'jaune', inv:true,  text:"Je tolère bien de ne pas savoir comment les choses vont se dérouler et j'avance malgré l'incertitude."},
+  {id:'J1', mask:'jaune', inv:false, text:"L'idée d'improviser  ou de dire « on verra bien » m'angoisse."},
+  {id:'J2', mask:'jaune', inv:false, text:"J'ai besoin de beaucoup d'informations avant de prendre même une petite décision ."},
+  {id:'J3', mask:'jaune', inv:false, text:"Je rumine  sur l'ensemble des scénarios possibles et leurs conséquences possibles."},
+  {id:'J4', mask:'jaune', inv:false, text:"Les situations ambiguës ou sans issue claire me sont difficiles à tolérer."},
+  {id:'J5', mask:'jaune', inv:false, text:"Je planifie  chaque aspect de ma vie pour anticiper et éviter les imprévus."},
+  {id:'J6', mask:'jaune', inv:true,  text:"J'apprécie l'imprévu et les surprises, même lorsqu'elles sont inattendues."},
   {id:'J7', mask:'jaune', inv:false, text:"Il m'est difficile d'agir quand je ne sais pas ce qui va se passer."},
-  {id:'J8', mask:'jaune', inv:false, text:"Il faut que je sache ce que l'avenir me réserve."},
+  {id:'J8', mask:'jaune', inv:false, text:"Les environnements nouveaux ou peu prévisibles déclenchent de l'anxiété."},
   {id:'J9', mask:'jaune', inv:false, text:"Je dois toujours être en mesure d'anticiper les événements."},
   // 🟢 VERT — 11 items (V5, V11 inversés)
-  {id:'V1', mask:'vert', inv:false, text:"J'accepte le point de vue d'autrui même si je ne le partage pas, pour éviter tout conflit."},
-  {id:'V2', mask:'vert', inv:false, text:"La pensée d'être seul(e) ou abandonné(e) me provoque une angoisse significative."},
+  {id:'V1', mask:'vert', inv:false, text:"Je n'arrive pas à affirmer mes vrais besoins ou désirs par peur de créer un conflit."},
+  {id:'V2', mask:'vert', inv:false, text:"La pensée d'être seul(e) ou abandonné(e) me provoque une angoisse."},
   {id:'V3', mask:'vert', inv:false, text:"Je maintiens parfois des relations insatisfaisantes car la rupture me semblerait encore plus difficile."},
   {id:'V4', mask:'vert', inv:false, text:"Je ressens un besoin fort d'être rassuré(e) par mes proches sur leur affection pour moi."},
-  {id:'V5', mask:'vert', inv:true,  text:"Je me sens généralement bien dans ma peau et capable d'assumer les défis relationnels."},
-  {id:'V6', mask:'vert', inv:false, text:"J'analyse en permanence les signes d'acceptation ou de rejet dans les comportements de mon entourage."},
-  {id:'V7', mask:'vert', inv:false, text:"J'ai peur que les personnes importantes pour moi ne souhaitent pas rester avec moi aussi longtemps que je le souhaite avec elles."},
+  {id:'V5', mask:'vert', inv:true,  text:"Je sais poser des limites et dire « non » lorsque quelque chose ne me convient pas."},
+  {id:'V6', mask:'vert', inv:false, text:"J'analyse  les comportements des autres pour détecter un signe de rejet."},
+  {id:'V7', mask:'vert', inv:false, text:"Je m'efface  et sacrifie mes propres besoins pour le confort des autres."},
   {id:'V8', mask:'vert', inv:false, text:"Il m'est difficile de faire confiance totalement à mes partenaires ou proches."},
-  {id:'V9', mask:'vert', inv:false, text:"Il m'est difficile de me sentir vraiment à l'aise avec mes proches."},
-  {id:'V10',mask:'vert', inv:false, text:"Mes désirs d'être très proche des autres les effraient parfois."},
-  {id:'V11',mask:'vert', inv:true,  text:"J'ai confiance dans la capacité des autres à m'aimer de façon stable et durable."},
+  {id:'V9', mask:'vert', inv:false, text:"J'ai du mal à exprimer mon désaccord ou une opinion divergente par peur d'être jugé.e"},
+  {id:'V10',mask:'vert', inv:false, text:"Mon besoin d'être proche des autres les effraient parfois."},
+  {id:'V11',mask:'vert', inv:true,  text:"Je me sens aimé.e et accepté.e pour qui je suis réellement"},
   // 🔵 BLEU — 11 items (B8 inversé)
-  {id:'B1', mask:'bleu', inv:false, text:"Lorsque je vois quelqu'un faire une tâche « de travers », j'ai une forte impulsion à reprendre le contrôle."},
+  {id:'B1', mask:'bleu', inv:false, text:"Lorsque je vois quelqu'un faire une tâche « de travers », j'ai envie de reprendre le contrôle."},
   {id:'B2', mask:'bleu', inv:false, text:"J'ai tendance à diriger les groupes ou situations, même sans y avoir été invité(e)."},
-  {id:'B3', mask:'bleu', inv:false, text:"Lorsque quelqu'un prend une décision sans me consulter dans un domaine me concernant, je ressens une irritation marquée."},
+  {id:'B3', mask:'bleu', inv:false, text:"Lorsque quelqu'un prend une décision sans me consulter dans un domaine me concernant, je ressens une irritation."},
   {id:'B4', mask:'bleu', inv:false, text:"J'ai besoin de sentir que je suis indispensable dans mes relations professionnelles ou personnelles."},
-  {id:'B5', mask:'bleu', inv:false, text:"Quand je confie une tâche, j'ai régulièrement envie de vérifier ou corriger le travail de l'autre."},
-  {id:'B6', mask:'bleu', inv:false, text:"Je ressens de la colère ou une forte frustration lorsqu'une situation m'échappe ou ne se déroule pas comme prévu."},
-  {id:'B7', mask:'bleu', inv:false, text:"J'ai l'impression que ce qui m'arrive dépend surtout des autres ou du hasard, et peu de moi-même."},
+  {id:'B5', mask:'bleu', inv:false, text:"Je ne supporte  pas qu'on me dise quoi faire ou comment agir."},
+  {id:'B6', mask:'bleu', inv:false, text:"Je ressens de la frustration lorsqu'une situation m'échappe ou ne se déroule pas comme prévu."},
+  {id:'B7', mask:'bleu', inv:false, text:"Je porte l'ensemble des responsabilités et je refuse l'aide."},
   {id:'B8', mask:'bleu', inv:true,  text:"Je me sens maître(sse) de ce qui se passe dans ma vie et de mes choix importants."},
   {id:'B9', mask:'bleu', inv:false, text:"La perspective de ne pas contrôler mes émotions m'angoisse."},
   {id:'B10',mask:'bleu', inv:false, text:"Je préfère tout faire moi-même pour éviter de dépendre du jugement ou de l'action des autres."},
-  {id:'B11',mask:'bleu', inv:false, text:"Je préfère prendre les risques moi-même plutôt que de laisser les autres décider à ma place."},
+  {id:'B11',mask:'bleu', inv:false, text:"Je me sens  anxieux.se quand je dois dépendre des autres"},
   // 🟣 INDIGO — 12 items
   {id:'I1', mask:'indigo', inv:false, text:"Je retravaille mes productions (projets, présentations) bien au-delà de ce qui est objectivement nécessaire."},
-  {id:'I2', mask:'indigo', inv:false, text:"Je reporte souvent le démarrage d'un projet car je crains de ne pas être à la hauteur."},
-  {id:'I3', mask:'indigo', inv:false, text:"Je minimise spontanément mes réussites en les attribuant à la chance ou aux autres plutôt qu'à moi."},
+  {id:'I2', mask:'indigo', inv:false, text:"Je procrastine ou repousse les choses par peur que mon travail ne soit pas assez parfait."},
+  {id:'I3', mask:'indigo', inv:false, text:"Je minimise systématiquement mes accomplissements et mes succès."},
   {id:'I4', mask:'indigo', inv:false, text:"J'ai du mal à me sentir légitime dans mon rôle professionnel, même quand mes résultats sont objectivement bons."},
-  {id:'I5', mask:'indigo', inv:false, text:"Je sabote parfois inconsciemment une opportunité de réussite juste avant qu'elle se concrétise."},
-  {id:'I6', mask:'indigo', inv:false, text:"Mon dialogue intérieur est souvent très critique envers moi-même lorsque je n'atteins pas mes propres standards."},
+  {id:'I5', mask:'indigo', inv:false, text:" Je me compare constamment aux autres et me perçois toujours comme inférieur.e ou insuffisant.e."},
+  {id:'I6', mask:'indigo', inv:false, text:"Mon dialogue intérieur est souvent très critique envers moi-même."},
   {id:'I7', mask:'indigo', inv:false, text:"Lorsque j'échoue, j'ai honte de moi-même."},
   {id:'I8', mask:'indigo', inv:false, text:"Lorsque j'échoue, je commence à me demander si je suis capable de faire quoi que ce soit correctement."},
   {id:'I9', mask:'indigo', inv:false, text:"Quand je n'atteins pas mon objectif, j'ai l'impression d'être moins bien que les autres."},
-  {id:'I10',mask:'indigo', inv:false, text:"Lorsque j'échoue, je remets en question mes aptitudes et mes capacités profondes."},
-  {id:'I11',mask:'indigo', inv:false, text:"Quand j'échoue, je m'imagine perdre des opportunités importantes qui ne reviendront pas."},
+  {id:'I10',mask:'indigo', inv:false, text:"Une erreur  me fait  douter de ma compétence globale et de ma valeur."},
+  {id:'I11',mask:'indigo', inv:false, text:"Je préfère ne rien tenter plutôt que de risquer un échec public."},
   {id:'I12',mask:'indigo', inv:false, text:"Quand j'échoue, je me sens coupable d'avoir déçu les personnes qui comptaient sur moi."},
   // 💜 VIOLET — 12 items
-  {id:'Vi1', mask:'violet', inv:false, text:"J'ai l'impression de vivre ma vie « en pilote automatique », comme si je me regardais de l'extérieur."},
-  {id:'Vi2', mask:'violet', inv:false, text:"Il m'est difficile d'exprimer des préférences authentiques car je ne sais plus ce que je veux vraiment."},
+  {id:'Vi1', mask:'violet', inv:false, text:" J'éprouve une nostalgie  de qui j'étais avant, plus spontané.e et authentique."},
+  {id:'Vi2', mask:'violet', inv:false, text:"Il m'est difficile d'exprimer des préférences car je ne sais pas ce que je veux vraiment."},
   {id:'Vi3', mask:'violet', inv:false, text:"J'ai abandonné progressivement des passions ou centres d'intérêt qui me définissaient autrefois."},
-  {id:'Vi4', mask:'violet', inv:false, text:"En situation de silence ou de solitude, je ressens un vide intérieur difficile à définir."},
-  {id:'Vi5', mask:'violet', inv:false, text:"Je refuse souvent des opportunités de changement (nouveau poste, déménagement) pour ne pas perturber ma stabilité."},
+  {id:'Vi4', mask:'violet', inv:false, text:"Lorsque je suis seul.e et silencieux.se, j'éprouve un vide, une absence ou un manque de sens."},
+  {id:'Vi5', mask:'violet', inv:false, text:" Je ne sais pas véritablement qui je suis en dehors des rôles sociaux que j'incarne."},
   {id:'Vi6', mask:'violet', inv:false, text:"J'ai la sensation d'être une personne différente selon les périodes de ma vie, sans véritable fil conducteur."},
   {id:'Vi7', mask:'violet', inv:false, text:"Je serais incapable de décrire clairement qui j'étais il y a 5 ans et qui je serai dans 5 ans."},
-  {id:'Vi8', mask:'violet', inv:false, text:"L'idée de changer profondément qui je suis me provoque une crainte existentielle que j'évite d'explorer."},
-  {id:'Vi9', mask:'violet', inv:false, text:"Je me sens déconnecté(e) de la personne que j'étais dans le passé."},
+  {id:'Vi8', mask:'violet', inv:false, text:"Je refuse  les opportunités de croissance personnelle ou de transformation par peur."},
+  {id:'Vi9', mask:'violet', inv:false, text:"Je m'accroche  à mes habitudes  même si elles ne génèrent pas de bien-être."},
   {id:'Vi10',mask:'violet', inv:false, text:"Je me sens comme une personne différente de celle que j'étais autrefois."},
-  {id:'Vi11',mask:'violet', inv:false, text:"J'ai souvent l'impression de ne pas savoir qui je suis vraiment."},
-  {id:'Vi12',mask:'violet', inv:false, text:"L'idée de me définir ou d'expliquer qui je suis m'angoisse ou me laisse dans le vide."},
+  {id:'Vi11',mask:'violet', inv:false, text:"J'ai l'impression de ne pas savoir qui je suis vraiment."},
+  {id:'Vi12',mask:'violet', inv:false, text:"Je vis ma vie en mode automatique, sans vraiment ressentir, choisir ou me sentir impliqué.e."},
 ];
 
 // ✦ SPA — 7 items (textes exacts PDF, aucune inversion)
@@ -474,7 +475,7 @@ const SPA_ITEMS = [
   {id:'SPA-1', mask:'spa', inv:false, fenetre:'État de flux',
    text:"Il m'arrive d'être tellement absorbé(e) par ce que je fais que je perds la notion du temps et du regard des autres."},
   {id:'SPA-2', mask:'spa', inv:false, fenetre:'Résonance corporelle',
-   text:"Je ressens parfois dans mon corps un signal clair — légèreté, élan, soulagement — et je lui fais confiance sans chercher à l'analyser."},
+   text:"Je ressens parfois dans mon corps un signal clair — légèreté, élan, frisson — et je lui fais confiance sans chercher à l'analyser."},
   {id:'SPA-3', mask:'spa', inv:false, fenetre:'Opinion spontanée',
    text:"Il m'arrive de savoir ce que je pense ou ce que je veux avant de me demander ce que les autres en penseraient."},
   {id:'SPA-4', mask:'spa', inv:false, fenetre:'Joie sans témoin',
@@ -564,15 +565,16 @@ const LIKERT_LABELS = [
 ];
 
 function buildLikert(item, pageIdx) {
-  return `<div class="likert">
-    ${[0,1,2,3,4,5].map((v,i) => `
-      <label class="likert-option">
-        <input type="radio" name="item_${item.id}" value="${v}"
-               onchange="onAnswer('${item.id}',${v},${pageIdx})">
-        <div class="likert-btn">${v}</div>
-        <span class="likert-label">${LIKERT_LABELS[i].replace('\n','<br>')}</span>
-      </label>`).join('')}
-  </div>`;
+  var html = '<div class="likert">';
+  for (var v = 0; v < 6; v++) {
+    var oa = "onAnswer('" + item.id + "'," + v + "," + pageIdx + ")";
+    html += '<label class="likert-option">'
+      + '<input type="radio" name="item_' + item.id + '" value="' + v + '" onchange="' + oa + '">'
+      + '<div class="likert-btn">' + v + '</div>'
+      + '<span class="likert-label">' + LIKERT_LABELS[v].replace('\n','<br>') + '</span>'
+      + '</label>';
+  }
+  return html + '</div>';
 }
 
 // ── CONSTRUCTION DES PAGES ────────────────────────────────────────
