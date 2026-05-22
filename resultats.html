@@ -4241,7 +4241,7 @@ function buildPageFromOld(dominant,meta,data,playlist,scores,prenom,profile){
 }
 
 
-function buildPremiumReport(dominant, scores, prenom, profile) {
+function buildPremiumReport(dominant, scores, prenom, profile, isGift) {
   // Build meta object for old buildPage
   var meta = {
     color: MASK_COLORS[dominant] || '#2D7A4F',
@@ -4271,7 +4271,14 @@ function buildPremiumReport(dominant, scores, prenom, profile) {
   document.documentElement.style.setProperty('--MC-g', rgb.g);
   document.documentElement.style.setProperty('--MC-b', rgb.b);
   
-  reportWrap.innerHTML = html;
+  // Badge cadeau si portrait offert
+  if(isGift) {
+    var badge = document.createElement('div');
+    badge.style.cssText = 'background:rgba(168,135,58,.1);border:1px solid rgba(168,135,58,.3);border-radius:6px;padding:8px 16px;text-align:center;font-size:11px;color:#A8873A;letter-spacing:1px;margin-bottom:16px;font-weight:600';
+    badge.textContent = '🎁 Portrait offert — Accès exclusif Céline Bourbon';
+    reportWrap.insertBefore(badge, reportWrap.firstChild);
+  }
+  reportWrap.innerHTML = (isGift ? '<div style="background:rgba(168,135,58,.1);border:1px solid rgba(168,135,58,.3);border-radius:6px;padding:8px 16px;text-align:center;font-size:11px;color:#A8873A;letter-spacing:1px;margin-bottom:16px;font-weight:600">🎁 Portrait offert — Accès partenaire V.A.L.E.U.R©</div>' : '') + html;
 
   // Afficher le bouton PDF
   var fab = document.getElementById('pdf-fab');
@@ -4459,6 +4466,7 @@ async function buildPage(){
 
   // Vérifier si portrait déjà payé
   let paid = false;
+  let isGift = false;
   const urlParams = new URLSearchParams(window.location.search);
   if(urlParams.get('portrait')==='unlocked') paid = true;
   if(urlParams.get('admin')==='VALEUR-ADMIN-2025') paid = true;
@@ -4676,7 +4684,7 @@ async function buildPage(){
 
   if(paid){
     document.getElementById('paywall-section').style.display='none';
-    buildPremiumReport(dominantMask, sc, prenom, profil);
+    buildPremiumReport(dominantMask, sc, prenom, profil, isGift);
     try{localStorage.setItem('valeur_paid_'+email,'1');}catch(e){}
   }
 
@@ -4706,6 +4714,7 @@ async function buildPage(){
           const giftData = await giftRes.json();
           if(giftData.valid) {
             paid = true;
+            isGift = true;
             // Stocker pour retour multi-appareils
             try { localStorage.setItem('valeur_paid_' + (email||giftCode), '1'); } catch(_){}
             try { localStorage.removeItem('valeur_gift_code'); } catch(_){}
@@ -4813,7 +4822,13 @@ async function buildPage(){
 // ── INIT ─────────────────────────────────────────────────────────────
 emailjs.init({publicKey:'Qamyb35cCRJ5Pulqs'});
 
-window.addEventListener('DOMContentLoaded', buildPage);
+window.addEventListener('DOMContentLoaded', function() {
+  buildPage().catch(function(err) {
+    console.error('[VALEUR] buildPage error:', err);
+    var loading = document.getElementById('loading');
+    if(loading) loading.innerHTML = '<div style="color:#B5312A;font-family:sans-serif;text-align:center;padding:40px"><p style="font-size:14px;margin-bottom:8px">⚠️ Erreur de chargement</p><p style="font-size:12px;opacity:.7">'+err.message+'</p><p style="font-size:11px;margin-top:16px"><a href="questionnaire_index.html" style="color:#A8873A">← Recommencer le questionnaire</a></p></div>';
+  });
+});
 
 
 
