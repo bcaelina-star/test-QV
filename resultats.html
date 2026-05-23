@@ -1532,71 +1532,68 @@ const TIEBREAK_ORDER = ['jaune','rouge','indigo','vert','bleu','orange','violet'
 
 function detectProfile(sc){
   const VALID=['rouge','orange','jaune','vert','bleu','indigo','violet'];
-  const sorted=VALID.map(k=>({key:k,pct:sc[k]||0})).sort((a,b)=>b.pct-a.pct);
-  const[m0,m1,m2]=sorted;
+  var sorted=VALID.map(function(k){return{key:k,pct:sc[k]||0};}).sort(function(a,b){return b.pct-a.pct;});
 
-  // ── ÉTAPE -1 : PROFIL ADAPTATIF ───────────────────────────────────
-  // Seuil scientifique : aucun masque n'atteint le niveau Significatif (≥50%)
-  // Fondement : instruments instruments cliniques validés — scores < 50%
-  // = absence de pertinence clinique sur ce domaine 
-  // Score global ≤ 192/448 (≤43%) = fonctionnement adaptatif documenté
+  // ── ÉTAPE 0 : ADAPTATIF ───────────────────────────────────────────
   var _globalMean=Math.round(VALID.reduce(function(s,k){return s+(sc[k]||0);},0)/7);
-  if(m0.pct<50){
-    // Sous-profil : Équilibré (tous < 30%) vs Vigilant (max 30-49%)
-    var _subtype=m0.pct<30?'equilibre':'vigilant';
-    return{type:'adaptatif',subtype:_subtype,masks:[m0.key],globalMean:_globalMean,all_sorted:sorted};
+  if(sorted[0].pct<50){
+    var _subtype=sorted[0].pct<30?'equilibre':'vigilant';
+    return{type:'adaptatif',subtype:_subtype,masks:[sorted[0].key],globalMean:_globalMean,all_sorted:sorted};
   }
 
-  // ── ÉTAPE 0 : EX-AEQUO AU SOMMET — DÉPARTAGE AUTOMATIQUE ──────────
-  // Algorithme fondé sur l'impact transdiagnostique documenté (Barlow, Carleton, Clark & Beck)
-  // Hiérarchie : JAUNE > ROUGE > INDIGO > VERT > BLEU > ORANGE > VIOLET
-  const TIEBREAK_ORDER=['jaune','rouge','indigo','vert','bleu','orange','violet'];
-  const top=sorted[0].pct;
-  const tied=sorted.filter(m=>m.pct===top);
+  // ── TIEBREAK : réordonner SANS return ────────────────────────────
+  // Réordonne si ex-aequo mais CONTINUE vers triade/dyade/mono
+  var TIEBREAK_ORDER=['jaune','rouge','indigo','vert','bleu','orange','violet'];
+  var top=sorted[0].pct;
+  var tied=sorted.filter(function(m){return m.pct===top;});
   if(tied.length>=2){
-    // Parmi les masques à égalité, prendre celui le plus haut dans la hiérarchie
-    const tiedKeys=tied.map(m=>m.key);
-    const winner=TIEBREAK_ORDER.find(k=>tiedKeys.includes(k))||tiedKeys[0];
-    // Reconstruire sorted avec le winner en premier (réordonne les égaux)
-    const reordered=[
-      sorted.find(m=>m.key===winner),
-      ...sorted.filter(m=>m.key!==winner)
-    ];
-    // Retourner comme mono avec flag tiebreak pour affichage de la note
-    return{type:'residuel',masks:[winner],tiebreak:true,tiebreak_tied:tiedKeys,tiebreak_score:top,all_sorted:reordered};
+    var tiedKeys=tied.map(function(m){return m.key;});
+    var winner=TIEBREAK_ORDER.find(function(k){return tiedKeys.indexOf(k)>=0;})||tiedKeys[0];
+    sorted=[sorted.find(function(m){return m.key===winner;})].concat(sorted.filter(function(m){return m.key!==winner;}));
   }
+  var m0=sorted[0],m1=sorted[1],m2=sorted[2],m3=sorted[3];
 
   // ── ÉTAPE 1 : PAN-MASQUES ─────────────────────────────────────────
-  // Quand 6-7 masques ≥65% avec écart ≤20pts → profil pan-masques
-  // Masque dominant = Violet : la perte d'identité est le fond commun
-  // de toutes les peurs activées simultanément (Céline Bourbon, V.A.L.E.U.R©)
-  const above65=sorted.filter(m=>m.pct>=65);
-  if(above65.length>=6&&m0.pct<80&&(m0.pct-above65[above65.length-1].pct)<=20){
-    const panMasks=above65.map(m=>m.key);
-    // Violet toujours dominant pour les profils pan-masques
-    const panSorted=['violet',...panMasks.filter(k=>k!=='violet')];
-    return{type:'pan',masks:panSorted};
+  var above60=sorted.filter(function(m){return m.pct>=60;});
+  if(above60.length>=5&&(above60[0].pct-above60[above60.length-1].pct)<=20){
+    return{type:'pan',masks:above60.map(function(m){return m.key;}),all_sorted:sorted};
   }
 
-  // ── ÉTAPE 2 : MONO DOMINANT ───────────────────────────────────────
-  if(m0.pct>=80){
-    const secondary=m1&&m1.pct>=65?m1.key:undefined;
-    return{type:'mono',subtype:secondary?'dominant_secondaire':'dominant',masks:[m0.key],secondary};
+  // ── ÉTAPE 2 : TRIADE ─────────────────────────────────────────────
+  // S1≥60%, S2+S3≥55%, Δ(S1-S3)≤15%, S2-S4>10%
+  if(m0.pct>=60&&m1&&m1.pct>=55&&m2&&m2.pct>=55&&
+     (m0.pct-m2.pct)<=15&&
+     (!m3||m1.pct-m3.pct>10)){
+    return{type:'triade',masks:[m0.key,m1.key,m2.key],all_sorted:sorted};
   }
 
-  // ── ÉTAPE 3 : TRIADE ──────────────────────────────────────────────
-  if(m0.pct>=60&&m1&&m1.pct>=60&&m2&&m2.pct>=60&&(m0.pct-m2.pct)<=15){
-    return{type:'triade',masks:[m0.key,m1.key,m2.key]};
-  }
-
-  // ── ÉTAPE 4 : DYADE ───────────────────────────────────────────────
+  // ── ÉTAPE 3 : DYADE FORTE ────────────────────────────────────────
+  // S1+S2≥65%, Δ≤10% (1 SEM — indiscernables)
   if(m0.pct>=65&&m1&&m1.pct>=65&&(m0.pct-m1.pct)<=10){
-    const subtype=m2&&m2.pct>=55&&m2.pct<65?'dyade_tertiaire':'dyade';
-    return{type:'dyade',subtype,masks:[m0.key,m1.key]};
+    var dSub=m2&&m2.pct>=55&&m2.pct<65?'dyade_tertiaire':'dyade';
+    return{type:'dyade',subtype:dSub,masks:[m0.key,m1.key],
+           secondary:dSub==='dyade_tertiaire'?m2.key:undefined,all_sorted:sorted};
   }
 
-  // ── ÉTAPE 5 : RÉSIDUEL ────────────────────────────────────────────
-  return{type:'residuel',masks:[m0.key]};
+  // ── ÉTAPE 3b : DYADE MODÉRÉE ─────────────────────────────────────
+  // S1+S2≥55%, Δ≤10%
+  if(m0.pct>=55&&m1&&m1.pct>=55&&(m0.pct-m1.pct)<=10){
+    return{type:'dyade',subtype:'dyade_moderee',masks:[m0.key,m1.key],all_sorted:sorted};
+  }
+
+  // ── ÉTAPE 4 : MONO ───────────────────────────────────────────────
+  if(m0.pct>=75){
+    var sec=m1&&m1.pct>=60&&(m0.pct-m1.pct)>10?m1.key:undefined;
+    return{type:'mono',subtype:sec?'dominant_secondaire':'dominant',
+           masks:[m0.key],secondary:sec,all_sorted:sorted};
+  }
+  if(m0.pct>=60){
+    var sec2=m1&&m1.pct>=50&&(m0.pct-m1.pct)>10?m1.key:undefined;
+    return{type:'mono',subtype:'fort',masks:[m0.key],secondary:sec2,all_sorted:sorted};
+  }
+
+  // ── ÉTAPE 5 : RÉSIDUEL ───────────────────────────────────────────
+  return{type:'residuel',masks:[m0.key],all_sorted:sorted};
 }
 
 
@@ -1723,7 +1720,7 @@ const CONTENT={
     prison:"Ce masque a deux rôles. Il <strong>emprisonne la peur</strong> — la tient sous clé pour qu'elle ne paralyse pas votre quotidien. Et il <strong>monte la garde</strong> — scrute chaque sensation, chaque signal, chaque variation dans votre corps. Vous êtes devenu·e votre propre veilleur de nuit. Vingt-quatre heures sur vingt-quatre.",
     descriptor:'Corps en alerte permanente',
     mirror:'Quelque chose dans votre corps retient votre attention — presque en permanence. Un battement légèrement différent, une gêne vague, une fatigue que vous ne vous expliquez pas. Et immédiatement, quelque chose en vous cherche : <em>est-ce grave ? Qu\'est-ce que ça signifie ?</em><br><br>Vous avez développé une capacité d\'écoute de votre corps d\'une précision exceptionnelle. Le problème : <strong>vous ne pouvez plus l\'éteindre.</strong> Cette vigilance tourne en boucle, même quand tout va bien, même quand vous venez d\'avoir un bilan médical parfait.<br><br>Ce n\'est pas de l\'hypocondrie. Ce n\'est pas une faiblesse. C\'est une stratégie de survie ancienne, construite par votre nature authentique pour vous protéger d\'une peur qui semblait insurmontable.',
-    nature_authentique:"Sous ce masque vit quelqu'un qui possède une capacité extraordinaire de connexion à son corps, une finesse sensorielle rare. Quand ce masque s'assouplira, vous retrouverez votre corps comme un allié — pas comme un ennemi. Une présence au monde incarnée, sereine, habituée à faire confiance à ce qui vit en vous.",
+    nature_authentique:"Sous ce masque vit quelqu'un dont l'élan vital est intact — simplement capturé par une alarme de survie qui ne s'éteint jamais. Quand ce masque s'assouplira, l'énergie consumée par la vigilance se transformera en goût de vivre, pleine et simple : être là, dans son corps, dans l'instant, sans surveiller. La confiance en la vie remplace la peur de disparaître. Habiter sa vie — plutôt que la surveiller.",
     scene1_title:'Scène · Mardi matin, avant le lever',
     scene1:'Vous vous réveillez et, avant même d\'ouvrir les yeux, quelque chose dans votre poitrine retient votre attention. Un battement légèrement différent ? Une gêne ? <em>Vous écoutez.</em><br><br>Sur votre téléphone, vous cherchez. Les résultats confirment que ça pourrait être ça. Ou autre chose. <strong>Vous avez maintenant une information de plus — et l\'anxiété est plus forte qu\'avant la recherche.</strong>',
     voice:'« Mon corps n\'est jamais vraiment sûr.\n        Je dois surveiller. Je dois savoir.\n        Si je relâche, quelque chose va m\'échapper. »',
@@ -1747,7 +1744,7 @@ const CONTENT={
     prison:"Ce masque fait deux choses. Il <strong>garde la souffrance sous clé</strong> — protège l\'équilibre quotidien en maintenant les émotions à distance. Et il <strong>surveille les situations</strong> qui risquent de les faire remonter — les conversations intimes, les conflits, les moments de calme où quelque chose pourrait émerger.",
     descriptor:'Coupé·e de ses émotions',
     mirror:'Vous <strong>fonctionnez</strong>. Souvent très bien, même. Vous êtes rationnel·le, efficace, capable de gérer ce que d\'autres ne pourraient pas. Ce que personne ne voit : <em>cette solidité vous coûte un vide intérieur permanent.</em><br><br>Vous ne savez pas toujours ce que vous ressentez. Quand quelqu\'un pose la question directement — « Et toi, tu vas bien, vraiment ? » — quelque chose se ferme. Vous répondez « oui, ça va ». Et vous y croyez. Parce que l\'accès est verrouillé depuis si longtemps que vous avez oublié qu\'il l\'est.<br><br>Ce n\'est pas de la froideur. Ce n\'est pas un manque de profondeur. C\'est votre nature authentique qui a appris à se protéger en se mettant hors d\'atteinte.',
-    nature_authentique:"Sous ce masque vit quelqu'un d'une profondeur émotionnelle extraordinaire — précisément parce que la capacité à ressentir est tellement forte qu'elle a dû être contenue. Quand ce masque s'assouplira, vous retrouverez accès à une richesse intérieure que vous avez toujours portée. Des relations d'une vraie profondeur. La capacité d'être pleinement là — corps, émotion, pensée réunis.",
+    nature_authentique:"Sous ce masque vit quelqu'un dont la capacité à ressentir est tellement forte qu'elle a dû être contenue. Libérée, l'émotion n'est plus un ennemi à fuir — elle devient une source d'information riche et colorée. La créativité s'exprime librement. La vie redevient une danse, et non une gestion de crise. Une Énergie Créatrice et une Intelligence Émotionnelle.",
     scene1_title:'Scène · Une conversation qui devient intime',
     scene1:'Quelqu\'un pose la question directement : <em>« Et toi, tu vas bien vraiment ? »</em><br><br>Quelque chose en vous se ferme — imperceptiblement. Vous souriez. Vous répondez « oui, ça va ». <strong>Et vous croyez ce que vous dites.</strong> Ce n\'est pas un mensonge. C\'est que l\'accès est verrouillé.',
     voice:'« Je ne sais pas vraiment ce que je ressens.\n        Je sais que quelque chose ne va pas — mais si j\'essaie d\'y aller, c\'est flou.\n        Autant rester occupé·e. »',
@@ -1771,7 +1768,7 @@ const CONTENT={
     prison:"Ce masque remplit deux fonctions. Il <strong>garde l'anxiété sous contrôle</strong> en donnant l'illusion que si l'on prévoit assez, rien ne peut vraiment mal tourner. Et il <strong>scrute l'avenir en permanence</strong> — tous les scénarios, toutes les issues, toutes les choses qui pourraient se passer.",
     descriptor:'L\'imprévu comme menace',
     mirror:'Votre cerveau <strong>ne s\'arrête jamais vraiment</strong>. Même quand tout va bien — surtout quand tout va bien — il cherche. Qu\'est-ce qui pourrait mal tourner ? Qu\'est-ce que j\'aurais dû prévoir ? Y a-t-il un scénario que j\'ai oublié de considérer ?<br><br>Vous planifiez non par plaisir mais par <em>nécessité intérieure</em>. L\'imprévu n\'est pas une contrariété — c\'est une menace. Un changement de plans de dernière minute peut déclencher en vous une vague de réorganisation mentale immédiate que personne autour de vous ne comprend vraiment.<br><br>Ce n\'est pas de la rigidité. Ce n\'est pas un besoin de tout contrôler les autres. C\'est un cerveau qui a appris que prévoir était le seul moyen d\'être en sécurité dans le présent.',
-    nature_authentique:"Sous ce masque vit quelqu'un d'une intelligence organisationnelle exceptionnelle, d'une fiabilité rare, capable d'anticiper et de créer de la structure là où il n'y en a pas. Quand ce masque s'assouplira, cette capacité s'exercera depuis un endroit de liberté plutôt que d'anxiété. Vous découvrirez la légèreté de l'imprévu — et qu'il peut parfois être meilleur que ce que vous aviez prévu.",
+    nature_authentique:"Sous ce masque vit quelqu'un qui, libéré du besoin de tout anticiper, découvre un moteur de confiance inépuisable. Vous n'avez plus besoin de garanties pour avancer — vous savez que vous ferez face à l'imprévu. C'est le passage de l'anticipation paralysante à l'action confiante et intuitive. Une Confiance Inébranlable et une Action Juste.",
     scene1_title:'Scène · Un changement de plans',
     scene1:'Un dîner prévu depuis deux semaines est annulé — deux heures avant. Pour quelqu\'un d\'autre, c\'est une contrariété. Pour vous, c\'est une vague de réorganisation mentale immédiate. <em>Qu\'est-ce que je fais maintenant ? Est-ce que ça change les autres choses prévues ? Qu\'est-ce que ça signifie ?</em><br><br><strong>Vous êtes déjà en train de construire un plan B — et un plan C — avant même d\'avoir raccroché.</strong>',
     voice:'« Si je ne contrôle pas ça, quelque chose va m\'échapper.\n        Et si quelque chose m\'échappe, ça va mal tourner.\n        Je dois anticiper. Je dois savoir. Je dois prévoir. »',
@@ -1795,7 +1792,7 @@ const CONTENT={
     prison:"Ce masque fait deux choses simultanément. Il <strong>protège la blessure du rejet</strong> — cette douleur ancienne d'avoir été mis·e de côté, ou d'en avoir eu peur. Et il <strong>surveille l'entourage en permanence</strong> — les humeurs, les silences, les tonalités, les mots manquants — pour détecter à l'avance le moindre signe de distanciation.",
     descriptor:'Adaptation permanente aux autres',
     mirror:'Vous faites partie des personnes qui donnent beaucoup — souvent trop. Non par faiblesse, mais parce que quelque chose en vous a appris très tôt que <em>l\'amour se méritait par ce qu\'on fait, pas par ce qu\'on est.</em><br><br>Vous avez développé un radar ultra-sensible aux humeurs des autres. Vous <strong>adaptez votre ton, vos mots, parfois votre personnalité entière</strong> selon la pièce dans laquelle vous entrez. Vous sentez les tensions que personne d\'autre ne voit. Vous captez les changements avant qu\'ils soient visibles.<br><br>Ce don est réel. Mais il vous coûte quelque chose d\'essentiel : <em>vous-même.</em> À force de vous modeler sur les besoins des autres, vous avez perdu le contact avec les vôtres.',
-    nature_authentique:"Sous ce masque vit quelqu'un d'une générosité profonde, d'une capacité de connexion rare, d'une sensibilité relationnelle qui est un don — pas un défaut. Quand ce masque s'assouplira, vous retrouverez la capacité d'aimer et de vous lier sans vous perdre. D'être pleinement présent·e à l'autre, ET à vous-même. Des relations où vous existerez vraiment — pas seulement comme ce que l'autre a besoin que vous soyez.",
+    nature_authentique:"Sous ce masque vit quelqu'un dont l'amour, libéré de la peur, n'est plus une monnaie d'échange ou une stratégie de survie. Il éclot ancré en soi — se donnant librement, sans s'épuiser. L'empathie devient un don, non un fardeau. C'est la fin de la fusion et le début de la relation vraie. Une Capacité d'Aimer Authentique et Détachée.",
     scene1_title:'Scène · Un message trop court',
     scene1:'Un ami vous envoie un message deux mots plus court. Pas d\'emoji. Ton neutre. Rien d\'anormal — objectivement. <em>Mais quelque chose s\'est mis en route en vous.</em><br><br>Vous repassez les dernières conversations. Avez-vous dit quelque chose de maladroit ? Est-ce que vous prenez trop de place ? <strong>Vous calibrez la prochaine réponse pour réparer quelque chose qui n\'est peut-être pas cassé.</strong>',
     voice:'« Si je réponds mal, il va se distancer.\n        Je dois trouver la formulation qui ne va pas l\'éloigner.\n        Je ne peux pas me permettre de le perdre. »',
@@ -1819,7 +1816,7 @@ const CONTENT={
     prison:"Ce masque joue deux rôles. Il <strong>maintient le chaos à distance</strong> — organise, structure, prévoit pour que rien ne parte en vrille. Et il <strong>surveille sans relâche</strong> — vérifie que tout est fait correctement, que personne ne commet d'erreur, que la situation reste sous contrôle.",
     descriptor:'Besoin de tout maîtriser',
     mirror:'Vous êtes de ceux qui font les choses <strong>bien</strong> — souvent mieux que les autres, et vous le savez. Déléguer est un effort réel. Regarder quelqu\'un s\'y prendre différemment est inconfortable. Non pas parce que vous êtes arrogant·e — mais parce que <em>perdre le contrôle, c\'est vous exposer à un sentiment que vous ne tolérez pas.</em><br><br>Ce sentiment a un nom : l\'impuissance. Et votre masque a décidé, il y a longtemps, que vous n\'y seriez jamais soumis·e.<br><br>Ce que vous ne voyez pas toujours : <strong>cette maîtrise vous épuise autant qu\'elle vous rassure.</strong> Et sous cette armure, il y a quelqu\'un qui aimerait, parfois, pouvoir s\'appuyer sur quelqu\'un d\'autre.',
-    nature_authentique:"Sous ce masque vit quelqu'un d'un leadership authentique, d'une capacité à tenir et à inspirer qui est réelle — pas construite par peur. Quand ce masque s'assouplira, vous découvrirez qu'on peut être fort·e ET recevoir de l'aide. Que la confiance n'est pas une naïveté mais une intelligence relationnelle. Que laisser l'autre faire à sa façon n'est pas une capitulation mais une libération.",
+    nature_authentique:"Sous ce masque vit quelqu'un qui, libéré du besoin de contrôler les autres pour exister, découvre une parole juste, claire et créatrice. Vous pouvez exprimer vos besoins, vos idées et votre vision avec calme et puissance — non pour dominer, mais pour contribuer. C'est la naissance d'un leadership authentique qui élève les autres au lieu de les diriger. Une Autorité Naturelle et une Communication Inspirée.",
     scene1_title:'Scène · Une tâche déléguée',
     scene1:'Vous avez confié quelque chose. La personne le rend — pas mal, mais <em>pas comme vous l\'auriez fait.</em> La tension monte. Vous trouvez un moment pour « améliorer discrètement ».<br><br><strong>Vous avez délégué la tâche. Mais vous n\'avez pas délégué le contrôle. Vous ne l\'avez jamais vraiment lâché.</strong>',
     voice:'« Si je ne le surveille pas, ça va partir dans le mauvais sens.\n        Les autres ne voient pas les détails comme moi.\n        Je ne peux pas me permettre que ça rate. »',
@@ -1843,7 +1840,7 @@ const CONTENT={
     prison:"Ce masque fait deux choses. Il <strong>protège de la honte</strong> — anticipe le regard des autres, perfectionne avant qu'ils puissent critiquer, se cache derrière des résultats impeccables. Et il <strong>évalue en permanence</strong> — compare, relativise, cherche la faille dans chaque réussite pour justifier que la prochaine fois, il faudra faire encore mieux.",
     descriptor:'Valeur conditionnelle aux résultats',
     mirror:'Il y a une voix dans votre tête qui <strong>évalue en permanence</strong>. Qui compare, qui relativise, qui anticipe le regard des autres. Elle ne vous lâche pas — ni au travail, ni dans vos relations, ni dans les petits moments du quotidien.<br><br>Cette voix est <em>extrêmement sévère avec vous</em>. Un niveau d\'exigence que vous n\'appliqueriez jamais aux autres. Ce qu\'elle ne voit pas : cette exigence n\'est pas un gage de qualité. C\'est de la peur déguisée en perfectionnisme.<br><br>Vous avez peut-être atteint beaucoup. Et pourtant, quelque chose dans votre rapport à vous-même reste fragile — comme si votre valeur dépendait encore et toujours du prochain résultat.',
-    nature_authentique:"Sous ce masque vit quelqu'un d'une exigence authentique, d'une rigueur et d'une créativité qui, libérées de la peur, deviennent des forces exceptionnelles. Quand ce masque s'assouplira, vous découvrirez ce que c'est d'avoir de la valeur sans condition. De commencer quelque chose sans avoir besoin de garantir qu'il sera parfait. De vous tromper — et de vous relever sans que ça ne remette en question qui vous êtes.",
+    nature_authentique:"Sous ce masque vit quelqu'un dont le mental, libéré du perfectionnisme et de la peur du regard extérieur, devient un outil de discernement — non de rumination. Vous avez confiance en votre vision intérieure et osez la suivre, même à contre-courant. La peur de l'erreur se transforme en capacité à apprendre de chaque expérience avec sagesse. Une Vision Claire et une Intuition Affûtée.",
     scene1_title:'Scène · Après une réussite',
     scene1:'Vous avez bien fait. Tout le monde l\'a dit. <em>Quelqu\'un vous félicite chaleureusement.</em><br><br>Vous remerciez. Et dans votre tête : <strong>« Ils ne voient pas ce que j\'ai raté. La prochaine fois, ils vont s\'en rendre compte. »</strong> La réussite atterrit — et repart aussitôt.',
     voice:'« Je ne mérite pas vraiment cette place.\n        Un jour, on va voir que je ne suis pas à la hauteur.\n        Je dois continuer à prouver, encore et encore, que j\'ai ma place ici. »',
@@ -1867,7 +1864,7 @@ const CONTENT={
     prison:"Ce masque fait deux choses. Il <strong>préserve le sentiment d'identité</strong> — s'accroche aux rôles, aux routines, aux certitudes qui donnent le sentiment de savoir qui l'on est. Et il <strong>résiste à tout ce qui pourrait le remettre en question</strong> — le changement, l'inconnu, les expériences nouvelles, les personnes qui vous voient différemment de l'image que vous avez construite.",
     descriptor:'Qui suis-je, vraiment ?',
     mirror:'Il y a en vous quelqu\'un qui cherche. Quelqu\'un qui se demande <em>qui il est vraiment</em> — en dehors des rôles qu\'il joue. En dehors de ce qu\'on attend de lui dans sa famille, au travail, dans ses relations.<br><br>Vous portez parfois un sentiment étrange d\'être <strong>spectateur·rice de votre propre vie</strong>. Comme si vous y participiez — consciencieusement, habilement — sans vraiment l\'habiter. Comme si le vrai vous était quelque part en retrait, à observer, sans tout à fait oser entrer.<br><br>Ce n\'est pas un signe de faiblesse. C\'est une peur profonde : <em>que si vous changez, si vous devenez vraiment vous-même, quelque chose d\'essentiel se perde.</em> Ou que vous ne vous reconnaissiez plus. Ou que les autres cessent de vous reconnaître.',
-    nature_authentique:"Sous ce masque vit quelqu'un d'une profondeur existentielle rare, d'une quête authentique de sens et d'une capacité à se transformer qui, libérée de la peur, est l'une des formes d'intelligence les plus précieuses. Quand ce masque s'assouplira, vous découvrirez que vous pouvez changer — et rester vous-même. Que l'identité n'est pas un point fixe à protéger, mais une présence vivante, en mouvement, qui se renforce à mesure qu'elle s'exprime vraiment.",
+    nature_authentique:"Sous ce masque vit quelqu'un qui, libéré de la vigilance autour de son image, peut lâcher prise sur une façon d'être figée et s'ouvrir à quelque chose de plus vaste. Vous ne cherchez plus désespérément un sens à votre vie — vous l'incarnez. Vous êtes en paix avec le mystère de l'existence. Votre singularité devient une force assumée, une contribution enrichissante, un rayonnement vrai. Une Paix Profonde et une Connexion au Sens.",
     scene1_title:'Scène · « Qu\'est-ce qui te rend heureux·se ? »',
     scene1:'Quelqu\'un vous pose la question directement : <em>« Qu\'est-ce qui te rend vraiment heureux·se ? »</em><br><br>Vous cherchez. Vous trouvez des réponses génériques — les choses que vous êtes censé·e aimer. <strong>Mais quelque chose en vous sait que ce ne sont pas les vraies réponses.</strong> Les vraies, vous ne savez plus très bien où elles sont.',
     voice:'« Je joue un rôle dans ma propre vie.\n        Je ne sais plus qui je suis en dehors de ce qu\'on attend de moi.\n        Si je change, je risque de me perdre — ou de perdre les autres. »',
@@ -4261,8 +4258,8 @@ function buildPremiumReport(dominant, scores, prenom, profile, isGift) {
     document.body.appendChild(reportWrap);
   }
   
-  document.getElementById('paywall-section').style.display = 'none';
-  document.getElementById('portrait').style.display = 'none';
+  var _pw=document.getElementById('paywall-section');if(_pw)_pw.style.display='none';
+  var _pt=document.getElementById('portrait');if(_pt)_pt.style.display='none';
   
   // Set masque color on body
   var rgb = hexToRgb(meta.color);
@@ -4280,6 +4277,10 @@ function buildPremiumReport(dominant, scores, prenom, profile, isGift) {
   }
   reportWrap.innerHTML = (isGift ? '<div style="background:rgba(168,135,58,.1);border:1px solid rgba(168,135,58,.3);border-radius:6px;padding:8px 16px;text-align:center;font-size:11px;color:#A8873A;letter-spacing:1px;margin-bottom:16px;font-weight:600">🎁 Portrait offert — Accès partenaire V.A.L.E.U.R©</div>' : '') + html;
 
+  // Afficher le rapport
+  reportWrap.style.display = 'block';
+  var loader=document.getElementById('loading');if(loader)loader.style.display='none';
+  var appEl=document.getElementById('app');if(appEl)appEl.style.display='block';
   // Afficher le bouton PDF
   var fab = document.getElementById('pdf-fab');
   if(fab) fab.style.display = 'block';
@@ -4940,5 +4941,6 @@ function V_downloadPDF() {
 </script>
 
 </script>
+<div id="portrait" style="display:none"></div>
 </body>
 </html>
