@@ -898,27 +898,27 @@ function detectProfile(sc){
   var m0=sorted[0],m1=sorted[1],m2=sorted[2],m3=sorted[3];
   var above60=sorted.filter(function(m){return m.pct>=60;});
   if(above60.length>=5&&(above60[0].pct-above60[above60.length-1].pct)<=20){
-    var _pS=above60[0].pct-above60[above60.length-1].pct;var _pT=_pS<=5?'ultra_plat':_pS<=10?'generalise':'structure';return{type:'pan',masks:above60.map(function(m){return m.key;}),spread:_pS,subtype:_pT,all_sorted:sorted};
+    var _pS=above60[0].pct-above60[above60.length-1].pct;var _pT=_pS<=5?'ultra_plat':_pS<=10?'generalise':'structure';return{type:'pan',masks:above60.map(function(m){return m.key;}),spread:_pS,subtype:_pT,tiebroken:!!_tiebroken,all_sorted:sorted};
   }
   if(m0.pct>=60&&m1&&m1.pct>=55&&m2&&m2.pct>=55&&(m0.pct-m2.pct)<=15&&(!m3||m1.pct-m3.pct>10)){
-    return{type:'triade',masks:[m0.key,m1.key,m2.key],all_sorted:sorted};
+    return{type:'triade',masks:[m0.key,m1.key,m2.key],tiebroken:!!_tiebroken,all_sorted:sorted};
   }
   if(m0.pct>=65&&m1&&m1.pct>=65&&(m0.pct-m1.pct)<=10){
     var dSub=m2&&m2.pct>=55&&m2.pct<65?'dyade_tertiaire':'dyade';
-    return{type:'dyade',subtype:dSub,masks:[m0.key,m1.key],secondary:dSub==='dyade_tertiaire'?m2.key:undefined,all_sorted:sorted};
+    return{type:'dyade',subtype:dSub,masks:[m0.key,m1.key],secondary:dSub==='dyade_tertiaire'?m2.key:undefined,tiebroken:!!_tiebroken,all_sorted:sorted};
   }
   if(m0.pct>=55&&m1&&m1.pct>=55&&(m0.pct-m1.pct)<=10){
-    return{type:'dyade',subtype:'dyade_moderee',masks:[m0.key,m1.key],all_sorted:sorted};
+    return{type:'dyade',subtype:'dyade_moderee',masks:[m0.key,m1.key],tiebroken:!!_tiebroken,all_sorted:sorted};
   }
   if(m0.pct>=75){
     var sec=m1&&m1.pct>=60&&(m0.pct-m1.pct)>10?m1.key:undefined;
-    return{type:'mono',subtype:sec?'dominant_secondaire':'dominant',masks:[m0.key],secondary:sec,all_sorted:sorted};
+    return{type:'mono',subtype:sec?'dominant_secondaire':'dominant',masks:[m0.key],secondary:sec,tiebroken:!!_tiebroken,all_sorted:sorted};
   }
   if(m0.pct>=60){
     var sec2=m1&&m1.pct>=50&&(m0.pct-m1.pct)>10?m1.key:undefined;
-    return{type:'mono',subtype:'fort',masks:[m0.key],secondary:sec2,all_sorted:sorted};
+    return{type:'mono',subtype:'fort',masks:[m0.key],secondary:sec2,tiebroken:!!_tiebroken,all_sorted:sorted};
   }
-  return{type:'residuel',masks:[m0.key],all_sorted:sorted};
+  return{type:'residuel',masks:[m0.key],tiebroken:!!_tiebroken,all_sorted:sorted};
 }
 
 
@@ -1271,7 +1271,7 @@ const CONTENT={
   },
 
   violet:{
-    peur:"perdre son identité, ne plus savoir qui l'on est",
+    peur:"d’être jugé·e ou attaqué·e sur qui l’on est",
     origine:"À un moment de votre histoire, quelque chose dans votre identité a été menacé. Peut-être que changer signifiait trahir — des personnes, des valeurs, un groupe. Peut-être que vous avez dû jouer tant de rôles différents que vous ne saviez plus lequel était le vrai. Peut-être que rester le même était la seule façon de garder le fil de vous-même dans un monde qui changeait trop vite. Votre nature authentique a alors construit une stratégie : maintenir. Préserver. Ne pas bouger pour ne pas se perdre.",
     prison:"Ce masque fait deux choses. Il <strong>préserve le sentiment d'identité</strong> — s'accroche aux rôles, aux routines, aux certitudes qui donnent le sentiment de savoir qui l'on est. Et il <strong>résiste à tout ce qui pourrait le remettre en question</strong> — le changement, l'inconnu, les expériences nouvelles, les personnes qui vous voient différemment de l'image que vous avez construite.",
     descriptor:'Qui suis-je, vraiment ?',
@@ -3038,23 +3038,7 @@ async function buildPage(){
   }
 
 
-  if(email && prenom && urlP2.get('admin') !== 'VALEUR-ADMIN-2025'){
-    const dateStr = new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
-    const masks7 = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
-    const rlSp = masks7.map(m=>`${m}=${sc[m]||0}`).join('&');
-    const recoverLink = `${location.href.split('?')[0]}?${rlSp}&spa=${spa}&email=${encodeURIComponent(email)}&prenom=${encodeURIComponent(prenom)}`;
-    emailjs.send('Questionnaire VALEUR', 'template_inscription', {
-      to_email: email, prenom,
-      masque_dominant: meta0.name,
-      peur_centrale: meta0.peur,
-      message_accueil: `Votre questionnaire V.A.L.E.U.R© a révélé votre masque dominant : le ${meta0.name}, centré sur ${meta0.peur}. Votre Score de Présence Authentique est de ${spa}%.`,
-      lien_rapport: recoverLink,
-      lien_recuperation: recoverLink,
-      lien_psycho: 'https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile',
-      lien_livret: '', lien_fiche: '',
-      date_passation: dateStr
-    }).catch(e => console.warn('[EmailJS]', e));
-  }
+
 
   // Afficher
   document.getElementById('loading').style.display='none';
@@ -3108,6 +3092,21 @@ async function buildPage(){
   document.getElementById('docto-section').style.display = 'block';
   const _th = document.getElementById('transmission-hint');
   if (_th) _th.style.display = 'block';
+
+  if(email && prenom && urlP2.get('admin') !== 'VALEUR-ADMIN-2025'){
+    const dateStr = new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+    const masks7 = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
+    const rlSp = masks7.map(m=>`${m}=${sc[m]||0}`).join('&');
+    const recoverLink = `${location.href.split('?')[0]}?${rlSp}&spa=${spa}&email=${encodeURIComponent(email)}&prenom=${encodeURIComponent(prenom)}`;
+    emailjs.send('Questionnaire VALEUR', 'template_inscription', {
+      to_email: email, prenom,
+      masque_dominant: meta0.name,
+      peur_centrale: meta0.peur,
+      lien_rapport: recoverLink,
+      lien_psycho: 'https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile',
+      date_passation: dateStr
+    }).catch(e => console.warn('[EmailJS]', e));
+  }
 
 }
 
