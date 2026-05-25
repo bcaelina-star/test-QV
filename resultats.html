@@ -786,12 +786,30 @@ canvas{display:block;width:100%}
   </div>
 
   <!-- CTA Doctolib -->
-  <div class="docto-section" id="docto-section" style="display:none">
+  <div style="max-width:700px;margin:0 auto 8px;padding:0 20px" id="transmission-hint" style="display:none">
+  <p style="font-size:13px;color:rgba(240,234,225,.3);text-align:center;line-height:1.85;font-style:italic">
+    Si quelqu'un dans votre entourage vit quelque chose de similaire — vous pouvez lui offrir ce questionnaire.<br>
+    <a href="https://questionnaire.psyh.fr" style="color:rgba(201,168,76,.45);text-decoration:none;font-style:normal">questionnaire.psyh.fr</a> · Gratuit · 15 minutes.
+  </p>
+</div>
+<div class="docto-section" id="docto-section" style="display:none">
     <div class="docto-card">
-      <div class="docto-pre">« Ce que vous venez de découvrir n'est pas un verdict. C'est une carte. »</div>
-      <h2 class="docto-h">Aller plus loin avec<br>Céline Bourbon, créatrice de la méthode</h2>
-      <a href="https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile" class="docto-btn" target="_blank" rel="noopener">Prendre rendez-vous — Doctolib</a>
-      <div class="docto-note">Psychologue · Bordeaux · Méthode V.A.L.E.U.R© · © Céline Bourbon</div>
+      <p style="font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,76,.55);margin-bottom:16px">Si la question « et maintenant ? » est là</p>
+      <h2 class="docto-h" style="margin-bottom:18px">Derrière ce portrait,<br><em>il y a un chemin de libération.</em></h2>
+      <p style="font-size:14px;color:rgba(240,234,225,.52);line-height:1.9;max-width:520px;margin:0 auto 16px">
+        Ce portrait est une carte précieuse — et elle n’est que le début. Elle nomme ce qui vous retient, dessine ce que ça coûte, révèle la force cachée derrière. Mais elle ne montre pas encore <strong style="color:rgba(240,234,225,.75)">comment traverser ce qui a été nommé.</strong>
+      </p>
+      <p style="font-size:13px;color:rgba(240,234,225,.35);line-height:1.9;max-width:480px;margin:0 auto 16px">
+        Imaginez comprendre non seulement <em>quel</em> masque vous portez — mais exactement <em>comment</em> il opère dans chaque situation précise de votre vie. Quand il se déclenche, ce que ça produit dans le corps, dans la pensée, dans la relation. Et avoir, pour chacun de ces moments, un outil conçu précisément pour l’interrompre.
+      </p>
+      <p style="font-size:13px;color:rgba(240,234,225,.35);line-height:1.9;max-width:480px;margin:0 auto 24px">
+        C’est ce que le protocole V.A.L.E.U.R© construit, séance après séance — avec une bibliothèque d’outils ciblés sur votre configuration précise, et une progression mesurable : votre Score de Présence Authentique, mesuré en début de suivi, puis à nouveau en fin. Pour voir, chiffre après chiffre, ce qui s’est réellement libéré.
+      </p>
+      <a href="https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile" class="docto-btn" target="_blank" rel="noopener">Commencer ce chemin — Doctolib</a>
+      <div class="docto-note" style="margin-top:16px;line-height:1.8">
+        Céline Bourbon · Psychologue · Créatrice de la méthode V.A.L.E.U.R©<br>
+        Bordeaux &amp; visioconférence · Tarif sur Doctolib
+      </div>
     </div>
   </div>
 
@@ -2465,6 +2483,12 @@ function buildPortrait(dominant, scores, prenom, profil, spa) {
       <div class="miroir-quote">« ${mirThought} »</div>
       <div class="miroir-sub">Ce que votre masque ${meta.name.replace('Masque ','')} génère — automatiquement, sans que vous le décidiez</div>
     </div>`;
+  // Lien de transmission discret sous le miroir
+  if (mirThought) {
+    html += `<p style="font-size:12px;color:rgba(240,234,225,.35);text-align:center;margin:-12px 0 32px;letter-spacing:.3px">
+      Vous pensez à quelqu'un en lisant ça&nbsp;?
+      <a href="https://questionnaire.psyh.fr" style="color:rgba(201,168,76,.6);text-decoration:none;margin-left:4px">→ Lui offrir le questionnaire</a>
+    </p>`;
   }
 
   /* ── 2. COMMENT IL S'EST CONSTRUIT ─────────────────────── */
@@ -2475,6 +2499,7 @@ function buildPortrait(dominant, scores, prenom, profil, spa) {
       ${D.prison ? `<p style="margin-top:12px;opacity:.85">${D.prison}</p>` : ''}
     </div>
   </div>`;
+  html += `<p style="font-size:12px;color:rgba(240,234,225,.22);font-style:italic;margin:-4px 0 32px;line-height:1.75">Comprendre comment ce masque s’est construit, c’est déjà beaucoup. Comprendre comment le déconstruire pas à pas — c’est une autre profondeur que le protocole V.A.L.E.U.R© explore précisément, étape par étape.</p>`;
 
   /* ── 3. SPHÈRES DE VIE ──────────────────────────────────── */
   const sphereData = SPHERE_IMPACT[dominant];
@@ -2502,9 +2527,15 @@ function buildPortrait(dominant, scores, prenom, profil, spa) {
   }
 
   html += `</div>`;
+  html += `<p style="font-size:12px;color:rgba(240,234,225,.22);font-style:italic;margin:-4px 0 32px;line-height:1.75;text-align:right">Ces impacts ont des outils précis dans la bibliothèque V.A.L.E.U.R© — des fiches de travail conçues pour chacun d’eux, calibrées sur votre masque et pas sur un profil générique.</p>`;
 
   /* ── 4. CONFIGURATION ───────────────────────────────────── */
   html += buildConfigSection(profil, scores, dominant, secondary, col, rgb);
+
+  // Hint configuration — seulement pour les profils complexes
+  if (profil.type === 'dyade' || profil.type === 'triade' || profil.type === 'pan') {
+    html += '<p style="font-size:12px;color:rgba(240,234,225,.22);font-style:italic;margin:-4px 0 32px;line-height:1.75">Cette configuration explique des schémas que vous vivez peut-être depuis des années sans en voir la logique interne. Le protocole V.A.L.E.U.R© travaille les masques dans un ordre précis — en commençant par le dominant, en désamorçant l’amplification entre eux.</p>';
+  }
 
   /* ── 5. FORCE CACHÉE ────────────────────────────────────── */
   const fc = FORCE_CACHEE[dominant];
@@ -2516,6 +2547,15 @@ function buildPortrait(dominant, scores, prenom, profil, spa) {
       <div class="force-liberee">Force libérée : ${fc.liberee}</div>
     </div>`;
   }
+
+  /* ── Fenêtre sur le protocole — désir de profondeur ── */
+  html += `<div style="margin-bottom:40px;padding:22px 24px;border:1px solid rgba(240,234,225,.07);border-radius:8px;position:relative;overflow:hidden">
+    <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,${col}44,${col}11)"></div>
+    <p style="font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(201,168,76,.5);margin-bottom:10px">Ce que ce portrait ne montre pas encore</p>
+    <p style="font-size:14px;color:rgba(240,234,225,.55);line-height:1.85;margin-bottom:12px">Ce portrait identifie votre masque, nomme la peur, dessine la force cachée. Mais il ne montre pas <strong style="color:rgba(240,234,225,.75)">comment traverser ce qui a été nommé.</strong></p>
+    <p style="font-size:13px;color:rgba(240,234,225,.38);line-height:1.85;margin-bottom:14px">Le protocole V.A.L.E.U.R© a été construit pour ça — six étapes dans un ordre précis, celui du système nerveux. À chaque étape, des outils conçus spécifiquement pour votre masque dominant. Pas des exercices génériques. Des fiches de travail calibrées sur ce qui se passe en vous — la pensée automatique, la sensation dans le corps, le conflit intérieur précis.</p>
+    <p style="font-size:13px;color:rgba(240,234,225,.38);line-height:1.85">Et à la fin : le même questionnaire. Pas pour recommencer — pour <strong style="color:rgba(240,234,225,.55)">mesurer ce qui a changé.</strong> Voir son Score de Présence Authentique progresser, chiffre après chiffre, séance après séance.</p>
+  </div>\`;
 
   /* ── Injecter dans le DOM ───────────────────────────────── */
   const wrap = document.getElementById('portrait-wrap');
@@ -2775,7 +2815,7 @@ function downloadPortraitCanvas() {
 async function sharePortraitCanvas() {
   const cv = document.getElementById('portrait-canvas');
   if (!cv) return;
-  const text = "J'ai découvert le masque qui m'empêche d'être moi. Fascinant de précision. Et toi\u00a0? questionnaire.psyh.fr";
+  const text = "Ce questionnaire m'a nommé quelque chose que je n'arrivais pas à formuler depuis longtemps. Tu veux savoir quel masque tu portes ? questionnaire.psyh.fr";
   if (navigator.share) {
     cv.toBlob(async blob => {
       const f = new File([blob], 'empreinte-valeur.png', {type:'image/png'});
@@ -2916,6 +2956,12 @@ async function buildPage(){
     spa>=30?'Les masques défensifs réduisent significativement l\'accès à votre nature authentique.':
     'Les masques défensifs occupent une place majeure. L\'accompagnement V.A.L.E.U.R© peut ouvrir un espace de présence plus grand.';
   document.getElementById('spa-desc').textContent = spaDesc;
+  // Hint évolution SPA
+  const spaHint = document.createElement('p');
+  spaHint.style.cssText = 'font-size:12px;color:rgba(240,234,225,.28);font-style:italic;margin-top:10px;line-height:1.7;text-align:center';
+  spaHint.textContent = 'Ce score peut évoluer. Beaucoup l’ont vu progresser — progressivement, séance après séance, quelque chose se dépose et l’espace intérieur s’ouvre.';
+  const spaCard = document.querySelector('.spa-card');
+  if (spaCard) spaCard.appendChild(spaHint);
 
   // ── Profil ────────────────────────────────────────────────────────────
   const dominantMask = profil.masks[0];
@@ -3060,6 +3106,8 @@ async function buildPage(){
   buildPortrait(dominantMask, sc, prenom, profil, spa);
   document.getElementById('canvas-section').style.display = 'block';
   document.getElementById('docto-section').style.display = 'block';
+  const _th = document.getElementById('transmission-hint');
+  if (_th) _th.style.display = 'block';
 
 }
 
@@ -3157,8 +3205,6 @@ function _getCurrentMeta(){
     return typeof getMeta==='function'?getMeta(dom):null;
   }catch(e){return null;}
 }
-</script>
-
 </script>
 <div id="portrait" style="display:none"></div>
 </body>
