@@ -114,6 +114,28 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:60px;display:flex;ali
 .tiebreak-note{background:rgba(168,135,58,.06);border:1px solid rgba(168,135,58,.16);border-radius:8px;padding:11px 15px;font-size:12.5px;color:#5A534A;margin-bottom:18px;font-style:italic}
 footer{text-align:center;padding:28px 24px;border-top:1px solid rgba(26,24,20,.07);font-size:11px;color:#B8B0A5;line-height:2}
 @media(max-width:600px){.wrap{padding:0 14px 80px}.miroir-box{padding:26px 20px}.config-body,.config-header{padding:16px 18px}.force-box,.doctolib-box{padding:22px 18px}}
+
+/* ── MIROIR POSITION ZÉRO ── */
+.miroir-zero{background:#1A1814;color:#F7F4EE;padding:0;position:relative;margin:0 -24px;overflow:hidden}
+.miroir-zero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#B5312A,#C4581F,#B8930A,#2D7A4F,#1D5F8A,#5C3280,#7A3594)}
+.mz-inner{padding:52px 44px 44px;max-width:780px;margin:0 auto}
+.mz-pre{font-size:9px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:rgba(247,244,238,.28);margin-bottom:18px}
+.mz-quote{font-family:'Cormorant Garamond',serif;font-size:clamp(1.45rem,3.5vw,2.1rem);font-style:italic;font-weight:300;line-height:1.6;color:#F7F4EE;margin-bottom:20px}
+.mz-reveal{display:flex;align-items:center;gap:12px;padding-top:20px;border-top:1px solid rgba(247,244,238,.08)}
+.mz-reveal-line{width:28px;height:1px;background:rgba(168,135,58,.5);flex-shrink:0}
+.mz-reveal-txt{font-size:11px;color:rgba(247,244,238,.35);letter-spacing:.04em;font-style:italic}
+@media(max-width:600px){.mz-inner{padding:36px 20px 32px}.mz-quote{font-size:1.25rem}}
+
+/* ── BLOC RUPTURE identité/masque ── */
+.rupture-bloc{margin:36px 0 8px;padding:24px 28px;background:rgba(var(--mask-rgb),.04);border:1px solid rgba(var(--mask-rgb),.12);border-radius:14px;position:relative;overflow:hidden}
+.rupture-bloc::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--mask-col)}
+.rupture-label{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--mask-col);opacity:.7;margin-bottom:10px}
+.rupture-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:300;color:var(--color,#1A1814);line-height:1.82}
+
+/* ── BLOC "pas pour tout le monde" ── */
+.not-for-all{background:#1A1814;border-radius:10px;padding:20px 24px;margin:0 0 28px;border-left:3px solid rgba(168,135,58,.4)}
+.nfa-label{font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:rgba(247,244,238,.3);margin-bottom:10px}
+.nfa-text{font-size:13px;font-weight:300;color:rgba(247,244,238,.6);line-height:1.82;font-style:italic}
 </style>
 </head>
 <body>
@@ -134,7 +156,9 @@ footer{text-align:center;padding:28px 24px;border-top:1px solid rgba(26,24,20,.0
   <div class="cs" style="background:#7A3594"></div>
 </div>
 
+<div id="miroir-zero-container"></div>
 <div class="wrap">
+  <div id="not-for-all-container"></div>
   <div id="portrait"></div>
 </div>
 
@@ -1311,17 +1335,10 @@ function buildPortrait(sc, prenom) {
   });
   barsHtml += '</div>';
 
-  // ── BLOC 2 — MIROIR ────────────────────────────────────────────────────
+  // ── BLOC 2 — MIROIR (rendu en position zéro, hors wrap) ─────────────────
   const thoughts = pl.thoughts || [];
   const thought = thoughts[0] || '';
-  const mirrorHtml = thought ? `
-  <div class="miroir-section">
-    <div class="miroir-box">
-      <div class="miroir-label">Ce qui traverse votre esprit</div>
-      <div class="miroir-quote">${thought}</div>
-      <div class="miroir-note">Cette pensée n'est pas un symptôme. C'est la voix d'un masque qui fait son travail de protection.</div>
-    </div>
-  </div>` : '';
+  const mirrorHtml = ''; // miroir injecté dans #miroir-zero-container
 
   // ── BLOC 3 — CONSTRUCTION ──────────────────────────────────────────────
   const origineText = co.origine || '';
@@ -1494,9 +1511,42 @@ function buildPortrait(sc, prenom) {
        target="_blank" class="doc-btn">Prendre rendez-vous →</a>
   </div>`;
 
+  // ── Bloc "pas pour tout le monde" — affiché une fois ──────────────────
+  const nfaContainer = document.getElementById('not-for-all-container');
+  if(nfaContainer && !nfaContainer.dataset.filled) {
+    nfaContainer.dataset.filled = '1';
+    nfaContainer.innerHTML = `<div class="not-for-all">
+      <div class="nfa-label">Ce portrait n'est pas pour tout le monde</div>
+      <div class="nfa-text">Si vous cherchez les causes de votre souffrance dans votre passé, vous ne les trouverez pas ici. VALEUR ne regarde pas en arrière. Il regarde ce qui tourne <em style="color:rgba(247,244,238,.85)">maintenant</em>, à votre insu, et décide à votre place. Si vous êtes prêt·e à voir le présent tel qu'il est — continuez.</div>
+    </div>`;
+  }
+
+  // ── MIROIR POSITION ZÉRO — avant tout ──────────────────────────────────
+  const mzContainer = document.getElementById('miroir-zero-container');
+  if(mzContainer && thought) {
+    mzContainer.innerHTML = `<div class="miroir-zero">
+      <div class="mz-inner">
+        <div class="mz-pre">Ce qui traverse votre esprit — en ce moment</div>
+        <div class="mz-quote">&laquo;&nbsp;${thought}&nbsp;&raquo;</div>
+        <div class="mz-reveal">
+          <div class="mz-reveal-line"></div>
+          <div class="mz-reveal-txt">Cette pensée revient. Elle a un nom. Elle a une mécanique. Et elle n'est pas vous.</div>
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // ── BLOC RUPTURE — ce n'est pas vous ────────────────────────────────────
+  const ruptureHtml = `<div class="rupture-bloc">
+    <div class="rupture-label">Ce que vous venez de lire</div>
+    <div class="rupture-text">Ce réflexe n'est pas votre caractère. Ce n'est pas qui vous êtes. C'est un masque — construit à une époque où il était la seule réponse disponible. Il a fait son travail. Il ne sait pas que vous n'en avez plus besoin. <strong style="font-weight:500;color:var(--mask-col)">Aujourd'hui</strong>, il tourne encore — automatiquement, sans vous demander votre avis. C'est précisément là que le changement devient possible.</div>
+  </div>`;
+
   // ── Assemblage final ───────────────────────────────────────────────────
   const portraitEl = document.getElementById('portrait');
-  portraitEl.innerHTML = heroHtml + barsHtml + mirrorHtml + construction3 + bloc4Html + configHtml + forceHtml + shareHtml + docHtml;
+  // Ordre : hero + scores + rupture + valeurs + config + force + share + doctolib
+  // Miroir est en position zéro (hors wrap), "pas pour tout le monde" est au-dessus
+  portraitEl.innerHTML = heroHtml + barsHtml + ruptureHtml + construction3 + bloc4Html + configHtml + forceHtml + shareHtml + docHtml;
 
   // Animate bars after render
   requestAnimationFrame(() => {
