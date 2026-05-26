@@ -280,31 +280,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
     <div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div>
   </div>
   <div class="card">
-    <h2>Vos informations</h2>
-    <p style="color:var(--rouge);font-size:.8rem;margin-bottom:4px">★ Champs obligatoires</p>
-    <div class="form-section" style="margin-top:16px">
-      <div class="form-grid">
-        <div class="form-field">
-          <label>Prénom / Initiales <span class="required-star">*</span></label>
-          <input type="text" id="d-prenom" placeholder="ex. Marie D.">
-        </div>
-        <div class="form-field">
-          <label>Âge <span class="required-star">*</span></label>
-          <input type="number" id="d-age" placeholder="ex. 34" min="16" max="99">
-        </div>
-        <div class="form-field">
-          <label>Genre</label>
-          <select id="d-genre">
-            <option value="">– Sélectionner –</option>
-            <option>Féminin</option><option>Masculin</option>
-            <option>Autre</option><option>Préfère ne pas préciser</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label>Email <span class="required-star">*</span></label>
-          <input type="email" id="d-email" placeholder="votre@email.com">
-          <span class="field-hint">Pour recevoir vos résultats et un lien de reprise</span>
-        </div>
+    <h2 style="font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:300;margin-bottom:8px">Où envoyer votre portrait&nbsp;?</h2>
+    <p style="font-size:.85rem;color:var(--ink4);line-height:1.65;margin-bottom:20px">Votre portrait personnalisé vous est envoyé par email dès la fin du questionnaire — avec un lien permanent pour y revenir à tout moment, depuis n'importe quel appareil.</p>
+    <div class="form-section">
+      <div class="form-field" style="margin-bottom:14px">
+        <label>Prénom <span class="required-star">*</span></label>
+        <input type="text" id="d-prenom" placeholder="ex. Marie" autocomplete="given-name">
+      </div>
+      <div class="form-field" style="margin-bottom:14px">
+        <label>Email <span class="required-star">*</span></label>
+        <input type="email" id="d-email" placeholder="votre@email.com" autocomplete="email" oninput="clearEmailError()">
+        <span class="field-hint">Pour recevoir votre portrait et retrouver vos résultats</span>
+      </div>
+      <div class="form-field" style="margin-bottom:6px">
+        <label>Confirmer l'email <span class="required-star">*</span></label>
+        <input type="email" id="d-email-confirm" placeholder="votre@email.com" autocomplete="off" oninput="clearEmailError()">
+        <span id="email-error" style="font-size:.78rem;color:var(--rouge);margin-top:4px;display:none"></span>
       </div>
     </div>
   </div>
@@ -694,18 +685,41 @@ function showPauseModal() {
 }
 function closePauseModal() { document.getElementById('pause-modal').classList.remove('open'); }
 
+function clearEmailError() {
+  const el = document.getElementById('email-error');
+  if (el) { el.style.display = 'none'; el.textContent = ''; }
+}
+
 function startQuestionnaire() {
   const prenom = document.getElementById('d-prenom').value.trim();
-  const age    = document.getElementById('d-age').value.trim();
   const email  = document.getElementById('d-email').value.trim();
-  if (!prenom || !age || !email) { alert('Merci de remplir les champs obligatoires.'); return; }
-  demographics = {
-    prenom, age,
-    genre:   document.getElementById('d-genre').value || 'Non précisé',
-    email,
-    consent: document.getElementById('rgpd-consent')?.checked || false
-  };
-  try { localStorage.setItem('valeur_lead', JSON.stringify({prenom, email, ts: Date.now()})); } catch(e){}
+  const emailC = document.getElementById('d-email-confirm').value.trim();
+  const errEl  = document.getElementById('email-error');
+  const consent = document.getElementById('rgpd-consent') ? document.getElementById('rgpd-consent').checked : false;
+
+  if (!prenom) {
+    alert('Merci de renseigner votre prénom.');
+    document.getElementById('d-prenom').focus();
+    return;
+  }
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!email || !emailRe.test(email)) {
+    if (errEl) { errEl.textContent = 'Adresse email invalide.'; errEl.style.display = 'block'; }
+    document.getElementById('d-email').focus();
+    return;
+  }
+  if (email.toLowerCase() !== emailC.toLowerCase()) {
+    if (errEl) { errEl.textContent = 'Les deux adresses ne correspondent pas.'; errEl.style.display = 'block'; }
+    document.getElementById('d-email-confirm').focus();
+    return;
+  }
+
+  demographics = { prenom, email, age: null, genre: null, consent };
+  try {
+    localStorage.setItem('valeur_lead',   JSON.stringify({prenom, email, ts: Date.now()}));
+    localStorage.setItem('valeur_email',  email);
+    localStorage.setItem('valeur_prenom', prenom);
+  } catch(e) {}
   goToScreen('screen-page-0');
 }
 
@@ -994,24 +1008,17 @@ async function sendEmailAdmin(sc, scPct) {
 
   try {
     await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
-      to_email:           demographics.email || '',
-      prenom:             demographics.prenom || 'Prénom non renseigné',
-      date_passation:     dateStr,
-      masque_dominant:    MASK_NAMES[dom] || dom,
-      peur_centrale:      PEURS[dom] || '',
-      spa:                sc.spa + '%',
-      score_rouge:        (scPct.rouge  || 0) + '%',
-      score_orange:       (scPct.orange || 0) + '%',
-      score_jaune:        (scPct.jaune  || 0) + '%',
-      score_vert:         (scPct.vert   || 0) + '%',
-      score_bleu:         (scPct.bleu   || 0) + '%',
-      score_indigo:       (scPct.indigo || 0) + '%',
-      score_violet:       (scPct.violet || 0) + '%',
-      configuration:      config,
-      items_critiques:    itemsCritiques.slice(0, 2000),
-      masques_secondaires: secondaires.length ? secondaires.join(', ') : 'Aucun (≥ 50 %).',
-      lien_constellation: 'https://questionnaire.psyh.fr/resultats.html?admin=VALEUR-ADMIN-2025&email='
-                          + encodeURIComponent(demographics.email || ''),
+      to_email:        demographics.email || '',
+      prenom:          demographics.prenom || '',
+      masque_dominant: MASK_NAMES[dom] || dom,
+      peur_centrale:   PEURS[dom] || '',
+      lien_rapport:    'https://questionnaire.psyh.fr/questionnaire_resultats.html?'
+                       + masks.map(m => m + '=' + (scPct[m] || 0)).join('&')
+                       + '&spa=' + sc.spa
+                       + '&email=' + encodeURIComponent(demographics.email || '')
+                       + '&prenom=' + encodeURIComponent(demographics.prenom || ''),
+      lien_psycho:     'https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile',
+      date_passation:  dateStr
     });
   } catch(e) { console.warn('EmailJS:', e); }
 }
