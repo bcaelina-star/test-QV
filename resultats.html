@@ -116,7 +116,7 @@ footer{text-align:center;padding:28px 24px;border-top:1px solid rgba(26,24,20,.0
 @media(max-width:600px){.wrap{padding:0 14px 80px}.miroir-box{padding:26px 20px}.config-body,.config-header{padding:16px 18px}.force-box,.doctolib-box{padding:22px 18px}}
 
 /* ── MIROIR POSITION ZÉRO ── */
-.miroir-zero{background:#1A1814;color:#F7F4EE;padding:0;position:relative;margin:0 -24px;overflow:hidden}
+.miroir-zero{background:#1A1814;color:#F7F4EE;padding:0;position:relative;margin:0;overflow:hidden}
 .miroir-zero::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#B5312A,#C4581F,#B8930A,#2D7A4F,#1D5F8A,#5C3280,#7A3594)}
 .mz-inner{padding:52px 44px 44px;max-width:780px;margin:0 auto}
 .mz-pre{font-size:9px;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:rgba(247,244,238,.28);margin-bottom:18px}
@@ -1281,7 +1281,7 @@ function buildPortrait(sc, prenom) {
   if(!meta) return;
 
   // 3. Couleur masque dominant
-  const col = meta.col || '#1A1814';
+  const col = meta.color || '#1A1814';
   const rgb = hexToRgb(col);
   document.documentElement.style.setProperty('--mask-col', col);
   document.documentElement.style.setProperty('--mask-rgb', rgb);
@@ -1392,9 +1392,22 @@ function buildPortrait(sc, prenom) {
   // ── BLOC 5 — CONFIGURATION ─────────────────────────────────────────────
   let configHtml = '';
   if(prof.type==='pan') {
-    configHtml = `<div class="config-section"><div class="section-eyebrow">Configuration</div><div class="section-title">Profil pan-masques</div><div class="sep"></div><div class="construction-box">${buildPanMasqueReport(pct, prof)}</div></div>`;
+    configHtml = buildPanMasqueReport(prof, pct, prenom, false);
   } else if(prof.type==='adaptatif') {
-    configHtml = ''; // adaptatif handled differently
+    // buildAdaptatif retourne le HTML complet — on remplace l'assemblage normal
+    const adaptatifHtml = buildAdaptatif(pct, prenom, prof);
+    const portraitEl2 = document.getElementById('portrait');
+    if(portraitEl2) portraitEl2.innerHTML = adaptatifHtml;
+    requestAnimationFrame(() => {
+      const spafill = document.getElementById('spa-fill');
+      if(spafill) spafill.style.width = spa + '%';
+      sortedMasks.forEach(m => {
+        const bar = document.getElementById('bar-'+m);
+        if(bar) setTimeout(()=>{ bar.style.width = pct[m]+'%'; }, 200);
+      });
+      setTimeout(() => buildShareCard(pct, dominant, meta, level, thought, spa, col), 500);
+    });
+    return; // exit buildPortrait — adaptatif handles its own render
   } else if(prof.type==='dyade' || prof.type==='dyade_forte' || prof.type==='dyade_moderee') {
     const dd = gd(dominant, secondary) || (DYADES_DATA && DYADES_DATA[[dominant,secondary].sort().join('_')]);
     if(dd) {
