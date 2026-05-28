@@ -262,6 +262,7 @@ const TIEBREAK_ORDER = ['jaune','rouge','indigo','vert','bleu','orange','violet'
 const TIEBREAK_ORDER = ['jaune','rouge','indigo','vert','bleu','orange','violet'];
 
 function detectProfile(pct) {
+  // Trier par score décroissant, puis par tiebreak en cas d'égalité
   const sorted = Object.entries(pct)
     .filter(([k]) => MASKS.includes(k))
     .sort((a, b) => b[1] - a[1] || TIEBREAK_ORDER.indexOf(a[0]) - TIEBREAK_ORDER.indexOf(b[0]));
@@ -273,98 +274,122 @@ function detectProfile(pct) {
   const S2 = scores[1] || 0;
   const S3 = scores[2] || 0;
   const S4 = scores[3] || 0;
-  const S5 = scores[4] || 0;
 
+  // Résultat de base (sera modifié selon le profil détecté)
   const res = {
     type: 'mono',
     subtype: 'residuel',
     primary: masks[0] || null,
-    secondary: masks[1] || null,
-    tertiary: masks[2] || null,
+    secondary: null,
+    tertiary: null,
+    masks: masks,       // tableau complet trié
     scores: pct,
-    sorted
+    sorted: sorted
   };
 
+  // 1. Adaptatif
   if (S1 < 50) {
-    return { ...res, type: 'adaptatif', subtype: S1 < 30 ? 'equilibre' : 'vigilant' };
+    res.type = 'adaptatif';
+    res.subtype = S1 < 30 ? 'equilibre' : 'vigilant';
+    return res;
   }
 
-  const maxMin = Math.max(...scores) - Math.min(...scores);
-  const active60 = scores.filter(v => v >= 60).length;
-
-  if (active60 >= 5 && maxMin <= 20) {
-    return { ...res, type: 'pan', subtype: 'masques', primary: masks[0], secondary: masks[1], tertiary: masks[2] };
+  // 12. Pan-masques (vérifié avant les autres car condition spécifique)
+  const active60 = scores.filter(v => v >= 60);
+  if (active60.length >= 5) {
+    const maxActive = Math.max(...active60);
+    const minActive = Math.min(...active60);
+    const spread = maxActive - minActive;
+    if (spread <= 20) {
+      res.type = 'pan';
+      res.subtype = spread <= 5 ? 'ultra_plat' : spread <= 10 ? 'generalise' : 'structure';
+      res.primary = masks[0];
+      res.secondary = masks[1];
+      res.tertiary = masks[2];
+      return res;
+    }
   }
 
-  if (S1 >= 60 && S2 >= 55 && S3 >= 55 && (S1 - S2) <= 15 && (S2 - S4) > 10) {
-    return { ...res, type: 'triade', subtype: 'ouverte', primary: masks[0], secondary: masks[1], tertiary: masks[2] };
+  // 2. Triade (ouverte)
+  if (S1 >= 60 && S2 >= 55 && S3 >= 55 && (S1 - S3) <= 15 && (S2 - S4) > 10) {
+    res.type = 'triade';
+    res.subtype = 'ouverte';
+    res.primary = masks[0];
+    res.secondary = masks[1];
+    res.tertiary = masks[2];
+    return res;
   }
 
-  if (S1 >= 55 && S2 >= 55 && S3 >= 55 && (S1 - S2) <= 10) {
-    return { ...res, type: 'triade', subtype: 'serree', primary: masks[0], secondary: masks[1], tertiary: masks[2] };
+  // 3. Triade serrée
+  if (S1 >= 55 && S2 >= 55 && S3 >= 55 && (S1 - S3) <= 10) {
+    res.type = 'triade';
+    res.subtype = 'serree';
+    res.primary = masks[0];
+    res.secondary = masks[1];
+    res.tertiary = masks[2];
+    return res;
   }
 
+  // 4. Dyade forte
   if (S1 >= 65 && S2 >= 65 && S3 < 55 && (S1 - S2) <= 10) {
-    return { ...res, type: 'dyade', subtype: 'forte', primary: masks[0], secondary: masks[1] };
+    res.type = 'dyade';
+    res.subtype = 'forte';
+    res.primary = masks[0];
+    res.secondary = masks[1];
+    return res;
   }
 
+  // 5. Dyade forte + tertiaire
   if (S1 >= 65 && S2 >= 65 && S3 >= 55 && S3 <= 64 && (S1 - S2) <= 10) {
-    return { ...res, type: 'dyade', subtype: 'forte_tertiaire', primary: masks[0], secondary: masks[1], tertiary: masks[2] };
+    res.type = 'dyade';
+    res.subtype = 'forte_tertiaire';
+    res.primary = masks[0];
+    res.secondary = masks[1];
+    res.tertiary = masks[2];
+    return res;
   }
 
+  // 7. Dyade modérée
   if (S1 >= 55 && S2 >= 55 && S3 < 50 && (S1 - S2) <= 10) {
-    return { ...res, type: 'dyade', subtype: 'moderee', primary: masks[0], secondary: masks[1] };
+    res.type = 'dyade';
+    res.subtype = 'moderee';
+    res.primary = masks[0];
+    res.secondary = masks[1];
+    return res;
   }
 
-  if (S1 >= 75 && S2 >= 60 && (S1 - S2) >= 11 && (S1 - S2) <= 20) {
-    return { ...res, type: 'mono', subtype: 'dominant_secondaire_notable', primary: masks[0], secondary: masks[1] };
+  // 8. Mono dominant + secondaire notable
+  if (S1 >= 75 && S2 >= 60 && S2 <= 74 && (S1 - S2) >= 11 && (S1 - S2) <= 20) {
+    res.type = 'mono';
+    res.subtype = 'dominant_secondaire_notable';
+    res.secondary = masks[1];
+    return res;
   }
 
+  // 9. Mono dominant pur
   if (S1 >= 75 && S2 < 55 && (S1 - S2) > 20) {
-    return { ...res, type: 'mono', subtype: 'dominant_pur', primary: masks[0] };
+    res.type = 'mono';
+    res.subtype = 'dominant_pur';
+    return res;
   }
 
+  // 10. Mono fort
   if (S1 >= 60 && S1 <= 74 && S2 < 50 && (S1 - S2) > 15) {
-    return { ...res, type: 'mono', subtype: 'fort', primary: masks[0] };
+    res.type = 'mono';
+    res.subtype = 'fort';
+    return res;
   }
 
+  // 11. Mono modéré
   if (S1 >= 50 && S1 <= 59) {
-    return { ...res, type: 'mono', subtype: 'modere', primary: masks[0] };
+    res.type = 'mono';
+    res.subtype = 'modere';
+    return res;
   }
 
+  // Cas résiduel (fallback)
   return res;
 }
-function computeSPA(sc) {
-  const t = MASKS.reduce((s,m)=>s+(sc[m]||0),0);
-  return Math.max(0,Math.min(100,Math.round(100-t/7)));
-}
-
-function getLevel(pct) {
-  if (pct>=85) return 'Dominant';
-  if (pct>=70) return 'Élevé';
-  if (pct>=50) return 'Significatif';
-  if (pct>=30) return 'Modéré';
-  return 'Résiduel';
-}
-
-function getDyade(a,b) {
-  if (!a||!b) return null;
-  return DYADES_DATA[[a,b].sort().join('_')]||null;
-}
-function getTriade(masks) {
-  return TRIADES_DATA[[...masks].sort().join('_')]||null;
-}
-
-// ── SAVE TO NEON ───────────────────────────────────────────────────────
-async function saveToNeon(pct, prof, email, prenom) {
-  try {
-    await fetch('https://valeur-backend-api.vercel.app/api/save-profile', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({email:email||null,prenom:prenom||null,scores:pct,dominant:prof.masks[0],secondary:prof.secondary||prof.masks[1]||null,profil_type:prof.type,profil_subtype:prof.subtype||null,spa:computeSPA(pct),created_at:new Date().toISOString()})
-    });
-  } catch(e) { console.log('Save failed silently:',e); }
-}
-
 // ── BUILD THOUGHTS ─────────────────────────────────────────────────────
 function buildThoughts(prof) {
   const dom=prof.masks[0];
