@@ -115,7 +115,7 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:52px;display:flex;a
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:600px){nav{padding:0 16px}.container{padding:68px 16px 60px}.scores-grid{gap:4px}.spa-section{flex-direction:column;text-align:center}.spa-arc{width:80px;height:80px}}
-@media print{.chroma-bar,nav,.card-section,.cta-section,#page-loader{display:none!important}body{background:#fff;color:#1A1814}.portrait-headline,.portrait-tagline{color:#1A1814}.portrait-desc,.behavior-item,.cycle-step p{color:#333}.force-block{border-color:#B8930A;background:#FFFBF0}}
+@media print{.chroma-bar,nav,.card-section,.cta-section,#page-loader,.btn-pdf-wrap{display:none!important}body{background:#fff;color:#1A1814}.portrait-headline,.portrait-tagline{color:#1A1814}.portrait-desc,.behavior-item,.cycle-step p{color:#333}.force-block{border-color:#B8930A;background:#FFFBF0}.portrait-body,.force-section,.scores-section,.spa-section,.daily-grid,.dyade-loop-box{break-inside:avoid}@page{margin:20mm;size:A4}.logo-watermark{opacity:1!important}.logo-watermark img{opacity:.3!important;filter:none!important}}
 
 .portrait-mirror{font-family:var(--fs);font-style:italic;font-size:clamp(17px,2.4vw,22px);line-height:1.55;color:var(--txt);border-left:3px solid var(--gold);padding:18px 24px;background:linear-gradient(135deg,var(--bg2),var(--bg3));border-radius:0 var(--r) var(--r) 0;margin-bottom:24px}
 .portrait-bridge{font-size:15px;line-height:1.85;color:var(--txt2);margin-bottom:24px}
@@ -1008,6 +1008,17 @@ function animateBars() {
     const v=params.get(m);
     if (v!==null) pct[m]=Math.min(100,Math.max(0,parseInt(v)||0));
   });
+  // Fallback localStorage si URL incomplète (ex: refresh page)
+  if (Object.keys(pct).length!==7) {
+    try {
+      const stored=JSON.parse(localStorage.getItem('valeur_scores')||'null');
+      if (stored&&typeof stored==='object') {
+        MASKS.forEach(m=>{
+          if (stored[m]!==undefined) pct[m]=Math.min(100,Math.max(0,parseInt(stored[m])||0));
+        });
+      }
+    } catch(e) {}
+  }
 
   const loader=document.getElementById('page-loader');
   const wrap=document.getElementById('portrait-wrap');
