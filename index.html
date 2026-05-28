@@ -852,8 +852,13 @@ async function nextPage(idx) {
     sendEmailAdmin(sc, scPct),
     saveResult(pid, scPct, sc.spa, dom, profil, demographics.consent || false)
   ]).finally(() => {
-    window.location.href = 'https://questionnaire.psyh.fr/resultats.html' +
-      (pid ? '?pid=' + encodeURIComponent(pid) : '');
+    const _masks = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
+    const _scoresQuery = _masks.map(m => m + '=' + (scPct[m] || 0)).join('&');
+    window.location.href = 'https://questionnaire.psyh.fr/resultats.html?'
+      + _scoresQuery
+      + '&email=' + encodeURIComponent(demographics.email || '')
+      + '&prenom=' + encodeURIComponent(demographics.prenom || '')
+      + (pid ? '&pid=' + encodeURIComponent(pid) : '');
   });
 }
 
@@ -1012,9 +1017,8 @@ async function sendEmailAdmin(sc, scPct) {
       prenom:          demographics.prenom || '',
       masque_dominant: MASK_NAMES[dom] || dom,
       peur_centrale:   PEURS[dom] || '',
-      lien_rapport:    'https://questionnaire.psyh.fr/questionnaire_resultats.html?'
+      lien_rapport:    'https://questionnaire.psyh.fr/resultats.html?'
                        + masks.map(m => m + '=' + (scPct[m] || 0)).join('&')
-                       + '&spa=' + sc.spa
                        + '&email=' + encodeURIComponent(demographics.email || '')
                        + '&prenom=' + encodeURIComponent(demographics.prenom || ''),
       lien_psycho:     'https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile',
