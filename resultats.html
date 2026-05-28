@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
@@ -116,6 +116,36 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:52px;display:flex;a
 @keyframes spin{to{transform:rotate(360deg)}}
 @media(max-width:600px){nav{padding:0 16px}.container{padding:68px 16px 60px}.scores-grid{gap:4px}.spa-section{flex-direction:column;text-align:center}.spa-arc{width:80px;height:80px}}
 @media print{.chroma-bar,nav,.card-section,.cta-section,#page-loader{display:none!important}body{background:#fff;color:#1A1814}.portrait-headline,.portrait-tagline{color:#1A1814}.portrait-desc,.behavior-item,.cycle-step p{color:#333}.force-block{border-color:#B8930A;background:#FFFBF0}}
+
+.portrait-mirror{font-family:var(--fs);font-style:italic;font-size:clamp(17px,2.4vw,22px);line-height:1.55;color:var(--txt);border-left:3px solid var(--gold);padding:18px 24px;background:linear-gradient(135deg,var(--bg2),var(--bg3));border-radius:0 var(--r) var(--r) 0;margin-bottom:24px}
+.portrait-bridge{font-size:15px;line-height:1.85;color:var(--txt2);margin-bottom:24px}
+.portrait-voice{margin:28px 0;padding:20px 24px;background:var(--bg3);border-radius:var(--r);border:1px solid var(--line)}
+.voice-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:10px}
+.voice-quote{font-family:var(--fs);font-style:italic;font-size:16px;line-height:1.7;color:var(--txt2);margin:0}
+.authentic-voice-block{margin:20px 0;padding:16px 20px;background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(201,168,76,.03));border-radius:var(--r-sm);border:1px solid var(--gold2)}
+.authentic-voice-text{font-family:var(--fs);font-style:italic;font-size:17px;line-height:1.6;color:var(--gold);margin:6px 0 0}
+.daily-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+@media(max-width:560px){.daily-grid{grid-template-columns:1fr}}
+.daily-col{background:var(--bg2);border-radius:var(--r-sm);padding:16px;border:1px solid var(--line)}
+.daily-col-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;font-weight:600}
+.daily-col.daily-masked .daily-col-label{color:rgba(181,49,42,.7)}
+.daily-col.daily-free .daily-col-label{color:rgba(201,168,76,.9)}
+.daily-item{display:flex;gap:10px;margin-bottom:10px;font-size:13px;line-height:1.55;color:var(--txt2)}
+.daily-time{color:var(--txt4);font-size:11px;flex-shrink:0;padding-top:2px}
+.dyade-loop-section{margin:32px 0}
+.dyade-loop-box{background:var(--bg2);border-radius:var(--r);border:1px solid var(--line);padding:20px 24px}
+.loop-biais{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.biais-tag{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);padding:4px 10px;border:1px solid var(--gold2);border-radius:20px}
+.biais-sep{color:var(--txt4);font-size:14px}
+.loop-story{font-size:14px;line-height:1.75;color:var(--txt2);margin-bottom:14px;padding:12px 16px;background:var(--bg3);border-radius:var(--r-sm);border-left:2px solid var(--gold2)}
+.loop-secondary-mirror{font-size:13px;color:var(--txt3);font-style:italic}
+.secondary-label{font-style:normal;color:var(--txt2)}
+.triade-label-section{margin:28px 0}
+.triade-name-box{background:var(--bg2);border-radius:var(--r);border:1px solid var(--line);padding:20px 24px}
+.triade-name{display:block;font-family:var(--fs);font-size:20px;color:var(--gold);margin-bottom:8px}
+.triade-note{font-size:14px;line-height:1.7;color:var(--txt2);margin-bottom:14px}
+.triade-masks{display:flex;gap:8px;flex-wrap:wrap}
+.triade-mask-chip{font-size:12px;padding:4px 12px;border-radius:20px;border:1px solid;color:var(--txt2)}
 </style>
 </head>
 <body>
@@ -146,14 +176,75 @@ const MASK_META = {
 const MASKS = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
 
 // ── PLAYLIST ───────────────────────────────────────────────────────────
-const PLAYLIST = {
-  rouge:{bridge:"Votre système nerveux a appris que surveiller était le seul moyen d'être en sécurité. Cette vigilance s'est automatisée — elle s'active même quand il n'y a rien à craindre.",thoughts:["Et si ce symptôme cachait quelque chose de grave ?","Je dois vérifier — si ça se trouve, c'est sérieux.","Et si je faisais un malaise sans signe avant-coureur ?","Le médecin a dit que ça allait, mais peut-être qu'il a raté quelque chose…"]},
-  orange:{bridge:"Votre système nerveux a appris qu'éloigner les émotions était le seul moyen de rester fonctionnel·le. Une protection réelle — mais elle coupe aussi de la joie, de l'intimité, du sentiment d'être pleinement là.",thoughts:["Ce n'est pas si important. Autant ne pas y penser.","Je ne sais pas vraiment ce que je ressens.","Mieux vaut rester occupé — quand je m'arrête, c'est inconfortable.","Les émotions, ça ne mène à rien de concret."]},
-  jaune:{bridge:"Votre système nerveux a appris qu'anticiper était le seul moyen d'éviter d'être pris au dépourvu. Votre cerveau planifie, vérifie, recalcule — mais la certitude absolue n'existe pas.",thoughts:["Et si ça se passait mal ? Il faut que j'anticipe.","Et si je me trompais dans ma décision ?","Je ne peux pas décider tant que je ne suis pas sûr(e).","Si l'imprévu arrive, tout peut partir en vrille."]},
-  vert:{bridge:"Votre système nerveux a appris à surveiller en permanence les humeurs, les silences, les tonalités des autres — pour éviter la rupture. Ce radar fonctionne même avec des personnes bienveillantes.",thoughts:["Qu'est-ce qu'ils pensent de moi ?","J'ai sûrement dit quelque chose qui a mal passé.","Et s'ils finissaient par se lasser de moi ?","Mieux vaut m'adapter — si je prends trop de place, ils vont partir."]},
-  bleu:{bridge:"Votre système nerveux a appris que lâcher prise exposait à l'échec ou à l'effondrement. Ce réflexe de contrôle s'active même là où vous pourriez vous permettre de vous reposer.",thoughts:["Si je ne contrôle pas ça, ça va partir en vrille.","Les autres ne font jamais comme il faut.","Je dois vérifier, reprendre, corriger — sinon ça rate.","Je ne peux pas me permettre de ne pas être indispensable."]},
-  indigo:{bridge:"Votre système nerveux a appris que l'exigence envers vous-même vous protégerait de l'échec et du regard critique. Elle vous pousse — mais elle vous épuise davantage qu'elle ne vous protège.",thoughts:["Ce n'est pas assez bien. Je dois retravailler ça.","On va finir par voir que je ne mérite pas ma place.","C'était la chance — pas ma compétence réelle.","Je ne peux pas commencer tant que je ne suis pas prêt(e)."]},
-  violet:{bridge:"Vous avez appris très tôt qu'être vraiment soi comportait un risque. Alors vous avez construit, soigneusement, une version de vous-même qui serait acceptée. Brillante dans ses adaptations. Et profondément seule, car jamais vraiment vue.",thoughts:["Est-ce que les gens m'aimeraient vraiment s'ils savaient qui je suis au fond ?","Je me sens différent·e — mais je ne sais pas comment le dire.","Je joue des rôles tellement bien que je ne sais plus qui je suis vraiment.","Qu'est-ce qui reste si j'arrête de m'adapter ?"]}
+const PLAYLIST={
+  rouge:{peur:"la maladie et la mort",bridge:"Ce que vos réponses dessinent : une <strong>attention quasi permanente aux signaux de votre corps</strong>. Votre système nerveux a appris, à un moment de votre histoire, que surveiller était le seul moyen d'être en sécurité. Cette vigilance s'est automatisée — elle s'active désormais même dans des situations où il n'y a rien à craindre.",thoughts:["Et si ce symptôme cachait quelque chose de grave ?","Je dois vérifier — si ça se trouve, c'est sérieux.","Et si je faisais un malaise sans signe avant-coureur ?","Le médecin a dit que ça allait, mais peut-être qu'il a raté quelque chose…"]},
+  orange:{peur:"la souffrance émotionnelle",bridge:"Ce que vos réponses dessinent : un <strong>accès difficile à ce que vous ressentez</strong>. Votre système nerveux a appris qu'éloigner les émotions était le seul moyen de rester fonctionnel·le. C'est une protection réelle — mais elle a un coût : elle coupe aussi de la joie, de l'intimité, du sentiment d'être pleinement là.",thoughts:["Ce n'est pas si important. Autant ne pas y penser.","Je ne sais pas vraiment ce que je ressens.","Mieux vaut rester occupé — quand je m'arrête, c'est inconfortable.","Les émotions, ça ne mène à rien de concret."]},
+  jaune:{peur:"l'inconnu et l'incertitude",bridge:"Ce que vos réponses dessinent : un <strong>besoin intense de prévoir et de contrôler l'avenir</strong>. Votre système nerveux a appris qu'anticiper était le seul moyen d'éviter d'être pris au dépourvu. Votre cerveau planifie, vérifie, recalcule — mais la certitude absolue qu'il cherche n'existe pas. D'où l'épuisement.",thoughts:["Et si ça se passait mal ? Il faut que j'anticipe.","Et si je me trompais dans ma décision ?","Je ne peux pas décider tant que je ne suis pas sûr(e).","Si l'imprévu arrive, tout peut partir en vrille."]},
+  vert:{peur:"le rejet et l'abandon",bridge:"Ce que vos réponses dessinent : une <strong>sensibilité extrême aux signaux relationnels</strong>. Votre système nerveux a appris à surveiller en permanence les humeurs, les silences, les tonalités des autres — pour éviter la rupture. Ce radar fonctionne même avec des personnes bienveillantes, même quand rien ne menace le lien.",thoughts:["Qu'est-ce qu'ils pensent de moi ?","J'ai sûrement dit quelque chose qui a mal passé.","Et s'ils finissaient par se lasser de moi ?","Mieux vaut m'adapter — si je prends trop de place, ils vont partir."]},
+  bleu:{peur:"l'impuissance et la perte de maîtrise",bridge:"Ce que vos réponses dessinent : un <strong>besoin de maîtriser les situations et les personnes</strong> autour de vous. Votre système nerveux a appris que lâcher prise exposait à l'échec ou à l'effondrement. Ce réflexe de contrôle s'active même là où vous pourriez, en réalité, vous permettre de vous reposer.",thoughts:["Si je ne contrôle pas ça, ça va partir en vrille.","Les autres ne font jamais comme il faut.","Je dois vérifier, reprendre, corriger — sinon ça rate.","Je ne peux pas me permettre de ne pas être indispensable."]},
+  indigo:{peur:"l'échec et le sentiment d'imposture",bridge:"Ce que vos réponses dessinent : une <strong>voix intérieure particulièrement sévère</strong> qui évalue, remet en question, anticipe le jugement des autres. Votre système nerveux a appris que cette exigence envers vous-même vous protégerait de l'échec et du regard critique. Elle vous pousse — mais elle vous épuise davantage qu'elle ne vous protège.",thoughts:["Ce n'est pas assez bien. Je dois retravailler ça.","On va finir par voir que je ne mérite pas ma place.","C'était la chance — pas ma compétence réelle.","Je ne peux pas commencer tant que je ne suis pas prêt(e)."]},
+  violet:{peur:"la perte de soi et du changement",bridge:"Ce que vos réponses dessinent : une <strong>résistance profonde au changement et à l'inconnu de soi</strong>. Votre système nerveux a appris que maintenir des rôles stables et des routines connues était la meilleure façon de rester entier·e. Ce mécanisme vous stabilise — mais il peut aussi vous maintenir dans une vie qui ne vous ressemble plus.",thoughts:["Je suis coincé(e) dans cette vie.","Je ne sais plus vraiment qui je suis.","Si je change, je vais me perdre — ou perdre les autres.","Mieux vaut maintenir ce que je connais, même si ça me pèse."]}
+};
+
+
+// ── CONTENT (portraits dominants) ─────────────────────────────────────────
+const CONTENT={
+  rouge:{
+    peur:"la mort et la maladie",
+    descriptor:"La vigilance permanente du corps",
+    mirror:"Votre corps est en permanence sous observation. Chaque sensation physique devient un signal à décoder, une menace possible à évaluer. Cette vigilance n'est pas une faiblesse — c'est ce que votre système nerveux a appris pour vous protéger, à un moment où surveiller était peut-être la seule façon de rester en sécurité.",
+    voice:"Et si ce symptôme cachait quelque chose de grave ?\nJe dois vérifier — si ça se trouve, c'est sérieux.\nEt si je faisais un malaise sans signe avant-coureur ?\nLe médecin a dit que ça allait, mais peut-être qu'il a raté quelque chose…",
+    prison:"Ce que vos réponses dessinent : une <strong>attention quasi permanente aux signaux de votre corps</strong>. Cette vigilance s'est automatisée — elle s'active désormais même dans des situations où il n'y a rien à craindre.",
+    couts:["L'épuisement d'un corps toujours en alerte","Des consultations médicales répétées sans soulagement durable","La difficulté à profiter d'un moment sans qu'il soit interrompu par une pensée inquiète","Les relations affectées par une anxiété que l'entourage ne comprend pas toujours"]
+  },
+  orange:{
+    peur:"la souffrance émotionnelle",
+    descriptor:"La coupure des émotions comme bouclier",
+    mirror:"Quelque chose en vous a appris très tôt que ressentir était dangereux. Alors une distance s'est installée — entre vous et vos propres émotions. Vous fonctionnez, vous analysez, vous gérez. Mais quelque chose reste à l'écart, en attente.",
+    voice:"Ce n'est pas si important. Autant ne pas y penser.\nJe ne sais pas vraiment ce que je ressens.\nMieux vaut rester occupé — quand je m'arrête, c'est inconfortable.\nLes émotions, ça ne mène à rien de concret.",
+    prison:"Ce que vos réponses dessinent : un <strong>accès difficile à ce que vous ressentez</strong>. C'est une protection réelle — mais elle a un coût : elle coupe aussi de la joie, de l'intimité, du sentiment d'être pleinement là.",
+    couts:["Une fatigue qui s'installe sans signal émotionnel d'alarme","Des relations qui manquent de profondeur, même quand vous le souhaiteriez","La difficulté à identifier ce dont vous avez vraiment besoin","Un sentiment diffus de passer à côté de votre propre vie"]
+  },
+  jaune:{
+    peur:"l'inconnu et l'incertitude",
+    descriptor:"Le besoin de tout prévoir et d'anticiper",
+    mirror:"Votre esprit fonctionne en permanence comme un système de prévision. Il anticipe, planifie, recalcule. Chaque nouvelle donnée est intégrée pour affiner la carte mentale. C'est une intelligence remarquable — mise au service d'une peur qui ne s'éteint pas.",
+    voice:"Et si ça se passait mal ? Il faut que j'anticipe.\nEt si je me trompais dans ma décision ?\nJe ne peux pas décider tant que je ne suis pas sûr(e).\nSi l'imprévu arrive, tout peut partir en vrille.",
+    prison:"Ce que vos réponses dessinent : un <strong>besoin intense de prévoir et de contrôler l'avenir</strong>. Votre cerveau planifie, vérifie, recalcule — mais la certitude absolue qu'il cherche n'existe pas. D'où l'épuisement.",
+    couts:["L'épuisement de devoir tout prévoir, tout le temps","La difficulté à profiter du présent quand l'avenir est incertain","Des décisions retardées, reportées, parfois jamais prises","La tension chronique d'un esprit qui ne se pose jamais vraiment"]
+  },
+  vert:{
+    peur:"le rejet et l'abandon",
+    descriptor:"La surveillance permanente du lien",
+    mirror:"Quelque part en vous, une alarme surveille le lien en permanence. Elle scrute les silences, les tonalités, les messages. Elle veut s'assurer que vous n'êtes pas rejeté·e, que vous n'avez pas déçu, que vous êtes encore aimé·e.",
+    voice:"Qu'est-ce qu'ils pensent de moi ?\nJ'ai sûrement dit quelque chose qui a mal passé.\nEt s'ils finissaient par se lasser de moi ?\nMieux vaut m'adapter — si je prends trop de place, ils vont partir.",
+    prison:"Ce que vos réponses dessinent : une <strong>sensibilité extrême aux signaux relationnels</strong>. Ce radar fonctionne même avec des personnes bienveillantes, même quand rien ne menace le lien.",
+    couts:["L'épuisement de surveiller en permanence les réactions des autres","La tendance à s'oublier soi-même pour ne pas décevoir","La difficulté à exprimer ses besoins directement","Des relations parfois fusionnelles, rarement vraiment libres"]
+  },
+  bleu:{
+    peur:"l'impuissance et la perte de maîtrise",
+    descriptor:"Le besoin de tout contrôler pour rester en sécurité",
+    mirror:"Derrière votre besoin de contrôle, il y a une peur précise : que si vous lâchez, quelque chose s'effondre. Votre cerveau a appris que maîtriser était le seul moyen d'être en sécurité. Alors il maîtrise — les situations, les plans, parfois les personnes.",
+    voice:"Si je ne contrôle pas ça, ça va partir en vrille.\nLes autres ne font jamais comme il faut.\nJe dois vérifier, reprendre, corriger — sinon ça rate.\nJe ne peux pas me permettre de ne pas être indispensable.",
+    prison:"Ce que vos réponses dessinent : un <strong>besoin de maîtriser les situations et les personnes</strong> autour de vous. Ce réflexe de contrôle s'active même là où vous pourriez, en réalité, vous permettre de vous reposer.",
+    couts:["L'épuisement d'être toujours le point de recours","La difficulté à déléguer sans reprendre derrière","Des relations marquées par la tension du contrôle","La solitude de celui ou celle qui ne peut jamais vraiment lâcher"]
+  },
+  indigo:{
+    peur:"l'échec et le sentiment d'imposture",
+    descriptor:"La voix intérieure qui n'est jamais satisfaite",
+    mirror:"Il y a en vous une voix qui évalue en permanence. Elle compare, elle juge, elle anticipe le regard des autres. Cette voix ne se tait presque jamais. Elle était peut-être utile à un moment — mais elle ne vous protège plus autant qu'elle vous pèse.",
+    voice:"Ce n'est pas assez bien. Je dois retravailler ça.\nOn va finir par voir que je ne mérite pas ma place.\nC'était la chance — pas ma compétence réelle.\nJe ne peux pas commencer tant que je ne suis pas prêt(e).",
+    prison:"Ce que vos réponses dessinent : une <strong>voix intérieure particulièrement sévère</strong> qui évalue, remet en question, anticipe le jugement des autres. Elle vous pousse — mais elle vous épuise davantage qu'elle ne vous protège.",
+    couts:["Le perfectionnisme qui ralentit ou bloque l'action","La difficulté à recevoir un compliment sans le relativiser","L'imposture permanente — jamais vraiment légitime","L'épuisement de standards qui montent dès qu'ils sont atteints"]
+  },
+  violet:{
+    peur:"la perte de soi et du changement",
+    descriptor:"L'identité incertaine, le changement menaçant",
+    mirror:"Vous avez l'impression de porter un costume depuis si longtemps que vous avez oublié qui se cache derrière. Ce n'est pas un manque — c'est une déconnexion d'avec quelque chose qui n'a jamais cessé d'exister.",
+    voice:"Je suis coincé(e) dans cette vie.\nJe ne sais plus vraiment qui je suis.\nSi je change, je vais me perdre — ou perdre les autres.\nMieux vaut maintenir ce que je connais, même si ça me pèse.",
+    prison:"Ce que vos réponses dessinent : une <strong>résistance profonde au changement et à l'inconnu de soi</strong>. Ce mécanisme vous stabilise — mais il peut aussi vous maintenir dans une vie qui ne vous ressemble plus.",
+    couts:["La vie rétrécie, maintenue dans ce qui est connu","La difficulté à faire des choix alignés quand on ne sait plus ce qu'on est","Des changements qui déclenchent une anxiété disproportionnée","La sensation de passer à côté d'une vie plus vraie"]
+  }
 };
 
 // ── FORCES LIBÉRÉES ────────────────────────────────────────────────────
@@ -167,50 +258,50 @@ const FORCES_LIBEREES = {
   violet: {titre:'Une Paix Profonde et une Connexion au Sens', texte:"Vous lâchez prise sur une identité figée. Vous ne cherchez plus désespérément un sens à votre vie — vous l'incarnez. Vous pouvez changer, évoluer, sans craindre de vous perdre."}
 };
 
-// ── DYADES (21 entrées) ────────────────────────────────────────────────
-const DYADES_DATA = {
-  jaune_rouge:{name:"L'Anxiété Amplifiée",tagline:"Chaque sensation exige une certitude que votre corps ne peut pas fournir",desc:"Votre cerveau a appris, probablement très tôt, que le danger pouvait venir de l'intérieur. Le masque Rouge maintient une surveillance corporelle constante – comme un détecteur de fumée réglé trop sensiblement. Le masque Jaune, lui, ne supporte pas l'ambiguïté. Quand une sensation physique apparaît, ces deux systèmes s'activent ensemble : le premier crie « danger », le second exige « sois certain que ce n'est rien ». Or, la certitude absolue n'existe pas en matière de santé. Cette quête impossible relance l'alarme à chaque tentative de réassurance.",cycle:["Une sensation corporelle émerge – Rouge l'interprète comme une menace possible, Jaune exige une explication certaine.","Vous cherchez une réponse définitive (internet, médecin, analyse des symptômes) – l'incertitude résiduelle relance la vigilance.","La réassurance obtenue soulage temporairement, mais ne désactive pas le circuit amygdalien conditionné – le prochain signal, même mineur, repart de zéro.","Chaque cycle renforce la connexion entre sensation et menace, rendant la prochaine alerte plus rapide et plus intense."],behaviors:["Chaque sensation déclenche une boucle de vérification – votre Jaune exige une réponse que votre Rouge ne peut jamais totalement accepter.","La réassurance médicale tient un temps, puis une nouvelle sensation réactive le circuit. L'absence de pathologie avérée n'éteint pas l'alarme.","Vous anticipez les maladies futures – Jaune projette les risques, Rouge les ressent déjà dans le corps.","La recherche d'informations apaise quelques heures, puis crée de nouvelles questions."]},
-  orange_vert:{name:"La Distance Paradoxale",tagline:"Besoin de l'autre – et fermeture quand il s'approche vraiment",desc:"Deux forces opposées cohabitent. Le masque Vert a un besoin profond de connexion et de sécurité relationnelle. Le masque Orange a appris à couper l'accès aux émotions parce que les ressentir était trop douloureux. Quand la relation devient suffisamment proche pour que les émotions émergent, Orange les désactive automatiquement. L'autre voit quelqu'un qui se ferme – précisément ce que le masque Vert cherche à éviter depuis le début.",cycle:["Votre besoin de proximité s'active (Vert) – vous cherchez le contact, la présence.","L'intimité fait monter l'émotion – Orange la coupe avant qu'elle ne puisse être ressentie ou exprimée.","L'autre perçoit un retrait, une absence – il s'éloigne ou s'interroge, confirmant la peur d'abandon.","Vert redouble d'approche pour réparer le lien, ce qui réactive Orange – la boucle s'auto-entretient."],behaviors:["Vous avez besoin de l'autre intensément, et au moment où il s'approche vraiment, quelque chose en vous se verrouille.","Vous n'exprimez pas directement vos besoins affectifs – vous attendez que l'autre devine.","Votre entourage ne comprend pas cette alternance entre demande de proximité et retrait.","La solitude ressentie au sein même de la relation est un indicateur fiable de cette configuration."]},
-  bleu_jaune:{name:"L'Hypercontrôle",tagline:"Si je prépare tout, rien ne peut m'échapper – ni me surprendre",desc:"Deux besoins de maîtrise se rencontrent et s'amplifient. Le masque Bleu a besoin de contrôler les situations et les personnes pour ne pas se sentir impuissant. Le masque Jaune ne supporte pas l'incertitude et veut tout prévoir. Ensemble, ils créent un système où rien ne doit dévier du plan. La délégation est impossible car elle introduit une variable incontrôlable.",cycle:["Une situation échappe partiellement à votre contrôle – Bleu et Jaune s'activent simultanément.","Vous planifiez, vérifiez, imposez une méthode – pour reprendre la maîtrise sur ce qui a dévié.","L'autre résiste ou improvise – l'incertitude et l'impuissance reviennent, plus menaçantes.","Le contrôle se resserre encore, jusqu'à l'épuisement ou la rupture relationnelle."],behaviors:["Vous vérifiez le travail que vous avez délégué – la délégation partielle crée plus d'anxiété que si vous aviez tout fait vous-même.","Vous planifiez avec un niveau de détail que votre entourage vit comme une contrainte, et que vous vivez comme une nécessité.","Une chose faite différemment de votre méthode vous met mal à l'aise, même si le résultat est équivalent.","La rigidité perçue par les autres n'est pas de l'autoritarisme – c'est la logique de deux systèmes qui exigent la maîtrise totale."]},
-  jaune_vert:{name:"La Surveillance Relationnelle",tagline:"Votre esprit analyse chaque signal pour vérifier que le lien tient",desc:"Votre masque Vert a besoin de sécurité dans le lien – il craint le rejet et l'abandon. Votre masque Jaune ne supporte pas l'incertitude ou l'ambiguïté. Ensemble, ils créent une vigilance relationnelle permanente. Un message un peu court, un ton légèrement différent, une réponse qui tarde : tout devient une donnée à analyser.",cycle:["Un signal relationnel ambigu apparaît – Vert l'interprète comme distance possible.","Jaune exige de savoir avec certitude ce que cela signifie – vous relisez, analysez, cherchez des indices.","L'incertitude ne se résorbe pas (les relations ne fonctionnent pas comme une équation) – Vert amplifie la peur.","L'autre ressent cette attention constante comme une pression, ce qui peut créer la distance que vous craigniez."],behaviors:["Un message plus bref que d'habitude devient un problème à résoudre – les deux masques s'activent ensemble.","Vous relisez des conversations entières pour vérifier qu'il n'y a pas de signe de distance.","Vous demandez régulièrement des confirmations (« tout va bien ? ») – l'apaisement est temporaire.","Votre entourage peut interpréter cette surveillance comme de la méfiance, renforçant la distance que vous cherchez à éviter."]},
-  orange_rouge:{name:"Le Corps sans Voix",tagline:"Le corps parle, mais vous n'avez pas accès à ce qu'il essaie de dire",desc:"Votre masque Rouge maintient une vigilance corporelle intense. Votre masque Orange vous déconnecte de l'accès aux émotions et sensations. L'anxiété emprunte la voie corporelle parce que la voie émotionnelle est verrouillée. Votre corps exprime ce que votre esprit ne peut pas métaboliser.",cycle:["Une sensation corporelle anxieuse monte – Rouge déclenche l'alerte.","Orange coupe l'accès émotionnel à cette anxiété – vous ne pouvez ni la nommer ni la ressentir pleinement.","L'anxiété s'exprime par le corps, plus fort, faute d'autre canal de sortie – tensions, palpitations, douleurs.","La surveillance corporelle s'intensifie (Rouge), alimentant de nouveaux symptômes, sans que la source émotionnelle ne soit jamais atteinte."],behaviors:["Vous présentez des symptômes physiques variés, mais aucun bilan médical ne trouve de cause satisfaisante.","Vous gérez l'inquiétude avec des stratégies d'évitement inconscientes qui soulagent sans traiter la racine émotionnelle.","L'épuisement arrive sans signal d'alarme clair – vous ne savez pas dire quand vous êtes fatigué·e avant de l'être profondément.","Vous avez du mal à répondre à la question « qu'est-ce que vous ressentez ? » – par absence d'accès au ressenti lui-même."]},
-  bleu_indigo:{name:"L'Exigence Totale",tagline:"Rien n'est jamais assez bien – pour vous, ni pour les autres",desc:"Le masque Indigo impose des standards élevés parce qu'il craint le jugement et l'échec. Le masque Bleu a besoin de maîtriser les situations et d'être reconnu comme celui qui tient. Ensemble, ils créent un perfectionnisme qui ne s'applique pas seulement à vous-même, mais aussi à ce que vous attendez des autres.",cycle:["Un résultat n'atteint pas vos standards – Indigo juge, Bleu reprend le contrôle.","Vous rectifiez, vérifiez, imposez votre méthode – vous ne pouvez pas laisser passer.","Les autres sont rarement à la hauteur, et vous non plus – le standard monte à chaque réussite.","L'exigence s'étend à toutes les sphères, sans jamais atteindre un seuil où « assez » serait atteint."],behaviors:["Vous reprenez systématiquement le travail délégué – parce que le résultat doit correspondre à un standard interne.","Vous avez du mal à recevoir un compliment sans le relativiser immédiatement.","Votre entourage vit votre exigence comme une pression constante.","Ce qui était excellent hier devient le minimum attendu demain – le seuil de satisfaction se déplace sans cesse."]},
-  indigo_vert:{name:"L'Auto-Effacement",tagline:"Votre valeur est réelle, mais deux peurs la maintiennent sous silence",desc:"Votre masque Vert minimise pour préserver la relation – ne pas prendre trop de place, ne pas menacer l'autre. Votre masque Indigo minimise parce qu'être vu·e est risqué – le jugement, l'échec potentiel. Ces deux peurs convergent vers un même comportement d'effacement.",cycle:["Une compétence ou une réussite devient visible – Vert craint qu'elle crée de la distance relationnelle.","Indigo la minimise immédiatement – « c'était de la chance », « c'est grâce à l'équipe ».","Vous restez en retrait, confirmant aux deux masques que l'exposition est risquée.","Vos talents restent sous-employés, et la question « qui suis-je vraiment ? » reste sans réponse."],behaviors:["Vous recevez un compliment et vous le réattribuez immédiatement – les deux masques travaillent dans le même sens.","Vous avez du mal à prendre la parole, même sur des sujets que vous maîtrisez.","Votre entourage méconnaît l'étendue de vos compétences réelles.","Vous avez des projets inachevés ou jamais commencés – non par manque de capacité, mais par évitement de l'exposition."]},
-  indigo_jaune:{name:"Le Blocage par Anticipation",tagline:"Commencer suppose d'accepter de ne pas être parfait – c'est impossible",desc:"Votre masque Jaune ne supporte pas l'incertitude du résultat – commencer sans garantie est une menace. Votre masque Indigo exige que le résultat soit parfait – commencer imparfaitement est un échec annoncé. Ensemble, ils créent une paralysie décisionnelle et une procrastination qui n'ont rien à voir avec de la paresse.",cycle:["Un projet ou une décision se profile – Jaune exige de connaître tous les paramètres avant de s'engager.","Indigo ajoute l'exigence de perfection – les conditions idéales n'existent pas.","Le projet est reporté – ce report est enregistré comme preuve que vous n'étiez pas prêt·e.","À la prochaine occasion, l'anxiété est plus forte, et la paralysie plus rapide."],behaviors:["Vous attendez « le bon moment », « les bonnes conditions » – ces moments n'arrivent jamais.","Vous sur-préparez jusqu'à l'épuisement – la préparation devient un moyen de repousser le moment d'être évalué·e.","Des projets importants dorment dans vos tiroirs depuis des mois – par impossibilité de commencer imparfaitement.","Quand vous livrez enfin, vous vous critiquez immédiatement – la satisfaction ne dure jamais."]},
-  jaune_violet:{name:"La Stabilité à Tout Prix",tagline:"Changer, c'est risquer de disparaître – alors rien ne bouge",desc:"Votre masque Violet ne sait pas qui il est sans ses repères connus. Votre masque Jaune ne supporte pas l'incertitude que le changement implique. Ensemble, ils créent une résistance tenace à la nouveauté. Votre monde se rétrécit progressivement, non par choix, mais par nécessité de protection.",cycle:["Un changement approche – Violet perçoit une menace pour l'identité connue.","Jaune exige de tout prévoir – ce qui est impossible face à un changement véritable.","Les deux masques créent une résistance rigide – vous restez dans ce que vous connaissez.","La vie rétrécit, et chaque dérogation aux habitudes déclenche une anxiété disproportionnée."],behaviors:["Un changement de routine génère une anxiété intense que vous ne vous expliquez pas.","Vous maintenez des habitudes qui vous pèsent – y renoncer créerait un vide inconnu.","Vous refusez des opportunités par peur du bouleversement qu'elles impliquent.","Votre entourage vous perçoit comme rigide – c'est la logique des protections, pas votre caractère."]},
-  bleu_rouge:{name:"Le Corps sous Contrôle",tagline:"Votre corps est devenu un projet – et il n'a pas le droit de défaillir",desc:"Votre masque Rouge surveille le corps en permanence. Votre masque Bleu transforme toute alerte en plan d'action. Le corps n'est plus un lieu d'expérience, mais un système à optimiser. Plus vous contrôlez, plus le corps manifeste des signaux de stress.",cycle:["Une sensation corporelle attire votre attention – Rouge l'interprète comme alerte.","Bleu transforme l'alerte en plan – protocoles, optimisation, discipline.","Le corps résiste naturellement à la maîtrise totale (fatigue, signaux de limite).","Cette résistance est interprétée comme une nouvelle défaillance à corriger – le contrôle se renforce."],behaviors:["Votre corps est géré comme un projet : régimes, protocoles, objectifs chiffrés.","Vous avez du mal à vous reposer vraiment – il y a toujours quelque chose à optimiser.","Les limitations physiques normales sont vécues comme des échecs personnels.","La tension chronique est souvent le premier signe visible pour votre entourage."]},
-  rouge_vert:{name:"Le Corps comme Lien",tagline:"Ce que vous ressentez physiquement, vous avez besoin de le traverser avec l'autre",desc:"Votre masque Rouge génère une anxiété corporelle. Votre masque Vert a besoin de connexion pour se sentir en sécurité. Progressivement, votre corps est devenu un moyen de lien : la présence de l'autre apaise les symptômes, l'absence les amplifie.",cycle:["Un symptôme surgit – Rouge génère une anxiété corporelle.","La solitude amplifie l'anxiété – Vert a besoin d'une présence pour la traverser.","La réassurance de l'autre soulage momentanément – mais crée une dépendance progressive.","La prochaine inquiétude, seule, est plus difficile à supporter – le besoin de présence augmente."],behaviors:["La solitude amplifie vos inquiétudes physiques ; la présence de l'autre les réduit nettement.","Vous avez du mal à vous rendre seul·e à une consultation médicale.","Vous partagez vos inquiétudes corporelles de façon détaillée – le partage maintient le lien.","Les tensions relationnelles se répercutent directement sur votre corps."]},
-  indigo_rouge:{name:"Le Corps sous Exigence",tagline:"Votre corps doit être parfait – et il ne l'est jamais assez",desc:"Votre masque Rouge est vigilant sur tout signal corporel. Votre masque Indigo impose des standards impossibles. Les deux ensemble transforment le corps en objet de performance. La fatigue n'est pas un signal de repos, c'est une insuffisance.",cycle:["Un signal de limite apparaît (fatigue, douleur) – Rouge l'enregistre, Indigo le juge.","Des standards corporels sont appliqués – nutrition, exercice, sommeil – de façon rigide.","Le corps s'épuise sous l'exigence – il produit de nouveaux signaux.","Ces signaux sont interprétés comme preuve d'insuffisance – le cycle recommence."],behaviors:["Un jour de fatigue est vécu comme un manque de discipline.","Vos routines physiques sont très structurées et difficiles à assouplir.","Vous avez du mal à simplement être fatigué·e sans chercher la cause et la solution.","La poursuite du corps parfait produit les symptômes qu'elle prétendait prévenir."]},
-  rouge_violet:{name:"L'Identité par la Santé",tagline:"Votre vigilance santé est devenue votre manière d'exister",desc:"Votre masque Rouge maintient une surveillance corporelle constante. Votre masque Violet cherche une identité stable. La santé peut devenir un repère identitaire. Aller mieux signifierait perdre ce repère.",cycle:["Une préoccupation de santé survient – Rouge s'en saisit.","Elle comble un vide identitaire – Violet trouve un rôle stable.","L'identité se construit autour de la vigilance santé – guérir deviendrait une perte de soi.","Les symptômes persistent, car ils remplissent une fonction que rien ne remplace."],behaviors:["Votre santé occupe une place centrale dans vos conversations et vos pensées.","L'idée de cesser de surveiller peut créer une anxiété inattendue – « qui serais-je sans ça ? »","Vous avez construit des relations autour du rôle de patient·e informé·e.","Les bénéfices de ce rôle ne sont pas des calculs – c'est un système qui cherche à exister."]},
-  jaune_orange:{name:"Planifier sans Habiter",tagline:"Votre vie est parfaitement organisée – et vous ne la ressentez pas",desc:"Votre masque Jaune structure, planifie, anticipe. Votre masque Orange coupe l'accès aux émotions. Ensemble, ils créent une vie parfaitement organisée et émotionnellement vide. L'épuisement s'installe sans signal émotionnel d'alarme – ce qui rend le crash d'autant plus soudain.",cycle:["Une situation imprévue survient – Jaune la cadre, la planifie, la contrôle.","Orange empêche de ressentir l'anxiété – et toute autre émotion.","La planification ne procure aucune satisfaction – l'émotion non traversée cherche une autre sortie (irritabilité, fatigue).","Plus de contrôle, moins de ressenti – la vie devient mécanique."],behaviors:["Vous planifiez tout – et vous ne ressentez pas vraiment ce que vous vivez.","Même pendant les moments de repos, vous êtes dans l'anticipation.","L'irritabilité ou la fatigue inexpliquée peuvent être les seuls signaux d'une émotion bloquée.","Le crash arrive sans avertissement, parce que les systèmes d'alerte normaux sont court-circuités."]},
-  bleu_orange:{name:"La Réussite sans Joie",tagline:"Vous réussissez objectivement – et vous ne le ressentez pas",desc:"Votre masque Bleu a besoin de réussir, de maîtriser, d'être reconnu. Votre masque Orange empêche l'accès à la satisfaction émotionnelle. Les succès arrivent – et ne procurent rien. Pas de fierté, pas de joie, pas de sentiment d'accomplissement.",cycle:["Une réussite arrive – Bleu l'enregistre, Orange empêche de la ressentir.","Le vide persiste – Bleu cherche la prochaine maîtrise pour le combler.","La prochaine réussite produit le même vide.","Le besoin de reconnaissance augmente, sans jamais trouver de satisfaction."],behaviors:["Vous réussissez – et vous passez immédiatement à la suite, sans vous arrêter.","Vous avez besoin de reconnaissance externe de façon compulsive.","Vos relations sont efficaces mais peu profondes.","Le burnout peut survenir précisément après un succès – quand tout devrait aller bien."]},
-  indigo_orange:{name:"Performer sans Ressentir",tagline:"Vous excellez – mais vous ne savez pas si vous êtes satisfait",desc:"Votre masque Indigo exige la perfection. Votre masque Orange déconnecte l'émotion. Ensemble, ils créent une performance sans retour sensoriel : vous travaillez, vous livrez, vous recommencez – sans jamais savoir si ce que vous faites vous plaît.",cycle:["Un travail est terminé – Indigo l'évalue immédiatement.","Orange empêche de ressentir la fierté ou la satisfaction.","Le standard monte – puisque rien ne satisfait, il faut faire plus.","L'épuisement s'installe sans signal émotionnel – jusqu'à un arrêt brutal."],behaviors:["Vous travaillez énormément – sans savoir si vous êtes satisfait·e.","Votre auto-critique est détachée, comme une checklist impersonnelle.","La procrastination peut vous surprendre – elle traduit une démotivation profonde.","Le crash est soudain, sans les signaux d'alerte habituels."]},
-  orange_violet:{name:"L'Absence à Soi",tagline:"Vous ne savez pas ce que vous ressentez, ni qui vous êtes",desc:"Votre masque Orange vous prive de l'accès à vos ressentis. Votre masque Violet vous prive d'une identité stable. Double absence : le monde intérieur est flou, silencieux. Certaines personnes décrivent une impression de vivre « à côté de leur vie ».",cycle:["Un moment de calme arrive – Violet cherche qui vous êtes, sans réponse claire.","Orange empêche l'accès émotionnel – la question identitaire ne peut être ressentie.","Vous fonctionnez en pilote automatique – les décisions sont dictées par l'extérieur.","Le vide existentiel s'approfondit silencieusement."],behaviors:["Vous vivez certains moments avec une impression de distance, comme si vous vous observiez.","Vous avez du mal à dire ce que vous voulez, aimez, ou désirez – par manque d'accès à ces informations.","Les décisions importantes sont souvent dictées par les attentes extérieures.","Ce n'est pas permanent – le simple fait de le nommer commence à faire bouger les choses."]},
-  bleu_vert:{name:"Tenir pour ne pas Perdre",tagline:"Vous avez peur de perdre l'autre, alors vous le contrôlez pour le garder",desc:"Votre masque Vert a peur d'être abandonné. Votre masque Bleu contrôle pour se sentir en sécurité. Ensemble, ils créent un cycle où le besoin de l'autre se transforme en surveillance et en contrôle. L'amour y est réel, mais l'expression en est déformée par la peur.",cycle:["La peur d'être quitté·e s'active – Vert cherche à sécuriser le lien.","Bleu transforme cette peur en comportements de contrôle – vérifications, exigences.","L'autre ressent la pression et s'éloigne – confirmant la menace d'abandon.","Le contrôle se resserre – créant l'éloignement qu'il cherchait à éviter."],behaviors:["Vous vérifiez où est l'autre, avec qui, ce qu'il fait – c'est une tentative de vous rassurer.","Vous oscillez entre demande intense de proximité et retrait – l'autre ne comprend pas ces alternances.","Vous justifiez votre surveillance comme de la sollicitude.","Votre partenaire finit par s'épuiser, et la relation se fragilise."]},
-  vert_violet:{name:"La Fusion Identitaire",tagline:"Vous devenez ce que l'autre attend – au point de ne plus savoir qui vous êtes",desc:"Votre masque Vert a besoin d'être accepté, alors il s'adapte. Votre masque Violet cherche une identité, alors il la trouve dans le reflet des autres. Ensemble, ils créent une dissolution progressive de soi dans la relation.",cycle:["Une relation importante se développe – Vert s'adapte pour ne pas être rejeté.","Violet trouve dans cette adaptation une identité – le reflet de l'autre devient un repère.","Vous disparaissez progressivement – vos goûts, vos valeurs, vos désirs s'effacent.","La peur de la séparation devient existentielle – quitter l'autre serait perdre la seule identité disponible."],behaviors:["Vous adoptez naturellement les goûts et valeurs des personnes qui comptent.","Vous avez du mal à répondre à la question « qu'est-ce que tu aimes, toi, indépendamment des autres ? »","L'idée d'une séparation déclenche une angoisse disproportionnée.","Votre grande capacité d'adaptation a un coût : vous vous perdez dans vos relations importantes."]},
-  bleu_violet:{name:"Le Pouvoir comme Identité",tagline:"Votre rôle est devenu votre seule façon d'exister",desc:"Votre masque Bleu a besoin de contrôler, de diriger, d'être celui ou celle qui gère. Votre masque Violet cherche une identité. Le rôle – le poste, la fonction, la place – devient la réponse. Dès qu'il est menacé, c'est tout votre sens de vous-même qui vacille.",cycle:["Le rôle est remis en question ou menacé – Violet perçoit une menace identitaire.","Bleu s'accroche au contrôle – c'est la seule identité disponible.","Plus le rôle est menacé, plus le contrôle devient rigide – tensions, conflits.","L'identité réelle, sous le rôle, reste inexplorée."],behaviors:["Votre rôle professionnel ou familial est la colonne vertébrale de votre identité.","L'idée de ne plus occuper ce rôle génère une anxiété profonde.","Votre valeur personnelle est indexée sur ce que vous gérez et décidez.","Vous avez construit une vie efficace autour du contrôle – et vous sentez confusément qu'il manque quelque chose."]},
-  indigo_violet:{name:"L'Imposteur Existentiel",tagline:"Vous ne savez pas qui doit être parfait, mais vous exigez la perfection",desc:"Votre masque Indigo impose des standards élevés – peur de l'échec, peur du jugement. Votre masque Violet cherche une identité stable, mais ne la trouve pas. Les standards de perfection s'appliquent dans le vide : vous ne savez pas qui doit être parfait, seulement qu'il faut l'être.",cycle:["Un projet ou une situation se présente – Indigo active les standards.","Violet ne fournit pas d'identité stable pour les porter – les standards flottent, arbitraires.","L'imposture semble totale – vous jouez un rôle, imparfaitement.","Chaque nouvelle situation relance la même question sans réponse."],behaviors:["Vous changez souvent de direction – vous cherchez où vous serez enfin « assez » et « vous-même ».","Le sentiment d'imposture ne se limite pas au travail, il est existentiel.","Vos standards varient – parfois impossibles, parfois absents.","Ce n'est pas une question de compétence, c'est une configuration de protection qui crée cette double absence."]}
-};
+// ══ DYADES (21 combinaisons validées) ═══════════════════════════════════════
+const DYADES = {};
+function sd(key, data) { DYADES[key] = data; }
+// Clés : masqueA+masqueB ordre alphabétique
+sd("jaune+rouge",  {n:"Anxiété Amplifiée",                    tagline:"Chaque sensation exige une certitude que votre corps ne peut pas fournir",                        b1:"Anxiété de santé",              b2:"Intolérance à l'incertitude"});
+sd("orange+vert",  {n:"Distance Paradoxale",                   tagline:"Besoin de l'autre — et fermeture quand il s'approche vraiment",                                 b1:"Évitement émotionnel",          b2:"Peur du rejet"});
+sd("jaune+vert",   {n:"Surveillance Relationnelle",            tagline:"Votre esprit analyse chaque signal pour vérifier que le lien tient",                                              b1:"Peur du rejet",                 b2:"Hypercontrôle cognitif"});
+sd("orange+rouge", {n:"Le Corps sans Voix",           tagline:"Le corps parle, mais vous n'avez pas accès à ce qu'il essaie de dire",                                    b1:"Hypervigilance somatique",      b2:"Évitement émotionnel"});
+sd("bleu+jaune",   {n:"L'Hypercontrôle",      tagline:"Si je prépare tout, rien ne peut m'échapper — ni me surprendre",                                   b1:"Intolérance à l'incertitude",   b2:"Besoin de maîtrise"});
+sd("bleu+indigo",  {n:"L'Exigence Totale",           tagline:"Rien n'est jamais assez bien — pour vous, ni pour les autres",                               b1:"Perfectionnisme",               b2:"Besoin de maîtrise"});
+sd("indigo+vert",  {n:"L'Auto-Effacement",       tagline:"Votre valeur est réelle, mais deux peurs la maintiennent sous silence",                     b1:"Peur du rejet",                 b2:"Perfectionnisme"});
+sd("indigo+jaune", {n:"Le Blocage par Anticipation",         tagline:"Commencer suppose d'accepter de ne pas être parfait — c'est impossible",                             b1:"Perfectionnisme",               b2:"Intolérance à l'imprévu"});
+sd("jaune+violet", {n:"La Stabilité à Tout Prix",        tagline:"Changer, c'est risquer de disparaître — alors rien ne bouge",                                               b1:"Fragmentation identitaire",     b2:"Anxiété anticipatoire"});
+sd("bleu+rouge",   {n:"Le Corps sous Contrôle",    tagline:"Votre corps est devenu un projet — et il n'a pas le droit de défaillir",                            b1:"Hypervigilance somatique",      b2:"Besoin de maîtrise"});
+sd("rouge+vert",   {n:"Le Corps comme Lien",               tagline:"Ce que vous ressentez physiquement, vous avez besoin de le traverser avec l'autre",                               b1:"Anxiété somatique",             b2:"Peur du rejet"});
+sd("indigo+rouge", {n:"Le Corps sous Exigence",             tagline:"Votre corps doit être parfait — et il ne l'est jamais assez",                                                               b1:"Anxiété santé",                 b2:"Peur de l'échec"});
+sd("rouge+violet", {n:"L'Identité par la Santé",                    tagline:"Votre vigilance santé est devenue votre manière d'exister",                                                                        b1:"Peur de mourir",                b2:"Peur de ne pas exister"});
+sd("jaune+orange", {n:"Planifier sans Habiter",                     tagline:"Votre vie est parfaitement organisée — et vous ne la ressentez pas",                                                     b1:"Alexithymie",                   b2:"Intolérance à l'imprévu"});
+sd("bleu+orange",  {n:"La Réussite sans Joie",               tagline:"Vous réussissez objectivement — et vous ne le ressentez pas",                                         b1:"Évitement émotionnel",          b2:"Besoin de contrôle"});
+sd("indigo+orange",{n:"Performer sans Ressentir",              tagline:"Vous excellez — mais vous ne savez pas si vous êtes satisfait·e",                                                                 b1:"Alexithymie",                   b2:"Perfectionnisme"});
+sd("orange+violet",{n:"L'Absence à Soi",                   tagline:"Vous ne savez pas ce que vous ressentez, ni qui vous êtes",                                                 b1:"Déconnexion émotionnelle",      b2:"Fragmentation identitaire"});
+sd("bleu+vert",    {n:"Tenir pour ne pas Perdre",                  tagline:"Vous avez peur de perdre l'autre, alors vous le contrôlez pour le garder",                   b1:"Peur du rejet",                 b2:"Besoin de contrôle"});
+sd("vert+violet",  {n:"La Fusion Identitaire",                    tagline:"Vous devenez ce que l'autre attend — au point de ne plus savoir qui vous êtes",                                                        b1:"Peur de l'abandon",             b2:"Fragmentation identitaire"});
+sd("bleu+violet",  {n:"Le Pouvoir comme Identité",                 tagline:"Votre rôle est devenu votre seule façon d'exister",                                                  b1:"Besoin de maîtrise",            b2:"Fragmentation identitaire"});
+sd("indigo+violet",{n:"L'Imposteur Existentiel",               tagline:"Vous ne savez pas qui doit être parfait, mais vous exigez la perfection",                                        b1:"Perfectionnisme",               b2:"Crise identitaire"});
 
-// ── TRIADES (16 entrées) ───────────────────────────────────────────────
-const TRIADES_DATA = {
-  jaune_orange_rouge:{name:"Le Corps en Alerte Permanente",tagline:"Votre corps est en état d'alerte, votre esprit cherche des certitudes, vos émotions sont inaccessibles",desc:"Trois systèmes de protection s'activent simultanément, créant une configuration d'anxiété diffuse et chronique. Le masque Rouge maintient le corps en vigilance constante. Le masque Jaune exige une certitude que le corps ne peut pas fournir. Le masque Orange coupe l'accès aux émotions – l'anxiété reste piégée dans le corps, qui devient le seul canal d'expression.",manifestations:["Ruminations sur la santé et le futur qui tournent en boucle, sans aboutir.","Vigilance corporelle intense couplée à une planification excessive des consultations.","Incapacité à ressentir l'anxiété comme une émotion – elle est vécue exclusivement par le corps.","Fatigue chronique difficile à expliquer – l'énergie est consommée par les trois systèmes en permanence."]},
-  bleu_indigo_jaune:{name:"L'Exigence sans Seuil",tagline:"Trois systèmes qui exigent la perfection, la certitude et le contrôle – sans jamais s'arrêter",desc:"Le masque Jaune ne supporte pas l'incertitude. Le masque Bleu a besoin de maîtriser. Le masque Indigo exige des standards élevés. Ensemble, ces trois systèmes créent un fonctionnement où rien n'est jamais assez. La fatigue s'accumule, mais le système ne permet pas de s'arrêter.",manifestations:["Standards rigides appliqués à vous-même et aux autres, dans plusieurs domaines.","Réactions vives face à ce qui dévie du plan ou de la méthode prévue.","Fatigue chronique liée à l'impossibilité de relâcher l'exigence.","Relations professionnelles et personnelles marquées par une tension liée au perfectionnisme et au contrôle."]},
-  indigo_orange_vert:{name:"L'Épuisement Invisible",tagline:"Vous vous effacez, vous ne ressentez plus, et vous exigez la perfection – le tout en silence",desc:"Trois effacements simultanés. Le masque Vert vous fait disparaître dans les relations. Le masque Indigo vous efface parce qu'être visible, c'est être évaluable. Le masque Orange coupe l'accès à ce que vous ressentez, rendant la souffrance invisible même à vos propres yeux.",manifestations:["Sur-adaptation relationnelle permanente – vous disparaissez dans les besoins des autres.","Auto-dépréciation silencieuse, jamais exprimée, souvent inconsciente.","Retrait émotionnel progressif que vous interprétez comme de la sérénité – jusqu'à l'effondrement.","Sentiment de vide masqué par une disponibilité constante aux autres."]},
-  bleu_jaune_rouge:{name:"Le Contrôle Total",tagline:"Corps, futur, relations : trois fronts de surveillance qui ne s'arrêtent jamais",desc:"Votre masque Rouge surveille le corps. Votre masque Jaune anticipe et planifie. Votre masque Bleu contrôle les situations et les personnes. Trois systèmes d'alarme fonctionnent en parallèle, sans jamais se relayer. L'épuisement est structurel, pas conjoncturel.",manifestations:["Vous gérez simultanément votre santé, votre planning, et vos relations avec un niveau de contrôle élevé.","La tension musculaire chronique est le signal le plus fiable : votre corps exprime ce que votre esprit ne peut pas déposer.","L'irritabilité monte rapidement quand un imprévu touche l'un des trois domaines surveillés.","La fatigue est profonde, mais le repos est difficile : une surveillance ne s'arrête jamais complètement."]},
-  indigo_orange_violet:{name:"L'Identité en Suspens",tagline:"Qui suis-je, que dois-je ressentir, et est-ce que ça suffit ?",desc:"Trois absences se conjuguent. Votre masque Violet ne sait pas qui il est. Votre masque Orange ne sait pas ce qu'il ressent. Votre masque Indigo exige que ce « je » flou soit parfait. Le résultat est un épuisement existentiel profond.",manifestations:["Vous avez du mal à répondre à la question « qui suis-je ? » et « qu'est-ce que je ressens ? »","Vos exigences envers vous-même varient selon les jours, les contextes, les personnes.","Vous fonctionnez en pilote automatique – vous faites ce qu'il faut, sans savoir pourquoi.","La question « à quoi ça sert ? » peut surgir brutalement, souvent après une réussite."]},
-  jaune_rouge_vert:{name:"L'Anxiété de Survie Relationnelle",tagline:"Votre corps, votre lien, votre besoin de certitude : trois alarmes qui se répondent",desc:"Votre masque Rouge génère une anxiété corporelle. Votre masque Vert a besoin de connexion pour la traverser. Votre masque Jaune exige de savoir si cette connexion est stable. Les trois systèmes s'alimentent mutuellement.",manifestations:["Une inquiétude de santé et une inquiétude relationnelle peuvent se déclencher l'une l'autre.","Les périodes de solitude sont particulièrement difficiles – le corps ET le lien semblent menacés.","Vous avez besoin d'une double réassurance : sur votre santé ET sur votre relation.","Votre partenaire ou vos proches peuvent s'épuiser à fournir cette réassurance qui ne dure pas."]},
-  bleu_jaune_vert:{name:"Ne Jamais Lâcher le Lien",tagline:"Contrôler l'autre pour ne pas le perdre, vérifier pour ne pas douter, s'épuiser à tenir",desc:"Votre masque Vert a peur de l'abandon. Votre masque Bleu transforme cette peur en contrôle. Votre masque Jaune exige des certitudes sur la solidité du lien. Ensemble, ils créent une surveillance relationnelle constante.",manifestations:["Vous avez besoin de savoir en permanence où est votre partenaire, avec qui, et ce qu'il fait.","La jalousie est vécue comme de l'inquiétude – et l'inquiétude comme de l'amour.","Les menaces perçues (un retard, un silence) déclenchent des réactions intenses.","La relation s'épuise des deux côtés : vous de la surveillance, l'autre de la pression."]},
-  orange_rouge_violet:{name:"Le Corps comme Seul Repère",tagline:"Votre corps est devenu votre seule façon de savoir que vous existez",desc:"Votre masque Rouge surveille le corps. Votre masque Orange coupe l'accès aux émotions. Votre masque Violet cherche une identité sans la trouver. Dans ce vide, le corps devient le seul ancrage. Aller mieux, ce serait perdre ce repère.",manifestations:["Vous présentez des symptômes multiples, variés, sans cause médicale clairement identifiée.","Vous avez consulté de nombreux spécialistes sans diagnostic satisfaisant.","Vous ne savez pas dire ce que vous ressentez émotionnellement – les symptômes physiques sont le seul langage.","L'idée d'aller mieux peut générer une anxiété inattendue : « qui serais-je sans mes symptômes ? »"]},
-  bleu_indigo_orange:{name:"La Réussite sans Joie",tagline:"Vous excellez, vous contrôlez, vous ne ressentez rien – et un jour, ça s'effondre",desc:"Votre masque Bleu a besoin de réussir. Votre masque Indigo exige la perfection. Votre masque Orange empêche de ressentir la satisfaction. Le succès est un désert émotionnel. L'effondrement survient souvent après une réussite majeure.",manifestations:["Vous réussissez objectivement et vous ne le ressentez pas – la réussite est une case cochée.","Vous passez d'un objectif à l'autre sans jamais vous arrêter.","Les relations sont souvent instrumentales – efficaces, sans profondeur émotionnelle.","L'effondrement arrive après un succès – le vide est d'autant plus grand que la réussite est spectaculaire."]},
-  jaune_orange_vert:{name:"La Dépendance Planifiée",tagline:"Vous vous adaptez, vous planifiez, vous êtes là – mais vous n'habitez pas votre vie",desc:"Votre masque Vert s'adapte aux autres pour ne pas être rejeté. Votre masque Jaune structure cette adaptation avec des routines. Votre masque Orange empêche de ressentir ce que cette vie vous coûte. Résultat : une vie parfaitement organisée autour des besoins des autres, sans accès à vos propres besoins.",manifestations:["Vous vous pliez aux attentes des autres de façon automatique, sans même y penser.","Votre vie est bien structurée, mais vous avez du mal à identifier ce qui vous fait plaisir.","Les moments importants passent sans que vous les ressentiez vraiment.","La question « qu'est-ce que tu veux, toi ? » vous laisse sans réponse."]},
-  indigo_jaune_rouge:{name:"Le Perfectionnisme Sanitaire",tagline:"Votre corps doit être parfait, votre santé doit être certaine, et rien n'est jamais assez",desc:"Votre masque Rouge surveille le corps. Votre masque Jaune exige des certitudes sur la santé. Votre masque Indigo impose des standards impossibles. La santé devient un travail à temps plein.",manifestations:["Vous avez des règles alimentaires et de vie très strictes, difficiles à assouplir.","Vous passez beaucoup de temps à vous informer sur la santé, les risques, les préventions.","Un écart dans vos routines déclenche une anxiété immédiate et durable.","La recherche de la santé parfaite produit une fatigue et un stress qui nuisent à la santé."]},
-  bleu_vert_violet:{name:"Fusionner pour Exister",tagline:"Vous disparaissez dans l'autre, et vous contrôlez ce dans quoi vous disparaissez",desc:"Votre masque Vert fusionne avec l'autre par peur de l'abandon. Votre masque Violet trouve dans cette fusion une identité. Votre masque Bleu a besoin de contrôler ce à quoi il est attaché. La séparation est existentiellement menaçante.",manifestations:["Vous avez du mal à fonctionner seul·e – l'autre est nécessaire à votre équilibre.","Vous exercez un contrôle sur la relation que vous justifiez par l'amour ou l'inquiétude.","Votre identité est fortement liée à celle de votre partenaire.","Les deux partenaires sont épuisés par cette dynamique, sans pouvoir en sortir."]},
-  bleu_jaune_orange:{name:"L'Efficacité Froide",tagline:"Vous gérez tout parfaitement – et le lien s'éteint",desc:"Votre masque Bleu contrôle. Votre masque Jaune anticipe. Votre masque Orange coupe les émotions. Ensemble, ils créent un fonctionnement d'une efficacité redoutable – et d'une froideur qui éloigne.",manifestations:["Vous êtes d'une efficacité remarquable dans ce que vous entreprenez.","Vous avez du mal à comprendre pourquoi les gens réagissent émotionnellement à vos décisions.","Vos relations s'appauvrissent avec le temps – les gens s'éloignent sans que vous sachiez pourquoi.","Vous pouvez vous sentir seul·e au milieu de votre réussite."]},
-  rouge_vert_violet:{name:"La Triple Fragilité",tagline:"Votre corps, votre lien, votre identité : trois piliers qui vacillent ensemble",desc:"Votre masque Rouge fragilise le rapport au corps. Votre masque Vert fragilise l'autonomie relationnelle. Votre masque Violet fragilise la stabilité identitaire. Ces trois fragilités se renforcent mutuellement.",manifestations:["Vous avez besoin des autres pour vous sentir en sécurité, physiquement et psychologiquement.","Votre identité est étroitement liée à votre santé et à vos relations.","Les périodes d'autonomie sont anxiogènes – vous préférez être accompagné·e.","Les symptômes physiques, les insécurités relationnelles et les questions identitaires fluctuent ensemble."]},
-  indigo_jaune_violet:{name:"Le Perfectionnisme sans Ancrage",tagline:"Vous exigez la perfection, vous voulez des certitudes, mais vous ne savez pas qui doit être parfait",desc:"Votre masque Indigo impose des standards. Votre masque Jaune exige des certitudes. Votre masque Violet ne fournit pas d'identité stable. Les standards flottent, changeants, parfois contradictoires.",manifestations:["Vous changez régulièrement de direction, de projet, de priorité.","Vous avez des standards élevés mais qui varient selon les jours.","La paralysie décisionnelle est fréquente – chaque choix semble pouvoir être le mauvais.","L'énergie dépensée est importante, mais le sentiment d'accomplissement est rare."]},
-  indigo_vert_violet:{name:"Le Triple Effacement",tagline:"Vous vous effacez par peur du rejet, par peur du jugement, et par absence de repères",desc:"Trois masques travaillent dans le même sens : l'effacement de soi. Votre masque Vert s'efface pour ne pas risquer le rejet. Votre masque Indigo s'efface pour ne pas risquer le jugement. Votre masque Violet ne sait pas ce qui pourrait être montré.",manifestations:["Vous minimisez systématiquement vos réussites – quand on vous complimente, vous répondez par une explication.","Vous avez du mal à dire ce que vous voulez, pensez, ou ressentez vraiment.","Vous vous fondez dans les groupes, les relations, sans prendre de place.","La question « qui suis-je, en dehors du regard des autres ? » peut rester sans réponse très longtemps."]}
-};
+// ══ TRIADES (15 combinaisons validées) ══════════════════════════════════════
+const TRIADES = {};
+function st(keys, data) { TRIADES[[...keys].sort().join("+")] = data; }
+st(["jaune","orange","rouge"],    {n:"Le Corps en Alerte Permanente",       tagline:"Votre corps est en état d'alerte, votre esprit cherche des certitudes, vos émotions sont inaccessibles"});
+st(["bleu","indigo","jaune"],     {n:"L'Exigence sans Seuil",          tagline:"Trois systèmes qui exigent la perfection, la certitude et le contrôle — sans jamais s'arrêter"});
+st(["indigo","orange","vert"],    {n:"L'Épuisement Invisible", tagline:"Vous vous effacez, vous ne ressentez plus, et vous exigez la perfection — le tout en silence"});
+st(["bleu","jaune","rouge"],      {n:"Contrôle Total Corps-Futur-Autres",    tagline:"Tout simultanément : corps, futur ET relations"});
+st(["indigo","orange","violet"],  {n:"L'Identité en Suspens",          tagline:"Qui suis-je et que dois-je ressentir ?"});
+st(["jaune","rouge","vert"],      {n:"Anxiété de Survie Relationnelle",      tagline:"Triple peur : mourir, être abandonné·e, ne pas savoir"});
+st(["bleu","jaune","vert"],       {n:"Surveillance Relationnelle Totale",    tagline:"Je dois savoir, contrôler et ne jamais perdre"});
+st(["orange","rouge","violet"],   {n:"Le Corps comme Seul Repère",     tagline:"Le corps parle ce que je ne ressens pas et ne sais pas qui je suis"});
+st(["bleu","indigo","orange"],    {n:"La Performance sans Ressenti",           tagline:"Réussir, contrôler, ne rien ressentir"});
+st(["jaune","orange","vert"],     {n:"L'Organisation sans Ressenti",    tagline:"Sur-adapter, planifier, ne rien ressentir"});
+st(["indigo","jaune","rouge"],    {n:"Perfectionnisme Sanitaire",             tagline:"Le corps parfait dans un futur certain"});
+st(["bleu","vert","violet"],      {n:"Le Lien comme Identité",       tagline:"Je fusionne et je contrôle pour exister"});
+st(["bleu","jaune","orange"],     {n:"L'Efficacité Froide",      tagline:"L'efficacité prend toute la place — et le lien s'efface progressivement"});
+st(["rouge","vert","violet"],     {n:"La Triple Fragilité",   tagline:"Trois fragilités qui s'alimentent : le corps, le lien, le sens de soi"});
+st(["indigo","jaune","violet"],   {n:"Perfectionnisme Identitaire Flou",     tagline:"Être parfait·e sans savoir qui on est"});
 
 // ── PAN MASQUE V2 ──────────────────────────────────────────────────────
 const PAN_MASQUE_V2 = {
@@ -254,6 +345,13 @@ const NEURO_INTRO = {
   mono:   "Votre masque dominant structure votre perception des situations de façon automatique, en quelques millisecondes, avant que la raison n'intervienne. L'amygdale conditionne très tôt ces réponses de protection (LeDoux, 1996). La bonne nouvelle : ce qui a été appris peut être réappris — avec les bons outils.",
   adaptatif:"Votre système nerveux présente une flexibilité défensive remarquable. Aucun masque ne domine — ce qui indique une capacité de régulation émotionnelle significative. C'est la zone d'équilibre que la méthode V.A.L.E.U.R© appelle présence authentique : agir depuis ce qu'on est, plutôt que depuis ce qu'on craint."
 };
+
+// ── LOOP_STORY, DAILY_LIFE, AUTHENTIC_VOICE ───────────────────────────────
+const LOOP_STORY={"jaune_rouge":"Un signal corporel surgit → Rouge crie au danger → Jaune exige une certitude médicale immédiate → l'incertitude persiste → Rouge s'amplifie → Jaune relance la recherche → la boucle reprend.","orange_vert":"Je m'efface pour préserver le lien (Vert) → mais je ne sais pas ce que je ressens (Orange) → je ne peux donc pas exprimer mes besoins → l'autre ne me comprend pas → je m'efface encore plus.","jaune_vert":"Je veux la sécurité relationnelle (Vert) → mais l'avenir du lien est incertain (Jaune) → j'anticipe l'abandon → je surcontrôle la relation → l'autre se distancie → la peur du rejet s'intensifie.","orange_rouge":"Mon corps envoie un signal → je ne sais pas le lire émotionnellement (Orange) → je l'interprète comme une menace physique (Rouge) → l'inquiétude monte → je cherche une réponse médicale → pas d'émotion traversée.","bleu_jaune":"Je dois tout contrôler (Bleu) ET tout prévoir (Jaune) → la moindre incertitude déclenche les deux masques → je m'épuise à anticiper ET à maîtriser → je délègue de moins en moins → je deviens l'unique point de défaillance.","bleu_indigo":"Je dois faire parfaitement (Indigo) ET tout faire moi-même (Bleu) → impossible de déléguer sans risquer l'imperfection → je m'isole → la charge augmente → la peur de l'échec s'intensifie → nouveau cycle de contrôle total.","indigo_vert":"Si je montre mes failles, on ne m'aimera plus (Vert+Indigo) → je perfectionne pour rester aimable → je ne laisse voir que le meilleur → les relations manquent de profondeur → je me sens seul·e malgré le lien.","indigo_jaune":"Je ne peux pas agir sans certitude (Jaune) → je ne peux pas montrer le résultat imparfait (Indigo) → je n'agis pas → l'angoisse de ne pas avancer monte → je perfectionne dans ma tête → le projet ne démarre jamais.","jaune_violet":"Je ne sais pas qui je suis (Violet) → donc je ne sais pas ce que je veux → donc je ne peux pas décider sans certitude (Jaune) → le vide identitaire se creuse → plus je cherche des certitudes, moins je sais qui décide.","bleu_rouge":"Mon corps s'affole (Rouge) → je veux reprendre le contrôle (Bleu) → je surveille encore plus mon corps → ce que je contrôle se réduit à la vigilance corporelle → l'anxiété se renforce.","rouge_vert":"Je suis malade ou vulnérable (Rouge) → on va me rejeter ou m'abandonner (Vert) → je cache ma vulnérabilité pour rester aimé·e → le masque s'alourdit → la peur du corps et la peur de l'abandon s'alimentent mutuellement.","indigo_rouge":"Mon corps signale quelque chose (Rouge) → si je suis malade, je ne pourrai plus performer (Indigo) → la peur de l'échec amplifie l'anxiété corporelle → je surveille mon corps pour préserver ma performance → la vigilance épuise la performance.","rouge_violet":"Je ne sais plus qui je suis (Violet) → mon corps devient un territoire de certitude fragile → Rouge surveille ce qui reste tangible → la vigilance corporelle devient un ancrage identitaire → perdre la santé = perdre le seul fil connu.","jaune_orange":"Une situation émotionnelle survient → Orange la met à distance → mais Jaune ne supporte pas l'ambiguïté émotionnelle → je cherche à comprendre rationnellement ce que je devrais ressentir → je reste dans le flou → l'inconfort s'accumule.","bleu_orange":"Je dois gérer seul·e (Bleu) → mais je ne sais pas ce que je ressens (Orange) → mes émotions ne sont pas des outils disponibles → je gère à vide → l'épuisement s'installe sans que je comprenne pourquoi.","indigo_orange":"Je dois performer (Indigo) → mais je ne sais pas ce que je ressens (Orange) → mes émotions ne guident pas mes décisions → je perfectionne rationnellement → je manque l'essentiel de ce qui compte vraiment → la performance sonne creux.","orange_violet":"Je ne sais pas qui je suis (Violet) → je ne sais pas ce que je ressens (Orange) → je joue des rôles selon les contextes → sans ancrage émotionnel, l'identité flotte → plus je change de registre, moins je sais qui parle.","bleu_vert":"J'ai besoin d'autonomie totale (Bleu) → mais j'ai besoin du lien (Vert) → dépendre de quelqu'un = perdre le contrôle → je m'isole pour me protéger → la solitude fait surgir la peur du rejet → nouveau cycle de retrait.","vert_violet":"Je joue un rôle pour être aimé·e (Vert) → mais qui suis-je quand je ne joue pas (Violet) → l'authenticité est impossible si l'identité est floue → je m'adapte à l'autre sans savoir ce que je suis → le vide se creuse.","bleu_violet":"Je dois tout contrôler (Bleu) → mais je ne sais pas qui décide vraiment (Violet) → le contrôle devient une tentative désespérée de m'ancrer → plus je contrôle, moins je me sens moi-même → l'identité dépend de la maîtrise.","indigo_violet":"Je dois performer pour exister (Indigo) → mais qui suis-je hors des performances (Violet) → l'identité repose sur les résultats → l'échec est une dissolution de soi → chaque projet devient une question existentielle."};
+
+const DAILY_LIFE={"rouge":{"masked":[{"time":"8h","desc":"Vous consultez vos sensations corporelles avant même de vous lever — un léger serrement à la poitrine retient votre attention."},{"time":"14h","desc":"Une fatigue inhabituelle vous pousse à chercher sur internet ce que ça pourrait signifier. Une heure s'écoule."},{"time":"22h","desc":"Vous ne dormez pas sereinement — votre corps reste en vigilance, guettant le prochain signal."}],"free":[{"time":"8h","desc":"Vous vous réveillez et habitez votre corps comme un allié. Les sensations sont de l'information, pas des menaces."},{"time":"14h","desc":"Une fatigue passe. Vous la reconnaissez, vous la traversez. Vous continuez ce que vous faisiez."},{"time":"22h","desc":"Votre corps se détend progressivement. Vous lui faites confiance pour vous signaler ce qui compte vraiment."}]},"orange":{"masked":[{"time":"9h","desc":"Une collègue vous confie quelque chose de difficile. Vous répondez avec des solutions. Ce qu'elle ressentait reste invisible pour vous."},{"time":"15h","desc":"Quelque chose vous affecte, mais vous ne savez pas quoi exactement. Vous accélérez le rythme pour ne pas y penser."},{"time":"20h","desc":"La soirée se passe en activités — jamais dans le silence. Le calme fait surgir quelque chose que vous ne voulez pas regarder."}],"free":[{"time":"9h","desc":"Vous écoutez votre collègue en laissant quelque chose vous toucher. Votre présence est plus précieuse que vos solutions."},{"time":"15h","desc":"Vous remarquez l'inconfort, vous posez une main sur la poitrine. 'Il y a quelque chose ici.' C'est suffisant pour l'instant."},{"time":"20h","desc":"Vous acceptez 10 minutes de silence. Une émotion se nomme enfin. Elle passe plus vite que prévu."}]},"jaune":{"masked":[{"time":"8h","desc":"Votre journée est planifiée heure par heure. La moindre modification du planning vous contracte."},{"time":"13h","desc":"Un changement de dernière minute arrive. Vous résistez, cherchez à contrôler, relancez une nouvelle planification."},{"time":"21h","desc":"Vous ruminez les incertitudes de la journée. Demain reste trop flou. Vous vous endormez difficilement."}],"free":[{"time":"8h","desc":"Vous planifiez l'essentiel et laissez de la place au reste. L'imprévu n'est plus un ennemi."},{"time":"13h","desc":"Le changement arrive. Vous respirez, vous adaptez. Vous remarquez que vous avez les ressources pour naviguer."},{"time":"21h","desc":"Vous posez les incertitudes. 'Je n'ai pas besoin de tout savoir ce soir.' Vous dormez."}]},"vert":{"masked":[{"time":"8h","desc":"Vous vérifiez votre téléphone pour voir si les gens importants ont répondu. Le silence vous inquiète déjà."},{"time":"16h","desc":"Une conversation se passe différemment de prévu. Vous passez les deux heures suivantes à analyser si vous avez déçu."},{"time":"23h","desc":"Vous relisez vos messages pour voir si vous avez dit quelque chose de mal. L'angoisse d'abandon veille."}],"free":[{"time":"8h","desc":"Vous commencez votre journée pour vous. Votre valeur ne dépend pas de la vitesse de réponse des autres."},{"time":"16h","desc":"La conversation était imparfaite. Vous pouvez vérifier si c'est important — ou laisser passer. Vous choisissez."},{"time":"23h","desc":"Vous posez le téléphone. 'Ce que je suis ne s'effondre pas dans le silence de l'autre.'"}]},"bleu":{"masked":[{"time":"8h","desc":"Vous vérifiez le travail délégué hier. Vous refaites une partie. La confiance s'arrête là où le contrôle commence."},{"time":"15h","desc":"En réunion, une décision est prise sans vous consulter. Votre résistance intérieure est immédiate."},{"time":"21h","desc":"Vous ne parvenez pas à vous reposer — trop de choses sont encore 'ouvertes'. Vous revenez au travail."}],"free":[{"time":"8h","desc":"Le travail délégué est rendu. Il est différent de ce que vous auriez fait. C'est acceptable — et parfois meilleur."},{"time":"15h","desc":"La décision est prise. Vous exprimez votre point de vue et vous vous adaptez. Influencer, pas contrôler."},{"time":"21h","desc":"Vous posez les dossiers ouverts. Votre sécurité ne dépend pas de tout maîtriser ce soir."}]},"indigo":{"masked":[{"time":"9h","desc":"Vous perfectionnez un email depuis 45 minutes. La peur du jugement tient votre envoi en otage."},{"time":"14h","desc":"Vous recevez un feedback constructif. Votre première réaction : remise en cause globale de votre valeur."},{"time":"22h","desc":"Vous rejouez la présentation de la journée. Ce qui s'est bien passé ne compte pas. Ce qui aurait pu être mieux envahit tout."}],"free":[{"time":"9h","desc":"L'email est assez bon. Vous envoyez. La qualité n'est pas la perfection — c'est l'alignement avec l'intention."},{"time":"14h","desc":"Le feedback porte sur le travail, pas sur vous. Vous prenez ce qui est utile et laissez le reste."},{"time":"22h","desc":"Vous notez 1 chose que vous avez bien faite aujourd'hui. Vous la laissez exister. Elle compte."}]},"violet":{"masked":[{"time":"9h","desc":"Vous vous présentez différemment selon les contextes — et vous ne savez plus bien qui vous êtes en dehors des rôles."},{"time":"14h","desc":"Quelqu'un vous demande ce que vous voulez vraiment. Le vide intérieur s'ouvre. Vous répondez par ce qu'on attend."},{"time":"20h","desc":"Seul·e, un inconfort surgit — comme si le silence révélait une question sans réponse : qui suis-je vraiment ?"}],"free":[{"time":"9h","desc":"Vous portez les mêmes valeurs dans tous les contextes, même si l'expression change. Vous êtes reconnaissable à vous-même."},{"time":"14h","desc":"Vous répondez avec ce qui est vrai maintenant, même si ce n'est pas complet. Votre vérité vaut quelque chose."},{"time":"20h","desc":"Le silence est habitable. Vous avez un fil conducteur — et vous n'avez pas besoin de tout savoir sur vous ce soir."}]}};
+
+const AUTHENTIC_VOICE={"rouge":"Mon corps est un allié. Je peux lui faire confiance sans le surveiller en permanence.","orange":"Mes émotions sont une intelligence précieuse — pas un danger à contenir.","jaune":"Je n'ai pas besoin de tout savoir pour avancer. L'incertitude est un espace d'élan, pas de danger.","vert":"Je suis aimable tel·le que je suis — et je peux être moi-même dans mes relations.","bleu":"Je peux lâcher la maîtrise sans perdre la sécurité. Ma confiance ne dépend pas du contrôle total.","indigo":"Ma valeur n'est pas dans mes performances. Elle est antérieure à toute réalisation.","violet":"Je peux évoluer sans me perdre. Je suis le fil constant à travers tous mes changements."};
 
 // ── DETECT PROFILE ─────────────────────────────────────────────────────
 const TIEBREAK_ORDER = ['jaune','rouge','indigo','vert','bleu','orange','violet'];
@@ -400,13 +498,13 @@ function getLevel(pct) {
   return 'Résiduel';
 }
 
-function getDyade(a,b) {
-  if (!a||!b) return null;
-  return DYADES_DATA[[a,b].sort().join('_')]||null;
+function getDyade(a, b) {
+  if (!a || !b) return null;
+  return DYADES[[a, b].sort().join("+")] || null;
 }
-
 function getTriade(masks) {
-  return TRIADES_DATA[[...masks].sort().join('_')]||null;
+  if (!masks || masks.length < 3) return null;
+  return TRIADES[[...masks].sort().join("+")] || null;
 }
 
 async function saveToNeon(pct, prof, email, prenom) {
@@ -557,6 +655,119 @@ function buildPortraitBody(prof, pct) {
     ${sec&&dd?`<div class="section-label">Influence de votre masque secondaire ${MASK_META[sec].emoji} ${MASK_META[sec].name}</div><div class="secondary-block">${dd.tagline}</div>`:''}`;
 }
 
+
+// ── BUILD PORTRAIT BODY V2 (CONTENT-driven) ───────────────────────────────
+function buildPortraitBodyV2(prof, pct) {
+  const dom  = prof.masks[0];
+  const sec  = prof.secondary || null;
+  const meta = MASK_META[dom];
+  const C    = CONTENT[dom];
+  const P    = PLAYLIST[dom];
+  const dd   = sec ? getDyade(dom, sec) : null;
+  const td   = (prof.type === "triade") ? getTriade(prof.masks) : null;
+
+  if (prof.type === "adaptatif") {
+    return `<div class="portrait-headline">Profil Adaptatif</div>
+      <div class="portrait-tagline">Aucun masque ne domine — c'est votre équilibre</div>
+      <div class="portrait-desc">${C?.mirror || P?.bridge || ""}</div>`;
+  }
+
+  if (prof.type === "pan") {
+    return `<div class="portrait-headline">${PAN_MASQUE_V2.nom}</div>
+      <div class="portrait-tagline">${PAN_MASQUE_V2.tagline}</div>
+      <div class="portrait-desc">${PAN_MASQUE_V2.desc}</div>
+      <div class="section-label">Le cycle qui s'entretient</div>
+      <div class="cycle-grid">${PAN_MASQUE_V2.cycle.map((s,i)=>`<div class="cycle-step"><div class="step-n">${i+1}</div><p>${s}</p></div>`).join("")}</div>
+      <div class="section-label">Ce que ça ressemble au quotidien</div>
+      <div class="behaviors-list">${PAN_MASQUE_V2.behaviors.map(b=>`<div class="behavior-item">${b}</div>`).join("")}</div>`;
+  }
+
+  const mirrorHtml = C?.mirror ? `
+    <div class="portrait-mirror">${C.mirror}</div>` : `
+    <div class="portrait-mirror">${P?.bridge || ""}</div>`;
+
+  const voiceHtml = C?.voice ? `
+    <div class="portrait-voice">
+      <div class="voice-label">Ce que ce masque répète intérieurement</div>
+      <blockquote class="voice-quote">${C.voice.replace(/\n/g,"<br>")}</blockquote>
+    </div>` : "";
+
+  const autVoice = AUTHENTIC_VOICE?.[dom];
+  const autVoiceHtml = autVoice ? `
+    <div class="authentic-voice-block">
+      <div class="voice-label">Ce que vous pourriez vous dire à la place</div>
+      <p class="authentic-voice-text">${autVoice}</p>
+    </div>` : "";
+
+  const coutsHtml = C?.couts?.length ? `
+    <div class="section-label">Ce que ce masque vous coûte</div>
+    <div class="behaviors-list">${C.couts.map(c=>`<div class="behavior-item">${c}</div>`).join("")}</div>` : "";
+
+  const dailyLife = DAILY_LIFE?.[dom];
+  const dailyHtml = dailyLife ? `
+    <div class="section-label">Une journée masquée · une journée libre</div>
+    <div class="daily-grid">
+      <div class="daily-col daily-masked">
+        <div class="daily-col-label">Avec le masque</div>
+        ${dailyLife.masked.map(e=>`<div class="daily-item"><span class="daily-time">${e.time}</span><span class="daily-desc">${e.desc}</span></div>`).join("")}
+      </div>
+      <div class="daily-col daily-free">
+        <div class="daily-col-label">Libéré·e du masque</div>
+        ${dailyLife.free.map(e=>`<div class="daily-item"><span class="daily-time">${e.time}</span><span class="daily-desc">${e.desc}</span></div>`).join("")}
+      </div>
+    </div>` : "";
+
+  const loopKey = sec ? [dom, sec].sort().join("_") : null;
+  const loop    = loopKey ? LOOP_STORY?.[loopKey] : null;
+  const loopHtml = (loop && sec && (pct[sec] || 0) >= 55) ? `
+    <div class="dyade-loop-section">
+      <div class="section-label">Quand les deux masques s'activent ensemble${dd ? ` — ${dd.n}` : ""}</div>
+      <div class="dyade-loop-box">
+        ${dd ? `<div class="loop-biais"><span class="biais-tag">${dd.b1}</span><span class="biais-sep">×</span><span class="biais-tag">${dd.b2}</span></div>` : ""}
+        <p class="loop-story">${loop}</p>
+        <div class="loop-secondary-mirror">
+          <span class="secondary-label">${MASK_META[sec]?.emoji || ""} ${MASK_META[sec]?.name || ""} ajoute :</span>
+          <em>${PLAYLIST[sec]?.thoughts?.[0] || ""}</em>
+        </div>
+      </div>
+    </div>` : "";
+
+  const triadeHtml = (prof.type === "triade" && td) ? `
+    <div class="triade-label-section">
+      <div class="section-label">Configuration à trois dimensions</div>
+      <div class="triade-name-box">
+        <span class="triade-name">${td.n}</span>
+        <p class="triade-note">Trois alarmes actives simultanément. Chacune conserve sa logique propre — elles peuvent s'amplifier mutuellement dans les moments de stress intense.</p>
+        <div class="triade-masks">${prof.masks.map(m=>`<span class="triade-mask-chip" style="border-color:${MASK_META[m].color}">${MASK_META[m].emoji} ${MASK_META[m].name}</span>`).join("")}</div>
+      </div>
+    </div>` : "";
+
+  if (dom === "violet" && !sec) {
+    return `<div class="portrait-headline">${meta.emoji} ${meta.name}</div>
+      <div class="portrait-tagline">${VIOLET_MONO.tagline}</div>
+      ${mirrorHtml}
+      <div class="section-label">Comment il s'est construit</div>
+      <div class="portrait-desc">${VIOLET_MONO.origine}</div>
+      <div class="section-label">Ce que ça vous empêche de vivre</div>
+      <div class="portrait-desc">${VIOLET_MONO.impacts}</div>
+      <div class="section-label">Le cycle qui se perpétue</div>
+      <div class="cycle-grid">${VIOLET_MONO.cycle.map((s,i)=>`<div class="cycle-step"><div class="step-n">${i+1}</div><p>${s}</p></div>`).join("")}</div>
+      <div class="section-label">Ce que ça ressemble, de l'intérieur</div>
+      <div class="behaviors-list">${VIOLET_MONO.behaviors.map(b=>`<div class="behavior-item">${b}</div>`).join("")}</div>
+      ${autVoiceHtml}`;
+  }
+
+  return `<div class="portrait-headline">${meta.emoji} ${meta.name}</div>
+    <div class="portrait-tagline">${C?.descriptor || `Peur ${meta.peur}`}</div>
+    ${mirrorHtml}
+    <div class="portrait-bridge">${C?.prison || P?.bridge || ""}</div>
+    ${voiceHtml}
+    ${coutsHtml}
+    ${dailyHtml}
+    ${loopHtml}
+    ${triadeHtml}
+    ${autVoiceHtml}`;
+}
 // ── BUILD FORCE ────────────────────────────────────────────────────────
 function buildForce(prof) {
   const dom=prof.masks[0], sec=prof.secondary||null;
@@ -605,7 +816,7 @@ function buildPortrait(prof, pct) {
     ${buildSPA(spa)}
     ${buildNeuroIntro(prof)}
     <div>${buildProgressionSection(pct)}</div>
-    <div class="portrait-body">${buildPortraitBody(prof,pct)}</div>
+    <div class="portrait-body">${buildPortraitBodyV2(prof,pct)}</div>
     <div class="force-section">
       <div class="section-label">Ce qui peut se libérer en vous</div>
       ${buildForce(prof)}
@@ -643,24 +854,31 @@ function buildCard(pct, prof) {
   const dd=sec?getDyade(dom,sec):null;
   const td=prof.type==='triade'?getTriade(prof.masks):null;
 
-  let revelationLine='', symptome='', liberation='', configName='';
-  if (prof.type==='pan') {
-    revelationLine=PAN_MASQUE_V2.tagline; configName=PAN_MASQUE_V2.nom;
-    symptome=PAN_MASQUE_V2.symptome_universel; liberation=PAN_MASQUE_V2.liberation;
-  } else if (td) {
-    revelationLine=td.tagline; configName=td.name;
-    const m0=td.manifestations[0]||''; symptome=m0.length>88?m0.slice(0,85)+'…':m0;
-    liberation=FORCES_LIBEREES[dom]?.titre||'';
-  } else if (dd && sec) {
-    revelationLine=dd.tagline; configName=dd.name;
-    const b0=dd.behaviors[0]||''; symptome=b0.length>88?b0.slice(0,85)+'…':b0;
-    liberation=FORCES_LIBEREES[dom]?.titre||'';
+  let revelationLine = "", symptome = "", liberation = "", configName = "";
+
+  if (prof.type === "pan") {
+    revelationLine = PAN_MASQUE_V2.tagline;
+    configName     = PAN_MASQUE_V2.nom;
+    symptome       = PAN_MASQUE_V2.symptome_universel;
+    liberation     = PAN_MASQUE_V2.liberation;
+  } else if (prof.type === "triade" && td) {
+    revelationLine = td.tagline || td.n;
+    configName     = td.n;
+    symptome       = PLAYLIST[dom]?.thoughts?.[0] || "";
+    liberation     = FORCES_LIBEREES[dom]?.titre || "";
+  } else if (dd && sec && (pct[sec] || 0) >= 55) {
+    revelationLine = dd.tagline || dd.n;
+    configName     = `${dd.n} — ${dd.b1} × ${dd.b2}`;
+    symptome       = PLAYLIST[dom]?.thoughts?.[0] || "";
+    liberation     = FORCES_LIBEREES[dom]?.titre || "";
   } else {
-    const ms=CARD_SYMPTOMES_MONO[dom]||{};
-    symptome=ms.symptome||''; liberation=ms.liberation||'';
-    revelationLine=FORCES_LIBEREES[dom]?.titre||'';
+    revelationLine = CONTENT[dom]?.descriptor || FORCES_LIBEREES[dom]?.titre || PLAYLIST[dom]?.thoughts?.[0] || "";
+    configName     = MASK_META[dom]?.name || "";
+    const cs       = CARD_SYMPTOMES_MONO[dom] || {};
+    symptome       = cs.symptome || "";
+    liberation     = cs.liberation || "";
   }
-  if (revelationLine.length>90) revelationLine=revelationLine.slice(0,87)+'…';
+  if (revelationLine.length > 90) revelationLine = revelationLine.slice(0, 87) + "…";
   const thought=PLAYLIST[dom]?.thoughts[0]||'';
   const level=getLevel(pct[dom]||0);
 
