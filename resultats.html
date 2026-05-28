@@ -255,9 +255,6 @@ const NEURO_INTRO = {
   adaptatif:"Votre système nerveux présente une flexibilité défensive remarquable. Aucun masque ne domine — ce qui indique une capacité de régulation émotionnelle significative. C'est la zone d'équilibre que la méthode V.A.L.E.U.R© appelle présence authentique : agir depuis ce qu'on est, plutôt que depuis ce qu'on craint."
 };
 
-// ── ALGORITHME DÉTECTION ───────────────────────────────────────────────
-const TIEBREAK_ORDER = ['jaune','rouge','indigo','vert','bleu','orange','violet'];
-
 // ── DETECT PROFILE ─────────────────────────────────────────────────────
 const TIEBREAK_ORDER = ['jaune','rouge','indigo','vert','bleu','orange','violet'];
 
@@ -389,6 +386,46 @@ function detectProfile(pct) {
 
   // Cas résiduel (fallback)
   return res;
+}
+function computeSPA(sc) {
+  const t = MASKS.reduce((s,m)=>s+(sc[m]||0),0);
+  return Math.max(0,Math.min(100,Math.round(100-t/7)));
+}
+
+function getLevel(pct) {
+  if (pct>=85) return 'Dominant';
+  if (pct>=70) return 'Élevé';
+  if (pct>=50) return 'Significatif';
+  if (pct>=30) return 'Modéré';
+  return 'Résiduel';
+}
+
+function getDyade(a,b) {
+  if (!a||!b) return null;
+  return DYADES_DATA[[a,b].sort().join('_')]||null;
+}
+
+function getTriade(masks) {
+  return TRIADES_DATA[[...masks].sort().join('_')]||null;
+}
+
+async function saveToNeon(pct, prof, email, prenom) {
+  try {
+    await fetch('https://valeur-backend-api.vercel.app/api/save-profile', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        email:email||null,
+        prenom:prenom||null,
+        scores:pct,
+        dominant:prof.masks[0],
+        secondary:prof.secondary||prof.masks[1]||null,
+        profil_type:prof.type,
+        profil_subtype:prof.subtype||null,
+        spa:computeSPA(pct),
+        created_at:new Date().toISOString()
+      })
+    });
+  } catch(e) { console.log('Save failed silently:',e); }
 }
 // ── BUILD THOUGHTS ─────────────────────────────────────────────────────
 function buildThoughts(prof) {
