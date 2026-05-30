@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -25,7 +26,7 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--ivory);font-family:var(--fb);font-weight:300;color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
-a{color:var(--gold);text-decoration:none}
+a{color:var(--ink-2);text-decoration:none}
 
 /* ── CHROME ── */
 .chroma-bar{position:fixed;top:0;left:0;right:0;height:3px;background:var(--chroma);z-index:1000}
@@ -35,8 +36,8 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 .nav-brand{display:flex;align-items:center;gap:10px}
 .nav-logo-img{width:38px;height:38px;object-fit:contain;mix-blend-mode:multiply;flex-shrink:0}
 .nav-logo-text{font-family:var(--fs);font-size:15px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--ink)}
-.nav-back{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-4);transition:color .2s}
-.nav-back:hover{color:var(--gold)}
+.nav-back{font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:#3D3830;transition:color .2s}
+.nav-back:hover{color:#C9A84C}
 
 /* ── LOADER ── */
 #page-loader{position:fixed;inset:0;background:var(--ivory);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity .6s ease}
@@ -50,18 +51,18 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 #portrait-wrap{min-height:200px}
 
 /* ── EYEBROW / DIVIDER ── */
-.section-eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--fb);font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.section-eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--fb);font-size:13px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#1A1814;margin-bottom:20px}
 .section-eyebrow::before,.section-eyebrow::after{content:'';flex:1;height:1px;background:var(--gold-line)}
-.section-label{font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);opacity:.8;margin:32px 0 16px}
+.section-label{font-size:13px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#1A1814;margin:32px 0 16px}
 .section-divider{height:1px;background:var(--ivory-3);margin:40px 0}
 
 /* ── HERO ── */
 .hero-section{position:relative;padding:48px 0 56px;text-align:center}
 .hero-watermark{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(480px,90vw);height:auto;opacity:.09;pointer-events:none;z-index:0;mix-blend-mode:multiply}
 .hero-content{position:relative;z-index:1}
-.hero-eyebrow{font-size:10px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:.7}
-.spa-score-hint{font-family:var(--fb);font-size:14px;color:var(--ink-4);margin-top:20px;letter-spacing:.5px}
-.spa-score-hint strong{color:var(--gold);font-weight:500}
+.hero-eyebrow{font-size:13px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#1A1814;margin-bottom:24px}
+.spa-score-hint{font-family:var(--fb);font-size:14px;color:#3D3830;margin-top:20px;letter-spacing:.5px}
+.spa-score-hint strong{color:#1A1814;font-weight:600}
 
 /* ── THOUGHTS ── */
 .thoughts-section{margin-bottom:28px}
@@ -71,11 +72,11 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 /* ── BADGE ── */
 .badge-config{display:inline-flex;align-items:center;flex-wrap:wrap;gap:10px;padding:10px 16px 10px 10px;background:var(--ivory-card);border:1.5px solid var(--gold-line);border-radius:40px;box-shadow:var(--sh-gold);margin-bottom:16px;justify-content:center}
 .badge-mask{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:40px;font-size:13px;font-weight:500;color:#fff}
-.badge-plus{font-size:18px;color:var(--gold);font-weight:300}
-.badge-label{font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-4);padding:4px 10px;border:1px solid var(--ivory-3);border-radius:40px}
-.badge-faux-self{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#7A3594;padding:4px 10px;border:1px solid rgba(122,53,148,.25);border-radius:40px;background:rgba(122,53,148,.06)}
-.badge-secondary{font-size:12px;color:var(--ink-3);padding:4px 10px;border:1px solid var(--ivory-3);border-radius:40px}
-.profile-subtype{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-5);margin:8px 0 16px}
+.badge-plus{font-size:18px;color:#3D3830;font-weight:300}
+.badge-label{font-size:13px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#3D3830;padding:4px 10px;border:1px solid var(--ivory-3);border-radius:40px}
+.badge-faux-self{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#7A3594;padding:4px 10px;border:1px solid rgba(122,53,148,.25);border-radius:40px;background:rgba(122,53,148,.06)}
+.badge-secondary{font-size:13px;color:var(--ink-3);padding:4px 10px;border:1px solid var(--ivory-3);border-radius:40px}
+.profile-subtype{font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#5A534A;margin:8px 0 16px}
 
 /* ── SPA ── */
 .spa-section{background:linear-gradient(135deg,var(--gold-glow),var(--ivory-card));border:1px solid var(--gold-line);border-radius:var(--r);padding:32px;margin-bottom:40px;box-shadow:var(--sh-gold)}
@@ -83,10 +84,10 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 .spa-arc{position:relative;width:120px;height:120px;flex-shrink:0}
 .spa-arc svg{width:100%;height:100%;transform:rotate(-90deg)}
 .spa-number{position:absolute;top:50%;left:50%;transform:translate(-50%,-52%);font-family:var(--fs);font-size:32px;font-weight:300;color:var(--ink)}
-.spa-lbl{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.spa-lbl{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#6B4F10}
 .spa-info{flex:1}
 .spa-desc{font-family:var(--fs);font-style:italic;font-size:18px;line-height:1.65;color:var(--ink-3);margin-bottom:8px}
-.spa-sub{font-size:14px;line-height:1.7;color:var(--ink-4)}
+.spa-sub{font-size:14px;line-height:1.7;color:#3D3830}
 
 /* ── SCORES (barres verticales) ── */
 .scores-section{margin-bottom:32px}
@@ -95,7 +96,7 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 .score-bar-wrap{width:100%;height:100px;background:var(--ivory-3);border-radius:4px 4px 0 0;overflow:hidden;display:flex;align-items:flex-end}
 .score-bar-fill{width:100%;height:0%;border-radius:4px 4px 0 0;transition:height 1.2s cubic-bezier(.16,1,.3,1)}
 .score-emoji{font-size:16px}
-.score-pct{font-size:11px;font-weight:500;color:var(--ink-4);font-family:var(--fs)}
+.score-pct{font-size:14px;font-weight:500;color:#5A534A;font-family:var(--fs)}
 
 /* ── PROGRESSION ── */
 .scores-progression-section{margin-bottom:40px}
@@ -103,68 +104,69 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 .prog-item{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--ivory-card);border-radius:var(--r-sm);border:1px solid var(--ivory-3);border-left:3px solid transparent;transition:transform .15s,box-shadow .15s}
 .prog-item:hover{transform:translateX(4px);box-shadow:var(--sh-card)}
 .prog-item.prog-dominant{border-left-color:var(--mask-color,var(--gold));background:linear-gradient(135deg,var(--mask-soft,var(--gold-glow)) 0%,var(--ivory-card) 100%)}
-.prog-rank{font-size:11px;color:var(--ink-5);font-weight:600;width:18px;text-align:center;flex-shrink:0}
+.prog-rank{font-size:14px;color:#5A534A;font-weight:600;width:18px;text-align:center;flex-shrink:0}
 .prog-emoji{font-size:20px;flex-shrink:0}
 .prog-bar-wrap{flex:1;min-width:0}
 .prog-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;flex-wrap:wrap;gap:6px}
 .prog-name{font-size:13px;font-weight:500;color:var(--ink)}
-.prog-badge{font-size:10px;letter-spacing:1px;padding:3px 10px;border-radius:20px;font-weight:600;text-transform:uppercase}
-.prog-badge-élevé,.prog-badge-elevé{background:rgba(201,168,76,.12);color:#A8873A}
-.prog-badge-significatif{background:rgba(92,50,128,.10);color:#5C3280}
-.prog-badge-modéré{background:rgba(45,122,79,.10);color:#2D7A4F}
-.prog-badge-résiduel{background:var(--ivory-3);color:var(--ink-4)}
+.prog-badge{font-size:11px;letter-spacing:1px;padding:3px 10px;border-radius:20px;font-weight:700;text-transform:uppercase}
+.prog-badge-élevé,.prog-badge-elevé{background:rgba(168,135,58,.18);color:#6B4F10}
+.prog-badge-significatif{background:rgba(92,50,128,.14);color:#3B1F52}
+.prog-badge-modéré{background:rgba(45,122,79,.14);color:#174D30}
+.prog-badge-résiduel{background:#E8E1D4;color:#3D3830}
+.prog-badge-dominant{background:rgba(168,135,58,.22);color:#5A3D08;font-size:11px;font-weight:700}
 .prog-track{height:8px;background:var(--ivory-3);border-radius:4px;overflow:hidden;margin:6px 0}
 .prog-fill{height:100%;width:0%;border-radius:4px;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
-.prog-desc{font-size:11px;color:var(--ink-5);margin-top:4px;font-style:italic}
+.prog-desc{font-size:14px;color:#3D3830;margin-top:4px;font-style:italic}
 
 /* ── NEURO ── */
 .neuro-intro{margin-bottom:40px;padding:24px 28px;background:var(--ivory-2);border-left:3px solid var(--gold);border-radius:0 var(--r) var(--r) 0}
-.neuro-intro p{font-family:var(--fs);font-style:italic;font-size:16px;line-height:1.9;color:var(--ink-3)}
+.neuro-intro p{font-family:var(--fs);font-style:italic;font-size:17px;line-height:1.85;color:var(--ink-3)}
 .neuro-intro strong{color:var(--ink);font-style:normal}
 
 /* ── PORTRAIT ── */
 .portrait-body{margin-bottom:40px}
 .portrait-headline{font-family:var(--fs);font-size:clamp(26px,4.5vw,42px);font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:12px}
-.portrait-tagline{font-family:var(--fs);font-style:italic;font-size:clamp(16px,2.2vw,21px);color:var(--gold);margin-bottom:28px;line-height:1.4}
-.portrait-desc{font-size:16px;line-height:1.9;color:var(--ink-3);margin-bottom:28px}
-.portrait-bridge{font-size:16px;line-height:1.9;color:var(--ink-3);margin-bottom:24px}
+.portrait-tagline{font-family:var(--fs);font-style:italic;font-size:clamp(18px,2.5vw,24px);color:#3D3830;margin-bottom:28px;line-height:1.4}
+.portrait-desc{font-size:17px;line-height:1.85;color:var(--ink-3);margin-bottom:28px}
+.portrait-bridge{font-size:17px;line-height:1.85;color:var(--ink-3);margin-bottom:24px}
 .portrait-mirror{font-family:var(--fs);font-style:italic;font-size:clamp(20px,3vw,26px);line-height:1.6;color:var(--ink);background:var(--ivory-card);border-left:4px solid var(--gold);padding:28px 36px;border-radius:0 var(--r) var(--r) 0;box-shadow:var(--sh-card);position:relative;margin-bottom:24px}
 .portrait-mirror::before{content:'\201C';font-family:var(--fs);font-size:120px;color:var(--gold);opacity:.08;position:absolute;top:-20px;left:16px;line-height:1;pointer-events:none}
 .portrait-voice{background:linear-gradient(135deg,var(--ivory-2),var(--ivory-card));border:1px solid var(--ivory-3);border-radius:var(--r);padding:24px 28px;margin:28px 0}
-.voice-label{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:.8;margin-bottom:12px}
+.voice-label{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#1A1814;margin-bottom:12px}
 .voice-quote{font-family:var(--fs);font-style:italic;font-size:17px;line-height:1.75;color:var(--ink-2)}
 .authentic-voice-block{background:linear-gradient(135deg,rgba(201,168,76,.10) 0%,rgba(201,168,76,.04) 100%);border:1px solid var(--gold-line);border-radius:var(--r);padding:24px 28px;margin-top:32px}
-.authentic-voice-text{font-family:var(--fs);font-style:italic;font-size:19px;line-height:1.65;color:var(--gold);margin:8px 0 0}
+.authentic-voice-text{font-family:var(--fs);font-style:italic;font-size:19px;line-height:1.65;color:#1A1814;margin:8px 0 0}
 
 /* ── BEHAVIORS / CYCLE ── */
 .behaviors-list{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
-.behavior-item{background:var(--ivory-2);border:1px solid var(--ivory-3);border-radius:40px;padding:10px 20px;font-size:13px;color:var(--ink-3);transition:border-color .2s,background .2s;line-height:1.5}
+.behavior-item{background:var(--ivory-2);border:1px solid var(--ivory-3);border-radius:40px;padding:10px 20px;font-size:17px;color:var(--ink-3);transition:border-color .2s,background .2s;line-height:1.85}
 .behavior-item:hover{border-color:var(--gold-line);background:var(--gold-glow)}
 .cycle-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:28px}
 .cycle-step{background:var(--ivory-card);border:1px solid var(--ivory-3);border-radius:var(--r-sm);padding:16px}
-.step-n{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--gold-light);color:var(--gold);font-size:12px;font-weight:600;margin-bottom:8px}
-.cycle-step p{font-size:13px;line-height:1.65;color:var(--ink-3)}
+.step-n{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--gold-light);color:#6B4F10;font-size:13px;font-weight:600;margin-bottom:8px}
+.cycle-step p{font-size:14px;line-height:1.65;color:var(--ink-3)}
 
 /* ── DAILY GRID ── */
 .daily-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-card);margin-bottom:28px}
 .daily-col{padding:24px}
 .daily-masked{background:var(--ivory-2)}
 .daily-free{background:linear-gradient(135deg,rgba(201,168,76,.06),var(--ivory-card))}
-.daily-col-label{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
-.daily-masked .daily-col-label{color:var(--ink-4)}
-.daily-free .daily-col-label{color:var(--gold)}
-.daily-item{display:flex;gap:12px;margin-bottom:14px;font-size:14px;line-height:1.6}
-.daily-time{font-family:var(--fs);font-size:13px;color:var(--gold);flex-shrink:0;font-weight:300;padding-top:1px}
+.daily-col-label{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+.daily-masked .daily-col-label{color:#3D3830}
+.daily-free .daily-col-label{color:#1A1814}
+.daily-item{display:flex;gap:12px;margin-bottom:14px;font-size:17px;line-height:1.85}
+.daily-time{font-family:var(--fs);font-size:14px;color:#3D3830;flex-shrink:0;font-weight:300;padding-top:1px}
 .daily-desc{color:var(--ink-3)}
 
 /* ── DYADE LOOP ── */
 .dyade-loop-section{margin:32px 0}
 .dyade-loop-box{background:var(--ivory-card);border-radius:var(--r);border:1px solid var(--ivory-3);padding:20px 24px;box-shadow:var(--sh-card)}
 .loop-biais{display:flex;align-items:center;gap:8px;margin-bottom:14px;flex-wrap:wrap}
-.biais-tag{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);padding:4px 10px;border:1px solid var(--gold-line);border-radius:20px;background:var(--gold-light)}
-.biais-sep{color:var(--ink-4);font-size:14px}
-.loop-story{font-size:14px;line-height:1.75;color:var(--ink-3);margin-bottom:14px;padding:12px 16px;background:var(--ivory-2);border-radius:var(--r-sm);border-left:2px solid var(--gold-line)}
-.loop-secondary-mirror{font-size:13px;color:var(--ink-4);font-style:italic}
+.biais-tag{font-size:13px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#1A1814;padding:4px 10px;border:1px solid var(--gold-line);border-radius:20px;background:var(--gold-light)}
+.biais-sep{color:#3D3830;font-size:14px}
+.loop-story{font-size:17px;line-height:1.85;color:var(--ink-3);margin-bottom:14px;padding:12px 16px;background:var(--ivory-2);border-radius:var(--r-sm);border-left:2px solid var(--gold-line)}
+.loop-secondary-mirror{font-size:14px;color:#3D3830;font-style:italic}
 .secondary-label{font-style:normal;color:var(--ink-3)}
 
 /* ── TRIADE ── */
@@ -173,14 +175,14 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 .triade-name{display:block;font-family:var(--fs);font-size:22px;color:var(--ink);margin-bottom:8px}
 .triade-note{font-size:14px;line-height:1.7;color:var(--ink-3);margin-bottom:14px}
 .triade-masks{display:flex;gap:8px;flex-wrap:wrap}
-.triade-mask-chip{font-size:12px;padding:4px 12px;border-radius:20px;border-width:1.5px;border-style:solid;color:var(--ink-2);background:var(--ivory)}
+.triade-mask-chip{font-size:13px;padding:4px 12px;border-radius:20px;border-width:1.5px;border-style:solid;color:var(--ink-2);background:var(--ivory)}
 
 /* ── ORIGIN ── */
 .origin-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
 @media(max-width:480px){.origin-grid{grid-template-columns:1fr}}
 .origin-card{padding:16px;border-radius:var(--r-sm);border-left:3px solid;background:var(--ivory-2)}
 .origin-name{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px}
-.origin-peur{font-size:12px;color:var(--ink-4);font-style:italic}
+.origin-peur{font-size:14px;color:#3D3830;font-style:italic}
 .secondary-block{background:var(--ivory-2);border:1px solid var(--ivory-3);border-radius:var(--r-sm);padding:14px 18px;font-size:14px;line-height:1.7;color:var(--ink-3);font-style:italic;margin-bottom:20px}
 
 /* ── FORCE ── */
@@ -188,15 +190,15 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 .force-logo-wm{position:absolute;bottom:-30px;right:-20px;width:280px;height:280px;object-fit:contain;opacity:.08;pointer-events:none;z-index:0;filter:brightness(1.8) saturate(.6)}
 .force-section .section-eyebrow{color:rgba(201,168,76,.8);margin-bottom:16px}
 .force-section .section-eyebrow::before,.force-section .section-eyebrow::after{background:rgba(201,168,76,.2)}
-.force-title{font-family:var(--fs);font-size:clamp(22px,3vw,30px);font-weight:400;color:var(--gold);margin-bottom:16px;line-height:1.25;position:relative;z-index:1}
+.force-title{font-family:var(--fs);font-size:clamp(22px,3vw,30px);font-weight:400;color:#C9A84C;margin-bottom:16px;line-height:1.25;position:relative;z-index:1}
 .force-text{font-size:16px;line-height:1.85;color:rgba(254,251,246,.72);position:relative;z-index:1}
-.force-ornament{font-family:var(--fs);font-size:80px;color:var(--gold);opacity:.06;position:absolute;bottom:-10px;right:24px;pointer-events:none;line-height:1}
+.force-ornament{font-family:var(--fs);font-size:80px;color:#C9A84C;opacity:.06;position:absolute;bottom:-10px;right:24px;pointer-events:none;line-height:1}
 
 /* ── CARD ── */
 .card-section{margin:56px 0;text-align:center}
 #share-canvas{display:block;margin:0 auto;max-width:min(100%,380px);aspect-ratio:1/1;border-radius:var(--r);box-shadow:var(--sh-up),0 0 0 1px var(--gold-line)}
 .card-buttons{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
-.btn{padding:11px 28px;font-family:var(--fb);font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;border-radius:40px;cursor:pointer;transition:all .2s;border:none}
+.btn{padding:11px 28px;font-family:var(--fb);font-size:13px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;border-radius:40px;cursor:pointer;transition:all .2s;border:none}
 .btn-primary{background:var(--ink);color:var(--ivory)}
 .btn-ghost{background:transparent;border:1.5px solid var(--ivory-3);color:var(--ink-3)}
 .btn:hover{opacity:.85;transform:translateY(-2px);box-shadow:var(--sh-card)}
@@ -204,8 +206,8 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 /* ── CTA ── */
 .cta-section{text-align:center;padding:56px 24px 40px;border-top:1px solid var(--ivory-3)}
 .cta-text{font-family:var(--fs);font-style:italic;font-size:20px;color:var(--ink-3);line-height:1.6;max-width:480px;margin:0 auto 28px}
-.cta-platform{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--ink-5);margin-top:12px}
-.btn-doctolib{display:inline-block;padding:16px 44px;background:var(--ink);color:var(--ivory);font-family:var(--fb);font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s}
+.cta-platform{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#5A534A;margin-top:12px}
+.btn-doctolib{display:inline-block;padding:16px 44px;background:var(--ink);color:var(--ivory);font-family:var(--fb);font-size:13px;font-weight:500;letter-spacing:3px;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s}
 .btn-doctolib:hover{background:var(--ink-2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,24,20,.18)}
 
 /* ── PRINT HEADER ── */
@@ -252,7 +254,7 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
   color: var(--ink-3); font-style: italic;
 }
 .causality-icon {
-  font-size: 18px; color: var(--gold);
+  font-size: 18px; color: #C9A84C;
   flex-shrink: 0; margin-top: 3px;
 }
 /* ── Dyade header ───────────────────────────────────────────── */
@@ -266,8 +268,8 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 }
 .dyade-header.dyade-forte { border-width: 2px; border-color: rgba(201,168,76,.35); }
 .dyade-eyebrow {
-  font-size: 10px; font-weight: 600; letter-spacing: 4px;
-  text-transform: uppercase; color: var(--gold,#C9A84C);
+  font-size: 13px; font-weight: 600; letter-spacing: 4px;
+  text-transform: uppercase; color: #1A1814;
   margin-bottom: 12px;
 }
 .dyade-name {
@@ -302,7 +304,7 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 }
 .triade-plus { font-size: 20px; color: var(--gold,#C9A84C); }
 .triade-science {
-  font-size: 13px; line-height: 1.75; color: var(--ink-4,#8C8278);
+  font-size: 14px; line-height: 1.75; color: #3D3830;
   font-style: italic; margin-top: 16px; max-width: 480px; margin-left: auto; margin-right: auto;
 }
 /* ── Loop top (dyade/triade, position haute) ────────────────── */
@@ -313,11 +315,11 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
   padding: 22px 28px; margin-bottom: 28px;
 }
 .loop-top-label {
-  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold,#C9A84C); margin-bottom: 14px; font-weight: 600;
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: #1A1814; margin-bottom: 14px; font-weight: 600;
 }
 .loop-story-prominent {
-  font-size: 15px; line-height: 1.85;
+  font-size: 17px; line-height: 1.85;
   color: var(--ink-2,#2C2820); font-style: italic; margin-top: 12px;
 }
 /* ── Mirror compact (pour profils dyade/triade) ─────────────── */
@@ -338,8 +340,8 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 }
 .pivot-line { flex: 1; height: 1px; background: var(--ivory-3,#EFE9DF); }
 .pivot-text {
-  font-size: 11px; font-weight: 600; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--gold,#C9A84C);
+  font-size: 13px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: #1A1814;
   white-space: nowrap;
 }
 /* ── Céline quote ───────────────────────────────────────────── */
@@ -352,8 +354,8 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 }
 .cita-quote p { margin-bottom: 10px; }
 .cita-quote span {
-  display: block; font-size: 11px; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--gold,#C9A84C);
+  display: block; font-size: 13px; letter-spacing: 3px;
+  text-transform: uppercase; color: #1A1814;
   font-style: normal; font-family: var(--fb,'DM Sans',sans-serif);
 }
 /* ── CTA amélioré ───────────────────────────────────────────── */
@@ -364,7 +366,7 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
   margin-bottom: 28px; max-width: 480px; margin-left: auto; margin-right: auto;
 }
 .cta-sub {
-  font-size: 12px; color: var(--ink-5,#B8B0A5);
+  font-size: 13px; color: #5A534A;
   margin-top: 14px; letter-spacing: .5px;
 }
 
@@ -386,27 +388,26 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 
 /* ── Thought explain ─────────────────────────────────────────── */
 .thought-explain {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
-  color: var(--gold,#C9A84C);
+  color: #3D3830;
   letter-spacing: .3px;
   line-height: 1.6;
   padding: 10px 28px 0;
   margin-bottom: 12px;
   font-style: normal;
-  opacity: .85;
 }
 /* ── Peur tag dans progression ───────────────────────────────── */
 .prog-peur-tag {
   display: block;
-  font-size: 11px;
-  color: var(--ink-4,#8C8278);
+  font-size: 14px;
+  color: #3D3830;
   font-style: italic;
   margin-top: 2px;
   cursor: help;
 }
 .prog-mask-name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--ink,#1A1814);
 }
@@ -418,10 +419,10 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 
 
 .badge-dyade-label {
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: 1.5px;
   font-style: italic;
-  color: var(--ink-4,#8C8278);
+  color: #3D3830;
   padding: 4px 8px;
   width: 100%;
   text-align: center;
@@ -429,6 +430,7 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
   margin-top: 4px;
 }
 
+strong{color:#1A1814;font-weight:600}
 </style>
 </head>
 <body>
@@ -919,7 +921,7 @@ function buildSPA(spa) {
         <div class="spa-lbl">SPA</div>
       </div>
       <div class="spa-info">
-        <p class="spa-desc"><em>Vous disposez déjà de ${spa} % d'espace de liberté intérieure.</em></p>
+        <p class="spa-desc"><em>Vous disposez déjà de ${spa} % d'espace de liberté intérieure.</em></p>
         <p class="spa-sub">Les moments où vous agissez depuis ce que vous êtes vraiment, sans que la peur décide à votre place.</p>
       </div>
     </div>
@@ -1368,7 +1370,7 @@ function buildPortrait(prof, pct) {
       <p class="cta-sub">Psychologue · Méthode V.A.L.E.U.R© · Bordeaux &amp; à distance</p>
     </section>`;
 }
-// ── BUILD CARD (Canvas 1080×1080) ─────────────────────────────────────
+// ── BUILD CARD (Canvas 1080×1080) — FOND NOIR ────────────────────────
 function buildCard(pct, prof) {
   const canvas = document.getElementById('share-canvas');
   if (!canvas) return;
@@ -1384,11 +1386,20 @@ function buildCard(pct, prof) {
   const dd   = sec ? getDyade(dom, sec) : null;
   const td   = prof.type === 'triade' ? getTriade(prof.masks) : null;
   const MCOLS = {
-    rouge:'#B5312A',orange:'#C4581F',jaune:'#B8930A',
-    vert:'#2D7A4F',bleu:'#1D5F8A',indigo:'#5C3280',violet:'#7A3594'
+    rouge:'#B5312A', orange:'#C4581F', jaune:'#B8930A',
+    vert:'#2D7A4F',  bleu:'#1D5F8A',  indigo:'#5C3280', violet:'#7A3594'
+  };
+  const PEURS_COURT = {
+    rouge: "Anxiété de santé",
+    orange: "Évitement émotionnel",
+    jaune: "Intolérance à l'incertitude",
+    vert: "Anxiété de rejet",
+    bleu: "Besoin de contrôle",
+    indigo: "Peur du jugement",
+    violet: "Angoisse identitaire",
   };
 
-  // ── helpers ─────────────────────────────────────────────────────────────
+  // ── helpers ──────────────────────────────────────────────────────────
   function wrapText(text, maxW) {
     const words = text.split(' '), lines = [];
     let cur = '';
@@ -1400,321 +1411,297 @@ function buildCard(pct, prof) {
     if (cur) lines.push(cur);
     return lines;
   }
-  function roundRect(c, x, y, w, h2, r) {
-    c.beginPath();
-    c.moveTo(x+r,y); c.lineTo(x+w-r,y);
-    c.quadraticCurveTo(x+w,y,x+w,y+r); c.lineTo(x+w,y+h2-r);
-    c.quadraticCurveTo(x+w,y+h2,x+w-r,y+h2); c.lineTo(x+r,y+h2);
-    c.quadraticCurveTo(x,y+h2,x,y+h2-r); c.lineTo(x,y+r);
-    c.quadraticCurveTo(x,y,x+r,y); c.closePath();
+  function roundRect(x, y, w, h2, r) {
+    ctx.beginPath();
+    ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y);
+    ctx.quadraticCurveTo(x+w,y,x+w,y+r); ctx.lineTo(x+w,y+h2-r);
+    ctx.quadraticCurveTo(x+w,y+h2,x+w-r,y+h2); ctx.lineTo(x+r,y+h2);
+    ctx.quadraticCurveTo(x,y+h2,x,y+h2-r); ctx.lineTo(x,y+r);
+    ctx.quadraticCurveTo(x,y,x+r,y); ctx.closePath();
   }
-  function hexAlpha(hex, a) {
-    const n = parseInt(hex.slice(1), 16);
+  function hexToRgba(hex, a) {
+    const n = parseInt(hex.replace('#',''), 16);
     return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`;
   }
 
-  // ── DESSIN PRINCIPAL ─────────────────────────────────────────────────────
+  // ── RENDU ─────────────────────────────────────────────────────────────
   const render = (c, withLogo) => {
-    const X = 64, RX = W - X;
+    const X = 72, RX = W - X;
     c.textBaseline = 'alphabetic';
 
-    // ══════════════════════════════════════════════════════════════════════
-    // ZONE A — IDENTITÉ + ACCROCHE  (y: 0 → 320)
-    // ══════════════════════════════════════════════════════════════════════
+    // ══ FOND NOIR ═════════════════════════════════════════════════════
+    c.fillStyle = '#0D0D0D'; c.fillRect(0, 0, W, H);
 
-    // Fond ivoire + gradient doux couleur masque
-    c.fillStyle = '#FEFBF6'; c.fillRect(0, 0, W, H);
-    const gA = c.createRadialGradient(W*.8, 80, 0, W*.8, 80, W*.7);
-    gA.addColorStop(0, hexAlpha(col, .10));
-    gA.addColorStop(1, 'rgba(0,0,0,0)');
-    c.fillStyle = gA; c.fillRect(0, 0, W, H);
+    // Halo couleur masque subtil en haut
+    const grd = c.createRadialGradient(W/2, 0, 0, W/2, 0, W*.7);
+    grd.addColorStop(0, hexToRgba(col, .18));
+    grd.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = grd; c.fillRect(0, 0, W, H);
 
-    // Logo filigrane centré
+    // Logo filigrane centré — globalCompositeOperation screen (visible sur noir)
     const logoEl = document.getElementById('logo-valeur-img');
     if (withLogo && logoEl && logoEl.complete && logoEl.naturalHeight > 0) {
-      c.save(); c.globalAlpha = .055;
-      c.globalCompositeOperation = 'multiply';
-      c.drawImage(logoEl, (W-560)/2, (H-560)/2, 560, 560);
+      c.save();
+      c.globalAlpha = .06;
+      c.globalCompositeOperation = 'screen';
+      c.drawImage(logoEl, (W-520)/2, (H-520)/2, 520, 520);
       c.restore();
     }
 
-    // Chroma bande top
+    // ══ ZONE A — IDENTITÉ (y: 0 → 180) ══════════════════════════════
+    // Chroma bande top 10px
     ['#B5312A','#C4581F','#B8930A','#2D7A4F','#1D5F8A','#5C3280','#7A3594']
-      .forEach((cl, i) => { c.fillStyle=cl; c.fillRect(i*(W/7),0,W/7+1,10); });
+      .forEach((cl,i) => { c.fillStyle=cl; c.fillRect(i*(W/7),0,W/7+1,10); });
 
     // Logo visible haut-gauche
     if (withLogo && logoEl && logoEl.complete && logoEl.naturalHeight > 0) {
       c.save(); c.globalAlpha = 1;
-      c.drawImage(logoEl, X, 26, 64, 64);
+      c.drawImage(logoEl, X, 26, 60, 60);
       c.restore();
     }
 
     // V·A·L·E·U·R©
-    c.font = '700 26px Arial'; c.fillStyle = '#C9A84C';
+    c.font = '700 26px Arial';
+    c.fillStyle = '#FFFFFF';
     c.letterSpacing = '7px'; c.textAlign = 'left';
-    c.fillText('V · A · L · E · U · R ©', X + (withLogo ? 80 : 0), 62);
+    c.fillText('V · A · L · E · U · R ©', X + (withLogo ? 78 : 0), 62);
     c.letterSpacing = '0px';
-    c.font = '300 18px Arial'; c.fillStyle = 'rgba(26,24,20,.35)';
-    c.fillText('Méthode Céline Bourbon · Psychologue', X + (withLogo ? 80 : 0), 86);
+
+    // Tagline
+    c.font = '300 18px Arial';
+    c.fillStyle = 'rgba(255,255,255,.55)';
+    c.fillText("Se libérer des 7 peurs qui empêchent d'être soi", X + (withLogo ? 78 : 0), 88);
 
     // Sépar or
-    c.fillStyle = 'rgba(201,168,76,.22)'; c.fillRect(X, 110, RX-X, 1);
+    c.fillStyle = 'rgba(201,168,76,.30)'; c.fillRect(X, 112, RX-X, 1);
 
-    // ACCROCHE — grande, centrée
-    c.textAlign = 'center';
-    c.font = 'italic 300 54px Georgia,serif'; c.fillStyle = '#1A1814';
-    const lA = wrapText("Ceci n'est pas un test de personnalité.", W-160);
-    let pyA = 188;
-    lA.forEach(l => { c.fillText(l, W/2, pyA); pyA += 64; });
-
-    c.font = '500 30px Arial'; c.fillStyle = col;
-    const lB = wrapText("C'est la carte de vos protections invisibles.", W-140);
-    pyA += 6;
-    lB.forEach(l => { c.fillText(l, W/2, pyA); pyA += 42; });
-
-    // ══════════════════════════════════════════════════════════════════════
-    // ZONE B — RÉVÉLATION DU PROFIL  (y: 330 → 760)
-    // ══════════════════════════════════════════════════════════════════════
-    const ZB_Y = 330, ZB_H = 430;
-
-    // Bloc principal zone B
-    roundRect(c, X, ZB_Y, RX-X, ZB_H, 16);
-    c.fillStyle = hexAlpha(col, .07); c.fill();
-    // Bordure gauche épaisse couleur masque
-    c.fillStyle = col;
-    c.fillRect(X, ZB_Y, 5, ZB_H);
-
-    let py = ZB_Y + 44;
+    // ══ ZONE B — RÉVÉLATION PROFIL (y: 130 → 720) ════════════════════
+    let py = 152;
 
     if (prof.type === 'adaptatif') {
-      // ── ADAPTATIF ──────────────────────────────────────────────────────
-      c.font = '600 20px Arial'; c.fillStyle = 'rgba(26,24,20,.38)';
-      c.letterSpacing = '3px'; c.textAlign = 'left';
-      c.fillText('PROFIL ADAPTATIF', X+28, py); py += 32;
-      c.letterSpacing = '0px';
-      c.font = 'italic 300 44px Georgia,serif'; c.fillStyle = '#1A1814';
-      const al = wrapText("Aucun masque dominant — présence authentique.", RX-X-60);
-      al.slice(0,2).forEach(l => { c.fillText(l, X+28, py); py += 52; });
-      py += 14;
-      c.font = '300 26px Arial'; c.fillStyle = hexAlpha(col, .75);
-      c.fillText("Votre espace de liberté intérieure est déjà là.", X+28, py);
+      // ── ADAPTATIF ──────────────────────────────────────────────────
+      c.font = '700 22px Arial'; c.fillStyle = '#C9A84C';
+      c.letterSpacing = '4px'; c.textAlign = 'center';
+      c.fillText('PROFIL ADAPTATIF', W/2, py); py += 40; c.letterSpacing = '0px';
+      c.font = 'italic 300 52px Georgia,serif'; c.fillStyle = '#FFFFFF';
+      const adL = wrapText("Flexibilité · Présence authentique", W-160);
+      adL.forEach(l => { c.fillText(l, W/2, py); py += 62; });
+      py += 16;
+      c.font = '300 26px Arial'; c.fillStyle = 'rgba(255,255,255,.60)';
+      c.fillText("Aucun masque ne domine — vous agissez depuis ce que vous êtes.", W/2, py);
+      c.textAlign = 'left';
 
     } else if (prof.type === 'pan') {
-      // ── PAN-MASQUES ────────────────────────────────────────────────────
-      c.font = '600 20px Arial'; c.fillStyle = col;
-      c.letterSpacing = '3px'; c.textAlign = 'left';
-      c.fillText('CONFIGURATION PAN-MASQUES', X+28, py); py += 36;
-      c.letterSpacing = '0px';
-      c.font = '300 24px Arial'; c.fillStyle = 'rgba(26,24,20,.50)';
-      c.fillText("Plusieurs protections actives en même temps.", X+28, py); py += 52;
-      // 7 barres mini colorées
-      const bW2 = Math.floor((RX-X-56)/7) - 4;
+      // ── PAN-MASQUES ────────────────────────────────────────────────
+      c.font = '700 20px Arial'; c.fillStyle = '#C9A84C';
+      c.letterSpacing = '4px'; c.textAlign = 'center';
+      c.fillText('CONFIGURATION PAN-MASQUES', W/2, py); py += 38; c.letterSpacing = '0px';
+      c.font = '300 26px Arial'; c.fillStyle = 'rgba(255,255,255,.60)';
+      c.fillText("Plusieurs protections actives simultanément.", W/2, py); py += 52;
+      // 7 barres verticales colorées avec %
+      const bW = Math.floor((RX-X-96)/7) - 6;
+      const bMaxH = 200;
       MASKS.forEach((m, i) => {
-        const bx = X + 28 + i * (bW2 + 4);
-        const fh = Math.round((pct[m]||0)/100 * 120);
-        c.fillStyle = 'rgba(26,24,20,.06)';
-        roundRect(c, bx, py, bW2, 120, 4); c.fill();
+        const bx = X + 48 + i*(bW+6);
+        const fh = Math.round((pct[m]||0)/100 * bMaxH);
+        // Track sombre
+        ctx.fillStyle = 'rgba(255,255,255,.07)';
+        roundRect(bx, py, bW, bMaxH, 4); c.fill();
+        // Fill couleur masque
         if (fh > 0) {
-          c.fillStyle = MCOLS[m];
-          roundRect(c, bx, py+120-fh, bW2, fh, 4); c.fill();
+          ctx.fillStyle = MCOLS[m];
+          roundRect(bx, py+bMaxH-fh, bW, fh, 4); c.fill();
         }
-        c.font = '600 18px Arial'; c.textAlign = 'center';
+        // Emoji
+        c.font = '20px serif'; c.textAlign = 'center';
         c.fillStyle = MCOLS[m];
-        c.fillText((pct[m]||0)+'%', bx+bW2/2, py+120+24);
-        if (MASK_META[m].emoji) {
-          c.font = '22px serif';
-          c.fillText(MASK_META[m].emoji, bx+bW2/2, py+120+50);
-        }
+        c.fillText(MASK_META[m].emoji||'', bx+bW/2, py+bMaxH+28);
+        // Score
+        c.font = '700 18px Arial'; c.fillStyle = '#FFFFFF';
+        c.fillText((pct[m]||0)+'%', bx+bW/2, py+bMaxH+54);
       });
-      c.textAlign = 'left';
+      c.textAlign = 'left'; py += bMaxH + 60;
 
     } else if (prof.type === 'triade' && td) {
-      // ── TRIADE ─────────────────────────────────────────────────────────
-      c.font = '600 20px Arial'; c.fillStyle = col;
-      c.letterSpacing = '3px'; c.textAlign = 'left';
-      c.fillText('CONFIGURATION TRIADE', X+28, py); py += 36;
-      c.letterSpacing = '0px';
-      c.font = 'italic 300 46px Georgia,serif'; c.fillStyle = '#1A1814';
-      const tnL = wrapText(td.n, RX-X-60);
-      tnL.slice(0,2).forEach(l => { c.fillText(l, X+28, py); py += 54; });
-      py += 10;
-      // 3 masques côte à côte
-      const mW = Math.floor((RX-X-56-24)/3);
+      // ── TRIADE ─────────────────────────────────────────────────────
+      c.font = '700 20px Arial'; c.fillStyle = '#C9A84C';
+      c.letterSpacing = '4px'; c.textAlign = 'left';
+      c.fillText('CONFIGURATION TRIADE', X, py); py += 40; c.letterSpacing = '0px';
+      // Nom triade
+      c.font = 'italic 300 52px Georgia,serif'; c.fillStyle = '#FFFFFF';
+      const tL = wrapText(td.n, RX-X-30);
+      tL.slice(0,2).forEach(l => { c.fillText(l, X, py); py += 60; });
+      py += 12;
+      // 3 masques — blocs larges avec fond couleur masque
+      const mW3 = Math.floor((RX-X-32)/3);
       prof.masks.forEach((m, i) => {
-        const mx = X + 28 + i*(mW+12);
-        roundRect(c, mx, py, mW, 72, 10);
-        c.fillStyle = hexAlpha(MCOLS[m], .15); c.fill();
-        c.fillStyle = MCOLS[m]; c.fillRect(mx, py, 4, 72);
-        c.font = '600 18px Arial'; c.textAlign = 'center';
+        const mx = X + i*(mW3+16);
+        // Fond bloc
+        ctx.fillStyle = hexToRgba(MCOLS[m], .20);
+        roundRect(mx, py, mW3, 110, 10); c.fill();
+        // Bordure gauche couleur
+        c.fillStyle = MCOLS[m]; c.fillRect(mx, py, 5, 110);
+        // Emoji
+        c.font = '32px serif'; c.textAlign = 'center';
         c.fillStyle = MCOLS[m];
-        c.fillText(MASK_META[m].emoji||'', mx+mW/2, py+28);
-        c.font = '500 18px Arial'; c.fillStyle = '#1A1814';
-        c.fillText(MASK_META[m].name, mx+mW/2, py+52);
-        c.font = '700 20px Arial'; c.fillStyle = MCOLS[m];
-        c.fillText((pct[m]||0)+'%', mx+mW/2, py+72);
+        c.fillText(MASK_META[m].emoji||'', mx+mW3/2, py+36);
+        // Nom masque
+        c.font = '600 20px Arial'; c.fillStyle = '#FFFFFF';
+        c.fillText(MASK_META[m].name, mx+mW3/2, py+62);
+        // Score
+        c.font = '700 26px Arial'; c.fillStyle = MCOLS[m];
+        c.fillText((pct[m]||0)+'%', mx+mW3/2, py+96);
       });
-      c.textAlign = 'left';
+      c.textAlign = 'left'; py += 130;
 
     } else if (dd && sec) {
-      // ── DYADE ──────────────────────────────────────────────────────────
-      c.font = '600 20px Arial'; c.fillStyle = col;
-      c.letterSpacing = '3px'; c.textAlign = 'left';
-      c.fillText('CONFIGURATION DYADE', X+28, py); py += 38;
-      c.letterSpacing = '0px';
-      // Nom dyade — grand
-      c.font = 'italic 300 52px Georgia,serif'; c.fillStyle = '#1A1814';
-      const dnL = wrapText(dd.n, RX-X-60);
-      dnL.slice(0,2).forEach(l => { c.fillText(l, X+28, py); py += 60; });
+      // ── DYADE ──────────────────────────────────────────────────────
+      c.font = '700 20px Arial'; c.fillStyle = '#C9A84C';
+      c.letterSpacing = '4px'; c.textAlign = 'left';
+      c.fillText('CONFIGURATION DYADE', X, py); py += 38; c.letterSpacing = '0px';
+      // Nom dyade — grand, blanc
+      c.font = 'italic 300 58px Georgia,serif'; c.fillStyle = '#FFFFFF';
+      const dL = wrapText(dd.n, RX-X-30);
+      dL.slice(0,2).forEach(l => { c.fillText(l, X, py); py += 66; });
       py += 8;
-      // 2 masques côte à côte — blocs larges
-      const dW = Math.floor((RX-X-56-20)/2);
+      // Tagline dyade
+      c.font = '300 22px Arial'; c.fillStyle = 'rgba(255,255,255,.55)';
+      const dtL = wrapText(dd.tagline, RX-X-30);
+      dtL.slice(0,2).forEach(l => { c.fillText(l, X, py); py += 30; });
+      py += 20;
+      // 2 masques côte à côte — grands blocs
+      const dW = Math.floor((RX-X-20)/2);
       [dom, sec].forEach((m, i) => {
-        const mx = X + 28 + i*(dW+20);
-        roundRect(c, mx, py, dW, 84, 12);
-        c.fillStyle = hexAlpha(MCOLS[m], .12); c.fill();
-        c.fillStyle = MCOLS[m]; c.fillRect(mx, py, 5, 84);
-        c.font = '500 22px Arial'; c.textAlign = 'left';
+        const mx = X + i*(dW+20);
+        // Fond couleur masque
+        ctx.fillStyle = hexToRgba(MCOLS[m], .20);
+        roundRect(mx, py, dW, 130, 12); c.fill();
+        // Bordure gauche vive
+        c.fillStyle = MCOLS[m]; c.fillRect(mx, py, 6, 130);
+        // Emoji + nom sur même ligne
+        c.font = '28px serif'; c.textAlign = 'left';
         c.fillStyle = MCOLS[m];
-        c.fillText(MASK_META[m].emoji||'', mx+16, py+34);
-        c.font = '600 22px Arial'; c.fillStyle = '#1A1814';
-        c.fillText(MASK_META[m].name, mx+48, py+34);
-        c.font = '700 28px Arial'; c.fillStyle = MCOLS[m];
-        c.fillText((pct[m]||0)+'%  d\'emprise', mx+16, py+68);
+        c.fillText(MASK_META[m].emoji||'', mx+16, py+40);
+        c.font = '600 24px Arial'; c.fillStyle = '#FFFFFF';
+        c.fillText(MASK_META[m].name, mx+56, py+40);
+        // Peur
+        c.font = '300 18px Arial'; c.fillStyle = 'rgba(255,255,255,.55)';
+        c.fillText(PEURS_COURT[m]||'', mx+16, py+68);
+        // Score
+        c.font = '700 38px Arial'; c.fillStyle = MCOLS[m];
+        c.fillText((pct[m]||0)+'%', mx+16, py+112);
       });
-      c.textAlign = 'left';
+      c.textAlign = 'left'; py += 150;
 
     } else {
-      // ── MONO ────────────────────────────────────────────────────────────
-      // Grand emoji centré
-      c.font = '90px serif'; c.textAlign = 'center';
-      c.fillText(meta.emoji||'◆', W/2, py+64); py += 80;
+      // ── MONO ────────────────────────────────────────────────────────
+      // Emoji centré énorme
+      c.font = '100px serif'; c.textAlign = 'center';
+      c.fillText(meta.emoji||'', W/2, py+76); py += 92;
       // Nom masque
-      c.font = '700 54px Arial'; c.fillStyle = col;
-      c.fillText((meta.name||dom).toUpperCase(), W/2, py); py += 62;
-      // Peur centrale
-      const PEURS = {
-        rouge:"Anxiété de santé · Hypervigilance somatique",
-        orange:"Évitement émotionnel · Peur de souffrir",
-        jaune:"Intolérance à l'incertitude · Ruminations",
-        vert:"Anxiété de rejet · Peur de l'abandon",
-        bleu:"Besoin de contrôle · Anxiété de l'impuissance",
-        indigo:"Anxiété de performance · Peur du jugement",
-        violet:"Doute existentiel · Angoisse identitaire",
-      };
-      c.font = '300 26px Arial'; c.fillStyle = 'rgba(26,24,20,.55)';
-      c.fillText(PEURS[dom]||'', W/2, py); py += 44;
-      // Score bar
-      const bX = X+28, bWw = RX-X-60, bHh = 14;
-      c.fillStyle = 'rgba(26,24,20,.07)';
-      roundRect(c, bX, py, bWw, bHh, 7); c.fill();
-      const fillW = Math.round((pct[dom]||0)/100 * bWw);
-      const bg = c.createLinearGradient(bX, 0, bX+bWw, 0);
-      bg.addColorStop(0, col); bg.addColorStop(1, col+'AA');
+      c.font = '800 64px Arial'; c.fillStyle = '#FFFFFF';
+      c.fillText((meta.name||dom).toUpperCase(), W/2, py); py += 70;
+      // Peur centrale — couleur masque
+      c.font = '400 26px Arial'; c.fillStyle = col;
+      c.fillText(PEURS_COURT[dom]||'', W/2, py); py += 44;
+      // Barre score
+      const bX = X+60, bWW = RX-X-124, bHH = 16;
+      ctx.fillStyle = 'rgba(255,255,255,.10)';
+      roundRect(bX, py, bWW, bHH, 8); c.fill();
+      const fw = Math.round((pct[dom]||0)/100 * bWW);
+      const bg = c.createLinearGradient(bX,0,bX+bWW,0);
+      bg.addColorStop(0, col); bg.addColorStop(1, col+'BB');
       c.fillStyle = bg;
-      roundRect(c, bX, py, fillW, bHh, 7); c.fill();
-      c.font = '700 26px Arial'; c.fillStyle = col; c.textAlign = 'right';
-      c.fillText((pct[dom]||0)+'%', RX-28, py+bHh+30);
-      c.textAlign = 'left';
+      roundRect(bX, py, fw, bHH, 8); c.fill();
+      py += bHH + 18;
+      // Score
+      c.font = '700 32px Arial'; c.fillStyle = '#FFFFFF'; c.textAlign = 'right';
+      c.fillText((pct[dom]||0)+"% d'emprise", RX, py);
+      c.textAlign = 'left'; py += 30;
     }
 
-    // ══════════════════════════════════════════════════════════════════════
-    // ZONE C — TRIGGER VIRAL + CTA  (y: 770 → 1080)
-    // ══════════════════════════════════════════════════════════════════════
-
+    // ══ ZONE C — TRIGGER + CTA (y: calculé → 1080) ═══════════════════
     // SPA
-    let pyC = 790;
-    c.font = '500 24px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'left';
-    c.fillText('◗  Présence authentique : '+spa+'%', X+28, pyC); pyC += 36;
+    py = Math.max(py + 20, 730);
+    c.font = '600 24px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'left';
+    c.fillText('◗  Présence authentique : '+spa+'%', X, py); py += 32;
 
     // Sépar
-    c.fillStyle = 'rgba(26,24,20,.07)'; c.fillRect(X, pyC, RX-X, 1); pyC += 36;
+    c.fillStyle = 'rgba(255,255,255,.12)'; c.fillRect(X, py, RX-X, 1); py += 36;
 
-    // TRIGGER QUESTION — la clé virale
-    c.font = 'italic 300 38px Georgia,serif'; c.fillStyle = '#1A1814';
+    // Trigger question — la clé virale
+    c.font = 'italic 300 40px Georgia,serif'; c.fillStyle = '#FFFFFF';
     c.textAlign = 'center';
-    const tqL = wrapText("Et vous, quelle est votre protection invisible ?", W-120);
-    tqL.forEach(l => { c.fillText(l, W/2, pyC); pyC += 46; });
+    const tqL = wrapText("Et vous, quelle est votre protection invisible ?", W-100);
+    tqL.slice(0,2).forEach(l => { c.fillText(l, W/2, py); py += 50; });
 
-    // Sous-titre trigger
-    pyC += 4;
-    c.font = '300 22px Arial'; c.fillStyle = 'rgba(26,24,20,.40)';
-    c.fillText('Faites le test gratuit en 20 minutes', W/2, pyC); pyC += 44;
+    // Sous-titre
+    py += 6;
+    c.font = '300 22px Arial'; c.fillStyle = 'rgba(255,255,255,.40)';
+    c.fillText('Faites le test gratuit en 20 minutes', W/2, py); py += 46;
 
     // Sépar
-    c.fillStyle = 'rgba(26,24,20,.06)'; c.fillRect(X, pyC, RX-X, 1); pyC += 28;
+    c.fillStyle = 'rgba(255,255,255,.10)'; c.fillRect(X, py, RX-X, 1); py += 28;
 
-    // URL + hashtag
-    c.font = '600 26px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'left';
-    c.fillText('questionnaire.psyh.fr', X, pyC);
-    c.font = '400 22px Arial'; c.fillStyle = 'rgba(26,24,20,.28)';
+    // Footer — ancré en bas si py dépasse
+    const footerY = Math.min(py, H - 60);
+    c.font = '600 24px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'left';
+    c.fillText('questionnaire.psyh.fr', X, footerY + 8);
+    c.font = '400 20px Arial'; c.fillStyle = 'rgba(255,255,255,.30)';
     c.letterSpacing = '1px'; c.textAlign = 'right';
-    c.fillText('#methodeVALEUR', RX, pyC);
+    c.fillText('#methodeVALEUR', RX, footerY + 8);
     c.letterSpacing = '0px';
 
-    // Logo signature bas-droite
+    // Logo signature bas-droite (screen mode = visible sur noir)
     if (withLogo && logoEl && logoEl.complete && logoEl.naturalHeight > 0) {
-      c.save(); c.globalAlpha = .14;
-      c.globalCompositeOperation = 'multiply';
-      c.drawImage(logoEl, RX-100, pyC-108, 100, 100);
+      c.save(); c.globalAlpha = .20;
+      c.globalCompositeOperation = 'screen';
+      c.drawImage(logoEl, RX-110, footerY-110, 100, 100);
       c.restore();
     }
 
     // Chroma bande bottom
     ['#B5312A','#C4581F','#B8930A','#2D7A4F','#1D5F8A','#5C3280','#7A3594']
-      .forEach((cl, i) => { c.fillStyle=cl; c.fillRect(i*(W/7), H-6, W/7+1, 6); });
+      .forEach((cl,i) => { c.fillStyle=cl; c.fillRect(i*(W/7),H-8,W/7+1,8); });
   };
 
-  // ── Téléchargement avec fallback CORS ──────────────────────────────────
+  // ── Téléchargement ─────────────────────────────────────────────────
   const dl = () => {
     render(ctx, true);
     try {
       const a = document.createElement('a');
-      a.download = 'portrait-valeur.png';
-      a.href = canvas.toDataURL('image/png'); a.click();
+      a.download = 'portrait-valeur.png'; a.href = canvas.toDataURL('image/png'); a.click();
     } catch(e) {
-      const c2 = document.createElement('canvas');
-      c2.width = W; c2.height = H;
+      const c2 = document.createElement('canvas'); c2.width = W; c2.height = H;
       render(c2.getContext('2d'), false);
       const a = document.createElement('a');
-      a.download = 'portrait-valeur.png';
-      a.href = c2.toDataURL('image/png'); a.click();
+      a.download = 'portrait-valeur.png'; a.href = c2.toDataURL('image/png'); a.click();
     }
   };
 
-  // ── Partage ────────────────────────────────────────────────────────────
+  // ── Partage ────────────────────────────────────────────────────────
   const share = async () => {
     const txt =
-      '"Ceci n\'est pas un test de personnalité. C\'est la carte de vos protections invisibles." ' +
-      'Je viens de découvrir mon '+meta.name+' V.A.L.E.U.R\u00a9. ' +
+      "'Ceci n'est pas un test de personnalité. C'est la carte de vos protections invisibles.'" +
+      ' Je viens de découvrir mon '+meta.name+' V.A.L.E.U.R\u00a9. ' +
       'Précis. Utile. Gratuit. \u2192 questionnaire.psyh.fr';
     const getBlob = () => new Promise(res => {
       render(ctx, true);
       try { canvas.toBlob(b => res(b), 'image/png'); }
       catch(e) {
-        const c2 = document.createElement('canvas');
-        c2.width = W; c2.height = H;
-        render(c2.getContext('2d'), false);
-        c2.toBlob(b => res(b), 'image/png');
+        const c2 = document.createElement('canvas'); c2.width = W; c2.height = H;
+        render(c2.getContext('2d'), false); c2.toBlob(b => res(b), 'image/png');
       }
     });
     if (navigator.share) {
       try {
         const blob = await getBlob();
-        await navigator.share({
-          files: [new File([blob],'portrait-valeur.png',{type:'image/png'})],
-          text: txt
-        });
-      } catch(e) {
-        await navigator.clipboard.writeText(txt).catch(()=>{});
-        alert('Message copié !');
-      }
-    } else {
-      await navigator.clipboard.writeText(txt).catch(()=>{});
-      alert('Message copié !');
-    }
+        await navigator.share({ files:[new File([blob],'portrait-valeur.png',{type:'image/png'})], text:txt });
+      } catch(e) { await navigator.clipboard.writeText(txt).catch(()=>{}); alert('Message copié !'); }
+    } else { await navigator.clipboard.writeText(txt).catch(()=>{}); alert('Message copié !'); }
   };
 
-  // ── Setup ──────────────────────────────────────────────────────────────
+  // ── Setup ──────────────────────────────────────────────────────────
   const setup = () => {
     render(ctx, true);
     const dlBtn = document.getElementById('btn-dl-card');
@@ -1724,15 +1711,11 @@ function buildCard(pct, prof) {
   };
 
   const logoEl2 = document.getElementById('logo-valeur-img');
-  if (logoEl2 && logoEl2.complete && logoEl2.naturalHeight > 0) {
-    setTimeout(setup, 300);
-  } else if (logoEl2) {
-    logoEl2.onload  = () => setTimeout(setup, 100);
-    logoEl2.onerror = () => setTimeout(setup, 100);
-  } else {
-    setTimeout(setup, 300);
-  }
+  if (logoEl2 && logoEl2.complete && logoEl2.naturalHeight > 0) { setTimeout(setup, 300); }
+  else if (logoEl2) { logoEl2.onload = () => setTimeout(setup, 100); logoEl2.onerror = () => setTimeout(setup, 100); }
+  else { setTimeout(setup, 300); }
 }
+
 
 function animateBars() {
   document.querySelectorAll('.prog-fill[data-target]').forEach(el=>{el.style.width=el.dataset.target+'%';});
@@ -1764,7 +1747,7 @@ function animateBars() {
 
   if (Object.keys(pct).length!==7) {
     if (loader) { loader.classList.add('out'); setTimeout(()=>loader.style.display='none',800); }
-    wrap.innerHTML='<p style="text-align:center;padding:80px 32px;font-family:var(--fs);font-style:italic;font-size:18px;color:var(--ink-3);line-height:1.8">Aucun résultat détecté.<br>Veuillez repasser le questionnaire.<br><br><a href="https://questionnaire.psyh.fr" style="color:var(--gold);letter-spacing:1px">← Recommencer</a></p>';
+    wrap.innerHTML='<p style="text-align:center;padding:80px 32px;font-family:var(--fs);font-style:italic;font-size:18px;color:var(--ink-3);line-height:1.8">Aucun résultat détecté.<br>Veuillez repasser le questionnaire.<br><br><a href="https://questionnaire.psyh.fr" style="color:#2C2820;letter-spacing:1px">← Recommencer</a></p>';
     return;
   }
 
