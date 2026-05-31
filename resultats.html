@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -72,7 +71,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:58px;display:flex;ali
 .spa-pct{font-size:9px;color:var(--txt4);letter-spacing:1px}
 .spa-text{flex:1}
 .spa-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
-.spa-desc{font-size:13px;color:var(--txt2);line-height:1.7}
+.spa-desc{font-size:13px;color:#F0EAE1;line-height:1.7}
 
 /* Profile badge */
 .profile-badge{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:28px 32px;margin-bottom:32px}
@@ -81,7 +80,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:58px;display:flex;ali
 .masque-swatch{width:44px;height:44px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px}
 .masque-name{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,28px);font-weight:300;line-height:1.2}
 .masque-level{display:inline-block;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:14px}
-.profile-desc{font-size:14px;color:var(--txt2);line-height:1.8}
+.profile-desc{font-size:14px;color:#F0EAE1;line-height:1.8}
 
 
 /* Doctolib nudge */
@@ -119,15 +118,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:58px;display:flex;ali
 }
 
 /* ── Tooltip panel fixe ──────────────────────────────────────── */
-.bar-tip-icon{width:18px;height:18px;border-radius:50%;border:1px solid rgba(201,168,76,.2);color:rgba(201,168,76,.45);background:transparent;cursor:pointer;font-size:11px;font-family:'Jost',sans-serif;line-height:18px;text-align:center;padding:0;flex-shrink:0;transition:all .2s}
-.bar-tip-icon:hover{border-color:rgba(201,168,76,.5);color:rgba(201,168,76,.8)}
+.bar-tooltip{display:none}
+.bar-tip-icon{width:18px;height:18px;border-radius:50%;border:1px solid rgba(201,168,76,.2);color:rgba(201,168,76,.45);cursor:pointer;background:none;font-size:10px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.bar-tip-icon:hover{color:#C9A84C;border-color:#C9A84C;background:rgba(201,168,76,.08)}
 .bar-reading{font-size:13px;color:rgba(240,234,225,.75);line-height:1.65;margin-top:6px}
 @keyframes tipFade{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-#tooltip-panel{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);max-width:min(440px,calc(100vw - 32px));width:100%;background:#0D1220;border:1px solid var(--gold);border-radius:12px;padding:18px 22px 16px;z-index:500;box-shadow:0 12px 40px rgba(0,0,0,.6);display:none}
-#tooltip-panel.show{display:block;animation:tipFade .25s ease both}
-#tooltip-panel-mask{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
+#tooltip-panel{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);max-width:min(440px,calc(100vw - 32px));width:100%;background:#0D1220;border:1px solid #C9A84C;border-radius:12px;padding:18px 22px 16px;z-index:500;box-shadow:0 12px 40px rgba(0,0,0,.6);display:none}
+#tooltip-panel.show{display:block;animation:tipFade .18s ease}
+#tooltip-panel-mask{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#C9A84C;font-weight:700;margin-bottom:8px}
 #tooltip-panel-text{font-size:14px;color:#F0EAE1;line-height:1.85}
-#tooltip-close{position:absolute;top:10px;right:14px;font-size:18px;color:rgba(201,168,76,.5);cursor:pointer;background:transparent;border:none;padding:0;line-height:1}
+#tooltip-close{position:absolute;top:10px;right:14px;font-size:18px;color:rgba(201,168,76,.5);cursor:pointer;background:none;border:none;padding:4px;line-height:1}
 #tooltip-close:hover{color:rgba(201,168,76,.9)}
 /* ── Doctolib CTA ─────────────────────────────────────────────── */
 .doctolib-cta-section{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.16);border-radius:var(--r);padding:32px 28px;text-align:center;margin-bottom:40px}
@@ -139,6 +139,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:58px;display:flex;ali
 .bridge-text,.mirror-text{font-family:'Cormorant Garamond',serif;font-style:italic;color:#F0EAE1;line-height:1.9}
 .thoughts-list{display:flex;flex-direction:column;gap:10px}
 .thought-bubble{background:rgba(255,255,255,.02)}
+
+/* ── Carte partageable ────────────────────────────────────────── */
+#share-card{border-radius:10px;overflow:hidden;max-width:360px;margin:0 auto;position:relative;aspect-ratio:4/5;box-shadow:0 0 0 1px #C9A84C,0 12px 40px rgba(0,0,0,.5)}
+.share-card-wrap{margin-bottom:20px}
+
+/* ── Lisibilité ── */
+.spa-quote{color:rgba(240,234,225,.72);font-size:14px;font-style:italic;line-height:1.75}
+.amp-desc{color:#F0EAE1;font-size:14px;line-height:1.75}
+.amp-biais-tag{color:rgba(240,234,225,.8);font-size:12px}
+.doctolib-block p{color:rgba(240,234,225,.82);font-size:14px;line-height:1.75}
+.mirror-label{color:rgba(240,234,225,.65);font-size:10px;letter-spacing:2px;text-transform:uppercase}
+.profil-type-label{color:rgba(240,234,225,.65);font-size:10px;letter-spacing:2px;text-transform:uppercase}
 
 </style>
 </head>
@@ -208,6 +220,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:58px;display:flex;ali
     <div class="profile-badge" id="profile-badge"></div>
     <div id="amplitude-zone"></div>
   </div>
+<div id="portrait-zone"></div>
+
+
 
   <!-- Paywall -->
   <!-- ── CARTE VIRALE ─────────────────────────────── -->
@@ -216,26 +231,32 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:58px;display:flex;ali
   <p class="share-subtitle">Le test qui voit ce que vous ne montrez pas.</p>
   <div class="share-card-wrap">
     <div id="share-card">
-      <!-- HEADER : contexte immédiat -->
-      <div class="sc-header">
-        <span class="sc-brand">V·A·L·E·U·R ©</span>
-        <span class="sc-tag">Mon résultat</span>
+      <!-- Fallback HTML dynamique (affiché si PNG IONOS absent) -->
+      <div id="sc-fallback" style="width:100%;height:100%;display:flex;flex-direction:column;background:linear-gradient(160deg,var(--MC) 0%,rgba(0,0,0,.55) 100%)">
+        <!-- Zone logo -->
+        <div style="text-align:center;padding:20px 20px 10px;flex-shrink:0">
+          <span style="font-family:'Cormorant Garamond',serif;font-size:15px;letter-spacing:5px;color:#C9A84C;font-weight:600;text-transform:uppercase">V·A·L·E·U·R ©</span>
+        </div>
+        <!-- Accroche -->
+        <div style="text-align:center;padding:10px 24px 8px;flex-shrink:0">
+          <p id="sc-accroche" style="font-family:'DM Sans',sans-serif;font-size:clamp(13px,3.5vw,16px);color:#fff;font-weight:300;line-height:1.5">Je suis un masque <strong id="sc-masque-kw" style="font-weight:700">—</strong> et toi ?</p>
+        </div>
+        <!-- Citation -->
+        <div style="flex:1;display:flex;align-items:center;justify-content:center;padding:14px 22px">
+          <p id="sc-z2" style="font-family:'Cormorant Garamond',serif;font-size:clamp(13px,3.2vw,15px);font-style:italic;color:rgba(255,255,255,.95);line-height:1.8;text-align:center"></p>
+        </div>
+        <!-- Prénom -->
+        <div id="sc-prenom-zone" style="text-align:center;padding:6px 20px 8px;font-family:'DM Sans',sans-serif;font-size:13px;color:#fff;letter-spacing:1px;min-height:28px"></div>
+        <!-- Bandeau -->
+        <div style="background:rgba(0,0,0,.35);border-top:1px solid rgba(201,168,76,.25);padding:12px 16px;text-align:center;flex-shrink:0">
+          <p style="font-family:'DM Sans',sans-serif;font-size:10px;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:8px">7 peurs dirigent votre vie sans que vous le sachiez.<br>Découvrez la vôtre.</p>
+          <span style="display:inline-block;background:#C9A84C;color:#0A0E1A;font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:4px">Faire le test. Précis. Utile. Gratuit.</span>
+        </div>
       </div>
-      <!-- IDENTITÉ DU MASQUE -->
-      <div class="sc-identity">
-        <p class="sc-masque-label">Mon masque dominant</p>
-        <p class="sc-masque-name" id="sc-masque-name">—</p>
-        <p class="sc-peur" id="sc-peur-text">—</p>
-      </div>
-      <!-- LA PHRASE VIRALE -->
-      <div class="sc-phrase-wrap">
-        <p class="sc-quote" id="sc-z2">—</p>
-      </div>
-      <!-- FOOTER CTA -->
-      <div class="sc-footer">
-        <span class="sc-cta">Découvrez le vôtre → valeur.psyh.fr</span>
-        <span class="sc-url">Test gratuit · 15 min · Résultat immédiat</span>
-      </div>
+      <!-- Image PNG IONOS si disponible -->
+      <img id="sc-png" alt="Carte V.A.L.E.U.R" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;border-radius:inherit">
+      <!-- Overlay prénom sur PNG -->
+      <div id="sc-prenom-overlay" style="display:none;position:absolute;top:76%;left:50%;transform:translateX(-50%);font-family:'DM Sans',sans-serif;font-size:clamp(14px,3.5vw,18px);color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.6);white-space:nowrap;font-weight:400;letter-spacing:1.5px;text-align:center;width:100%"></div>
     </div>
   </div>
   <div class="share-btns">
@@ -247,9 +268,6 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:58px;display:flex;ali
   <p class="share-note">Image optimisée pour Instagram, WhatsApp et Stories</p>
 </div>
 <div class="share-toast" id="share-toast"></div>
-
-<div id="portrait-zone"></div>
-
 <div class="doctolib-cta-section fu" id="doctolib-cta">
   <p>Céline Bourbon, Psychologue vous accompagne en séance — cabinet ou visioconférence.</p>
   <a href="https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile" target="_blank" rel="noopener" class="btn-ghost">
@@ -2130,30 +2148,44 @@ async function buildPage(){
 
   // ── CARTE VIRALE (share section) ─────────────────────────────────────────
   try{
-    var SHARE_DATA={
-      rouge:{phrase:"J'ai vérifié. Je me suis rassuré·e.\nEt une heure après, j'ai revérifié.\nParce que — et si c'était quand même grave ?"},
-      orange:{phrase:"Tout le monde pleurait.\nMoi, je regardais les autres pleurer\nen me demandant pourquoi je ne ressentais rien."},
-      jaune:{phrase:"Je n'arrive pas à profiter.\nParce que si j'arrête d'anticiper,\nquelque chose va mal tourner."},
-      vert:{phrase:"J'ai dit oui alors que je voulais dire non.\nEncore.\nPour ne pas décevoir quelqu'un qui ne m'avait pourtant rien demandé."},
-      bleu:{phrase:"Je porte tout. Je ne me plains pas.\nJe suis épuisé·e —\net je n'ai pas l'impression d'avoir d'autre choix."},
-      indigo:{phrase:"J'ai retravaillé ce dossier pendant des jours.\nCe n'est toujours pas assez bien.\nParce que moi, je ne suis jamais tout à fait assez bien."},
-      violet:{phrase:"Je joue tous mes rôles à la perfection.\nMais dans le silence,\nje ne sais plus vraiment lequel est le vrai moi."}
+    const SHARE_CARD_DATA={
+      rouge:  {kw:'ROUGE',   kwColor:'#FF4444', citation:"Mon corps est toujours en alerte et je crains le pire."},
+      orange: {kw:'ORANGE',  kwColor:'#FF7A35', citation:"Je tiens les émotions à distance pour ne pas souffrir."},
+      jaune:  {kw:'JAUNE',   kwColor:'#FFD700', citation:"J'ai besoin de tout prévoir pour avancer. L'incertitude me paralyse."},
+      vert:   {kw:'VERT',    kwColor:'#2ECC71', citation:"Je m'adapte sans cesse, de peur d'être abandonné·e."},
+      bleu:   {kw:'BLEU',    kwColor:'#3AA3FF', citation:"Je vis dans la peur de ne pas tout maîtriser."},
+      indigo: {kw:'INDIGO',  kwColor:'#A855F7', citation:"Je vise la perfection pour échapper au jugement."},
+      violet: {kw:'VIOLET',  kwColor:'#C084FC', citation:"Je me suis adapté·e à tout le monde, au point de me perdre."},
+      pan:    {kw:'MULTIFACETTE', kwColor:'#C9A84C', citation:"J'ai construit une version de moi acceptée par tous."}
     };
-    var _sm=document.getElementById('share-section');
-    var _sc=document.getElementById('share-card');
-    if(_sm&&_sc&&meta0&&rawScores){
-      var _sd=SHARE_DATA[dominantMask]||SHARE_DATA.violet;
-      _sc.style.background='linear-gradient(160deg,'+meta0.color+'F0 0%,'+meta0.color+'88 100%)';
-      var _mn=document.getElementById('sc-masque-name');
-      var _mp=document.getElementById('sc-peur-text');
-      var _z2=document.getElementById('sc-z2');
-      if(_mn) _mn.textContent=meta0.name||'';
-      if(_mp) _mp.textContent=meta0.peur?'La peur de '+(meta0.peur||'').replace(/^la peur de /i,'').replace(/^la /i,'').replace(/^le /i,'').replace(/^l’/i,''):'';
-      if(_z2) _z2.innerHTML=_sd.phrase.replace(/\n/g,'<br>');
-      _sm.style.display='block';
-      var _nb=document.getElementById('native-share-btn');
-      if(navigator.share&&_nb) _nb.style.display='inline-flex';
-    }
+    const pngKey=profil.type==='pan'?'pan':dom;
+    const cardD=SHARE_CARD_DATA[pngKey]||SHARE_CARD_DATA.vert;
+    const kwEl=document.getElementById('sc-masque-kw');
+    const citEl=document.getElementById('sc-z2');
+    const prenomZone=document.getElementById('sc-prenom-zone');
+    const scFallback=document.getElementById('sc-fallback');
+    const scPng=document.getElementById('sc-png');
+    const scPrenomOvl=document.getElementById('sc-prenom-overlay');
+    if(kwEl){ kwEl.textContent=cardD.kw; kwEl.style.color=cardD.kwColor; }
+    if(citEl) citEl.textContent=cardD.citation;
+    if(prenomZone&&prenom) prenomZone.textContent=prenom;
+    const scBg=pngKey==='pan'
+      ?'linear-gradient(160deg,#1A1400 0%,#2A2200 60%,rgba(201,168,76,.2) 100%)'
+      :'linear-gradient(160deg,'+col+'E8 0%,'+col+'55 50%,rgba(10,14,26,.9) 100%)';
+    if(scFallback) scFallback.style.background=scBg;
+    var testImg=new Image();
+    testImg.onload=function(){
+      if(scPng){ scPng.src='/img/masque-'+pngKey+'.png'; scPng.style.display='block'; }
+      if(scFallback) scFallback.style.display='none';
+      if(prenom&&scPrenomOvl){ scPrenomOvl.textContent=prenom; scPrenomOvl.style.display='block'; }
+    };
+    testImg.onerror=function(){
+      if(scPng) scPng.style.display='none';
+      if(scFallback) scFallback.style.display='flex';
+    };
+    testImg.src='/img/masque-'+pngKey+'.png';
+    document.getElementById('share-section').style.display='block';
+    if(navigator.share){ var nb=document.getElementById('native-share-btn'); if(nb) nb.style.display='inline-flex'; }
   }catch(_shareErr){ console.warn('share card:',_shareErr); }
 
   // ── EMAIL (template_inscription — toujours) ─────────────────────────────
@@ -2209,22 +2241,22 @@ const TOOLTIPS = {
   pan: "J'ai appris très tôt qu'être vraiment moi comportait un risque. Alors j'ai construit, soigneusement, une version de moi-même de type caméléon qui serait acceptée de tous. Derrière cet ensemble de défenses, ma spontanéité attend d'être réveillée."
 };
 
+var _openTipRow=null;
 function showTooltip(maskKey, maskName){
   document.getElementById('tooltip-panel-mask').textContent=maskName;
   document.getElementById('tooltip-panel-text').textContent=TOOLTIPS[maskKey]||'';
-  const panel=document.getElementById('tooltip-panel');
-  if(panel){ panel.style.display='block'; panel.classList.add('show'); }
+  document.getElementById('tooltip-panel').classList.add('show');
 }
 function closeTooltip(){
-  const panel=document.getElementById('tooltip-panel');
-  if(panel){ panel.style.display='none'; panel.classList.remove('show'); }
-  document.querySelectorAll('.bar-row.tip-open').forEach(r=>r.classList.remove('tip-open'));
+  document.getElementById('tooltip-panel').classList.remove('show');
+  document.querySelectorAll('.bar-row.tip-open').forEach(function(r){ r.classList.remove('tip-open'); });
+  _openTipRow=null;
 }
 function toggleTip(key, name){
-  const row=document.getElementById('barrow-'+key);
-  const isOpen=row&&row.classList.contains('tip-open');
+  var row=document.getElementById('barrow-'+key);
+  var isOpen=row&&row.classList.contains('tip-open');
   closeTooltip();
-  if(!isOpen&&row){ row.classList.add('tip-open'); showTooltip(key,name); }
+  if(!isOpen&&row){ row.classList.add('tip-open'); _openTipRow=row; showTooltip(key,name); }
 }
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeTooltip(); });
 
