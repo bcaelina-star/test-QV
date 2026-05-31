@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -119,9 +120,45 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 .prog-desc{font-size:14px;color:#3D3830;margin-top:4px;font-style:italic}
 
 /* ── NEURO ── */
-.neuro-intro{margin-bottom:40px;padding:24px 28px;background:var(--ivory-2);border-left:3px solid var(--gold);border-radius:0 var(--r) var(--r) 0}
-.neuro-intro p{font-family:var(--fs);font-style:italic;font-size:17px;line-height:1.85;color:var(--ink-3)}
-.neuro-intro strong{color:var(--ink);font-style:normal}
+.neuro-intro {
+  margin-bottom: 48px;
+  padding: 40px 44px;
+  position: relative;
+  border-radius: 3px;
+  background: #0D0D0D;
+  color: #FEFBF6;
+  overflow: hidden;
+}
+.neuro-intro::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 3px;
+  padding: 1.5px;
+  background: linear-gradient(90deg, #B5312A 0%, #C4581F 17%, #B8930A 33%, #2D7A4F 50%, #1D5F8A 67%, #5C3280 83%, #7A3594 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.neuro-intro .section-eyebrow {
+  color: #C9A84C;
+  margin-bottom: 20px;
+}
+.neuro-intro p {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.9;
+  color: rgba(254, 251, 246, 0.85);
+  margin-bottom: 16px;
+}
+.neuro-intro p:last-child { margin-bottom: 0; }
+.neuro-intro strong {
+  color: #FEFBF6;
+  font-style: normal;
+  font-weight: 600;
+}
 
 /* ── PORTRAIT ── */
 .portrait-body{margin-bottom:40px}
@@ -195,7 +232,7 @@ nav{position:fixed;top:3px;left:0;right:0;z-index:900;height:56px;display:flex;a
 
 /* ── CARD ── */
 .card-section{margin:56px 0;text-align:center}
-#share-canvas{display:block;margin:0 auto;max-width:min(100%,380px);aspect-ratio:1/1;border-radius:var(--r);box-shadow:var(--sh-up),0 0 0 1px var(--gold-line)}
+#share-canvas{display:block;margin:0 auto;max-width:min(100%,380px);aspect-ratio:1080/1350;border-radius:var(--r);box-shadow:var(--sh-up),0 0 0 1px var(--gold-line)}
 .card-buttons{display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap}
 .btn{padding:11px 28px;font-family:var(--fb);font-size:13px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;border-radius:40px;cursor:pointer;transition:all .2s;border:none}
 .btn-primary{background:var(--ink);color:var(--ivory)}
@@ -839,7 +876,15 @@ async function saveToNeon(pct, prof, email, prenom) {
 // ── BUILD THOUGHTS ─────────────────────────────────────────────────────
 function buildThoughts(prof) {
   const dom=prof.masks[0];
-  const PEUR_LABEL={"rouge":"Parmi les 7 peurs qui empêchent d'être soi, l'anxiété de santé et l'hypervigilance corporelle sont celles qui prennent le plus de place chez vous.","orange":"Parmi les 7 peurs qui empêchent d'être soi, l'évitement émotionnel et la peur de souffrir sont ceux qui prennent le plus de place chez vous.","jaune":"Parmi les 7 peurs qui empêchent d'être soi, l'intolérance à l'incertitude et les ruminations mentales sont ceux qui prennent le plus de place chez vous.","vert":"Parmi les 7 peurs qui empêchent d'être soi, l'anxiété de rejet et la peur de l'abandon sont celles qui prennent le plus de place chez vous.","bleu":"Parmi les 7 peurs qui empêchent d'être soi, le besoin de contrôle et l'anxiété de l'impuissance sont ceux qui prennent le plus de place chez vous.","indigo":"Parmi les 7 peurs qui empêchent d'être soi, l'anxiété de performance et la peur du jugement sont celles qui prennent le plus de place chez vous.","violet":"Parmi les 7 peurs qui empêchent d'être soi, le doute existentiel et l'angoisse identitaire sont ceux qui prennent le plus de place chez vous."};
+  const PEUR_LABEL = {
+    rouge:  "Parmi les 7 peurs qui empêchent d'être soi, la peur de la maladie et de la mort est celle qui prend le plus de place chez vous.",
+    orange: "Parmi les 7 peurs qui empêchent d'être soi, la peur de ressentir et de souffrir est celle qui prend le plus de place chez vous.",
+    jaune:  "Parmi les 7 peurs qui empêchent d'être soi, la peur de l'inconnu et de l'incertain est celle qui prend le plus de place chez vous.",
+    vert:   "Parmi les 7 peurs qui empêchent d'être soi, la peur du rejet et de l'abandon est celle qui prend le plus de place chez vous.",
+    bleu:   "Parmi les 7 peurs qui empêchent d'être soi, la peur de perdre le contrôle est celle qui prend le plus de place chez vous.",
+    indigo: "Parmi les 7 peurs qui empêchent d'être soi, la peur de l'échec et du jugement est celle qui prend le plus de place chez vous.",
+    violet: "Parmi les 7 peurs qui empêchent d'être soi, la peur d'être jugé·e sur qui l'on est est celle qui prend le plus de place chez vous."
+  };
   const peurLabel=PEUR_LABEL[dom]||'';
   const explainHtml=peurLabel?`<div class="thought-explain">${peurLabel}</div>`:'';
   if (prof.type==='triade') {
@@ -871,7 +916,8 @@ function buildBadge(prof) {
   const mkPill=(m)=>`<span class="badge-mask" style="background:${MASK_META[m].color}" title="${TOOLTIPS[m]||''}">${MASK_META[m].emoji} ${MASK_META[m].name}</span>`;
   if (prof.type==='pan') {
     const top3=prof.masks.slice(0,3);
-    return `<div class="badge-config badge-pan">${top3.map(m=>mkPill(m)).join('')}<span class="badge-label">Pan-masques</span></div>`;
+    const panTooltip="Très tôt, vous avez compris qu’être pleinement vous-même pouvait vous exposer. Alors vous avez appris à vous adapter, à devenir un véritable caméléon, pour être accueilli sans danger. Mais derrière ce masque, votre spontanéité n’a jamais disparu : elle attend simplement un espace sûr pour revenir.";
+    return `<div class="badge-config badge-pan" title="${panTooltip}">${top3.map(m=>mkPill(m)).join('')}<span class="badge-label">Pan-masques</span></div>`;
   } else if (prof.type==='triade') {
     return `<div class="badge-config badge-triade">${prof.masks.map(m=>mkPill(m)).join('')}</div>`;
   } else if (prof.type==='dyade'||prof.type==='dyade_tertiaire'||prof.type==='dyade_moderee') {
@@ -1066,6 +1112,8 @@ function buildPortraitBodyV2(prof, pct) {
   if (prof.type === "pan") {
     return `<div class="portrait-headline">${PAN_MASQUE_V2.nom}</div>
       <div class="portrait-tagline">${PAN_MASQUE_V2.tagline}</div>
+      <div class="portrait-desc"><em>Ce que personne ne vous a jamais expliqué sur votre anxiété.</em></div>
+      <div class="portrait-desc"><em>Parmi vos protections actives, celle qui prend le plus de place :</em> ${PLAYLIST[dom]?.bridge || ''}</div>
       <div class="portrait-desc">${PAN_MASQUE_V2.desc}</div>
       <div class="section-label">Le cycle qui s'entretient</div>
       <div class="cycle-grid">${PAN_MASQUE_V2.cycle.map((s,i)=>`<div class="cycle-step"><div class="step-n">${i+1}</div><p>${s}</p></div>`).join("")}</div>
@@ -1076,9 +1124,7 @@ function buildPortraitBodyV2(prof, pct) {
   // Introducteur de causalité — commun à tous les profils
   const causalityIntroHtml = '';
 
-  const mirrorHtml = C?.mirror ? `
-    <div class="portrait-mirror">${C.mirror}</div>` : `
-    <div class="portrait-mirror">${P?.bridge || ""}</div>`;
+  const mirrorHtml = `<div class="portrait-desc">${P?.bridge || ''}</div>`;
 
   const voiceHtml = C?.voice ? `
     <div class="portrait-voice">
@@ -1175,9 +1221,7 @@ function buildPortraitBodyV2(prof, pct) {
         <div class="pivot-text">Votre masque principal</div>
         <div class="pivot-line"></div>
       </div>`;
-    const mirrorCompact = C?.mirror ? `
-      <div class="portrait-mirror-compact">${C.mirror}</div>` :
-      `<div class="portrait-mirror-compact">${P?.bridge || ''}</div>`;
+    const mirrorCompact = `<div class="portrait-mirror-compact">${P?.bridge || ''}</div>`;
     return `
       ${causalityIntroHtml}
       ${dyadeHeaderHtml}
@@ -1261,7 +1305,6 @@ function buildPortraitBodyV2(prof, pct) {
     <div class="portrait-headline">${meta.emoji} ${meta.name}</div>
     <div class="portrait-tagline">${C?.descriptor || `Peur ${meta.peur}`}</div>
     ${mirrorHtml}
-    <div class="portrait-bridge">${C?.prison || P?.bridge || ''}</div>
     ${voiceHtml}
     ${coutsHtml}
     <div class="pivot-separator">
@@ -1369,33 +1412,58 @@ function buildPortrait(prof, pct) {
       <p class="cta-sub">Psychologue · Méthode V.A.L.E.U.R© · Bordeaux &amp; à distance</p>
     </section>`;
 }
-// ── BUILD CARD (Canvas 1080×1080) — FOND NOIR ────────────────────────
-function buildCard(pct, prof) {
+// ── MASK IMAGES (préchargement) ───────────────────────────────────────
+const MASK_IMAGES = {};
+(function(){
+  const maskKeys = ['rouge','orange','jaune','vert','bleu','indigo','violet','pan'];
+  maskKeys.forEach(m => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.src = 'https://questionnaire.psyh.fr/img/masque-' + m + '.png';
+    img.onload = img.onerror = function() {};
+    MASK_IMAGES[m] = img;
+  });
+})();
+
+// ── MASK GRADIENTS ────────────────────────────────────────────────────
+const MASK_GRADIENTS = {
+  rouge:  ['#4A0C12', '#B5312A'],
+  orange: ['#6B2005', '#C4581F'],
+  jaune:  ['#6A4800', '#B8930A'],
+  vert:   ['#0A2E18', '#2D7A4F'],
+  bleu:   ['#071E35', '#1D5F8A'],
+  indigo: ['#1E0840', '#5C3280'],
+  violet: ['#30006A', '#7A3594'],
+  pan:    ['#1A0A2E', '#3D1A5C'],
+};
+
+// ── BUILD CARD (Canvas 1080×1350) ─────────────────────────────────────
+function buildCard(pct, prof, prenom) {
   const canvas = document.getElementById('share-canvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  const W = 1080, H = 1080;
+  const W = 1080, H = 1350;
   canvas.width = W; canvas.height = H;
+  canvas.style.aspectRatio = '1080/1350';
 
   const dom  = prof.masks[0];
   const sec  = prof.secondary || null;
-  const meta = MASK_META[dom];
-  const col  = meta.color;
-  const spa  = computeSPA(pct);
-  const dd   = sec ? getDyade(dom, sec) : null;
-  const td   = prof.type === 'triade' ? getTriade(prof.masks) : null;
-  const MCOLS = {
-    rouge:'#B5312A', orange:'#C4581F', jaune:'#B8930A',
-    vert:'#2D7A4F',  bleu:'#1D5F8A',  indigo:'#5C3280', violet:'#7A3594'
-  };
-  const PEURS_COURT = {
-    rouge: "Anxiété de santé",
-    orange: "Évitement émotionnel",
-    jaune: "Intolérance à l'incertitude",
-    vert: "Anxiété de rejet",
-    bleu: "Besoin de contrôle",
-    indigo: "Peur du jugement",
-    violet: "Angoisse identitaire",
+  const meta    = MASK_META[dom];
+  const col     = meta.color;
+  const spa     = computeSPA(pct);
+  const dd      = sec ? getDyade(dom, sec) : null;
+  const td      = prof.type === 'triade' ? getTriade(prof.masks) : null;
+  const maskImg = MASK_IMAGES[dom] || MASK_IMAGES['pan'];
+  const grad    = MASK_GRADIENTS[dom] || MASK_GRADIENTS['pan'];
+
+  const PEUR_LABEL_CARD = {
+    rouge:  "Parmi les 7 peurs qui empêchent d'être soi, la peur de la maladie et de la mort est celle qui prend le plus de place chez vous.",
+    orange: "Parmi les 7 peurs qui empêchent d'être soi, la peur de ressentir et de souffrir est celle qui prend le plus de place chez vous.",
+    jaune:  "Parmi les 7 peurs qui empêchent d'être soi, la peur de l'inconnu et de l'incertain est celle qui prend le plus de place chez vous.",
+    vert:   "Parmi les 7 peurs qui empêchent d'être soi, la peur du rejet et de l'abandon est celle qui prend le plus de place chez vous.",
+    bleu:   "Parmi les 7 peurs qui empêchent d'être soi, la peur de perdre le contrôle est celle qui prend le plus de place chez vous.",
+    indigo: "Parmi les 7 peurs qui empêchent d'être soi, la peur de l'échec et du jugement est celle qui prend le plus de place chez vous.",
+    violet: "Parmi les 7 peurs qui empêchent d'être soi, la peur d’être jugé·e sur qui l’on est est celle qui prend le plus de place chez vous.",
   };
 
   // ── helpers ──────────────────────────────────────────────────────────
@@ -1420,248 +1488,222 @@ function buildCard(pct, prof) {
   }
   function hexToRgba(hex, a) {
     const n = parseInt(hex.replace('#',''), 16);
-    return `rgba(${n>>16},${(n>>8)&255},${n&255},${a})`;
+    return 'rgba('+(n>>16)+','+(((n>>8)&255))+','+(n&255)+','+a+')';
+  }
+  function stripHtml(html) {
+    return html.replace(/<[^>]+>/g,'').replace(/&nbsp;/g,' ').replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>');
   }
 
   // ── RENDU ─────────────────────────────────────────────────────────────
   const render = (c, withLogo) => {
-    const X = 72, RX = W - X;
     c.textBaseline = 'alphabetic';
 
-    // ══ FOND NOIR ═════════════════════════════════════════════════════
-    c.fillStyle = '#0D0D0D'; c.fillRect(0, 0, W, H);
+    // ══ FOND dégradé masque ═══════════════════════════════════════════
+    const bgGrad = c.createLinearGradient(0, 0, 0, H);
+    bgGrad.addColorStop(0, grad[0]);
+    bgGrad.addColorStop(1, grad[1]);
+    c.fillStyle = bgGrad; c.fillRect(0, 0, W, H);
 
-    // Halo couleur masque subtil en haut
-    const grd = c.createRadialGradient(W/2, 0, 0, W/2, 0, W*.7);
-    grd.addColorStop(0, hexToRgba(col, .18));
-    grd.addColorStop(1, 'rgba(0,0,0,0)');
-    c.fillStyle = grd; c.fillRect(0, 0, W, H);
+    // Halo radial subtil
+    const halo = c.createRadialGradient(W/2, 0, 0, W/2, 0, W*.8);
+    halo.addColorStop(0, hexToRgba(col, .15));
+    halo.addColorStop(1, 'rgba(0,0,0,0)');
+    c.fillStyle = halo; c.fillRect(0, 0, W, H);
 
-    // Logo filigrane centré — globalCompositeOperation screen (visible sur noir)
+    // ── Masque PNG arrière-plan (30% opacity) ─────────────────────────
+    if (maskImg && maskImg.complete && maskImg.naturalHeight > 0) {
+      c.save();
+      c.globalAlpha = 0.28;
+      const mS = 1100;
+      c.drawImage(maskImg, (W - mS) / 2, 60, mS, mS);
+      c.restore();
+    }
+
+    // ══ ZONE A — Header (y: 0 → 160) ══════════════════════════════════
+    // Bande chromatique top 12px
+    ['#B5312A','#C4581F','#B8930A','#2D7A4F','#1D5F8A','#5C3280','#7A3594']
+      .forEach((cl,i) => { c.fillStyle=cl; c.fillRect(i*(W/7),0,Math.ceil(W/7)+1,12); });
+
+    // Logo V·A·L·E·U·R© avec glow doré
     const logoEl = document.getElementById('logo-valeur-img');
     if (withLogo && logoEl && logoEl.complete && logoEl.naturalHeight > 0) {
       c.save();
-      c.globalAlpha = .06;
-      c.globalCompositeOperation = 'screen';
-      c.drawImage(logoEl, (W-520)/2, (H-520)/2, 520, 520);
+      c.shadowColor = '#C9A84C'; c.shadowBlur = 18; c.globalAlpha = 0.95;
+      const lH = 70, lW = lH * (logoEl.naturalWidth / logoEl.naturalHeight);
+      c.drawImage(logoEl, (W - lW) / 2, 26, lW, lH);
       c.restore();
+    } else {
+      c.font = '700 32px Georgia,serif'; c.fillStyle = '#C9A84C';
+      c.shadowColor = '#C9A84C'; c.shadowBlur = 14;
+      c.textAlign = 'center'; c.fillText('V · A · L · E · U · R ©', W/2, 80);
+      c.shadowBlur = 0;
     }
 
-    // ══ ZONE A — IDENTITÉ (y: 0 → 180) ══════════════════════════════
-    // Chroma bande top 10px
-    ['#B5312A','#C4581F','#B8930A','#2D7A4F','#1D5F8A','#5C3280','#7A3594']
-      .forEach((cl,i) => { c.fillStyle=cl; c.fillRect(i*(W/7),0,W/7+1,10); });
-
-    // Logo visible haut-gauche
-    if (withLogo && logoEl && logoEl.complete && logoEl.naturalHeight > 0) {
-      c.save(); c.globalAlpha = 1;
-      c.drawImage(logoEl, X, 26, 60, 60);
-      c.restore();
-    }
-
-    // V·A·L·E·U·R©
-    c.font = '700 26px Arial';
-    c.fillStyle = '#FFFFFF';
-    c.letterSpacing = '7px'; c.textAlign = 'left';
-    c.fillText('V · A · L · E · U · R ©', X + (withLogo ? 78 : 0), 62);
-    c.letterSpacing = '0px';
-
-    // Tagline
-    c.font = '300 18px Arial';
-    c.fillStyle = 'rgba(255,255,255,.55)';
-    c.fillText("Se libérer des 7 peurs qui empêchent d'être soi", X + (withLogo ? 78 : 0), 88);
+    c.font = '300 18px Arial'; c.fillStyle = 'rgba(255,255,255,.55)';
+    c.textAlign = 'center';
+    c.fillText("Se libérer des 7 peurs qui empêchent d'être soi", W/2, 118);
 
     // Sépar or
-    c.fillStyle = 'rgba(201,168,76,.30)'; c.fillRect(X, 112, RX-X, 1);
+    c.fillStyle = 'rgba(201,168,76,.35)'; c.fillRect(72, 142, W-144, 1);
 
-    // ══ ZONE B — RÉVÉLATION PROFIL (y: 130 → 720) ════════════════════
-    let py = 152;
+    // ══ ZONE B — Masque identité (y: 160 → 360) ══════════════════════
+    // Emoji masque (56px)
+    c.font = '56px serif'; c.textAlign = 'center'; c.fillStyle = '#FFFFFF';
+    c.fillText(meta.emoji || '', W/2, 218);
 
-    if (prof.type === 'adaptatif') {
-      // ── ADAPTATIF ──────────────────────────────────────────────────
-      c.font = '700 22px Arial'; c.fillStyle = '#C9A84C';
-      c.letterSpacing = '4px'; c.textAlign = 'center';
-      c.fillText('PROFIL ADAPTATIF', W/2, py); py += 40; c.letterSpacing = '0px';
-      c.font = 'italic 300 52px Georgia,serif'; c.fillStyle = '#FFFFFF';
-      const adL = wrapText("Flexibilité · Présence authentique", W-160);
-      adL.forEach(l => { c.fillText(l, W/2, py); py += 62; });
-      py += 16;
-      c.font = '300 26px Arial'; c.fillStyle = 'rgba(255,255,255,.60)';
-      c.fillText("Aucun masque ne domine — vous agissez depuis ce que vous êtes.", W/2, py);
-      c.textAlign = 'left';
-
-    } else if (prof.type === 'pan') {
-      // ── PAN-MASQUES ────────────────────────────────────────────────
-      c.font = '700 20px Arial'; c.fillStyle = '#C9A84C';
-      c.letterSpacing = '4px'; c.textAlign = 'center';
-      c.fillText('CONFIGURATION PAN-MASQUES', W/2, py); py += 38; c.letterSpacing = '0px';
-      c.font = '300 26px Arial'; c.fillStyle = 'rgba(255,255,255,.60)';
-      c.fillText("Plusieurs protections actives simultanément.", W/2, py); py += 52;
-      // 7 barres verticales colorées avec %
-      const bW = Math.floor((RX-X-96)/7) - 6;
-      const bMaxH = 200;
-      MASKS.forEach((m, i) => {
-        const bx = X + 48 + i*(bW+6);
-        const fh = Math.round((pct[m]||0)/100 * bMaxH);
-        // Track sombre
-        ctx.fillStyle = 'rgba(255,255,255,.07)';
-        roundRect(bx, py, bW, bMaxH, 4); c.fill();
-        // Fill couleur masque
-        if (fh > 0) {
-          ctx.fillStyle = MCOLS[m];
-          roundRect(bx, py+bMaxH-fh, bW, fh, 4); c.fill();
-        }
-        // Emoji
-        c.font = '20px serif'; c.textAlign = 'center';
-        c.fillStyle = MCOLS[m];
-        c.fillText(MASK_META[m].emoji||'', bx+bW/2, py+bMaxH+28);
-        // Score
-        c.font = '700 18px Arial'; c.fillStyle = '#FFFFFF';
-        c.fillText((pct[m]||0)+'%', bx+bW/2, py+bMaxH+54);
-      });
-      c.textAlign = 'left'; py += bMaxH + 60;
-
-    } else if (prof.type === 'triade' && td) {
-      // ── TRIADE ─────────────────────────────────────────────────────
-      c.font = '700 20px Arial'; c.fillStyle = '#C9A84C';
-      c.letterSpacing = '4px'; c.textAlign = 'left';
-      c.fillText('CONFIGURATION TRIADE', X, py); py += 40; c.letterSpacing = '0px';
-      // Nom triade
-      c.font = 'italic 300 52px Georgia,serif'; c.fillStyle = '#FFFFFF';
-      const tL = wrapText(td.n, RX-X-30);
-      tL.slice(0,2).forEach(l => { c.fillText(l, X, py); py += 60; });
-      py += 12;
-      // 3 masques — blocs larges avec fond couleur masque
-      const mW3 = Math.floor((RX-X-32)/3);
-      prof.masks.forEach((m, i) => {
-        const mx = X + i*(mW3+16);
-        // Fond bloc
-        ctx.fillStyle = hexToRgba(MCOLS[m], .20);
-        roundRect(mx, py, mW3, 110, 10); c.fill();
-        // Bordure gauche couleur
-        c.fillStyle = MCOLS[m]; c.fillRect(mx, py, 5, 110);
-        // Emoji
-        c.font = '32px serif'; c.textAlign = 'center';
-        c.fillStyle = MCOLS[m];
-        c.fillText(MASK_META[m].emoji||'', mx+mW3/2, py+36);
-        // Nom masque
-        c.font = '600 20px Arial'; c.fillStyle = '#FFFFFF';
-        c.fillText(MASK_META[m].name, mx+mW3/2, py+62);
-        // Score
-        c.font = '700 26px Arial'; c.fillStyle = MCOLS[m];
-        c.fillText((pct[m]||0)+'%', mx+mW3/2, py+96);
-      });
-      c.textAlign = 'left'; py += 130;
-
-    } else if (dd && sec) {
-      // ── DYADE ──────────────────────────────────────────────────────
-      c.font = '700 20px Arial'; c.fillStyle = '#C9A84C';
-      c.letterSpacing = '4px'; c.textAlign = 'left';
-      c.fillText('CONFIGURATION DYADE', X, py); py += 38; c.letterSpacing = '0px';
-      // Nom dyade — grand, blanc
-      c.font = 'italic 300 58px Georgia,serif'; c.fillStyle = '#FFFFFF';
-      const dL = wrapText(dd.n, RX-X-30);
-      dL.slice(0,2).forEach(l => { c.fillText(l, X, py); py += 66; });
-      py += 8;
-      // Tagline dyade
-      c.font = '300 22px Arial'; c.fillStyle = 'rgba(255,255,255,.55)';
-      const dtL = wrapText(dd.tagline, RX-X-30);
-      dtL.slice(0,2).forEach(l => { c.fillText(l, X, py); py += 30; });
-      py += 20;
-      // 2 masques côte à côte — grands blocs
-      const dW = Math.floor((RX-X-20)/2);
-      [dom, sec].forEach((m, i) => {
-        const mx = X + i*(dW+20);
-        // Fond couleur masque
-        ctx.fillStyle = hexToRgba(MCOLS[m], .20);
-        roundRect(mx, py, dW, 130, 12); c.fill();
-        // Bordure gauche vive
-        c.fillStyle = MCOLS[m]; c.fillRect(mx, py, 6, 130);
-        // Emoji + nom sur même ligne
-        c.font = '28px serif'; c.textAlign = 'left';
-        c.fillStyle = MCOLS[m];
-        c.fillText(MASK_META[m].emoji||'', mx+16, py+40);
-        c.font = '600 24px Arial'; c.fillStyle = '#FFFFFF';
-        c.fillText(MASK_META[m].name, mx+56, py+40);
-        // Peur
-        c.font = '300 18px Arial'; c.fillStyle = 'rgba(255,255,255,.55)';
-        c.fillText(PEURS_COURT[m]||'', mx+16, py+68);
-        // Score
-        c.font = '700 38px Arial'; c.fillStyle = MCOLS[m];
-        c.fillText((pct[m]||0)+'%', mx+16, py+112);
-      });
-      c.textAlign = 'left'; py += 150;
-
-    } else {
-      // ── MONO ────────────────────────────────────────────────────────
-      // Emoji centré énorme
-      c.font = '100px serif'; c.textAlign = 'center';
-      c.fillText(meta.emoji||'', W/2, py+76); py += 92;
-      // Nom masque
-      c.font = '800 64px Arial'; c.fillStyle = '#FFFFFF';
-      c.fillText((meta.name||dom).toUpperCase(), W/2, py); py += 70;
-      // Peur centrale — couleur masque
-      c.font = '400 26px Arial'; c.fillStyle = col;
-      c.fillText(PEURS_COURT[dom]||'', W/2, py); py += 44;
-      // Barre score
-      const bX = X+60, bWW = RX-X-124, bHH = 16;
-      ctx.fillStyle = 'rgba(255,255,255,.10)';
-      roundRect(bX, py, bWW, bHH, 8); c.fill();
-      const fw = Math.round((pct[dom]||0)/100 * bWW);
-      const bg = c.createLinearGradient(bX,0,bX+bWW,0);
-      bg.addColorStop(0, col); bg.addColorStop(1, col+'BB');
-      c.fillStyle = bg;
-      roundRect(bX, py, fw, bHH, 8); c.fill();
-      py += bHH + 18;
-      // Score
-      c.font = '700 32px Arial'; c.fillStyle = '#FFFFFF'; c.textAlign = 'right';
-      c.fillText((pct[dom]||0)+"% d'emprise", RX, py);
-      c.textAlign = 'left'; py += 30;
-    }
-
-    // ══ ZONE C — TRIGGER + CTA (y: calculé → 1080) ═══════════════════
-    // SPA
-    py = Math.max(py + 20, 730);
-    c.font = '600 24px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'left';
-    c.fillText('◗  Présence authentique : '+spa+'%', X, py); py += 32;
-
-    // Sépar
-    c.fillStyle = 'rgba(255,255,255,.12)'; c.fillRect(X, py, RX-X, 1); py += 36;
-
-    // Trigger question — la clé virale
-    c.font = 'italic 300 40px Georgia,serif'; c.fillStyle = '#FFFFFF';
-    c.textAlign = 'center';
-    const tqL = wrapText("Et vous, quelle est votre protection invisible ?", W-100);
-    tqL.slice(0,2).forEach(l => { c.fillText(l, W/2, py); py += 50; });
-
-    // Sous-titre
-    py += 6;
-    c.font = '300 22px Arial'; c.fillStyle = 'rgba(255,255,255,.40)';
-    c.fillText('Faites le test gratuit en 20 minutes', W/2, py); py += 46;
-
-    // Sépar
-    c.fillStyle = 'rgba(255,255,255,.10)'; c.fillRect(X, py, RX-X, 1); py += 28;
-
-    // Footer — ancré en bas si py dépasse
-    const footerY = Math.min(py, H - 60);
-    c.font = '600 24px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'left';
-    c.fillText('questionnaire.psyh.fr', X, footerY + 8);
-    c.font = '400 20px Arial'; c.fillStyle = 'rgba(255,255,255,.30)';
-    c.letterSpacing = '1px'; c.textAlign = 'right';
-    c.fillText('#methodeVALEUR', RX, footerY + 8);
+    // Nom masque avec letterSpacing 5px
+    c.font = '700 28px Arial'; c.fillStyle = '#FFFFFF';
+    c.letterSpacing = '5px'; c.textAlign = 'center';
+    c.fillText((meta.name || dom).toUpperCase(), W/2, 260);
     c.letterSpacing = '0px';
 
-    // Logo signature bas-droite (screen mode = visible sur noir)
-    if (withLogo && logoEl && logoEl.complete && logoEl.naturalHeight > 0) {
-      c.save(); c.globalAlpha = .20;
-      c.globalCompositeOperation = 'screen';
-      c.drawImage(logoEl, RX-110, footerY-110, 100, 100);
-      c.restore();
+    // Phrase PEUR_LABEL (2 lignes max)
+    const peurTxt = PEUR_LABEL_CARD[dom] || '';
+    c.font = '300 20px Arial'; c.fillStyle = 'rgba(254,251,246,0.75)'; c.textAlign = 'center';
+    const plLines = wrapText(peurTxt, W - 200);
+    let plY = 290;
+    plLines.slice(0, 2).forEach(l => { c.fillText(l, W/2, plY); plY += 26; });
+
+    // Score % dominant (80px, couleur masque)
+    c.font = '700 80px Georgia,serif'; c.fillStyle = col; c.textAlign = 'center';
+    c.fillText((pct[dom] || 0) + '%', W/2, 378);
+
+    // ══ ZONE C — Sous-titre viral (y: 390 → 440) ══════════════════════
+    const colorName = dom.charAt(0).toUpperCase() + dom.slice(1);
+    const partA = 'Je suis un masque ';
+    const partC = ' et toi ?';
+    c.font = '400 26px Arial'; c.textAlign = 'left';
+    const wA = c.measureText(partA).width;
+    const wB = c.measureText(colorName).width;
+    const wC = c.measureText(partC).width;
+    const lineStartX = W/2 - (wA + wB + wC) / 2;
+    c.fillStyle = '#FFFFFF'; c.fillText(partA, lineStartX, 418);
+    c.fillStyle = col; c.fillText(colorName, lineStartX + wA, 418);
+    c.fillStyle = '#FFFFFF'; c.fillText(partC, lineStartX + wA + wB, 418);
+
+    // ══ ZONE D — Citation bridge (y: 440 → 760) ══════════════════════
+    c.font = '72px Georgia,serif'; c.fillStyle = 'rgba(201,168,76,0.65)';
+    c.textAlign = 'left'; c.fillText('“', 72, 510);
+
+    const bridgeRaw  = PLAYLIST[dom] ? PLAYLIST[dom].bridge : '';
+    const bridgeTxt  = stripHtml(bridgeRaw);
+    const bridgeTrunc = bridgeTxt.length > 200 ? bridgeTxt.slice(0, 200) + '…' : bridgeTxt;
+    c.font = 'italic 28px Georgia,serif'; c.fillStyle = '#FFFFFF'; c.textAlign = 'left';
+    const bLines = wrapText(bridgeTrunc, W - 160);
+    let bY = 530;
+    bLines.forEach(l => { c.fillText(l, 80, bY); bY += 41; });
+
+    // ══ ZONE E — Prénom (y: 760 → 840) ══════════════════════════════
+    if (prenom && prenom.trim()) {
+      c.font = '400 36px Georgia,serif'; c.fillStyle = 'rgba(254,251,246,0.85)';
+      c.textAlign = 'center';
+      c.fillText('— ' + prenom.trim() + ' —', W/2, 808);
     }
 
-    // Chroma bande bottom
+    // ══ ZONE F — Config profil (y: 840 → 1050) ════════════════════════
+    let fY = 862; c.textAlign = 'center';
+
+    if (prof.type === 'mono') {
+      const bX2 = 80, bWF = W - 160, bHF = 12;
+      ctx.fillStyle = 'rgba(255,255,255,.10)';
+      roundRect(bX2, fY, bWF, bHF, 6); c.fill();
+      const fw2 = Math.round((pct[dom]||0)/100 * bWF);
+      const bg2 = c.createLinearGradient(bX2,0,bX2+bWF,0);
+      bg2.addColorStop(0, col); bg2.addColorStop(1, col+'BB');
+      c.fillStyle = bg2; roundRect(bX2, fY, fw2, bHF, 6); c.fill();
+      fY += bHF + 28;
+      c.font = '500 24px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'center';
+      c.fillText('Présence authentique : ' + spa + '%', W/2, fY);
+
+    } else if (prof.type === 'dyade' && dd) {
+      c.font = '700 14px Arial'; c.fillStyle = '#C9A84C';
+      c.letterSpacing = '4px'; c.textAlign = 'center';
+      c.fillText('CONFIGURATION DYADE', W/2, fY); fY += 38;
+      c.letterSpacing = '0px';
+      c.font = 'italic 300 36px Georgia,serif'; c.fillStyle = '#FFFFFF';
+      c.fillText(dd.n, W/2, fY); fY += 48;
+      c.font = '300 20px Arial'; c.fillStyle = 'rgba(255,255,255,.60)';
+      const dtL = wrapText(dd.tagline.slice(0, 90), W - 160);
+      dtL.slice(0, 2).forEach(l => { c.fillText(l, W/2, fY); fY += 28; });
+
+    } else if (prof.type === 'triade' && td) {
+      c.font = '700 14px Arial'; c.fillStyle = '#C9A84C';
+      c.letterSpacing = '4px'; c.textAlign = 'center';
+      c.fillText('CONFIGURATION TRIADE', W/2, fY); fY += 38;
+      c.letterSpacing = '0px';
+      c.font = 'italic 300 34px Georgia,serif'; c.fillStyle = '#FFFFFF';
+      const tNL = wrapText(td.n, W-160);
+      tNL.slice(0,2).forEach(l => { c.fillText(l, W/2, fY); fY += 42; });
+
+    } else if (prof.type === 'pan') {
+      c.font = '700 14px Arial'; c.fillStyle = '#C9A84C';
+      c.letterSpacing = '4px'; c.textAlign = 'center';
+      c.fillText('CONFIGURATION PAN-MASQUES', W/2, fY); fY += 44;
+      c.letterSpacing = '0px';
+      const bWP = Math.floor((W - 160 - 60) / 7);
+      const bMaxHP = 100;
+      MASKS.forEach((m, i) => {
+        const bxP = 80 + i * (bWP + 10);
+        const fhP = Math.round((pct[m]||0)/100 * bMaxHP);
+        ctx.fillStyle = 'rgba(255,255,255,.07)';
+        roundRect(bxP, fY, bWP, bMaxHP, 3); c.fill();
+        if (fhP > 0) {
+          ctx.fillStyle = MASK_GRADIENTS[m] ? MASK_GRADIENTS[m][1] : MASK_META[m].color;
+          roundRect(bxP, fY + bMaxHP - fhP, bWP, fhP, 3); c.fill();
+        }
+        c.font = '16px serif'; c.fillStyle = MASK_META[m].color; c.textAlign = 'center';
+        c.fillText(MASK_META[m].emoji || '', bxP + bWP/2, fY + bMaxHP + 22);
+        c.font = '700 16px Arial'; c.fillStyle = '#FFFFFF';
+        c.fillText((pct[m]||0) + '%', bxP + bWP/2, fY + bMaxHP + 42);
+      });
+      fY += bMaxHP + 60;
+
+    } else if (prof.type === 'adaptatif') {
+      c.font = '700 14px Arial'; c.fillStyle = '#C9A84C';
+      c.letterSpacing = '4px'; c.textAlign = 'center';
+      c.fillText('PROFIL ADAPTATIF · PRÉSENCE AUTHENTIQUE', W/2, fY); fY += 44;
+      c.letterSpacing = '0px';
+      c.font = '700 64px Georgia,serif'; c.fillStyle = '#C9A84C';
+      c.fillText(spa + '%', W/2, fY + 60); fY += 80;
+      c.font = '300 22px Arial'; c.fillStyle = 'rgba(255,255,255,.7)';
+      c.fillText('Score de présence authentique', W/2, fY + 10);
+    }
+
+    // ══ ZONE G — CTA + Footer (y: 1050 → 1350) ════════════════════════
+    if (prof.type !== 'mono' && prof.type !== 'adaptatif') {
+      c.font = '500 22px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'center';
+      c.fillText('▗  Présence authentique : ' + spa + '%', W/2, 1068);
+    }
+    const sepG = (prof.type !== 'mono' && prof.type !== 'adaptatif') ? 1090 : 1064;
+    c.fillStyle = 'rgba(201,168,76,.35)'; c.fillRect(72, sepG, W-144, 1);
+
+    // Pill CTA
+    const ctaY = sepG + 68;
+    ctx.strokeStyle = col; ctx.lineWidth = 2;
+    roundRect(W/2 - 280, ctaY - 32, 560, 58, 29); c.stroke();
+    const ctaA = 'Découvre ton profil. ';
+    const ctaB = 'Gratuit.';
+    c.font = '400 26px Georgia,serif'; c.textBaseline = 'middle';
+    const wCTA_A = c.measureText(ctaA).width;
+    const wCTA_B = c.measureText(ctaB).width;
+    const ctaSX = W/2 - (wCTA_A + wCTA_B) / 2;
+    c.fillStyle = '#FFFFFF'; c.textAlign = 'left';
+    c.fillText(ctaA, ctaSX, ctaY);
+    c.font = '700 26px Georgia,serif'; c.fillStyle = col;
+    c.fillText(ctaB, ctaSX + wCTA_A, ctaY);
+    c.textBaseline = 'alphabetic';
+
+    // Footer
+    c.font = '500 22px Arial'; c.fillStyle = '#C9A84C'; c.textAlign = 'left';
+    c.fillText('questionnaire.psyh.fr', 72, 1280);
+    c.font = '400 20px Arial'; c.fillStyle = 'rgba(255,255,255,.40)';
+    c.letterSpacing = '1px'; c.textAlign = 'right';
+    c.fillText('#methodeVALEUR', W-72, 1280);
+    c.letterSpacing = '0px';
+
+    // Bande chromatique bottom 12px
     ['#B5312A','#C4581F','#B8930A','#2D7A4F','#1D5F8A','#5C3280','#7A3594']
-      .forEach((cl,i) => { c.fillStyle=cl; c.fillRect(i*(W/7),H-8,W/7+1,8); });
+      .forEach((cl,i) => { c.fillStyle=cl; c.fillRect(i*(W/7),H-12,Math.ceil(W/7)+1,12); });
   };
 
   // ── Téléchargement ─────────────────────────────────────────────────
@@ -1682,8 +1724,8 @@ function buildCard(pct, prof) {
   const share = async () => {
     const txt =
       "'Ceci n'est pas un test de personnalité. C'est la carte de vos protections invisibles.'" +
-      ' Je viens de découvrir mon '+meta.name+' V.A.L.E.U.R\u00a9. ' +
-      'Précis. Utile. Gratuit. \u2192 questionnaire.psyh.fr';
+      ' Je viens de découvrir mon '+meta.name+' V.A.L.E.U.R©. ' +
+      'Précis. Utile. Gratuit. → questionnaire.psyh.fr';
     const getBlob = () => new Promise(res => {
       render(ctx, true);
       try { canvas.toBlob(b => res(b), 'image/png'); }
@@ -1709,10 +1751,13 @@ function buildCard(pct, prof) {
     if (shareBtn) shareBtn.onclick = share;
   };
 
-  const logoEl2 = document.getElementById('logo-valeur-img');
-  if (logoEl2 && logoEl2.complete && logoEl2.naturalHeight > 0) { setTimeout(setup, 300); }
-  else if (logoEl2) { logoEl2.onload = () => setTimeout(setup, 100); logoEl2.onerror = () => setTimeout(setup, 100); }
-  else { setTimeout(setup, 300); }
+  if (maskImg && !maskImg.complete) {
+    maskImg.onload = () => setTimeout(setup, 100);
+    maskImg.onerror = () => setTimeout(setup, 100);
+    setTimeout(setup, 800);
+  } else {
+    setTimeout(setup, 100);
+  }
 }
 
 
@@ -1765,11 +1810,11 @@ function animateBars() {
 
   const logoEl=document.getElementById('logo-valeur-img');
   if(logoEl&&!logoEl.complete){
-    logoEl.onload=()=>buildCard(pct,prof);
-    logoEl.onerror=()=>buildCard(pct,prof);
-    setTimeout(()=>buildCard(pct,prof),1000);
+    logoEl.onload=()=>buildCard(pct,prof,prenom);
+    logoEl.onerror=()=>buildCard(pct,prof,prenom);
+    setTimeout(()=>buildCard(pct,prof,prenom),1000);
   } else {
-    setTimeout(()=>buildCard(pct,prof),300);
+    setTimeout(()=>buildCard(pct,prof,prenom),300);
   }
 
   if (!isAdmin && email) {
