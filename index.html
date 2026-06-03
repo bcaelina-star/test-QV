@@ -848,18 +848,19 @@ async function nextPage(idx) {
   const dom     = masks.sort((a,b) => scPct[b]-scPct[a])[0];
   const profil  = detectConfigExcel(scPct);
 
-  Promise.allSettled([
-    sendEmailAdmin(sc, scPct),
-    saveResult(pid, scPct, sc.spa, dom, profil, demographics.consent || false)
-  ]).finally(() => {
-    const _masks = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
-    const _scoresQuery = _masks.map(m => m + '=' + (scPct[m] || 0)).join('&');
-    window.location.href = 'https://questionnaire.psyh.fr/resultats.html?'
-      + _scoresQuery
-      + '&email=' + encodeURIComponent(demographics.email || '')
-      + '&prenom=' + encodeURIComponent(demographics.prenom || '')
-      + (pid ? '&pid=' + encodeURIComponent(pid) : '');
-  });
+  // Fire-and-forget : envoi async sans bloquer la redirection
+  sendEmailAdmin(sc, scPct).catch(function(){});
+  saveResult(pid, scPct, sc.spa, dom, profil, demographics.consent || false).catch(function(){});
+
+  // Redirection immédiate vers le portrait
+  const _masks = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
+  const _scoresQuery = _masks.map(function(m){ return m + '=' + (scPct[m] || 0); }).join('&');
+  window.location.href = 'https://questionnaire.psyh.fr/resultats.html?'
+    + _scoresQuery
+    + '&spa=' + (sc.spa || 0)
+    + '&email=' + encodeURIComponent(demographics.email || '')
+    + '&prenom=' + encodeURIComponent(demographics.prenom || '')
+    + (pid ? '&pid=' + encodeURIComponent(pid) : '');
 }
 
 // ════════════════════════════════════════════════════════
