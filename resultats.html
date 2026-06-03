@@ -1107,10 +1107,21 @@ function buildMirror(){
   makeBlock('03 \u00b7 Ce que \u00e7a co\u00fbte', meta.cout,
     meta.qualites ? '\u00c9lan en attente derri\u00e8re le masque\u00a0: <strong style="color:rgba(249,245,238,.75)">'+meta.qualites+'</strong>' : '', 3);
 
+  function makeConfig04(tb,db){
+    var d=document.createElement("div");d.className="rv rv-d4";d.style.marginBottom="40px";
+    var h="";
+    h+='<div style="font-family:Jost,sans-serif;font-size:9px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,168,76,.85);margin-bottom:10px;display:flex;align-items:center;gap:12px">';
+    h+="04 · Votre configuration";
+    h+='<span style="flex:1;height:.4px;background:linear-gradient(90deg,rgba(201,168,76,.25),transparent)"></span></div>';
+    h+='<div style="font-family:Cormorant Garamond,serif;font-size:clamp(17px,3vw,22px);font-weight:500;line-height:1.5;color:rgba(249,245,238,.92);margin-bottom:12px">'+tb+"</div>";
+    h+='<div style="font-family:Jost,sans-serif;font-size:13px;font-weight:300;color:rgba(249,245,238,.82);line-height:1.85;border-left:2px solid rgba(201,168,76,.4);padding-left:14px">'+db+"</div>";
+    d.innerHTML=h;container.appendChild(d);
+  }
+
   if(PROF.type==='dyade'&&PROF.d&&DYADES_BLOQUE[PROF.k]){
-    makeBlock('04 \u00b7 Votre configuration',DYADES_BLOQUE[PROF.k].tb,DYADES_BLOQUE[PROF.k].db,4);
+    makeConfig04(DYADES_BLOQUE[PROF.k].tb,DYADES_BLOQUE[PROF.k].db);
   }else if(PROF.type==='triade'&&PROF.d&&TRIADES_BLOQUE[PROF.k]){
-    makeBlock('04 \u00b7 Votre configuration',TRIADES_BLOQUE[PROF.k].tb,TRIADES_BLOQUE[PROF.k].db,4);
+    makeConfig04(TRIADES_BLOQUE[PROF.k].tb,TRIADES_BLOQUE[PROF.k].db);
   }
 }
 // ══════════════════════════════════
