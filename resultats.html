@@ -514,6 +514,167 @@ img,canvas{max-width:100%;display:block}
 /* ── LIB CARD T1/T2/T3 ── */
 .lib-t1{font-family:'Jost',sans-serif;font-size:12.5px;font-weight:300;color:var(--inkl);line-height:1.85;margin-bottom:14px}
 .lib-t3{font-family:'Jost',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-ink);text-align:center;margin-top:14px;padding-top:14px;border-top:.4px solid rgba(168,135,58,.25)}
+
+/* ══ PAYWALL PUBLIC ══ */
+.pw-section{position:relative}
+
+/* ── 1 Intro VALEUR ── */
+.pw-intro-section{background:var(--g900);padding:64px 24px;position:relative;overflow:hidden}
+.pw-intro-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(168,135,58,.08),transparent)}
+.pw-intro-inner{max-width:680px;margin:0 auto}
+.pw-intro-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;
+  border:.5px solid rgba(168,135,58,.4);margin-bottom:28px}
+.pw-intro-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+.pw-intro-badge-txt{font-family:'Jost',sans-serif;font-size:8px;font-weight:700;
+  letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.8)}
+.pw-intro-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,36px);
+  font-weight:500;color:rgba(249,245,238,.92);line-height:1.35;margin-bottom:20px}
+.pw-intro-body{font-family:'Jost',sans-serif;font-size:13.5px;font-weight:300;
+  color:rgba(249,245,238,.55);line-height:1.95;margin-bottom:0}
+.pw-intro-body em{font-style:italic;color:rgba(249,245,238,.8)}
+
+/* ── 2 Score + cercles ── */
+.pw-score-section{background:var(--g800);padding:56px 24px;border-top:1px solid rgba(168,135,58,.1)}
+.pw-score-inner{max-width:680px;margin:0 auto}
+.pw-score-row{display:flex;align-items:flex-start;gap:40px;flex-wrap:wrap;margin-bottom:40px}
+.pw-score-display{display:flex;flex-direction:column;align-items:center;flex-shrink:0}
+.pw-score-ring{width:130px;height:130px;position:relative}
+.pw-score-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.pw-score-ring-bg{fill:none;stroke:rgba(249,245,238,.08);stroke-width:8}
+.pw-score-ring-fill{fill:none;stroke-width:8;stroke-linecap:round;
+  transition:stroke-dashoffset 1.4s cubic-bezier(.16,1,.3,1)}
+.pw-score-number{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:0}
+.pw-score-num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:500;
+  line-height:1;color:rgba(249,245,238,.95)}
+.pw-score-unit{font-family:'Jost',sans-serif;font-size:9px;font-weight:300;
+  color:rgba(249,245,238,.35);letter-spacing:.1em}
+.pw-score-level{margin-top:10px;font-family:'Jost',sans-serif;font-size:8px;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;padding:4px 10px;
+  border:.5px solid var(--mc);color:var(--mc)}
+.pw-score-content{flex:1;min-width:200px}
+.pw-score-mask-name{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,26px);
+  font-weight:500;color:rgba(249,245,238,.92);line-height:1.3;margin-bottom:8px}
+.pw-score-bridge{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
+  color:rgba(249,245,238,.55);line-height:1.85;margin-bottom:0}
+
+/* Cercles 7 masques */
+.pw-circles-wrap{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;
+  padding-top:28px;border-top:.5px solid rgba(249,245,238,.08)}
+.pw-circle-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.pw-circle{border-radius:50%;transition:all .6s}
+.pw-circle-dom{width:44px;height:44px;box-shadow:0 0 16px var(--mc)}
+.pw-circle-other{width:18px;height:18px;opacity:.25;filter:blur(1px)}
+.pw-circle-label{font-family:'Jost',sans-serif;font-size:8px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--mc)}
+.pw-nota{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.5vw,21px);
+  font-style:italic;font-weight:500;color:rgba(249,245,238,.7);
+  margin-top:28px;text-align:center;line-height:1.5}
+
+/* ── 3 Psychologie + config ── */
+.pw-psy-section{background:var(--cream);padding:64px 24px}
+.pw-psy-inner{max-width:680px;margin:0 auto}
+.pw-psy-eyebrow{font-family:'Jost',sans-serif;font-size:8.5px;font-weight:700;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:18px}
+.pw-psy-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.5vw,30px);
+  font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:18px}
+.pw-psy-body{font-family:'Jost',sans-serif;font-size:13.5px;font-weight:300;
+  color:var(--inkm);line-height:1.9;margin-bottom:28px}
+.pw-config-card{border:.5px solid rgba(168,135,58,.25);padding:24px 22px;
+  background:rgba(168,135,58,.03);margin-bottom:0}
+.pw-config-card-type{font-family:'Jost',sans-serif;font-size:8px;font-weight:700;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:10px}
+.pw-config-card-pills{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.pw-config-card-pill{font-family:'Jost',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:.15em;text-transform:uppercase}
+.pw-config-card-sep{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--inkf)}
+.pw-config-card-body{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
+  color:var(--inkm);line-height:1.85;border-left:2px solid rgba(168,135,58,.3);
+  padding-left:14px}
+
+/* ── 4 Polarité ── */
+.pw-polar-section{background:var(--g900);padding:72px 24px;position:relative;overflow:hidden}
+.pw-polar-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--mc) 50%,transparent);opacity:.4}
+.pw-polar-section::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 50% at 50% 100%,rgba(var(--mc-r),var(--mc-g),var(--mc-b),.07),transparent);
+  pointer-events:none}
+.pw-polar-inner{max-width:680px;margin:0 auto;position:relative}
+.pw-polar-eyebrow{font-family:'Jost',sans-serif;font-size:8.5px;font-weight:700;
+  letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:20px}
+.pw-polar-law{font-family:'Jost',sans-serif;font-size:13.5px;font-weight:300;
+  color:rgba(249,245,238,.55);line-height:1.95;margin-bottom:28px}
+.pw-polar-law strong{color:rgba(249,245,238,.85);font-weight:500}
+.pw-polar-dynamic{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.8vw,22px);
+  font-style:italic;font-weight:400;color:rgba(249,245,238,.88);line-height:1.7;
+  margin-bottom:28px}
+.pw-polar-force{font-family:'Cormorant Garamond',serif;font-size:clamp(19px,3vw,26px);
+  font-weight:500;font-style:italic;color:var(--mc);line-height:1.5;
+  padding:20px 22px;border-left:3px solid var(--mc);
+  background:rgba(var(--mc-r),var(--mc-g),var(--mc-b),.08)}
+.pw-polar-elans{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
+  color:rgba(249,245,238,.5);line-height:1.9;margin-top:20px}
+
+/* ── 5 Méthode VALEUR ── */
+.pw-method-section{background:var(--cream);padding:72px 24px}
+.pw-method-inner{max-width:680px;margin:0 auto}
+.pw-method-eyebrow{font-family:'Jost',sans-serif;font-size:8.5px;font-weight:700;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:18px}
+.pw-method-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.5vw,30px);
+  font-weight:500;color:var(--ink);line-height:1.35;margin-bottom:16px}
+.pw-method-body{font-family:'Jost',sans-serif;font-size:13.5px;font-weight:300;
+  color:var(--inkm);line-height:1.9;margin-bottom:32px}
+.pw-method-body em{font-style:italic;color:var(--inkd)}
+.pw-question{background:rgba(26,22,20,.03);border-left:2px solid rgba(168,135,58,.35);
+  padding:20px 20px;margin-bottom:16px}
+.pw-question-q{font-family:'Jost',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:.25em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:8px}
+.pw-question-a{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
+  color:var(--inkm);line-height:1.85}
+.pw-science{font-family:'Jost',sans-serif;font-size:11px;font-weight:300;
+  color:var(--inkf);line-height:1.8;border-top:.5px solid rgba(26,22,20,.08);
+  padding-top:16px;margin-top:32px;font-style:italic}
+
+/* ── 6 Étapes VALEUR ── */
+.pw-steps-section{background:var(--g900);padding:72px 24px}
+.pw-steps-inner{max-width:680px;margin:0 auto}
+.pw-steps-eyebrow{font-family:'Jost',sans-serif;font-size:8.5px;font-weight:700;
+  letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:18px}
+.pw-steps-title{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.5vw,30px);
+  font-weight:500;color:rgba(249,245,238,.92);line-height:1.35;margin-bottom:8px}
+.pw-steps-sub{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
+  color:rgba(249,245,238,.4);line-height:1.85;margin-bottom:40px}
+.pw-step-row{display:grid;grid-template-columns:60px 1fr;align-items:start;
+  padding:20px 0;border-top:.5px solid rgba(249,245,238,.07)}
+.pw-step-row:last-child{border-bottom:.5px solid rgba(249,245,238,.07)}
+.pw-step-letter-col{display:flex;flex-direction:column;align-items:center;gap:4px}
+.pw-step-ltr{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;
+  color:var(--mc);line-height:1}
+.pw-step-seq{font-family:'Jost',sans-serif;font-size:7.5px;font-weight:400;
+  color:rgba(249,245,238,.25);letter-spacing:.08em}
+.pw-step-body{}
+.pw-step-verb{font-family:'Jost',sans-serif;font-size:9px;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;color:rgba(201,168,76,.75);margin-bottom:5px}
+.pw-step-def{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
+  color:rgba(249,245,238,.55);line-height:1.8}
+
+/* ── 7 Bridge + CTA ── */
+.pw-bridge-section{background:var(--cream);padding:72px 24px;text-align:center}
+.pw-bridge-inner{max-width:560px;margin:0 auto}
+.pw-bridge-eyebrow{font-family:'Jost',sans-serif;font-size:8.5px;font-weight:700;
+  letter-spacing:.38em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:20px}
+.pw-bridge-title{font-family:'Cormorant Garamond',serif;font-size:clamp(26px,4vw,36px);
+  font-weight:600;color:var(--ink);line-height:1.3;margin-bottom:16px}
+.pw-bridge-body{font-family:'Jost',sans-serif;font-size:14px;font-weight:300;
+  color:var(--ink);line-height:1.9;margin-bottom:36px}
+.pw-bridge-btn{display:inline-block;padding:16px 52px;background:var(--mc);
+  color:rgba(249,245,238,.95);font-family:'Jost',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:.32em;text-transform:uppercase;text-decoration:none;
+  transition:filter .25s,transform .25s;cursor:pointer;border:none}
+.pw-bridge-btn:hover{filter:brightness(1.12);transform:translateY(-1px)}
+.pw-bridge-note{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
+  color:rgba(26,22,20,.75);margin-top:22px;line-height:1.8}
+
 </style>
 </head>
 <body>
@@ -536,7 +697,7 @@ img,canvas{max-width:100%;display:block}
   <div class="hero-inner">
     <div class="hero-col">Portrait V.A.L.E.U.R©</div>
     <div class="hero-pretitle" id="h-pretitle">Votre bouclier porte un nom.</div>
-    <div class="hero-mask-label">Masque dominant</div>
+    <div class="hero-mask-label">Masque</div>
     <div class="hero-mask-name" id="h-maskname">—</div>
     <div class="hero-rule"></div>
     <div class="hero-fear" id="h-fear">—</div>
@@ -581,7 +742,7 @@ img,canvas{max-width:100%;display:block}
 </section>
 
 <!-- 3 — CARTOGRAPHIE -->
-<section class="section sec-cream">
+<section id="sec-carto" class="section sec-cream">
   <div class="section-inner">
     <div class="rv">
       <div class="t-eyebrow t-eyebrow-ink">Cartographie</div>
@@ -596,7 +757,7 @@ img,canvas{max-width:100%;display:block}
 </section>
 
 <!-- 4 — MÉCANIQUE -->
-<section class="section sec-dark">
+<section id="sec-timeline-real" class="section sec-dark">
   <div class="section-inner">
     <div class="rv">
       <div class="t-eyebrow">La mécanique</div>
@@ -609,7 +770,7 @@ img,canvas{max-width:100%;display:block}
 </section>
 
 <!-- 5 — POLARITÉ -->
-<section class="section sec-cream">
+<section id="sec-polarity-real" class="section sec-cream">
   <div class="section-inner">
     <div class="rv">
       <div class="t-eyebrow t-eyebrow-ink">La loi de polarité</div>
@@ -625,7 +786,7 @@ img,canvas{max-width:100%;display:block}
 </section>
 
 <!-- 6 — PENSÉES -->
-<section class="section sec-dark">
+<section id="sec-thoughts-real" class="section sec-dark">
   <div class="section-inner">
     <div class="rv">
       <div class="t-eyebrow">Ces phrases que vous vous dites</div>
@@ -638,7 +799,7 @@ img,canvas{max-width:100%;display:block}
 </section>
 
 <!-- 7 — LIBÉRATION -->
-<section class="section sec-cream">
+<section id="sec-lib-real" class="section sec-cream">
   <div class="section-inner">
     <div class="rv">
       <div class="t-eyebrow t-eyebrow-ink">L'autre côté</div>
@@ -942,7 +1103,7 @@ const TRIADES_EXTRA={"jaune_orange_rouge":{titre:"L’Éveil des Trois Forces Vi
 "rouge_vert_violet":{titre:"Quand l’existence ancrée, aimée et signifiante s’éveille — en devenir",elans:"Le droit d’exister dans son corps du Masque Rouge, l’amour authentique du Masque Vert, et le chemin singulier du Masque Violet. Libérés ensemble, ils donnent quelqu’un qui existe pleinement — dans son corps, dans ses liens, dans son identité — sans avoir à se justifier ni à se prouver quoi que ce soit.",miroir:"Vous avez peur de disparaître — de votre corps, du regard des autres, de vous-même. Ce sont trois expressions d’une même vitalité profonde qui attend de s’exprimer librement plutôt que de se défendre.",meca_intro:"Les trois peurs les plus archaïques de l’être humain — ne pas survivre, ne pas être aimé, ne pas savoir qui on est — s’activent simultanément autour d’une même question fondamentale.",meca_steps:["Rouge active une peur archaïque et totale : le corps est fragile, la vie peut disparaître. Cette alarme-là ne se raisonne pas — elle est préverbale.","Vert amplifie dans la dimension relationnelle : «Et si en plus de disparaître physiquement, je disparaissais aux yeux de ceux que j’aime ? Si je perdais les liens qui me font sentir exister ?»","Violet ferme la boucle dans la dimension identitaire : «Et si, même avec un corps et des liens, je n’avais pas d’identité stable — si je ne savais pas qui je suis ?» Les trois peurs se répondent et se nourrissent autour d’une seule terreur fondamentale : est-ce que j’ai le droit d’être là ? Cette question-là ne trouve pas de réponse dans l’extérieur. Elle s’intensifie au lieu de se résoudre."],c1:"Ce mécanisme a protégé un droit fondamental à l’existence — dans sa forme la plus complète : dans le corps, dans l’amour, dans l’identité. Cette quête est profondément humaine et profondément juste.",c2:"Libéré de cette triple activation, vous pourrez exister sans vous justifier — habiter votre corps avec paix, aimer sans surveiller si l’autre reste, et avancer dans votre vie avec la certitude tranquille que vous avez le droit d’être là, exactement comme vous êtes.",c3:"C’est ce travail précis, sur cette configuration spécifique, que la Méthode V.A.L.E.U.R© rend possible."},
 "indigo_jaune_violet":{titre:"Quand la vision singulière est portée par la puissance et le sens — en devenir",elans:"La vision lucide du Masque Indigo, la puissance d’action du Masque Jaune, et le chemin singulier du Masque Violet. Libérés, ils donnent quelqu’un capable d’une contribution au monde d’une originalité remarquable — qui voit ce que les autres ne voient pas, ose l’exprimer, et l’incarne dans une vie qui lui ressemble vraiment.",miroir:"Suis-je suffisamment bien ? Que va-t-il se passer ? Qui suis-je vraiment ? Ces trois questions qui tournent ensemble cachent une vision, une audace et une singularité exceptionnelles qui attendent de s’exprimer.",meca_intro:"Le doute sur la valeur, l’anxiété de l’avenir et la question identitaire forment un triangle sans issue — chaque doute alimentant les deux autres sans point d’appui.",meca_steps:["Indigo génère un doute constant sur la valeur de ce qui est produit et de ce qui est pensé : «Ce n’est pas encore assez juste, assez profond. Ce n’est pas encore bon pour être partagé.»","Jaune prolonge ce doute vers l’avenir : «Et si ça ne s’améliore jamais ? Et si les conséquences d’une sortie prématurée sont irréversibles ? Il vaut mieux attendre d’être vraiment prêt.»","Violet ferme le cercle dans la dimension identitaire : «Et si ce n’est pas ce que je produis qui est insuffisant — mais moi, profondément ? Et si ma vision elle-même n’était pas légitime parce que je ne suis pas la bonne personne pour la porter ?» Les trois doutes s’alimentent mutuellement. La vision reste enfouie. La contribution n’arrive pas. Et le sentiment de passer à côté de sa propre vie s’installe — profondément, silencieusement."],c1:"Ce mécanisme a protégé une vision et une singularité d’une profondeur rare — une façon de voir le monde qui est réellement unique, qui n’appartient qu’à vous. C’est un trésor, pas une illusion.",c2:"Libéré de cette triple activation, vous pourrez partager votre vision sans attendre d’en être «suffisamment digne» — avancer dans votre chemin avec la confiance que votre singularité est précisément ce que le monde attend, et contribuer depuis ce que vous êtes vraiment, avec la liberté de celui qui n’a plus rien à prouver.",c3:"C’est ce travail précis, sur cette configuration spécifique, que la Méthode V.A.L.E.U.R© rend possible."}};
 const PAN_EXTRA={"ultra_plat":{intro:"Cinq masques ou plus opèrent à des niveaux quasi identiques — une configuration rare qui indique une suradaptation totale. Votre système défensif s’est déployé sur tous les fronts simultanément, avec une intensité équilibrée. Ce que cela protège est à la mesure de cette activation totale.",titre:"Quand tous les élans se libèrent ensemble — en devenir",elans:"Derrière cette activation totale se cache quelqu’un d’une capacité adaptative exceptionnelle — une intelligence relationnelle, émotionnelle et cognitive qui a appris à répondre à tout. Libérée, cette intelligence devient une présence au monde d’une richesse rare : sensible, créatrice, capable d’amour, de vision et d’action simultanément.",miroir:"Vous vous adaptez à tout, pour tout le monde, dans toutes les directions — si bien qu’il est parfois difficile de savoir ce que vous voulez, ressentez, ou choisissez vraiment, vous. C’est une capacité d’adaptation d’une puissance rare qui attend d’être mise au service de votre propre vie.",meca_intro:"Quand tous les masques s’activent à la même intensité, aucun flux vital n’est épargné — le droit d’exister, de ressentir, d’agir, d’aimer, de parler, de voir clair et de trouver un sens sont simultanément verrouillés.",meca_steps:["Chaque situation active plusieurs masques à la fois : le corps surveille, les émotions se taisent, la pensée anticipe, le cœur se protège, la voix se retient, la vision se brouille, l’identité s’efface. Rien ne passe librement.","L’adaptation est totale — vous répondez à ce qu’on attend avant même qu’on le demande. Mais cette réponse vient des masques, pas de vous. Vous êtes partout sauf là où vous êtes.","Le coût est invisible de l’extérieur — vous semblez fonctionner, tenir, même exceller. Mais à l’intérieur, quelque chose attend depuis longtemps de pouvoir exister pour lui-même, pas pour répondre."],c1:"Ce mécanisme a protégé une intelligence d’adaptation d’une puissance exceptionnelle — la capacité de lire toutes les situations, de répondre à tous les besoins, de s’ajuster à tous les contextes. C’est une force remarquable.",c2:"Libéré de cette activation totale, vous pourrez diriger cette intelligence vers votre propre vie — ressentir ce que vous voulez vraiment, choisir depuis vos désirs plutôt que depuis les attentes des autres, et découvrir qu’il y a quelqu’un en vous qui n’avait pas encore eu la place d’exister pleinement.",c3:"C’est ce travail précis, sur cette configuration spécifique, que la Méthode V.A.L.E.U.R© rend possible."},
-"generalise":{intro:"Cinq masques ou plus sont actifs à un niveau significatif, avec des intensités légèrement différentes mais toutes élevées. Votre système défensif est en activation généralisée — plusieurs flux vitaux simultanément bridés, sans qu’un seul domine clairement.",titre:"Quand les élans multiples trouvent une direction — en devenir",elans:"Derrière cette activation généralisée se cache quelqu’un d’une richesse intérieure multiple — des capacités dans plusieurs dimensions de vie qui n’ont pas encore trouvé l’espace pour s’exprimer simultanément et librement.",miroir:"Vous avez l’impression de fonctionner sur plusieurs fronts sans jamais vous sentir vraiment libre sur aucun. C’est une énergie multiple et précieuse qui cherche une direction claire — pas pour en choisir une seule, mais pour les exprimer toutes depuis vous-même.",meca_intro:"Plusieurs masques actifs à niveau élevé créent une activation diffuse mais persistante — sans masque clairement dominant, la souffrance est plus difficile à nommer, ce qui la rend parfois plus difficile à traverser.",meca_steps:["Plusieurs systèmes défensifs s’activent selon les contextes — parfois la vigilance corporelle, parfois la peur du rejet, parfois le besoin de contrôle, parfois l’inhibition émotionnelle. Aucun ne domine seul, mais leur présence simultanée est constante.","L’énergie disponible est dispersée entre plusieurs fronts de protection. Il est difficile de se reposer vraiment, de s’engager pleinement, ou d’agir depuis un centre clair.","De l’extérieur, tout semble fonctionner. De l’intérieur, quelque chose demande davantage — davantage de clarté, davantage de liberté, davantage d’espace pour être vraiment soi dans la complexité de ce qu’on est."],c1:"Ce mécanisme a protégé une richesse intérieure multiple — la capacité de sentir, d’aimer, de créer, d’anticiper, d’exprimer, de voir et de chercher le sens simultanément. Cette multiplicité est une force, pas un désordre.",c2:"Libéré de cette activation généralisée, vous pourrez exprimer chacune de ces dimensions depuis vous-même — non plus en réponse à ce que la situation exige, mais depuis ce que vous êtes et désirez. La richesse reste. La protection, elle, peut s’alléger.",c3:"C’est ce travail précis, sur cette configuration spécifique, que la Méthode V.A.L.E.U.R© rend possible."},
+"generalise":{intro:"Cinq masques ou plus sont actifs à un niveau significatif, avec des intensités légèrement différentes mais toutes élevées. Votre système défensif est en activation généralisée — plusieurs flux vitaux simultanément bridés, sans qu’un seul domine clairement.",titre:"Quand les élans multiples trouvent une direction — en devenir",elans:"Derrière cette activation généralisée se cache quelqu’un d’une richesse intérieure multiple — des capacités dans plusieurs dimensions de vie qui n’ont pas encore trouvé l’espace pour s’exprimer simultanément et librement.",miroir:"Vous avez l’impression de fonctionner sur plusieurs fronts sans jamais vous sentir vraiment libre sur aucun. C’est une énergie multiple et précieuse qui cherche une direction claire — pas pour en choisir une seule, mais pour les exprimer toutes depuis vous-même.",meca_intro:"Plusieurs masques actifs à niveau élevé créent une activation diffuse mais persistante — sans masque clairement central, la souffrance est plus difficile à nommer, ce qui la rend parfois plus difficile à traverser.",meca_steps:["Plusieurs systèmes défensifs s’activent selon les contextes — parfois la vigilance corporelle, parfois la peur du rejet, parfois le besoin de contrôle, parfois l’inhibition émotionnelle. Aucun ne domine seul, mais leur présence simultanée est constante.","L’énergie disponible est dispersée entre plusieurs fronts de protection. Il est difficile de se reposer vraiment, de s’engager pleinement, ou d’agir depuis un centre clair.","De l’extérieur, tout semble fonctionner. De l’intérieur, quelque chose demande davantage — davantage de clarté, davantage de liberté, davantage d’espace pour être vraiment soi dans la complexité de ce qu’on est."],c1:"Ce mécanisme a protégé une richesse intérieure multiple — la capacité de sentir, d’aimer, de créer, d’anticiper, d’exprimer, de voir et de chercher le sens simultanément. Cette multiplicité est une force, pas un désordre.",c2:"Libéré de cette activation généralisée, vous pourrez exprimer chacune de ces dimensions depuis vous-même — non plus en réponse à ce que la situation exige, mais depuis ce que vous êtes et désirez. La richesse reste. La protection, elle, peut s’alléger.",c3:"C’est ce travail précis, sur cette configuration spécifique, que la Méthode V.A.L.E.U.R© rend possible."},
 "structure":{intro:"Cinq masques ou plus sont actifs à un niveau significatif, avec une hiérarchie légèrement plus lisible entre eux. Votre système défensif est en diffusion structurée — plusieurs flux vitaux bridés, avec quelques masques légèrement plus actifs que d’autres.",titre:"Quand la structure défensive libère la structure de vie — en devenir",elans:"Derrière cette configuration structurée se cache quelqu’un qui a développé une organisation défensive sophistiquée — une intelligence qui, libérée, devient une capacité rare à construire une vie riche, multidimensionnelle, organisée depuis ses propres valeurs.",miroir:"Vous avez des forces dans plusieurs domaines — et pourtant quelque chose vous empêche de les déployer librement en même temps. C’est une structure de vie qui attend d’être construite depuis vous-même plutôt que depuis la protection.",meca_intro:"Plusieurs masques actifs avec une légère hiérarchie créent une structure défensive — plus lisible qu’une activation totale, mais tout aussi contraignante dans ses effets sur la liberté d’action et d’expression.",meca_steps:["Certains masques prennent le dessus selon les contextes — une légère dominance émerge, mais les autres restent actifs en arrière-plan, ajoutant une charge constante.","La structure défensive est cohérente — elle a une logique, une organisation. Mais cette organisation sert la protection, pas le déploiement. Elle gère les risques plutôt que de créer les conditions de la vie souhaitée.","L’intelligence organisationnelle est réelle — mais elle attend d’être redirigée vers ce qui compte vraiment pour vous, pas vers la maîtrise des dangers perçus."],c1:"Ce mécanisme a protégé une intelligence organisationnelle d’une qualité rare — la capacité de structurer, d’adapter, de tenir dans la complexité. Cette intelligence est précieuse et réelle.",c2:"Libéré de cette diffusion structurée, vous pourrez construire votre vie avec la même intelligence — mais depuis vos valeurs plutôt que depuis vos peurs, depuis vos désirs plutôt que depuis les protections qui les ont longtemps masqués.",c3:"C’est ce travail précis, sur cette configuration spécifique, que la Méthode V.A.L.E.U.R© rend possible."}};
 const MONO_EXTRA={"rouge":{titre:"Quand la sécurité intérieure libère la présence paisible — en devenir",meca_intro:"Le droit de se sentir en sécurité dans son propre corps est verrouillé — chaque signal physique est interprété comme une menace potentielle plutôt que comme une simple information du vivant.",meca_steps:["Le corps émet un signal — une sensation, un changement, une fluctuation d’énergie. Rouge l’analyse immédiatement : est-ce grave ? Que faut-il faire ? La surveillance s’enclenche avant même que la pensée consciente intervienne.","L’analyse génère de l’anxiété, qui génère de nouvelles sensations corporelles. Rouge les capte à leur tour et les analyse. Le corps se met à produire les symptômes qu’on y cherche.","Plus on surveille, plus le corps semble «parler». Plus il parle, plus on surveille. L’ancrage dans le présent devient impossible — on vit en permanence dans un futur corporel anxieux qui n’existe pas encore."],c1:"Ce mécanisme a protégé un instinct de survie fondamental — la capacité de détecter les signaux avant tout le monde, de ne jamais être pris au dépourvu physiquement. C’est une vigilance qui a eu sa raison d’être.",c2:"Libéré de cette boucle, vous pourrez habiter votre corps avec curiosité plutôt qu’avec crainte — sentir une sensation sans l’analyser comme une menace, vous reposer dans le présent de votre corps, et découvrir que la sécurité que vous cherchiez dans la surveillance était disponible à l’intérieur depuis toujours.",c3:"C’est ce travail précis, sur ce mécanisme spécifique, que la Méthode V.A.L.E.U.R© rend possible."},
 "orange":{titre:"Quand le ressenti libère la joie créatrice et le plaisir d’exister — en devenir",meca_intro:"La joie de créer, le plaisir de ressentir et la fluidité émotionnelle sont verrouillés — les émotions sont perçues comme des dangers à neutraliser plutôt que comme des guides vers la vie.",meca_steps:["Une émotion commence à émerger — tristesse, désir, joie intense, inconf ort. Orange la détecte et la neutralise aussitôt : trop intense, trop incontrôlable, trop risquée. La rationalisation remplace la traversée.","L’émotion neutralisée ne disparaît pas — elle s’accumule sous la surface et crée une pression interne croissante. Orange doit couper plus fort pour maintenir l’équilibre apparent.","La coupure progressive enferme aussi la créativité, le plaisir et la spontanéité — car ils passent par les mêmes canaux émotionnels. La vie devient gérée, fonctionnelle, mais privée de sa couleur. Et plus on s’éloigne du ressenti, plus l’idée d’y revenir semble dangereuse."],c1:"Ce mécanisme a protégé une sensibilité d’une profondeur rare — la capacité de ressentir intensitément ce que la plupart perçoivent à peine. C’est une richesse intérieure, pas un défaut de calibration.",c2:"Libéré de cette boucle, vous pourrez laisser les émotions traverser plutôt que les contenir — créer depuis ce que vous ressentez vraiment, accueillir le plaisir sans culpabilité, et découvrir que votre profondeur émotionnelle est précisément la source de votre créativité la plus puissante.",c3:"C’est ce travail précis, sur ce mécanisme spécifique, que la Méthode V.A.L.E.U.R© rend possible."},
@@ -1038,7 +1199,7 @@ function getLevel(p){
   if(p<50)return{lbl:'Modéré',c:'#C9A84C'};
   if(p<70)return{lbl:'Significatif',c:'#D4AF37'};
   if(p<85)return{lbl:'Élevé',c:'#F0D080'};
-  return{lbl:'Dominant',c:'#FBF0D0'};
+  return{lbl:'Très élevé',c:'#FBF0D0'};
 }
 
 function hexRgb(h){return{r:parseInt(h.slice(1,3),16),g:parseInt(h.slice(3,5),16),b:parseInt(h.slice(5,7),16)};}
@@ -1070,7 +1231,7 @@ function buildHero(){
   else if(PROF.type==='triade'&&PROF.d) badge.textContent='Triade '+s.slice(0,3).map(x=>ML[x]).join(' · ');
   else if(PROF.type==='pan') badge.textContent='Pan-Masques · '+PROF.act.length+' masques actifs';
   else if(PROF.type.startsWith('adapt')) badge.textContent=PROF.type==='adapt_eq'?'Profil Adaptatif · Équilibré':'Profil Adaptatif · Vigilant';
-  else badge.textContent='Masque '+ML[m]+' '+(PROF.sub==='dominant'?'Dominant':'Fort');
+  else badge.textContent='Masque '+ML[m];
 
   // Rings top 3
   const rings=document.getElementById('h-rings');
@@ -1205,7 +1366,7 @@ function buildConfig(){
     const mx=MONO_EXTRA[DOM];
     if(!mx){el.innerHTML='';return;}
     const introMono=PROF.sub==='dominant'
-      ?"Votre masque dominant op\u00e8re \u00e0 une intensit\u00e9 \u00e9lev\u00e9e, nettement au-dessus des autres. Un flux vital pr\u00e9cis est verrouill\u00e9. C\u2019est ce m\u00e9canisme sp\u00e9cifique que la M\u00e9thode V.A.L.E.U.R\u00a9 travaille."
+      ?"Votre masque op\u00e8re \u00e0 une intensit\u00e9 \u00e9lev\u00e9e, nettement au-dessus des autres. Un flux vital pr\u00e9cis est verrouill\u00e9. C\u2019est ce m\u00e9canisme sp\u00e9cifique que la M\u00e9thode V.A.L.E.U.R\u00a9 travaille."
       :"Votre masque principal op\u00e8re \u00e0 un niveau significatif. Un flux vital est en jeu. C\u2019est ce m\u00e9canisme que la M\u00e9thode V.A.L.E.U.R\u00a9 travaille.";
     const steps=mx.meca_steps.map(s=>'<div class="ci-step"><div class="ci-arrow">\u2192</div><div class="ci-step-text">'+s+'</div></div>').join('');
     html='<div class="ci-intro">'+introMono+'</div>'
@@ -1950,22 +2111,25 @@ function init(){
   PRENOM=SC.prenom||'';
   applyMaskColor(DOM);
 
-  buildHero();
-  buildMirror();
-  buildBars();
-  buildConfig();
-  buildSPA();
-  buildTimeline();
-  buildPolarity();
-  buildThoughts();
-  buildLib();
-  buildCard();
+  if(isAdmin()){
+    buildHero();
+    buildMirror();
+    buildBars();
+    buildConfig();
+    buildSPA();
+    buildTimeline();
+    buildPolarity();
+    buildThoughts();
+    buildLib();
+    buildCard();
 
-  if(PRENOM){document.getElementById('cta-text').textContent=PRENOM+', ce portrait est une premi\u00e8re lumi\u00e8re. Traverser, c\u2019est un autre voyage.';}
-  if(SC.email)document.getElementById('ef-email').value=SC.email;
-
-  initObserver();
-  saveNeon();
+    if(PRENOM){document.getElementById('cta-text').textContent=PRENOM+', ce portrait est une premi\u00e8re lumi\u00e8re. Traverser, c\u2019est un autre voyage.';}
+    if(SC.email)document.getElementById('ef-email').value=SC.email;
+    initObserver();
+    saveNeon();
+  }else{
+    initPublicView();
+  }
 
   setTimeout(()=>{
     const ld=document.getElementById('loading');
@@ -1978,6 +2142,342 @@ function init(){
 const _ap=new URLSearchParams(location.search);
 if(_ap.get('admin')==='VALEUR-ADMIN-2025')window._adminMode=true;
 document.addEventListener('DOMContentLoaded',init);
+
+
+// ══════════════════════════════════
+// PAYWALL PUBLIC
+// ══════════════════════════════════
+
+function isAdmin(){
+  return new URLSearchParams(location.search).get('admin')==='VALEUR-ADMIN-2025';
+}
+
+// Prison sentences per mask (short, for polarity text)
+const PW_PRISON={
+  rouge:"n\u2019a pas supprim\u00e9 votre vitalit\u00e9\u00a0\u2014 il l\u2019a mise sous surveillance",
+  orange:"n\u2019a pas supprim\u00e9 votre sensibilit\u00e9\u00a0\u2014 il l\u2019a referm\u00e9e sur elle-m\u00eame",
+  jaune:"n\u2019a pas \u00e9teint votre puissance d\u2019action\u00a0\u2014 il l\u2019a suspendue",
+  vert:"n\u2019a pas d\u00e9truit votre capacit\u00e9 d\u2019amour\u00a0\u2014 il l\u2019a conditionnelle",
+  bleu:"n\u2019a pas \u00e9touff\u00e9 votre leadership\u00a0\u2014 il l\u2019a mis sous contr\u00f4le",
+  indigo:"n\u2019a pas supprim\u00e9 votre vision\u00a0\u2014 il l\u2019a enferm\u00e9e",
+  violet:"n\u2019a pas effac\u00e9 votre identit\u00e9\u00a0\u2014 il l\u2019a adapt\u00e9e jusqu\u2019\u00e0 l\u2019invisibilit\u00e9"
+};
+
+function buildPublicMirror(){
+  const el=document.getElementById('sec-mirror');
+  if(!el)return;
+  const meta=META[DOM];
+  el.innerHTML=
+    '<div style="background:var(--g900);padding:64px 24px 0;position:relative">'
+    +'<div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(168,135,58,.07),transparent);pointer-events:none"></div>'
+    +'<div style="max-width:680px;margin:0 auto;position:relative">'
+    +'<div class="rv" style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:.5px solid rgba(168,135,58,.35);margin-bottom:32px">'
+    +'<span style="width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block"></span>'
+    +'<span style="font-family:Jost,sans-serif;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.8)">Questionnaire V.A.L.E.U.R\u00a9 \u2014 Analyse de vos m\u00e9canismes de protection</span>'
+    +'</div>'
+    +'<div class="rv" style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(26px,4vw,36px);font-weight:500;color:rgba(249,245,238,.92);line-height:1.35;margin-bottom:20px">Ce test n\u2019est pas un test de personnalit\u00e9.</div>'
+    +'<div class="rv" style="font-family:Jost,sans-serif;font-size:13.5px;font-weight:300;color:rgba(249,245,238,.5);line-height:2;margin-bottom:0">'
+    +'La plupart des outils psychologiques vous disent <em style="font-style:italic;color:rgba(249,245,238,.75)">qui vous \u00eates</em>. V.A.L.E.U.R\u00a9 cherche quelque chose de plus pr\u00e9cis\u00a0: <em style="font-style:italic;color:rgba(249,245,238,.75)">ce qui vous emp\u00eache d\u2019\u00eatre vous-m\u00eame</em>.<br><br>'
+    +'85 questions. 7 m\u00e9canismes de protection mesur\u00e9s. Une question derri\u00e8re chacun\u00a0: \u00e0 quel niveau cette peur prend-elle les commandes de vos pens\u00e9es, de vos \u00e9motions, de vos comportements\u00a0?'
+    +'</div>'
+    +'</div>'
+    +'</div>'
+    // Bridge block
+    +'<div class="rv" style="background:var(--g900);padding:48px 24px 64px">'
+    +'<div style="max-width:680px;margin:0 auto">'
+    +'<div class="rv" style="font-family:Jost,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.65);margin-bottom:16px">01 \u00b7 Ce que le test a reconnu</div>'
+    +'<div class="rv" style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(32px,5vw,44px);font-weight:500;color:'+MC[DOM]+';line-height:1.1;margin-bottom:20px">'+ML[DOM]+'</div>'
+    +'<div class="rv" style="font-family:Jost,sans-serif;font-size:14px;font-weight:300;color:rgba(249,245,238,.6);line-height:1.95;max-width:580px">'+meta.bridge+'</div>'
+    +'</div>'
+    +'</div>';
+}
+
+function buildPublicScore(){
+  var el=document.getElementById('sec-carto');
+  if(!el)return;
+  var pct=SC[DOM]||0;
+  var meta=META[DOM];
+
+  // ── Adaptatif handling ──────────────────────────────────────────────────
+  if(PROF.type==='adapt_eq'||PROF.type==='adapt_vig'){
+    var adaptMsg=PROF.type==='adapt_eq'
+      ?'Vos scores indiquent un profil souple et adapt\u00e9. Vos m\u00e9canismes de protection ne prennent pas les commandes de fa\u00e7on dominante \u2014 c\u2019est un signal positif. Votre syst\u00e8me nerveux n\u2019est pas en \u00e9tat d\u2019alerte g\u00e9n\u00e9ralis\u00e9e.'
+      :'Quelques m\u00e9canismes de protection sont pr\u00e9sents en vigilance \u2014 non dominants, mais perceptibles. Les nommer pr\u00e9cocement, c\u2019est \u00e9viter qu\u2019ils s\u2019amplifient avec le temps.';
+    el.innerHTML='<div style="background:var(--g900);padding:64px 24px">'
+      +'<div style="max-width:640px;margin:0 auto">'
+      +'<div style="display:flex;align-items:flex-start;gap:20px;padding:28px 24px;border:.5px solid rgba(168,135,58,.25);background:rgba(168,135,58,.04)">'
+      +'<div style="font-size:22px;color:rgba(168,135,58,.8);flex-shrink:0">\u2713</div>'
+      +'<div>'
+      +'<div style="font-family:Jost,sans-serif;font-size:9px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:10px">R\u00e9sultat du questionnaire</div>'
+      +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(20px,3vw,26px);font-weight:500;color:rgba(249,245,238,.9);line-height:1.4;margin-bottom:12px">Aucun m\u00e9canisme \u00e0 niveau d\u2019emprise significatif d\u00e9tect\u00e9.</div>'
+      +'<div style="font-family:Jost,sans-serif;font-size:13px;font-weight:300;color:rgba(249,245,238,.5);line-height:1.85">'+adaptMsg+'</div>'
+      +'</div>'
+      +'</div>'
+      +'</div>'
+      +'</div>';
+    return;
+  }
+
+  var lvl=pct>=75?'Tr\u00e8s élevé':pct>=60?'\u00c9lev\u00e9':pct>=45?'Significatif':pct>=30?'Mod\u00e9r\u00e9':'Faible';
+  var R=54;var C=2*Math.PI*R;
+  var off=C-(pct/100)*C;
+  var masks=['rouge','orange','jaune','vert','bleu','indigo','violet'];
+
+  // ── Masque principal ring + info ────────────────────────────────────────────────
+  var domHTML=
+    '<div style="display:flex;align-items:flex-start;gap:36px;flex-wrap:wrap;margin-bottom:36px">'
+    // Ring
+    +'<div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:12px">'
+    +'<div style="position:relative;width:136px;height:136px">'
+    +'<svg width="136" height="136" viewBox="0 0 136 136" style="transform:rotate(-90deg)">'
+    +'<circle cx="68" cy="68" r="'+R+'" fill="none" stroke="rgba(249,245,238,.07)" stroke-width="7"/>'
+    +'<circle cx="68" cy="68" r="'+R+'" fill="none" stroke="'+MC[DOM]+'" stroke-width="7" stroke-linecap="round"'
+    +' stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+C.toFixed(1)+'" id="pw-ring-fill"'
+    +' style="filter:drop-shadow(0 0 10px '+MC[DOM]+')"/>'
+    +'</svg>'
+    +'<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">'
+    +'<span style="font-family:\'Cormorant Garamond\',serif;font-size:44px;font-weight:500;color:'+MC[DOM]+';line-height:1">'+pct+'</span>'
+    +'<span style="font-family:Jost,sans-serif;font-size:9px;font-weight:300;color:rgba(249,245,238,.3);letter-spacing:.1em">sur 100</span>'
+    +'</div>'
+    +'</div>'
+    +'<div style="font-family:Jost,sans-serif;font-size:8px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;padding:5px 12px;border:.5px solid '+MC[DOM]+';color:'+MC[DOM]+'">'+lvl+'</div>'
+    +'</div>'
+    // Info right
+    +'<div style="flex:1;min-width:180px">'
+    +'<div style="font-family:Jost,sans-serif;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.55);margin-bottom:10px">Votre masque</div>'
+    +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(30px,4vw,40px);font-weight:500;color:'+MC[DOM]+';line-height:1;margin-bottom:14px">'+ML[DOM]+'</div>'
+    // Mirror phrase — l'effet "comment vous saviez ?"
+    +'<div style="border-left:2px solid '+MC[DOM]+';padding:10px 16px;background:rgba(var(--mc-r),var(--mc-g),var(--mc-b),.06);margin-bottom:14px">'
+    +'<div style="font-family:Jost,sans-serif;font-size:8px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:'+MC[DOM]+';opacity:.7;margin-bottom:6px">Ce que vous vous dites</div>'
+    +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(16px,2.5vw,20px);font-style:italic;color:rgba(249,245,238,.85);line-height:1.55">\u00ab\u00a0'+meta.mirror_phrase+'\u00a0\u00bb</div>'
+    +'</div>'
+    // Cout — le blocage visible
+    +'<div style="font-family:Jost,sans-serif;font-size:13px;font-weight:300;color:rgba(249,245,238,.45);line-height:1.85">'+meta.cout+'</div>'
+    +'</div>'
+    +'</div>';
+
+  // ── Separator + 6 locked masks ──────────────────────────────────────────
+  var others=masks.filter(function(m){return m!==DOM;});
+  var fakePct=[62,48,71,39,55,44];
+  var cards=others.map(function(m,i){
+    var mc=MC[m];
+    var fp=fakePct[i]||50;
+    var circ=106.8;
+    var dashoff=(1-fp/100)*circ;
+    return '<div style="background:rgba(249,245,238,.025);border:.5px solid rgba(249,245,238,.08);padding:16px 14px;position:relative">'
+      +'<div style="position:absolute;top:0;left:0;right:0;height:3px;background:'+mc+'"></div>'
+      +'<div style="display:flex;align-items:center;gap:12px;margin-top:4px">'
+      +'<div style="position:relative;width:42px;height:42px;flex-shrink:0">'
+      +'<svg width="42" height="42" viewBox="0 0 42 42" style="transform:rotate(-90deg)">'
+      +'<circle cx="21" cy="21" r="17" fill="none" stroke="rgba(249,245,238,.07)" stroke-width="4"/>'
+      +'<circle cx="21" cy="21" r="17" fill="none" stroke="'+mc+'" stroke-width="4" opacity=".22"'
+      +' stroke-dasharray="'+circ.toFixed(1)+'" stroke-dashoffset="'+dashoff.toFixed(1)+'"/>'
+      +'</svg>'
+      +'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">'
+      +'<span style="font-family:\'Cormorant Garamond\',serif;font-size:13px;font-weight:500;color:rgba(249,245,238,.18)">?</span>'
+      +'</div></div>'
+      +'<div>'
+      +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:24px;font-weight:500;color:rgba(249,245,238,.13);line-height:1">??\u00a0<span style="font-size:12px;opacity:.7">%</span></div>'
+      +'<div style="font-family:Jost,sans-serif;font-size:7px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:'+mc+';opacity:.45;margin-top:4px">Confidentiel</div>'
+      +'</div></div></div>';
+  }).join('');
+
+  var quoteHTML=
+    '<div style="text-align:center;padding-top:32px">'
+    +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(16px,2.5vw,19px);font-style:italic;color:rgba(249,245,238,.4);line-height:1.8">'
+    +'Ce questionnaire a cartographi\u00e9 votre m\u00e9canisme le plus actif.<br>Votre portrait complet va bien plus loin.'
+    +'</div>'
+    +'</div>';
+
+  el.innerHTML=
+    '<div style="background:var(--g900);padding:64px 24px;border-top:.5px solid rgba(168,135,58,.1)">'
+    +'<div style="max-width:680px;margin:0 auto">'
+    +'<div style="font-family:Jost,sans-serif;font-size:8px;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:rgba(201,168,76,.45);margin-bottom:32px" class="rv">Votre score d\u2019emprise</div>'
+    +domHTML
+    +'<div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">'
+    +'<div style="flex:1;height:.5px;background:linear-gradient(90deg,rgba(249,245,238,.1),transparent)"></div>'
+    +'<div style="font-family:Jost,sans-serif;font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(249,245,238,.35);white-space:nowrap">6 scores non d\u00e9voil\u00e9s</div>'
+    +'<div style="flex:1;height:.5px;background:linear-gradient(90deg,transparent,rgba(249,245,238,.1))"></div>'
+    +'</div>'
+    +'<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">'+cards+'</div>'
+    +'<div style="border:.5px solid rgba(249,245,238,.1);padding:16px 18px;text-align:center;background:rgba(249,245,238,.02)">'
+    +'<div style="font-family:Jost,sans-serif;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(249,245,238,.4);margin-bottom:6px">Portrait complet</div>'
+    +'<div style="font-family:Jost,sans-serif;font-size:13px;font-weight:300;color:rgba(249,245,238,.35);line-height:1.75">6 scores \u00b7 configuration pr\u00e9cise \u00b7 m\u00e9caniques d\u2019amplification<br>disponibles lors de l\u2019accompagnement V.A.L.E.U.R\u00a9</div>'
+    +'</div>'
+    +quoteHTML
+    +'</div>'
+    +'</div>';
+
+    setTimeout(function(){
+    var fill=document.getElementById('pw-ring-fill');
+    if(fill) fill.style.strokeDashoffset=off.toFixed(1);
+  },700);
+}
+
+function buildPublicPsy(){
+  // Section 3 injected into sec-timeline-real
+  const el=document.getElementById('sec-timeline-real');
+  if(!el)return;
+  const masks=['rouge','orange','jaune','vert','bleu','indigo','violet'];
+
+  // Config badge
+  let typeTxt='',pills='',bodyTxt='';
+  if(PROF.type==='dyade'||PROF.type==='dyade_moderee'){
+    const sub=PROF.type==='dyade'?'forte':'mod\u00e9r\u00e9e';
+    typeTxt='Dyade '+sub;
+    pills=PROF.s.slice(0,2).map(m=>'<span class="pw-config-card-pill" style="color:'+MC[m]+'">'+ML[m]+'</span>').join('<span class="pw-config-card-sep"> + </span>');
+    bodyTxt='Vos deux masques co-actifs ne s\u2019additionnent pas\u00a0\u2014 ils se relancent mutuellement dans une logique propre. C\u2019est cette dynamique pr\u00e9cise que votre portrait complet d\u00e9taille.';
+  }else if(PROF.type==='triade'){
+    typeTxt='Triade';
+    pills=PROF.s.slice(0,3).map(m=>'<span class="pw-config-card-pill" style="color:'+MC[m]+'">'+ML[m]+'</span>').join('<span class="pw-config-card-sep"> \u00b7 </span>');
+    bodyTxt='Trois masques s\u2019activent simultan\u00e9ment. Chacun renforce les deux autres. La configuration dans son ensemble cr\u00e9e un m\u00e9canisme plus complexe et plus ancr\u00e9 que chaque masque pris seul.';
+  }else if(PROF.type==='pan'){
+    typeTxt='Pan-Masques';
+    pills=(PROF.act||PROF.s.slice(0,5)).map(m=>'<span class="pw-config-card-pill" style="color:'+MC[m]+'">'+ML[m]+'</span>').join('<span class="pw-config-card-sep"> + </span>');
+    bodyTxt='Cinq masques ou plus actifs \u00e0 un niveau significatif\u00a0\u2014 une configuration rare qui r\u00e9v\u00e8le une suradaptation totale. Ce que cette activation prot\u00e8ge est \u00e0 la mesure de son intensit\u00e9.';
+  }else{
+    bodyTxt='Votre masque op\u00e8re avec une clart\u00e9 singuli\u00e8re. Votre portrait d\u00e9taille son m\u00e9canisme d\u2019entretien et la force qu\u2019il emprisonne.';
+  }
+
+  el.innerHTML='<div class="pw-psy-section rv">'
+    +'<div class="pw-psy-inner">'
+    +'<div class="pw-psy-eyebrow rv">Psychologie de l\u2019anxi\u00e9t\u00e9</div>'
+    +'<div class="pw-psy-title rv">Ce questionnaire a cartographié votre mécanisme de protection le plus actif. Il ne s\u2019arrête pas làut ce qui op\u00e8re.</div>'
+    +'<div class="pw-psy-body rv">La psychologie clinique le sait depuis longtemps\u00a0: <strong>les peurs n\u2019agissent jamais seules</strong>. Dans plus de 9 cas sur 10, plusieurs m\u00e9canismes de protection sont co-actifs\u00a0\u2014 chacun renfor\u00e7ant les autres dans une logique propre.<br><br>V.A.L.E.U.R\u00a9 ne cible pas les masques un par un. Il cartographie la <em>configuration</em>\u00a0\u2014 la fa\u00e7on pr\u00e9cise dont vos masques se relancent mutuellement. C\u2019est cette configuration, unique \u00e0 chaque personne, qui cr\u00e9e et maintient les blocages. Ce masque est la voix la plus forte. Ce n\u2019est pas la seule dans la pi\u00e8ce.</div>'
+    +(typeTxt?'<div class="pw-config-card rv">'
+    +'<div class="pw-config-card-type">Configuration d\u00e9tect\u00e9e \u00b7 '+typeTxt+'</div>'
+    +(pills?'<div class="pw-config-card-pills">'+pills+'</div>':'')
+    +'<div class="pw-config-card-body">'+bodyTxt+'</div>'
+    +'</div>':'')
+    +'</div>'
+    +'</div>';
+}
+
+function buildPublicPolar(){
+  var el=document.getElementById('sec-polarity-real');
+  if(!el)return;
+
+  // ── Adaptatif : message positif sans loi des masques ────────────────────
+  if(PROF.type==='adapt_eq'||PROF.type==='adapt_vig'){
+    var adaptTxt=PROF.type==='adapt_eq'
+      ?"Votre questionnaire ne d\u00e9tecte pas de niveau d\u2019emprise significatif. Vos m\u00e9canismes de protection sont peu actifs dans votre quotidien \u2014 c\u2019est pr\u00e9cis\u00e9ment ce que la pr\u00e9vention cherche \u00e0 pr\u00e9server. V.A.L.E.U.R\u00a9 peut \u00eatre une boussole de conscience, \u00e0 repasser dans quelques mois si vous traversez une p\u00e9riode plus charg\u00e9e."
+      :"Vos m\u00e9canismes de protection sont pr\u00e9sents \u2014 en vigilance, non dominants. C\u2019est le bon moment pour les nommer : avant qu\u2019ils s\u2019amplifient, avant qu\u2019ils se cristallisent. V.A.L.E.U.R\u00a9 est con\u00e7ue pr\u00e9cis\u00e9ment pour ce type de prise de conscience pr\u00e9coce.";
+    el.innerHTML='<div class="pw-polar-section rv">'
+      +'<div class="pw-polar-inner">'
+      +'<div class="pw-polar-eyebrow rv">Un r\u00e9sultat rassurant</div>'
+      +'<div class="pw-polar-law rv">'+adaptTxt+'</div>'
+      +'</div>'
+      +'</div>';
+    return;
+  }
+
+  // ── Fixed law text ───────────────────────────────────────────────────────
+  var lawText="Derri\u00e8re chaque masque, il y a une peur. Et derri\u00e8re cette peur, quelque chose que la peur a captur\u00e9 \u2014 une force, une capacit\u00e9, une fa\u00e7on d\u2019\u00eatre au monde qui est vraiment la v\u00f4tre.<br><br>"
+    +"<strong>Ce n\u2019est pas une m\u00e9taphore. C\u2019est une loi.</strong> Plus le masque est actif \u2014 plus ce qu\u2019il emprisonne est puissant. L\u2019intensit\u00e9 de la protection est toujours proportionnelle \u00e0 la valeur de ce qu\u2019elle retient.";
+
+  // ── General config text (per type, no mask name details) ────────────────
+  var configText='';
+  if(PROF.type==='dyade'||PROF.type==='dyade_moderee'){
+    configText="Votre questionnaire a calcul\u00e9 une configuration \u00e0 deux dimensions co-actives \u2014 une Dyade. Ce n\u2019est pas un hasard. C\u2019est un syst\u00e8me. Il g\u00e9n\u00e8re dans votre vie des sch\u00e9mas que vous reconnaissez sans les avoir choisis\u00a0: des r\u00e9actions qui se r\u00e9p\u00e8tent, des situations qui reviennent, des efforts qui s\u2019\u00e9puisent toujours au m\u00eame endroit.<br><br>Ce syst\u00e8me a sa propre logique. Et c\u2019est pr\u00e9cis\u00e9ment parce qu\u2019il a une logique \u2014 qu\u2019il est lisible, ciblable, traversable. Nommer un m\u00e9canisme, c\u2019est d\u00e9j\u00e0 commencer \u00e0 choisir plut\u00f4t que subir.";
+  }else if(PROF.type==='triade'){
+    configText="Votre questionnaire a calcul\u00e9 une configuration \u00e0 trois dimensions co-actives \u2014 une Triade. Trois m\u00e9canismes qui se verrouillent mutuellement chaque fois que l\u2019un s\u2019active. C\u2019est une configuration plus complexe. Et plus pr\u00e9cise.<br><br>Les sch\u00e9mas qu\u2019elle g\u00e9n\u00e8re ont une coh\u00e9rence que vous avez peut-\u00eatre longtemps cherch\u00e9 \u00e0 expliquer sans trouver les mots. Ces mots existent. Ce m\u00e9canisme se comprend. Et ce qui se comprend peut se traverser.";
+  }else if(PROF.type==='pan'){
+    configText="Votre questionnaire r\u00e9v\u00e8le cinq m\u00e9canismes de protection actifs simultan\u00e9ment \u2014 une configuration rare. Ce syst\u00e8me s\u2019est construit sur des ann\u00e9es. Il a ses raisons. Et derri\u00e8re son intensit\u00e9, il prot\u00e8ge quelque chose d\u2019une richesse exceptionnelle.<br><br>Ce que la m\u00e9thode V.A.L.E.U.R\u00a9 sait faire, c\u2019est traverser ce syst\u00e8me en lib\u00e9rant pr\u00e9cis\u00e9ment ce qu\u2019il retient \u2014 sans le briser.";
+  }else{
+    configText="Votre masque principal op\u00e8re avec une clart\u00e9 singuli\u00e8re. Sa logique est pr\u00e9cise, son origine identifiable, ses effets dans votre vie pr\u00e9visibles.<br><br>Et ce qui est pr\u00e9visible est lib\u00e9rable. Votre portrait complet d\u00e9taille ce m\u00e9canisme dans son int\u00e9gralit\u00e9 \u2014 d\u2019o\u00f9 il vient, comment il se maintient, et ce qu\u2019il emprisonne pour vous.";
+  }
+
+  // ── Sleeping force ───────────────────────────────────────────────────────
+  var elans='';
+  elans=META[DOM].elan||'';
+
+  el.innerHTML='<div class="pw-polar-section rv">'
+    +'<div class="pw-polar-inner">'
+    +'<div class="pw-polar-eyebrow rv">La loi des masques</div>'
+    +'<div class="pw-polar-law rv">'+lawText+'</div>'
+    +'<div class="pw-polar-dynamic rv" style="font-family:Jost,sans-serif;font-size:13.5px;font-weight:300;color:rgba(249,245,238,.55);line-height:1.95;margin-bottom:28px">'+configText+'</div>'
+    +(elans?'<div style="font-family:Jost,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:12px;margin-top:32px" class="rv">Ce qui vous appartient — et qui attend d’être libéré</div>'+'<div class="pw-polar-force rv">'+elans+'</div>':'')
+    +'</div>'
+    +'</div>';
+}
+
+function buildPublicMethod(){
+  const el=document.getElementById('sec-thoughts-real');
+  if(!el)return;
+  el.innerHTML='<div class="pw-method-section rv">'
+    +'<div class="pw-method-inner">'
+    +'<div class="pw-method-eyebrow rv">Ce qu\u2019est V.A.L.E.U.R\u00a9</div>'
+    +'<div class="pw-method-title rv">Un acc\u00e9l\u00e9rateur de conscience. Pas une th\u00e9rapie classique.</div>'
+    +'<div class="pw-method-body rv">'
+    +'V.A.L.E.U.R\u00a9 est une <em>th\u00e9rapie br\u00e8ve bas\u00e9e sur la psycho\u00e9ducation</em>, qui cible les m\u00e9canismes en jeu dans l\u2019anxi\u00e9t\u00e9 et les blocages de vie. L\u00e0 o\u00f9 une approche classique explore, V.A.L.E.U.R\u00a9 cible.<br><br>'
+    +'Elle ne travaille pas sur une anxi\u00e9t\u00e9 g\u00e9n\u00e9rique\u00a0\u2014 elle travaille sur <em>votre configuration sp\u00e9cifique</em>, sur la logique exacte de vos masques et sur la force qu\u2019ils retiennent. En 20 minutes, le questionnaire a cartographi\u00e9 ce que des ann\u00e9es d\u2019introspection n\u2019ont parfois pas nomm\u00e9.'
+    +'</div>'
+    +'<div class="pw-question rv">'
+    +'<div class="pw-question-q">Vos masques vont-ils diminuer avec le temps\u00a0?</div>'
+    +'<div class="pw-question-a">Pas d\u2019eux-m\u00eames, non. Les masques adopt\u00e9s jeunes deviennent progressivement automatiques, puis inconscients. Sans travail intentionnel, ils se figent\u00a0\u2014 ou s\u2019amplifient.<br><br>La bonne nouvelle\u00a0: avec une prise de conscience et un travail structur\u00e9, leur emprise peut \u00eatre consid\u00e9rablement r\u00e9duite. Vous ne les faites pas dispara\u00eetre\u00a0\u2014 vous changez votre relation \u00e0 eux. Et une fois un m\u00e9canisme clairement nomm\u00e9, le choix devient possible l\u00e0 o\u00f9 il n\u2019y avait que la r\u00e9action.</div>'
+    +'</div>'
+    +'<div class="pw-science rv">Les cat\u00e9gories psychologiques sous-jacentes \u00e0 V.A.L.E.U.R\u00a9 sont \u00e9tablies scientifiquement et reconnues dans la litt\u00e9rature clinique\u00a0: anxi\u00e9t\u00e9 de sant\u00e9 (HAI/Warwick), alexithymie (TAS-20/Bagby), intol\u00e9rance \u00e0 l\u2019incertitude (IUS-12/Carleton), attachement (ECR-R/Fraley), perfectionnisme (FMPS/Frost), identit\u00e9 (Winnicott 1960).</div>'
+    +'</div>'
+    +'</div>';
+}
+
+function buildPublicSteps(){
+  const el=document.getElementById('sec-lib-real');
+  if(!el)return;
+  const steps=[
+    {l:'V',v:'Voir',d:'Nommer ce qui se passe vraiment\u00a0\u2014 sans le minimiser, sans se d\u00e9fendre.'},
+    {l:'A',v:'Accueillir',d:'Recevoir ce qu\u2019on porte sans r\u00e9sister. Ce masque a eu sa raison d\u2019\u00eatre.'},
+    {l:'L',v:'Localiser',d:'Identifier l\u2019origine pr\u00e9cise\u00a0\u2014 le moment o\u00f9 ce m\u00e9canisme a commenc\u00e9.'},
+    {l:'E',v:'Explorer',d:'Comprendre la logique du masque de l\u2019int\u00e9rieur\u00a0\u2014 pour le traverser, pas le combattre.'},
+    {l:'U',v:'Unifier',d:'R\u00e9soudre le conflit int\u00e9rieur entre la peur et l\u2019\u00e9lan qu\u2019elle retient.'},
+    {l:'R',v:'Renforcer',d:'Ancrer la s\u00e9curit\u00e9 int\u00e9rieure dans le temps\u00a0\u2014 jusqu\u2019\u00e0 ce qu\u2019elle devienne naturelle.'}
+  ];
+  const stepsHTML=steps.map((s,i)=>
+    '<div class="pw-step-row rv">'
+    +'<div class="pw-step-letter-col"><div class="pw-step-ltr">'+s.l+'</div><div class="pw-step-seq">'+(i+1)+'/6</div></div>'
+    +'<div class="pw-step-body"><div class="pw-step-verb">'+s.v+'</div><div class="pw-step-def">'+s.d+'</div></div>'
+    +'</div>'
+  ).join('');
+  el.innerHTML='<div class="pw-steps-section">'
+    +'<div class="pw-steps-inner">'
+    +'<div class="pw-steps-eyebrow rv">La M\u00e9thode V.A.L.E.U.R\u00a9 en 6 temps</div>'
+    +'<div class="pw-steps-title rv">Un chemin de pr\u00e9cision</div>'
+    +'<div class="pw-steps-sub rv">Chaque \u00e9tape cible un niveau sp\u00e9cifique du m\u00e9canisme\u00a0\u2014 et travaille sur votre configuration, pas sur l\u2019anxi\u00e9t\u00e9 en g\u00e9n\u00e9ral.</div>'
+    +'<div>'+stepsHTML+'</div>'
+    +'</div>'
+    +'</div>';
+
+  // Inject bridge + CTA after sec-lib-real (before share-section)
+  const bridge=document.createElement('div');
+  bridge.innerHTML='<section class="section" style="background:var(--cream)">'
+    +'<div class="pw-bridge-section">'
+    +'<div class="pw-bridge-inner">'
+    +'<div class="pw-bridge-eyebrow rv">L\u2019invitation</div>'
+    +'<div class="pw-bridge-title rv">Le test vient de nommer ce qui vous retient.<br>C\u2019est une premi\u00e8re lumi\u00e8re \u2014 r\u00e9elle et pr\u00e9cieuse.</div>'
+    +'<div class="pw-bridge-body rv">Un masque identifi\u00e9 n\u2019est pas encore un masque travers\u00e9. Savoir ce qui nous retient n\u2019est pas la m\u00eame chose que s\u2019en lib\u00e9rer.<br><br>Ce portrait est une carte. Le travail V.A.L.E.U.R\u00a9 est le voyage.</div>'
+    +'<a href="https://valeur.psyh.fr" class="pw-bridge-btn rv" target="_blank">Commencer l\u2019accompagnement \u2192</a>'
+    +'<div class="pw-bridge-note rv">Votre portrait complet\u00a0\u2014 les 7 masques, la m\u00e9canique de votre configuration, la force emprisonn\u00e9e\u00a0\u2014 vous est remis lors de votre premi\u00e8re s\u00e9ance.</div>'
+    +'</div>'
+    +'</div>'
+    +'</section>';
+  const shareSection=document.getElementById('share-section');
+  if(shareSection&&shareSection.parentNode) shareSection.parentNode.insertBefore(bridge,shareSection);
+}
+
+function initPublicView(){
+  buildHero();
+  buildPublicMirror();
+  buildPublicScore();
+  buildPublicPsy();
+  buildPublicPolar();
+  buildPublicMethod();
+  buildPublicSteps();
+  buildCard();
+  if(SC.email) document.getElementById('ef-email').value=SC.email;
+  initObserver();
+  saveNeon();
+}
+
 </script>
 </body>
 </html>
