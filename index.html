@@ -349,7 +349,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
 const CONFIG = {
   EMAILJS_PUBLIC_KEY:  'Qamyb35cCRJ5Pulqs',
   EMAILJS_SERVICE_ID:  'Questionnaire VALEUR',
-  EMAILJS_TEMPLATE_ID: 'template_xp8cfww',
+  EMAILJS_TEMPLATE_ID: 'template_inscription',
   ADMIN_EMAIL:         'celine.bourbon@gmail.com',
   RESULTS_URL:         'resultats.html',   // chemin relatif IONOS
   ITEMS_PP:            17,                  // 17 items/page → 5 pages
@@ -1020,6 +1020,7 @@ async function sendEmailAdmin(sc, scPct) {
       peur_centrale:   PEURS[dom] || '',
       lien_rapport:    'https://questionnaire.psyh.fr/resultats.html?'
                        + masks.map(m => m + '=' + (scPct[m] || 0)).join('&')
+                       + '&spa=' + (sc.spa || 0)
                        + '&email=' + encodeURIComponent(demographics.email || '')
                        + '&prenom=' + encodeURIComponent(demographics.prenom || ''),
       lien_psycho:     'https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile',
