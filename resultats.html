@@ -675,6 +675,88 @@ img,canvas{max-width:100%;display:block}
 .pw-bridge-note{font-family:'Jost',sans-serif;font-size:13px;font-weight:300;
   color:rgba(26,22,20,.75);margin-top:22px;line-height:1.8}
 
+<style>
+/* ══ PORTRAIT V2 ══ */
+.nv-wrap{background:#F7F4EE;font-family:'Jost',sans-serif;color:#1A1814}
+.nv-b0{padding:44px 40px 36px;background:#F7F4EE;position:relative}
+.nv-stripe{height:3px;width:100%;display:block;margin-bottom:26px}
+.nv-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.nv-chip{font-size:9px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;padding:4px 10px;border-radius:2px;display:inline-block}
+.nv-name{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,5vw,42px);font-weight:500;line-height:1.15;color:#1A1814;margin-bottom:8px}
+.nv-name em{font-style:italic;color:#C9A84C}
+.nv-fearline{font-size:10px;font-weight:400;letter-spacing:.08em;color:rgba(26,24,20,.38);text-transform:uppercase;margin-bottom:22px}
+.nv-frame{border-left:2px solid #C9A84C;padding:13px 16px;background:rgba(201,168,76,.04);border-radius:0 2px 2px 0}
+.nv-frame p{font-family:'Cormorant Garamond',serif;font-size:15px;line-height:1.78;color:#1A1814;margin:0}
+.nv-frame p+p{margin-top:8px}
+.nv-frame strong{font-style:italic;font-weight:500}
+.nv-div{height:1px;background:rgba(26,24,20,.07);margin:0 40px}
+.nv-b1{padding:34px 40px;background:#F7F4EE}
+.nv-slabel{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:14px}
+.nv-mirror{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.5vw,20px);font-weight:400;font-style:italic;line-height:1.72;color:#1A1814;margin-bottom:18px}
+.nv-ctm{background:rgba(26,24,20,.04);padding:12px 16px;border-radius:2px;margin-bottom:14px}
+.nv-ctm p{font-family:'Cormorant Garamond',serif;font-size:clamp(15px,2vw,18px);font-weight:500;font-style:italic;color:#1A1814;line-height:1.55;margin:0}
+.nv-duality{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nv-dd{padding:12px 14px;border-radius:2px}
+.nv-dd-label{font-size:8px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}
+.nv-dd p{font-size:12px;font-weight:300;line-height:1.65;color:#1A1814;margin:0}
+.nv-b2{padding:34px 40px;background:#fff}
+.nv-loop{display:flex;flex-direction:column}
+.nv-step{display:flex;gap:14px;align-items:flex-start;padding:14px 0}
+.nv-step+.nv-step{border-top:1px solid rgba(26,24,20,.06)}
+.nv-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;flex-shrink:0;margin-top:2px;font-family:'Jost',sans-serif}
+.nv-step-body{flex:1;min-width:0}
+.nv-thought{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;font-style:italic;color:#1A1814;margin-bottom:4px;line-height:1.4}
+.nv-explain{font-size:12px;font-weight:300;line-height:1.7;color:rgba(26,24,20,.52)}
+.nv-loop-close{margin-top:16px;text-align:center;font-size:9px;font-weight:400;color:rgba(26,24,20,.28);letter-spacing:.1em;display:flex;align-items:center;gap:8px}
+.nv-loop-close::before,.nv-loop-close::after{content:'';flex:1;height:1px;background:rgba(26,24,20,.09)}
+.nv-b3{padding:34px 40px;background:#1A1814}
+.nv-b3 .nv-slabel{color:#C9A84C}
+.nv-origin{font-size:13px;font-weight:300;line-height:1.85;color:rgba(249,245,238,.4);margin-bottom:18px;font-style:italic}
+.nv-flip{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,3vw,26px);font-weight:400;font-style:italic;line-height:1.5;color:#F9F5EE;margin-bottom:14px}
+.nv-flip strong{color:#C9A84C;font-style:normal;font-weight:500}
+.nv-flipbody{font-size:13px;font-weight:300;line-height:1.85;color:rgba(249,245,238,.4)}
+.nv-b4{padding:34px 40px;background:#F7F4EE}
+.nv-door{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.8vw,22px);font-weight:400;font-style:italic;line-height:1.65;color:#1A1814;margin-bottom:22px}
+.nv-spa-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px}
+.nv-spa-lbl{font-size:9px;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:rgba(26,24,20,.38)}
+.nv-spa-val{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:#1A1814;line-height:1}
+.nv-spa-val small{font-size:11px;font-weight:300;color:rgba(26,24,20,.35)}
+.nv-spa-track{height:2px;background:rgba(26,24,20,.08);border-radius:2px;margin-bottom:9px}
+.nv-spa-fill{height:100%;background:#C9A84C;border-radius:2px;width:0;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+.nv-spa-desc{font-size:12px;font-weight:300;font-style:italic;color:rgba(26,24,20,.42);line-height:1.6}
+.nv-ft{padding:16px 40px 24px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(26,24,20,.07);background:#F7F4EE;flex-wrap:wrap;gap:10px}
+.nv-ft-brand{font-size:9px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:rgba(26,24,20,.25)}
+.nv-ft-cta{font-size:12px;color:#C9A84C;border-bottom:1px solid rgba(201,168,76,.25);padding-bottom:1px;text-decoration:none}
+@media(max-width:480px){
+  .nv-duality{grid-template-columns:1fr}
+  .nv-b0,.nv-b1,.nv-b2,.nv-b3,.nv-b4,.nv-ft,.nv-div{padding-left:18px;padding-right:18px}
+  .nv-div{margin:0}
+}
+
+/* ══ SCORES NV-SC ══ */
+.nv-sc-wrap{padding:0 40px 36px;background:#F7F4EE}
+.nv-sc-label{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+  color:#C9A84C;margin-bottom:14px}
+.nv-sc-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;min-width:0}
+.nv-sc-name{flex:0 0 auto;width:5.8em;font-family:'Jost',sans-serif;font-size:8px;
+  font-weight:500;letter-spacing:.1em;text-transform:uppercase;text-align:right;
+  white-space:nowrap;min-width:0}
+.nv-sc-track{flex:1;min-width:0;border-radius:2px;overflow:hidden;
+  background:rgba(26,24,20,.07)}
+.nv-sc-row.nv-dom .nv-sc-track{height:6px}
+.nv-sc-row.nv-sec .nv-sc-track{height:3px}
+.nv-sc-fill{height:100%;border-radius:2px;width:0;
+  transition:width 1.1s cubic-bezier(.4,0,.2,1)}
+.nv-sc-val{flex:0 0 auto;width:2.8em;text-align:right;
+  font-family:'Cormorant Garamond',serif;line-height:1}
+.nv-sc-row.nv-dom .nv-sc-val{font-size:20px;font-weight:500}
+.nv-sc-row.nv-sec .nv-sc-val{font-size:13px}
+.nv-sc-tie{font-size:7px;font-family:'Jost',sans-serif;color:rgba(26,24,20,.25);
+  text-align:center;letter-spacing:.1em;margin-bottom:3px;
+  padding-left:5.8em}
+.nv-sc-note{font-size:12px;font-family:'Cormorant Garamond',serif;font-style:italic;
+  color:rgba(26,24,20,.38);margin-top:10px;line-height:1.6}
+@media(max-width:480px){.nv-sc-wrap{padding:0 18px 28px}}
 </style>
 </head>
 <body>
@@ -811,20 +893,6 @@ img,canvas{max-width:100%;display:block}
 </section>
 
 <!-- 8 — CARTE -->
-<section id="share-section">
-  <div class="rv section-inner" id="share-header" style="text-align:center;padding-bottom:0">
-    <div class="t-eyebrow" style="text-align:center">Votre carte personnelle</div>
-    <div class="t-h2" style="font-size:clamp(20px,3.5vw,32px);text-align:center">À partager — ou à garder pour vous</div>
-  </div>
-  <div class="section-inner" style="padding-top:28px">
-    <canvas id="share-canvas" width="400" height="560"></canvas>
-    <div class="share-btns rv" id="share-btns">
-      <button class="sbtn sbtn-p" onclick="shareCard()">Partager mon portrait</button>
-      <button class="sbtn sbtn-s" onclick="downloadCard()">Télécharger</button>
-    </div>
-    <div class="share-caption" id="share-caption"></div>
-  </div>
-</section>
 
 <!-- 9 — EMAIL -->
 <section id="email-section">
@@ -1221,27 +1289,86 @@ function applyMaskColor(m){
 // HERO
 // ══════════════════════════════════
 function buildHero(){
-  const m=DOM,meta=META[m],s=PROF.s;
-  document.getElementById('h-maskname').innerHTML='<span class="accent">'+ML[m]+'</span>';
-  document.getElementById('h-fear').textContent=meta.peur;
-  document.getElementById('h-pretitle').textContent=PRENOM?PRENOM+', votre bouclier porte un nom.':'Votre bouclier porte un nom.';
+  const m=DOM,s=PROF.s,type=PROF.type;
+  const isDyade=type==='dyade'||type==='dyade_moderee';
+  const isTriade=type==='triade';
+  const isPan=type==='pan';
+  const isAdapt=type.startsWith('adapt');
+  const pr=PRENOM?PRENOM+', ':'';
 
+  // label
+  const lbl=document.querySelector('.hero-mask-label');
+  if(lbl){
+    if(isDyade) lbl.textContent='Dyade';
+    else if(isTriade) lbl.textContent='Triade';
+    else if(isPan) lbl.textContent='Pan-Masques';
+    else if(isAdapt) lbl.textContent='Profil';
+    else lbl.textContent='Masque';
+  }
+
+  // pretitle
+  let pre;
+  if(isDyade) pre=pr+'deux boucliers portent votre nom.';
+  else if(isTriade) pre=pr+'trois boucliers portent votre nom.';
+  else if(isPan) pre=pr+'vos boucliers portent tous un nom.';
+  else if(isAdapt) pre=pr+(type==='adapt_eq'?'ce portrait r\u00e9v\u00e8le quelque chose de rare.':'quelques boucliers \u00e9mergent.');
+  else pre=pr+'votre bouclier porte un nom.';
+  document.getElementById('h-pretitle').textContent=pre;
+
+  // maskname
+  const nameEl=document.getElementById('h-maskname');
+  if(isDyade){
+    nameEl.innerHTML='<span class="accent">'+ML[s[0]]+'</span>'
+      +'<span style="display:block;font-size:.45em;opacity:.5;margin:.1em 0">+</span>'
+      +'<span class="accent">'+ML[s[1]]+'</span>';
+  }else if(isTriade){
+    nameEl.innerHTML=s.slice(0,3).map(x=>'<span class="accent">'+ML[x]+'</span>').join('<br>');
+  }else if(isPan){
+    nameEl.innerHTML='<span class="accent">Activation<br>G\u00e9n\u00e9ralis\u00e9e</span>';
+  }else if(isAdapt){
+    nameEl.innerHTML='<span class="accent">Profil<br>Adaptatif</span>';
+  }else{
+    nameEl.innerHTML='<span class="accent">'+ML[m]+'</span>';
+  }
+
+  // fear
+  const fearEl=document.getElementById('h-fear');
+  if(isDyade) fearEl.textContent=META[s[0]].peur+' \u2014 '+META[s[1]].peur;
+  else if(isTriade) fearEl.textContent=s.slice(0,3).map(x=>META[x].peur).join(' \u2014 ');
+  else if(isPan) fearEl.textContent='Plusieurs protections actives simultan\u00e9ment';
+  else if(isAdapt) fearEl.textContent='Aucun m\u00e9canisme dominant';
+  else fearEl.textContent=META[m].peur;
+
+  // badge
   const badge=document.getElementById('h-badge');
-  if(PROF.type==='dyade'&&PROF.d) badge.textContent='Dyade '+ML[s[0]]+' + '+ML[s[1]];
-  else if(PROF.type==='triade'&&PROF.d) badge.textContent='Triade '+s.slice(0,3).map(x=>ML[x]).join(' · ');
-  else if(PROF.type==='pan') badge.textContent='Pan-Masques · '+PROF.act.length+' masques actifs';
-  else if(PROF.type.startsWith('adapt')) badge.textContent=PROF.type==='adapt_eq'?'Profil Adaptatif · Équilibré':'Profil Adaptatif · Vigilant';
+  if(isDyade&&PROF.d) badge.textContent=PROF.d.nom;
+  else if(isDyade) badge.textContent='Dyade '+ML[s[0]]+' + '+ML[s[1]];
+  else if(isTriade&&PROF.d) badge.textContent=PROF.d.nom;
+  else if(isTriade) badge.textContent='Triade '+s.slice(0,3).map(x=>ML[x]).join(' \u00b7 ');
+  else if(isPan) badge.textContent='Pan-Masques \u00b7 '+(PROF.act||s).length+' masques actifs';
+  else if(isAdapt) badge.textContent=type==='adapt_eq'?'Profil Adaptatif \u00b7 \u00c9quilibr\u00e9':'Profil Adaptatif \u00b7 Vigilant';
   else badge.textContent='Masque '+ML[m];
 
-  // Rings top 3
+  // rings : n adaptatif selon type
+  const nRings=isDyade?2:isTriade?3:isPan?Math.min((PROF.act||s).length,5):isAdapt?0:1;
   const rings=document.getElementById('h-rings');
-  s.slice(0,3).forEach((mask,i)=>{
-    const pct=SC[mask],c=MC[mask],circ=2*Math.PI*23;
+  const ringMasks=isPan?(PROF.act||s.slice(0,5)):s.slice(0,Math.max(nRings,1));
+  ringMasks.forEach((mask,i)=>{
+    const pct=SC[mask],col=MC[mask],circ=2*Math.PI*23;
     const div=document.createElement('div');div.className='ring-item';
-    div.innerHTML='<div class="ring-wrap"><svg class="ring-svg" width="56" height="56" viewBox="0 0 56 56"><circle cx="28" cy="28" r="23" fill="none" stroke="rgba(249,245,238,.08)" stroke-width="2.5"/><circle cx="28" cy="28" r="23" fill="none" stroke="'+c+'" stroke-width="2.5" stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" stroke-linecap="round" data-target="'+(circ*(1-pct/100)).toFixed(2)+'" style="transition:stroke-dashoffset 1s '+(0.3+i*0.15)+'s ease"/></svg><div class="ring-num" style="color:'+c+'">'+pct+'%</div></div><div class="ring-lbl" style="color:'+c+'">'+ML[mask]+'</div>';
+    div.innerHTML='<div class="ring-wrap"><svg class="ring-svg" width="56" height="56" viewBox="0 0 56 56">'
+      +'<circle cx="28" cy="28" r="23" fill="none" stroke="rgba(249,245,238,.08)" stroke-width="2.5"/>'
+      +'<circle cx="28" cy="28" r="23" fill="none" stroke="'+col+'" stroke-width="2.5"'
+      +' stroke-dasharray="'+circ+'" stroke-dashoffset="'+circ+'" stroke-linecap="round"'
+      +' data-target="'+(circ*(1-pct/100)).toFixed(2)+'"'
+      +' style="transition:stroke-dashoffset 1s '+(0.3+i*0.15)+'s ease"/></svg>'
+      +'<div class="ring-num" style="color:'+col+'">'+pct+'%</div></div>'
+      +'<div class="ring-lbl" style="color:'+col+'">'+ML[mask]+'</div>';
     rings.appendChild(div);
   });
-  setTimeout(()=>{document.querySelectorAll('[data-target]').forEach(el=>{el.style.strokeDashoffset=el.getAttribute('data-target');});},500);
+  setTimeout(()=>{document.querySelectorAll('[data-target]').forEach(el=>{
+    el.style.strokeDashoffset=el.getAttribute('data-target');
+  });},500);
 }
 
 // ══════════════════════════════════
@@ -1831,240 +1958,8 @@ function buildLib(){
 // ══════════════════════════════════
 // CARTE CANVAS
 // ══════════════════════════════════
-function buildCard(){
-  const canvas=document.getElementById('share-canvas');
-  const ctx=canvas.getContext('2d');
-  const W=480, H=760;
-  canvas.width=W; canvas.height=H;
 
-  const m=DOM, c=MC[m], rgb=hexRgb(c);
-  const r=rgb.r, g=rgb.g, b=rgb.b;
 
-  // Couleur lumineuse du masque (pour le grand titre)
-  function lighten(r,g,b,f){
-    return`rgb(${Math.round(r+(255-r)*f)},${Math.round(g+(255-g)*f)},${Math.round(b+(255-b)*f)})`;
-  }
-  const cLight = lighten(r,g,b,.58);
-
-  const CARD_MSG={
-    rouge:"Votre corps est toujours en alerte et vous craignez le pire. Derri\u00e8re cette vigilance constante dort une profonde capacit\u00e9 \u00e0 habiter l\u2019instant en paix.",
-    orange:"Vous tenez les \u00e9motions \u00e0 distance pour ne pas souffrir. Mais ce verrou \u00e9motionnel enferme aussi votre cr\u00e9ativit\u00e9 et votre \u00e9lan de vie.",
-    jaune:"Vous avez besoin de tout pr\u00e9voir pour avancer. L\u2019inconnu vous effraie. L\u2019incertitude vous para\u00ebyse. Pourtant, la confiance est l\u00e0, pr\u00eate \u00e0 s\u2019\u00e9veiller.",
-    vert:"Vous vous adaptez sans cesse, de peur de ne pas \u00eatre aim\u00e9\u00b7e ou d\u2019\u00eatre abandonn\u00e9\u00b7e. Sous cette anxi\u00e9t\u00e9 de rejet br\u00fcle un amour vrai qui n\u2019a pas besoin de se sacrifier pour exister.",
-    bleu:"Vous vivez dans la peur de ne pas tout ma\u00eetriser. Ce besoin de contr\u00f4le cache un charisme naturel qui n\u2019a pas besoin de tout ma\u00eetriser pour exister.",
-    indigo:"Vous visez la perfection pour \u00e9chapper au jugement. Derri\u00e8re cette exigence se tient une vision claire et une intelligence fine qui n\u2019attendent qu\u2019\u00e0 s\u2019exprimer.",
-    violet:"Vous vous \u00eates adapt\u00e9\u00b7e \u00e0 tout le monde, au point de vous perdre. Votre authenticit\u00e9, elle, n\u2019a jamais disparu. Sous le masque, votre vraie nature attend d\u2019\u00eatre r\u00e9veill\u00e9e."
-  };
-
-  // ══ FOND ══════════════════════════════════════════════════════
-  // Base sombre
-  ctx.fillStyle=`rgb(${Math.round(r*.12)},${Math.round(g*.12)},${Math.round(b*.12)})`;
-  ctx.fillRect(0,0,W,H);
-
-  // Halo principal — couleur masque au centre
-  const halo=ctx.createRadialGradient(W/2,H*.36,0,W/2,H*.36,W*.9);
-  halo.addColorStop(0,  `rgba(${r},${g},${b},.68)`);
-  halo.addColorStop(.45,`rgba(${r},${g},${b},.28)`);
-  halo.addColorStop(1,  `rgba(${r},${g},${b},0)`);
-  ctx.fillStyle=halo; ctx.fillRect(0,0,W,H);
-
-  // Éclat lumière haut-gauche
-  const gleam=ctx.createRadialGradient(60,50,0,60,50,260);
-  gleam.addColorStop(0,'rgba(255,255,255,.09)');
-  gleam.addColorStop(1,'rgba(255,255,255,0)');
-  ctx.fillStyle=gleam; ctx.fillRect(0,0,W,H);
-
-  // Grain fin
-  for(let i=0;i<2200;i++){
-    ctx.fillStyle=`rgba(255,255,255,${Math.random()*.022})`;
-    ctx.fillRect(Math.random()*W,Math.random()*H,1,1);
-  }
-
-  // Liseré gauche or
-  const lband=ctx.createLinearGradient(0,0,0,H);
-  lband.addColorStop(0,'rgba(201,168,76,0)');
-  lband.addColorStop(.28,'rgba(201,168,76,.85)');
-  lband.addColorStop(.72,'rgba(240,208,128,.92)');
-  lband.addColorStop(1,'rgba(201,168,76,0)');
-  ctx.fillStyle=lband; ctx.fillRect(0,0,2.5,H);
-
-  // ══ HELPERS ═══════════════════════════════════════════════════
-  function goldRule(y, op){
-    const gr=ctx.createLinearGradient(32,0,W-32,0);
-    gr.addColorStop(0,'rgba(201,168,76,0)');
-    gr.addColorStop(.5,`rgba(201,168,76,${op||.80})`);
-    gr.addColorStop(1,'rgba(201,168,76,0)');
-    ctx.strokeStyle=gr; ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(32,y); ctx.lineTo(W-32,y); ctx.stroke();
-  }
-  function wrapText(txt,maxW){
-    const words=txt.split(' ');
-    let line='',lines=[],tl='';
-    words.forEach(w=>{
-      tl=line+(line?' ':'')+w;
-      if(ctx.measureText(tl).width>maxW&&line){lines.push(line);line=w;}
-      else line=tl;
-    });
-    if(line)lines.push(line);
-    return lines;
-  }
-
-  // ══ LOGO ══════════════════════════════════════════════════════
-  ctx.textAlign='center';
-  ctx.fillStyle='rgba(201,168,76,.82)';
-  ctx.font='600 8.5px Jost';
-  ctx.letterSpacing='3px';
-  ctx.fillText('V.A.L.E.U.R\u00a9',W/2,40);
-  ctx.letterSpacing='0px';
-  goldRule(54,.60);
-
-  // ══ IDENTITÉ ══════════════════════════════════════════════════
-  // "Je suis un"
-  ctx.fillStyle='rgba(255,255,255,.62)';
-  ctx.font='300 italic 18px Cormorant Garamond';
-  ctx.fillText('Je suis un',W/2,96);
-
-  // "Masque"
-  ctx.fillStyle='rgba(255,255,255,.82)';
-  ctx.font='300 44px Cormorant Garamond';
-  ctx.fillText('Masque',W/2,146);
-
-  // Nom du masque — grand, lumineux, couleur propre
-  ctx.save();
-  ctx.shadowColor=`rgba(${r},${g},${b},.90)`;
-  ctx.shadowBlur=28;
-  ctx.fillStyle=cLight;
-  ctx.font='600 88px Cormorant Garamond';
-  ctx.fillText(ML[m],W/2,240);
-  ctx.restore();
-
-  // Descriptor
-  ctx.fillStyle='rgba(255,255,255,.62)';
-  ctx.font='300 italic 13px Cormorant Garamond';
-  ctx.fillText(META[m].descriptor,W/2,268);
-
-  // Double rule or
-  goldRule(288,.70);
-  goldRule(292,.28);
-
-  // ══ CADRE PHRASE ══════════════════════════════════════════════
-  const bX=30, bY=308, bW=W-60, bH=238, bR=5;
-
-  // Fond intérieur : légèrement plus clair
-  ctx.fillStyle=`rgba(${Math.round(r*.28)},${Math.round(g*.28)},${Math.round(b*.28)},.82)`;
-  roundRect(ctx,bX,bY,bW,bH,bR); ctx.fill();
-
-  // Contour or dégradé
-  const gBrd=ctx.createLinearGradient(bX,bY,bX+bW,bY+bH);
-  gBrd.addColorStop(0,'rgba(201,168,76,.45)');
-  gBrd.addColorStop(.5,'rgba(240,208,128,1)');
-  gBrd.addColorStop(1,'rgba(201,168,76,.45)');
-  ctx.strokeStyle=gBrd; ctx.lineWidth=1.5;
-  roundRect(ctx,bX,bY,bW,bH,bR); ctx.stroke();
-
-  // Coins ornementaux
-  const cs=16, cw=1.8;
-  [[bX,bY],[bX+bW,bY],[bX,bY+bH],[bX+bW,bY+bH]].forEach(([cx2,cy2])=>{
-    const sx=cx2===bX?1:-1, sy=cy2===bY?1:-1;
-    ctx.strokeStyle='rgba(240,208,128,.95)'; ctx.lineWidth=cw;
-    ctx.beginPath(); ctx.moveTo(cx2+sx*cs,cy2); ctx.lineTo(cx2,cy2); ctx.lineTo(cx2,cy2+sy*cs); ctx.stroke();
-  });
-
-  // Guillemet ouverture
-  ctx.fillStyle='rgba(201,168,76,.58)';
-  ctx.font='300 42px Cormorant Garamond';
-  ctx.fillText('\u201c',bX+16,bY+42);
-
-  // Texte centré dans le cadre
-  ctx.fillStyle='rgba(255,255,255,.97)';
-  ctx.font='400 italic 18.5px Cormorant Garamond';
-  const lines=wrapText(CARD_MSG[m],bW-56);
-  const lh=29;
-  const frameCY=bY+bH/2+6;
-  const startY=frameCY-((lines.length-1)*lh)/2;
-  lines.forEach((l,i)=>ctx.fillText(l,W/2,startY+i*lh));
-
-  // Guillemet fermeture
-  ctx.fillStyle='rgba(201,168,76,.58)';
-  ctx.font='300 42px Cormorant Garamond';
-  ctx.fillText('\u201d',bX+bW-14,bY+bH-8);
-
-  // ══ ET TOI ? ══════════════════════════════════════════════════
-  goldRule(562,.55);
-
-  ctx.fillStyle='rgba(255,255,255,.95)';
-  ctx.font='300 italic 24px Cormorant Garamond';
-  ctx.fillText('et toi\u00a0?',W/2,594);
-
-  // ══ CTA BOX ═══════════════════════════════════════════════════
-  // Rectangle plein or — ultra visible
-  const ctaX=44, ctaY=612, ctaW=W-88, ctaH=68, ctaR=3;
-  ctx.fillStyle='#C9A84C';
-  roundRect(ctx,ctaX,ctaY,ctaW,ctaH,ctaR); ctx.fill();
-
-  // Surbrillance haut
-  const ctaShine=ctx.createLinearGradient(0,ctaY,0,ctaY+ctaH);
-  ctaShine.addColorStop(0,'rgba(255,255,255,.18)');
-  ctaShine.addColorStop(.6,'rgba(255,255,255,0)');
-  ctx.fillStyle=ctaShine;
-  roundRect(ctx,ctaX,ctaY,ctaW,ctaH,ctaR); ctx.fill();
-
-  // Texte CTA — encre sombre sur or
-  ctx.fillStyle='rgba(12,8,22,.88)';
-  ctx.font='600 10px Jost';
-  ctx.letterSpacing='2.5px';
-  ctx.fillText('D\u00c9COUVRE TON MASQUE',W/2,ctaY+24);
-  ctx.letterSpacing='0px';
-
-  ctx.fillStyle='rgba(12,8,22,.78)';
-  ctx.font='500 italic 20px Cormorant Garamond';
-  ctx.fillText('valeur.psyh.fr  \u2192',W/2,ctaY+52);
-
-  // ══ SIGNATURE ═════════════════════════════════════════════════
-  ctx.fillStyle='rgba(255,255,255,.38)';
-  ctx.font='300 italic 10.5px Cormorant Garamond';
-  ctx.fillText('M\u00e9thode V.A.L.E.U.R\u00a9 \u00b7 C\u00e9line Bourbon \u00b7 Psychologue',W/2,700);
-
-  // ══ CHROMA ════════════════════════════════════════════════════
-  ['rouge','orange','jaune','vert','bleu','indigo','violet'].forEach((mm,i)=>{
-    ctx.globalAlpha=.88;
-    ctx.fillStyle=MC[mm];
-    ctx.fillRect(i*(W/7),H-5,W/7+1,5);
-  });
-  ctx.globalAlpha=1;
-
-  document.getElementById('share-caption').textContent=
-    'Je suis un Masque '+ML[m]+' \u2014 et toi\u00a0? V.A.L.E.U.R\u00a9 \u00b7 valeur.psyh.fr';
-}
-function roundRect(ctx,x,y,w,h,r){
-  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);
-  ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);
-  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);
-  ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);
-  ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
-}
-// ══════════════════════════════════
-// SHARE / DL
-// ══════════════════════════════════
-function shareCard(){
-  const c=document.getElementById('share-canvas');
-  c.toBlob(blob=>{
-    const f=new File([blob],'portrait-valeur.png',{type:'image/png'});
-    if(navigator.share&&navigator.canShare&&navigator.canShare({files:[f]})){
-      navigator.share({title:'Mon Portrait V.A.L.E.U.R\u00a9',text:META[DOM].mirror_phrase,url:'https://valeur.psyh.fr',files:[f]}).catch(()=>downloadCard());
-    }else downloadCard();
-  },'image/png');
-}
-function downloadCard(){
-  const a=document.createElement('a');
-  a.download='portrait-valeur-'+DOM+'.png';
-  a.href=document.getElementById('share-canvas').toDataURL();
-  a.click();
-}
-
-// ══════════════════════════════════
-// EMAIL
-// ══════════════════════════════════
 function sendEmail(){
   const inp=document.getElementById('ef-email');
   const email=inp.value.trim();
@@ -2163,316 +2058,361 @@ const PW_PRISON={
   violet:"n\u2019a pas effac\u00e9 votre identit\u00e9\u00a0\u2014 il l\u2019a adapt\u00e9e jusqu\u2019\u00e0 l\u2019invisibilit\u00e9"
 };
 
-function buildPublicMirror(){
-  const el=document.getElementById('sec-mirror');
-  if(!el)return;
-  const meta=META[DOM];
-  el.innerHTML=
-    '<div style="background:var(--g900);padding:64px 24px 0;position:relative">'
-    +'<div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 40% at 50% 0%,rgba(168,135,58,.07),transparent);pointer-events:none"></div>'
-    +'<div style="max-width:680px;margin:0 auto;position:relative">'
-    +'<div class="rv" style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:.5px solid rgba(168,135,58,.35);margin-bottom:32px">'
-    +'<span style="width:5px;height:5px;border-radius:50%;background:var(--gold);display:inline-block"></span>'
-    +'<span style="font-family:Jost,sans-serif;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.8)">Questionnaire V.A.L.E.U.R\u00a9 \u2014 Analyse de vos m\u00e9canismes de protection</span>'
-    +'</div>'
-    +'<div class="rv" style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(26px,4vw,36px);font-weight:500;color:rgba(249,245,238,.92);line-height:1.35;margin-bottom:20px">Ce test n\u2019est pas un test de personnalit\u00e9.</div>'
-    +'<div class="rv" style="font-family:Jost,sans-serif;font-size:13.5px;font-weight:300;color:rgba(249,245,238,.5);line-height:2;margin-bottom:0">'
-    +'La plupart des outils psychologiques vous disent <em style="font-style:italic;color:rgba(249,245,238,.75)">qui vous \u00eates</em>. V.A.L.E.U.R\u00a9 cherche quelque chose de plus pr\u00e9cis\u00a0: <em style="font-style:italic;color:rgba(249,245,238,.75)">ce qui vous emp\u00eache d\u2019\u00eatre vous-m\u00eame</em>.<br><br>'
-    +'85 questions. 7 m\u00e9canismes de protection mesur\u00e9s. Une question derri\u00e8re chacun\u00a0: \u00e0 quel niveau cette peur prend-elle les commandes de vos pens\u00e9es, de vos \u00e9motions, de vos comportements\u00a0?'
-    +'</div>'
-    +'</div>'
-    +'</div>'
-    // Bridge block
-    +'<div class="rv" style="background:var(--g900);padding:48px 24px 64px">'
-    +'<div style="max-width:680px;margin:0 auto">'
-    +'<div class="rv" style="font-family:Jost,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.65);margin-bottom:16px">01 \u00b7 Ce que le test a reconnu</div>'
-    +'<div class="rv" style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(32px,5vw,44px);font-weight:500;color:'+MC[DOM]+';line-height:1.1;margin-bottom:20px">'+ML[DOM]+'</div>'
-    +'<div class="rv" style="font-family:Jost,sans-serif;font-size:14px;font-weight:300;color:rgba(249,245,238,.6);line-height:1.95;max-width:580px">'+meta.bridge+'</div>'
-    +'</div>'
-    +'</div>';
+
+// ══════════════════════════════════
+// PORTRAIT V2 — NV SYSTEM
+// ══════════════════════════════════
+
+const NV_MIRROR={"rouge": "Votre corps envoie des signaux constants. Une tension, une douleur, une sensation qui fait penser que quelque chose ne va pas. Avant même d’avoir analysé, une partie de vous a déjà commencé à surveiller — parce que votre système nerveux a appris que l’imprévu corporel est dangereux. Vous vivez le présent en anticipant un futur qui n’existe pas encore.", "orange": "Quelqu’un vous demande comment vous allez vraiment. Et vous cherchez — sincèrement. Non pas parce que vous manquez d’intelligence, mais parce que quelque chose a décidé, très tôt, que ressentir pleinement était trop risqué. Vous comprenez tout. Vous traversez moins.", "jaune": "Avant même que la situation soit résolue, vous avez déjà envisagé dix scénarios, préparé des réponses, et imaginé ce qui pourrait mal tourner. Pas parce que vous aimez vous inquiéter. Parce que votre esprit a appris que l’imprévu est dangereux — et qu’anticiper est la seule façon de se sentir en sécurité.", "vert": "Avant même que l’autre ait dit quelque chose, vous avez déjà vérifié. Un regard, un silence, un ton légèrement différent — et une partie de vous analyse : est-ce que quelque chose a changé ? Vous aimez avec une intensité rare — et c’est précisément pour ça que la peur est si forte.", "bleu": "Quand une situation vous échappe — une décision de l’autre, un résultat incertain, quelque chose hors de portée — quelque chose en vous se met en mouvement immédiatement. Vous reprenez la main. Vous structurez. Vous organisez. Pas par goût du pouvoir. Parce que le contrôle est la seule façon que vous ayez trouvée de ne pas vous sentir vulnérable.", "indigo": "Le résultat est là. Les autres sont satisfaits. Vous avez réussi. Et pourtant — une partie de vous cherche déjà ce qui aurait pu être mieux, plus précis, plus abouti. Ce n’est pas de l’insatisfaction ordinaire. C’est une barre placée si haut qu’elle est devenue invisible — même pour vous.", "violet": "Selon les personnes, les contextes, les rôles — quelque chose en vous s’ajuste subtilement. Une façon d’être légèrement différente. Avec une fluidité que les autres admirent. Mais seul·e, parfois, vous vous demandez : qui suis-je vraiment quand personne ne regarde ?"};
+const NV_DUALITY_E={"rouge": "Faire confiance à votre corps. Vivre un moment de détente complète, sans surveiller ce qui se passe à l’intérieur.", "orange": "Ressentir pleinement, sans vous protéger de vos propres émotions. Laisser quelque chose vous toucher vraiment.", "jaune": "Lâcher prise. Laisser les choses venir sans les avoir préparées. Faire confiance à la vie sans en connaître le scénario.", "vert": "Aimer librement. Recevoir autant que vous donnez. Vous sentir en sécurité dans un lien sans avoir à le vérifier constamment.", "bleu": "Déléguer sans surveiller. Faire confiance à ce que vous ne contrôlez pas. Vous sentir en sécurité même quand tout n’est pas maîtrisé.", "indigo": "Vous permettre d’être fier·e de ce que vous avez accompli, sans chercher immédiatement ce qui manque.", "violet": "Exister sans vous demander si vous êtes acceptable. Être vu·e pour ce que vous êtes vraiment."};
+const NV_DUALITY_P={"rouge": "Si vous arrêtez de surveiller, quelque chose de grave va passer inaperçu. Que votre vigilance est ce qui vous protège.", "orange": "Si vous ouvrez vraiment, quelque chose va déborder. Que l’émotion sera trop forte — ou que vous n’aurez pas les mots.", "jaune": "Si vous ne l’avez pas anticipé, quelque chose d’irréparable va arriver. Que l’imprévu vous déborde.", "vert": "Si vous arrêtez de vous adapter, de vous rendre présent·e et utile, quelque chose dans le lien va se fissurer.", "bleu": "Si vous lâchez le contrôle, quelque chose va mal tourner. Et vous en serez responsable, vous qui n’avez pas suffisamment anticipé.", "indigo": "Si vous baissez l’exigence, si vous acceptez le « bien », vous devenez quelqu’un d’ordinaire.", "violet": "Si vous arrêtez de vous adapter, si vous montrez qui vous êtes vraiment, vous serez jugé·e ou rejeté·e."};
+const NV_THOUGHTS={"rouge": ["“Je perçois quelque chose.”", "“Est-ce grave ?”", "“La surveillance ne s’arrête pas.”"], "orange": ["“Il y a quelque chose à ressentir.”", "“Je le traite à distance.”", "“Mais ça revient quand même.”"], "jaune": ["“Je ne sais pas ce qui va se passer.”", "“J’anticipe pour reprendre le contrôle.”", "“L’incertitude est toujours là.”"], "vert": ["“Je détecte un signal — même infime.”", "“Je m’ajuste, je donne davantage.”", "“L’autre s’éloigne quand même.”"], "bleu": ["“Quelque chose m’échappe.”", "“Je reprends le contrôle.”", "“La résistance monte.”"], "indigo": ["“Ce n’est pas encore suffisant.”", "“Je peux faire mieux.”", "“Le repos est hors de portée.”"], "violet": ["“Je lis ce que la situation attend.”", "“Je m’adapte.”", "“Mais quelqu’un en moi n’était pas là.”"]};
+const NV_FLIP={"rouge": "Derrière cette hypervigilance, il y a un élan de vie <strong>d’une intensité rare.</strong>", "orange": "Derrière cet évitement, il y a une intelligence émotionnelle <strong>d’une profondeur exceptionnelle.</strong>", "jaune": "Derrière cette vigilance permanente, il y a une intelligence de la complexité <strong>que peu de personnes possèdent.</strong>", "vert": "Derrière cette vigilance relationnelle, il y a une capacité d’amour <strong>d’une intensité rare.</strong>", "bleu": "Derrière ce besoin de contrôle, il y a un leadership naturel <strong>d’une puissance exceptionnelle.</strong>", "indigo": "Derrière cette exigence permanente, il y a une vision et une capacité de réalisation <strong>d’une profondeur exceptionnelle.</strong>", "violet": "Derrière cette adaptation constante, il y a une sensibilité et une intelligence des autres <strong>d’une finesse rare.</strong>"};
+const NV_DOOR={"rouge": "Et si votre présence au corps était enfin au service du plaisir d’exister — plutôt que de la peur de disparaître ?", "orange": "Et si ce que vous ressentez n’était pas un danger à contenir — mais le guide le plus précis que vous ayez ?", "jaune": "Et si la même capacité d’anticipation était au service de ce que vous voulez construire — plutôt que de ce que vous voulez éviter ?", "vert": "Et si vous étiez aimé·e pour ce que vous êtes — et non pour tout ce que vous faites pour que ça reste ?", "bleu": "Et si votre force d’organisation était enfin au service de ce que vous voulez créer — plutôt que de ce que vous avez peur de perdre ?", "indigo": "Et si votre exigence était enfin tournée vers ce que vous méritez de vivre — plutôt que vers ce que vous n’avez pas encore prouvé ?", "violet": "Et si vous étiez enfin vu·e pour ce que vous êtes — et non pour la version de vous que les autres peuvent recevoir ?"};
+
+function nvHex2rgba(hex,a){var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);return 'rgba('+r+','+g+','+b+','+a+')';}
+
+function nvSpaDesc(s){
+  return s>=70?'Votre espace authentique est bien pr\u00e9sent. Des moments o\u00f9 vous \u00eates vraiment vous-m\u00eame existent \u2014 ils peuvent grandir.'
+    :s>=50?'Des ressources authentiques existent. Votre espace de libert\u00e9 est l\u00e0, en construction.'
+    :s>=30?'Votre espace authentique a besoin d\u2019attention \u2014 il est l\u00e0, mais recouvert par les masques.'
+    :'Votre pr\u00e9sence \u00e0 vous-m\u00eame est faible en ce moment. C\u2019est souvent le signe que les masques occupent beaucoup d\u2019espace.';
 }
 
-function buildPublicScore(){
-  var el=document.getElementById('sec-carto');
-  if(!el)return;
-  var pct=SC[DOM]||0;
-  var meta=META[DOM];
+function nvChip(label,color,bg){return '<span class="nv-chip" style="color:'+color+';background:'+bg+'">'+label+'</span>';}
 
-  // ── Adaptatif handling ──────────────────────────────────────────────────
-  if(PROF.type==='adapt_eq'||PROF.type==='adapt_vig'){
-    var adaptMsg=PROF.type==='adapt_eq'
-      ?'Vos scores indiquent un profil souple et adapt\u00e9. Vos m\u00e9canismes de protection ne prennent pas les commandes de fa\u00e7on dominante \u2014 c\u2019est un signal positif. Votre syst\u00e8me nerveux n\u2019est pas en \u00e9tat d\u2019alerte g\u00e9n\u00e9ralis\u00e9e.'
-      :'Quelques m\u00e9canismes de protection sont pr\u00e9sents en vigilance \u2014 non dominants, mais perceptibles. Les nommer pr\u00e9cocement, c\u2019est \u00e9viter qu\u2019ils s\u2019amplifient avec le temps.';
-    el.innerHTML='<div style="background:var(--g900);padding:64px 24px">'
-      +'<div style="max-width:640px;margin:0 auto">'
-      +'<div style="display:flex;align-items:flex-start;gap:20px;padding:28px 24px;border:.5px solid rgba(168,135,58,.25);background:rgba(168,135,58,.04)">'
-      +'<div style="font-size:22px;color:rgba(168,135,58,.8);flex-shrink:0">\u2713</div>'
-      +'<div>'
-      +'<div style="font-family:Jost,sans-serif;font-size:9px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:10px">R\u00e9sultat du questionnaire</div>'
-      +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(20px,3vw,26px);font-weight:500;color:rgba(249,245,238,.9);line-height:1.4;margin-bottom:12px">Aucun m\u00e9canisme \u00e0 niveau d\u2019emprise significatif d\u00e9tect\u00e9.</div>'
-      +'<div style="font-family:Jost,sans-serif;font-size:13px;font-weight:300;color:rgba(249,245,238,.5);line-height:1.85">'+adaptMsg+'</div>'
-      +'</div>'
-      +'</div>'
-      +'</div>'
-      +'</div>';
-    return;
+function nvB0(stripe,chips,name,fearline,intro){
+  var defaultIntro='Un masque de d\u00e9fense est une protection que votre esprit a construite, souvent tr\u00e8s t\u00f4t, face \u00e0 quelque chose qui faisait mal. Il a fonctionn\u00e9. Le probl\u00e8me\u00a0: il fonctionne encore \u2014 m\u00eame quand la menace a disparu depuis longtemps.';
+  return '<div class="nv-b0"><div class="nv-stripe" style="background:'+stripe+'"></div>'
+    +'<div class="nv-chips">'+chips+'</div>'
+    +'<div class="nv-name">'+name+'</div>'
+    +'<div class="nv-fearline">'+fearline+'</div>'
+    +'<div class="nv-frame"><p>Ce portrait ne dit pas qui vous \u00eates.<br><strong>Il r\u00e9v\u00e8le ce qui vous emp\u00eache d\u2019\u00eatre vous.</strong></p>'
+    +'<p>'+(intro||defaultIntro)+'</p></div></div>';
+}
+
+function nvB1(mirror,ctmSuffix,envie,peur,colorE,colorP){
+  var suf=ctmSuffix||'Et ce n\u2019est pas votre faute.';
+  return '<div class="nv-div"></div><div class="nv-b1">'
+    +'<div class="nv-slabel">Ce qui se passe en vous</div>'
+    +'<div class="nv-mirror">'+mirror+'</div>'
+    +'<div class="nv-ctm"><p>C\u2019est plus fort que vous. '+suf+'</p></div>'
+    +'<div class="nv-duality">'
+    +'<div class="nv-dd" style="background:'+nvHex2rgba(colorE,.07)+';border-top:2px solid '+colorE+'">'
+    +'<div class="nv-dd-label" style="color:'+colorE+'">Une part de vous a envie de\u2026</div>'
+    +'<p>'+envie+'</p></div>'
+    +'<div class="nv-dd" style="background:'+nvHex2rgba(colorP,.07)+';border-top:2px solid '+colorP+'">'
+    +'<div class="nv-dd-label" style="color:'+colorP+'">Mais une autre a peur que\u2026</div>'
+    +'<p>'+peur+'</p></div></div></div>';
+}
+
+function nvB1adapt(mirror){
+  return '<div class="nv-div"></div><div class="nv-b1">'
+    +'<div class="nv-slabel">Ce que r\u00e9v\u00e8le votre profil</div>'
+    +'<div class="nv-mirror">'+mirror+'</div>'
+    +'<div class="nv-ctm"><p>Vous stressez quand c\u2019est utile. Vous l\u00e2chez prise quand \u00e7a ne l\u2019est plus. C\u2019est plus rare qu\u2019il n\u2019y para\u00eet.</p></div>'
+    +'<div class="nv-duality">'
+    +'<div class="nv-dd" style="background:rgba(45,122,79,.07);border-top:2px solid #2D7A4F">'
+    +'<div class="nv-dd-label" style="color:#2D7A4F">Ce que vous faites naturellement</div>'
+    +'<p>Accueillir ce qui vient. Vous ajuster sans vous perdre. Rester pr\u00e9sent\u00b7e \u00e0 vous-m\u00eame dans le mouvement des choses.</p></div>'
+    +'<div class="nv-dd" style="background:rgba(168,135,58,.07);border-top:2px solid #A8873A">'
+    +'<div class="nv-dd-label" style="color:#A8873A">Ce que \u00e7a vous permet</div>'
+    +'<p>D\u2019\u00eatre disponible pour ce qui compte vraiment \u2014 pour les autres, pour vos projets, et pour vous-m\u00eame.</p></div></div></div>';
+}
+
+function nvStep(num,color,thought,explain){
+  return '<div class="nv-step"><div class="nv-num" style="background:'+nvHex2rgba(color,.11)+';color:'+color+'">'+num+'</div>'
+    +'<div class="nv-step-body">'+(thought?'<div class="nv-thought">'+thought+'</div>':'')
+    +'<div class="nv-explain">'+explain+'</div></div></div>';
+}
+
+function nvB2(steps,loopLbl){
+  return '<div class="nv-div"></div><div class="nv-b2">'
+    +'<div class="nv-slabel">La boucle invisible</div>'
+    +'<div class="nv-loop">'+steps+'</div>'
+    +'<div class="nv-loop-close">'+(loopLbl||'la boucle recommence')+'</div></div>';
+}
+
+function nvB3(origin,flip,body){
+  return '<div class="nv-b3"><div class="nv-slabel">Ce que ce masque prot\u00e8ge</div>'
+    +'<div class="nv-origin">'+origin+'</div>'
+    +'<div class="nv-flip">'+flip+'</div>'
+    +'<div class="nv-flipbody">'+body+'</div></div>';
+}
+
+function nvB4(door,spa,prenom){
+  var pp=Math.min(spa,100);
+  var pre=prenom?prenom+', votre ':'Votre ';
+  return '<div class="nv-div"></div><div class="nv-b4">'
+    +'<div class="nv-slabel">La porte</div>'
+    +'<div class="nv-door">'+door+'</div>'
+    +'<div class="nv-spa-top"><span class="nv-spa-lbl">'+pre+'Score de Pr\u00e9sence Authentique</span>'
+    +'<span class="nv-spa-val">'+pp+'<small>\u00a0/ 100</small></span></div>'
+    +'<div class="nv-spa-track"><div class="nv-spa-fill" id="nv-spa-fill"></div></div>'
+    +'<div class="nv-spa-desc">'+nvSpaDesc(spa)+'</div></div>';
+}
+
+function nvFooter(){
+  return '<div class="nv-ft"><span class="nv-ft-brand">V.A.L.E.U.R\u00a9 \u00b7 C\u00e9line Bourbon \u00b7 Psychologue</span>'
+    +'<a href="https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon" target="_blank" class="nv-ft-cta">Demander un accompagnement \u2192</a></div>';
+}
+
+// ── Générateurs par type de profil ─────────────────────────────────────────
+
+function nvGenMono(){
+  var m=DOM, col=MC[m], ex=DYADES_EXTRA[m]||{}, meta=META[m];
+  var th=NV_THOUGHTS[m]||['','',''];
+  var steps_raw=ex.meca_steps||['','',''];
+  var stripe=col;
+  var chips=nvChip(ML[m],col,nvHex2rgba(col,.1))
+    +nvChip(SC[m]+'%\u00a0emprise',col,nvHex2rgba(col,.06))
+    +nvChip('Masque dominant','#A8873A','rgba(168,135,58,.1)');
+  var name='<em>'+meta.descriptor+'</em>';
+  var fearline=(SC[m]>=75?'Emprise tr\u00e8s \u00e9lev\u00e9e':SC[m]>=60?'Emprise \u00e9lev\u00e9e':'Emprise mod\u00e9r\u00e9e')+' \u00b7 '+meta.peur;
+  var b0=nvB0(stripe,chips,name,fearline,null);
+  var b1=nvB1(NV_MIRROR[m]||meta.bridge,'Et ce n\u2019est pas votre faute.',NV_DUALITY_E[m]||'',NV_DUALITY_P[m]||'',col,col);
+  var stepsH=nvStep('01',col,th[0],steps_raw[0])
+    +nvStep('02',col,th[1],steps_raw[1])
+    +nvStep('03',col,th[2],steps_raw[2]);
+  var b2=nvB2(stepsH,'la boucle recommence');
+  var b3=nvB3(ex.c1||meta.origine,NV_FLIP[m]||'',ex.c2||meta.force_liberee||'');
+  var b4=nvB4(NV_DOOR[m]||ex.c2||'',SC.spa||0,PRENOM);
+  return b0+b1+b2+b3+b4+nvFooter();
+}
+
+function nvGenDyade(){
+  var s=PROF.s, k=PROF.k||[s[0],s[1]].sort().join('_');
+  var ex=DYADES_EXTRA[k]||{}, d=DYADES[k]||{};
+  var col0=MC[s[0]], col1=MC[s[1]];
+  var stripe='linear-gradient(90deg,'+col0+','+col1+')';
+  var isFort=PROF.sub!=='moderee';
+  var chips=nvChip(ML[s[0]],col0,nvHex2rgba(col0,.1))
+    +nvChip(ML[s[1]],col1,nvHex2rgba(col1,.1))
+    +nvChip(isFort?'Dyade forte':'Dyade mod\u00e9r\u00e9e','#A8873A','rgba(168,135,58,.1)');
+  var name=(d.nom||k).replace(/^(La |Le |Les |L\u2019|L\u2018)/i,'$1<em>').replace(/$/,'</em>');
+  // Proper bold/italic for name
+  var rawNom = d.nom||k;
+  var parts = rawNom.split(/\s+/);
+  var nameHtml;
+  if(parts.length>1){
+    nameHtml = parts[0]+' '+parts[1]+'<br><em>'+parts.slice(2).join(' ')+'</em>';
+  } else {
+    nameHtml = '<em>'+rawNom+'</em>';
   }
-
-  var lvl=pct>=75?'Tr\u00e8s élevé':pct>=60?'\u00c9lev\u00e9':pct>=45?'Significatif':pct>=30?'Mod\u00e9r\u00e9':'Faible';
-  var R=54;var C=2*Math.PI*R;
-  var off=C-(pct/100)*C;
-  var masks=['rouge','orange','jaune','vert','bleu','indigo','violet'];
-
-  // ── Masque principal ring + info ────────────────────────────────────────────────
-  var domHTML=
-    '<div style="display:flex;align-items:flex-start;gap:36px;flex-wrap:wrap;margin-bottom:36px">'
-    // Ring
-    +'<div style="flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:12px">'
-    +'<div style="position:relative;width:136px;height:136px">'
-    +'<svg width="136" height="136" viewBox="0 0 136 136" style="transform:rotate(-90deg)">'
-    +'<circle cx="68" cy="68" r="'+R+'" fill="none" stroke="rgba(249,245,238,.07)" stroke-width="7"/>'
-    +'<circle cx="68" cy="68" r="'+R+'" fill="none" stroke="'+MC[DOM]+'" stroke-width="7" stroke-linecap="round"'
-    +' stroke-dasharray="'+C.toFixed(1)+'" stroke-dashoffset="'+C.toFixed(1)+'" id="pw-ring-fill"'
-    +' style="filter:drop-shadow(0 0 10px '+MC[DOM]+')"/>'
-    +'</svg>'
-    +'<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">'
-    +'<span style="font-family:\'Cormorant Garamond\',serif;font-size:44px;font-weight:500;color:'+MC[DOM]+';line-height:1">'+pct+'</span>'
-    +'<span style="font-family:Jost,sans-serif;font-size:9px;font-weight:300;color:rgba(249,245,238,.3);letter-spacing:.1em">sur 100</span>'
-    +'</div>'
-    +'</div>'
-    +'<div style="font-family:Jost,sans-serif;font-size:8px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;padding:5px 12px;border:.5px solid '+MC[DOM]+';color:'+MC[DOM]+'">'+lvl+'</div>'
-    +'</div>'
-    // Info right
-    +'<div style="flex:1;min-width:180px">'
-    +'<div style="font-family:Jost,sans-serif;font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.55);margin-bottom:10px">Votre masque</div>'
-    +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(30px,4vw,40px);font-weight:500;color:'+MC[DOM]+';line-height:1;margin-bottom:14px">'+ML[DOM]+'</div>'
-    // Mirror phrase — l'effet "comment vous saviez ?"
-    +'<div style="border-left:2px solid '+MC[DOM]+';padding:10px 16px;background:rgba(var(--mc-r),var(--mc-g),var(--mc-b),.06);margin-bottom:14px">'
-    +'<div style="font-family:Jost,sans-serif;font-size:8px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:'+MC[DOM]+';opacity:.7;margin-bottom:6px">Ce que vous vous dites</div>'
-    +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(16px,2.5vw,20px);font-style:italic;color:rgba(249,245,238,.85);line-height:1.55">\u00ab\u00a0'+meta.mirror_phrase+'\u00a0\u00bb</div>'
-    +'</div>'
-    // Cout — le blocage visible
-    +'<div style="font-family:Jost,sans-serif;font-size:13px;font-weight:300;color:rgba(249,245,238,.45);line-height:1.85">'+meta.cout+'</div>'
-    +'</div>'
-    +'</div>';
-
-  // ── Separator + 6 locked masks ──────────────────────────────────────────
-  var others=masks.filter(function(m){return m!==DOM;});
-  var fakePct=[62,48,71,39,55,44];
-  var cards=others.map(function(m,i){
-    var mc=MC[m];
-    var fp=fakePct[i]||50;
-    var circ=106.8;
-    var dashoff=(1-fp/100)*circ;
-    return '<div style="background:rgba(249,245,238,.025);border:.5px solid rgba(249,245,238,.08);padding:16px 14px;position:relative">'
-      +'<div style="position:absolute;top:0;left:0;right:0;height:3px;background:'+mc+'"></div>'
-      +'<div style="display:flex;align-items:center;gap:12px;margin-top:4px">'
-      +'<div style="position:relative;width:42px;height:42px;flex-shrink:0">'
-      +'<svg width="42" height="42" viewBox="0 0 42 42" style="transform:rotate(-90deg)">'
-      +'<circle cx="21" cy="21" r="17" fill="none" stroke="rgba(249,245,238,.07)" stroke-width="4"/>'
-      +'<circle cx="21" cy="21" r="17" fill="none" stroke="'+mc+'" stroke-width="4" opacity=".22"'
-      +' stroke-dasharray="'+circ.toFixed(1)+'" stroke-dashoffset="'+dashoff.toFixed(1)+'"/>'
-      +'</svg>'
-      +'<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">'
-      +'<span style="font-family:\'Cormorant Garamond\',serif;font-size:13px;font-weight:500;color:rgba(249,245,238,.18)">?</span>'
-      +'</div></div>'
-      +'<div>'
-      +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:24px;font-weight:500;color:rgba(249,245,238,.13);line-height:1">??\u00a0<span style="font-size:12px;opacity:.7">%</span></div>'
-      +'<div style="font-family:Jost,sans-serif;font-size:7px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:'+mc+';opacity:.45;margin-top:4px">Confidentiel</div>'
-      +'</div></div></div>';
-  }).join('');
-
-  var quoteHTML=
-    '<div style="text-align:center;padding-top:32px">'
-    +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:clamp(16px,2.5vw,19px);font-style:italic;color:rgba(249,245,238,.4);line-height:1.8">'
-    +'Ce questionnaire a cartographi\u00e9 votre m\u00e9canisme le plus actif.<br>Votre portrait complet va bien plus loin.'
-    +'</div>'
-    +'</div>';
-
-  el.innerHTML=
-    '<div style="background:var(--g900);padding:64px 24px;border-top:.5px solid rgba(168,135,58,.1)">'
-    +'<div style="max-width:680px;margin:0 auto">'
-    +'<div style="font-family:Jost,sans-serif;font-size:8px;font-weight:700;letter-spacing:.38em;text-transform:uppercase;color:rgba(201,168,76,.45);margin-bottom:32px" class="rv">Votre score d\u2019emprise</div>'
-    +domHTML
-    +'<div style="display:flex;align-items:center;gap:16px;margin-bottom:16px">'
-    +'<div style="flex:1;height:.5px;background:linear-gradient(90deg,rgba(249,245,238,.1),transparent)"></div>'
-    +'<div style="font-family:Jost,sans-serif;font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:rgba(249,245,238,.35);white-space:nowrap">6 scores non d\u00e9voil\u00e9s</div>'
-    +'<div style="flex:1;height:.5px;background:linear-gradient(90deg,transparent,rgba(249,245,238,.1))"></div>'
-    +'</div>'
-    +'<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px">'+cards+'</div>'
-    +'<div style="border:.5px solid rgba(249,245,238,.1);padding:16px 18px;text-align:center;background:rgba(249,245,238,.02)">'
-    +'<div style="font-family:Jost,sans-serif;font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:rgba(249,245,238,.4);margin-bottom:6px">Portrait complet</div>'
-    +'<div style="font-family:Jost,sans-serif;font-size:13px;font-weight:300;color:rgba(249,245,238,.35);line-height:1.75">6 scores \u00b7 configuration pr\u00e9cise \u00b7 m\u00e9caniques d\u2019amplification<br>disponibles lors de l\u2019accompagnement V.A.L.E.U.R\u00a9</div>'
-    +'</div>'
-    +quoteHTML
-    +'</div>'
-    +'</div>';
-
-    setTimeout(function(){
-    var fill=document.getElementById('pw-ring-fill');
-    if(fill) fill.style.strokeDashoffset=off.toFixed(1);
-  },700);
+  var fearline=(d.biais1||'')+(d.biais2?' \u00b7 '+d.biais2:'');
+  var intro=ex.meca_intro||null;
+  var b0=nvB0(stripe,chips,nameHtml,fearline,intro);
+  var mirror=ex.miroir||NV_MIRROR[s[0]]||META[s[0]].bridge;
+  var b1=nvB1(mirror,'Et ce n\u2019est pas votre faute.',NV_DUALITY_E[s[0]]||'',NV_DUALITY_P[s[0]]||'',col0,col1);
+  var steps_raw=ex.meca_steps||['','',''];
+  var stepsH=nvStep('01',col0,'',steps_raw[0])
+    +nvStep('02','#A8873A','',steps_raw[1])
+    +nvStep('03',col1,'',steps_raw[2]);
+  var b2=nvB2(stepsH,'la boucle recommence');
+  var elansTrimmed=ex.elans?(ex.elans.length>120?ex.elans.substring(0,117)+'...':ex.elans):null;
+  var flipTxt=elansTrimmed?('Derri\u00e8re ce double verrouillage, il y a <strong>'+elansTrimmed+'</strong>'):NV_FLIP[s[0]];
+  var b3=nvB3(ex.c1||META[s[0]].origine,flipTxt,ex.c2||'');
+  var door=ex.c2?ex.c2:NV_DOOR[s[0]];
+  var b4=nvB4(door,SC.spa||0,PRENOM);
+  var isMod=PROF.sub==='moderee';
+  var exD='<div class="nv-explain">'    +'<div class="nv-explain-type">Profil Dyade '+(isMod?'mod\u00e9r\u00e9e':'forte')+'</div>'    +'<div class="nv-explain-title">Deux masques actifs simultan\u00e9ment</div>'    +'<div class="nv-explain-body">Votre questionnaire a r\u00e9v\u00e9l\u00e9 une <strong>dyade</strong>\u00a0\u2014 deux m\u00e9canismes de protection qui s\u2019activent ensemble. Ce portrait ne d\u00e9crit pas un seul masque dominant\u00a0: il explore les deux protections co-actives, qui se relancent mutuellement et cr\u00e9ent ensemble une logique propre qu\u2019aucune ne cr\u00e9erait seule. Lisez ce portrait dans sa totalit\u00e9\u00a0\u2014 les deux masques vous appartiennent \u00e9galement.</div>'    +'</div>';
+  return exD+b0+b1+b2+b3+b4+nvFooter();
 }
 
-function buildPublicPsy(){
-  // Section 3 injected into sec-timeline-real
-  const el=document.getElementById('sec-timeline-real');
-  if(!el)return;
-  const masks=['rouge','orange','jaune','vert','bleu','indigo','violet'];
-
-  // Config badge
-  let typeTxt='',pills='',bodyTxt='';
-  if(PROF.type==='dyade'||PROF.type==='dyade_moderee'){
-    const sub=PROF.type==='dyade'?'forte':'mod\u00e9r\u00e9e';
-    typeTxt='Dyade '+sub;
-    pills=PROF.s.slice(0,2).map(m=>'<span class="pw-config-card-pill" style="color:'+MC[m]+'">'+ML[m]+'</span>').join('<span class="pw-config-card-sep"> + </span>');
-    bodyTxt='Vos deux masques co-actifs ne s\u2019additionnent pas\u00a0\u2014 ils se relancent mutuellement dans une logique propre. C\u2019est cette dynamique pr\u00e9cise que votre portrait complet d\u00e9taille.';
-  }else if(PROF.type==='triade'){
-    typeTxt='Triade';
-    pills=PROF.s.slice(0,3).map(m=>'<span class="pw-config-card-pill" style="color:'+MC[m]+'">'+ML[m]+'</span>').join('<span class="pw-config-card-sep"> \u00b7 </span>');
-    bodyTxt='Trois masques s\u2019activent simultan\u00e9ment. Chacun renforce les deux autres. La configuration dans son ensemble cr\u00e9e un m\u00e9canisme plus complexe et plus ancr\u00e9 que chaque masque pris seul.';
-  }else if(PROF.type==='pan'){
-    typeTxt='Pan-Masques';
-    pills=(PROF.act||PROF.s.slice(0,5)).map(m=>'<span class="pw-config-card-pill" style="color:'+MC[m]+'">'+ML[m]+'</span>').join('<span class="pw-config-card-sep"> + </span>');
-    bodyTxt='Cinq masques ou plus actifs \u00e0 un niveau significatif\u00a0\u2014 une configuration rare qui r\u00e9v\u00e8le une suradaptation totale. Ce que cette activation prot\u00e8ge est \u00e0 la mesure de son intensit\u00e9.';
-  }else{
-    bodyTxt='Votre masque op\u00e8re avec une clart\u00e9 singuli\u00e8re. Votre portrait d\u00e9taille son m\u00e9canisme d\u2019entretien et la force qu\u2019il emprisonne.';
-  }
-
-  el.innerHTML='<div class="pw-psy-section rv">'
-    +'<div class="pw-psy-inner">'
-    +'<div class="pw-psy-eyebrow rv">Psychologie de l\u2019anxi\u00e9t\u00e9</div>'
-    +'<div class="pw-psy-title rv">Ce questionnaire a cartographié votre mécanisme de protection le plus actif. Il ne s\u2019arrête pas làut ce qui op\u00e8re.</div>'
-    +'<div class="pw-psy-body rv">La psychologie clinique le sait depuis longtemps\u00a0: <strong>les peurs n\u2019agissent jamais seules</strong>. Dans plus de 9 cas sur 10, plusieurs m\u00e9canismes de protection sont co-actifs\u00a0\u2014 chacun renfor\u00e7ant les autres dans une logique propre.<br><br>V.A.L.E.U.R\u00a9 ne cible pas les masques un par un. Il cartographie la <em>configuration</em>\u00a0\u2014 la fa\u00e7on pr\u00e9cise dont vos masques se relancent mutuellement. C\u2019est cette configuration, unique \u00e0 chaque personne, qui cr\u00e9e et maintient les blocages. Ce masque est la voix la plus forte. Ce n\u2019est pas la seule dans la pi\u00e8ce.</div>'
-    +(typeTxt?'<div class="pw-config-card rv">'
-    +'<div class="pw-config-card-type">Configuration d\u00e9tect\u00e9e \u00b7 '+typeTxt+'</div>'
-    +(pills?'<div class="pw-config-card-pills">'+pills+'</div>':'')
-    +'<div class="pw-config-card-body">'+bodyTxt+'</div>'
-    +'</div>':'')
-    +'</div>'
-    +'</div>';
+function nvGenTriade(){
+  var s=PROF.s, k=PROF.k||[s[0],s[1],s[2]].sort().join('_');
+  var ex=(TRIADES_EXTRA&&TRIADES_EXTRA[k])||{}, t=TRIADES[k]||{};
+  var col0=MC[s[0]], col1=MC[s[1]], col2=MC[s[2]];
+  var stripe='linear-gradient(90deg,'+col0+','+col1+','+col2+')';
+  var chips=nvChip(ML[s[0]],col0,nvHex2rgba(col0,.1))
+    +nvChip(ML[s[1]],col1,nvHex2rgba(col1,.1))
+    +nvChip(ML[s[2]],col2,nvHex2rgba(col2,.1))
+    +nvChip('Triade','#A8873A','rgba(168,135,58,.1)');
+  var rawNom=t.nom||'Triade';
+  var nameHtml;
+  var triadeParts=rawNom.split(/\s+/);
+  if(triadeParts.length>2){
+    nameHtml=triadeParts.slice(0,2).join(' ')+'<br><em>'+triadeParts.slice(2).join(' ')+'</em>';
+  } else {nameHtml='<em>'+rawNom+'</em>';}
+  var fearline=(t.tagline||'Configuration rare \u00b7 Trois m\u00e9canismes co-actifs');
+  var intro=ex.meca_intro||t.desc||'Trois masques actifs simultan\u00e9ment \u2014 trois protections qui se r\u00e9pondent, s\u2019amplifient, et cr\u00e9ent ensemble une complexit\u00e9 int\u00e9rieure que peu de gens comprennent en eux-m\u00eames.';
+  var b0=nvB0(stripe,chips,nameHtml,fearline,intro);
+  var mirror=ex.miroir||NV_MIRROR[s[0]]||META[s[0]].bridge;
+  var b1=nvB1(mirror,'Et ce n\u2019est pas votre faute.',NV_DUALITY_E[s[0]]||'',NV_DUALITY_P[s[0]]||'',col0,col2);
+  var steps_raw=ex.meca_steps||['','',''];
+  var stepsH=nvStep('01',col0,'',steps_raw[0])
+    +nvStep('02',col1,'',steps_raw[1])
+    +nvStep('03',col2,'',steps_raw[2]);
+  var b2=nvB2(stepsH,'la boucle recommence \u2014 trois fois plus vite');
+  var flipTxt=ex.elans?'Derri\u00e8re cette triple activation, il y a <strong>'+ex.elans+'</strong>':NV_FLIP[s[0]];
+  var b3=nvB3(ex.c1||META[s[0]].origine,flipTxt,ex.c2||'');
+  var door=ex.c2||NV_DOOR[s[0]];
+  var b4=nvB4(door,SC.spa||0,PRENOM);
+  var exT='<div class="nv-explain">'    +'<div class="nv-explain-type">Profil Triade \u2014 configuration rare</div>'    +'<div class="nv-explain-title">Trois masques actifs simultan\u00e9ment</div>'    +'<div class="nv-explain-body">Votre questionnaire a r\u00e9v\u00e9l\u00e9 une <strong>triade</strong>\u00a0\u2014 trois m\u00e9canismes co-actifs. Ce portrait ne d\u00e9crit pas un seul masque\u00a0: il explore comment ces trois protections s\u2019activent ensemble, chacune r\u00e9activant les deux autres dans une logique propre. Lisez ce portrait dans sa totalit\u00e9\u00a0\u2014 les trois masques vous appartiennent.</div>'    +'</div>';
+  return exT+b0+b1+b2+b3+b4+nvFooter();
 }
 
-function buildPublicPolar(){
-  var el=document.getElementById('sec-polarity-real');
-  if(!el)return;
-
-  // ── Adaptatif : message positif sans loi des masques ────────────────────
-  if(PROF.type==='adapt_eq'||PROF.type==='adapt_vig'){
-    var adaptTxt=PROF.type==='adapt_eq'
-      ?"Votre questionnaire ne d\u00e9tecte pas de niveau d\u2019emprise significatif. Vos m\u00e9canismes de protection sont peu actifs dans votre quotidien \u2014 c\u2019est pr\u00e9cis\u00e9ment ce que la pr\u00e9vention cherche \u00e0 pr\u00e9server. V.A.L.E.U.R\u00a9 peut \u00eatre une boussole de conscience, \u00e0 repasser dans quelques mois si vous traversez une p\u00e9riode plus charg\u00e9e."
-      :"Vos m\u00e9canismes de protection sont pr\u00e9sents \u2014 en vigilance, non dominants. C\u2019est le bon moment pour les nommer : avant qu\u2019ils s\u2019amplifient, avant qu\u2019ils se cristallisent. V.A.L.E.U.R\u00a9 est con\u00e7ue pr\u00e9cis\u00e9ment pour ce type de prise de conscience pr\u00e9coce.";
-    el.innerHTML='<div class="pw-polar-section rv">'
-      +'<div class="pw-polar-inner">'
-      +'<div class="pw-polar-eyebrow rv">Un r\u00e9sultat rassurant</div>'
-      +'<div class="pw-polar-law rv">'+adaptTxt+'</div>'
-      +'</div>'
-      +'</div>';
-    return;
-  }
-
-  // ── Fixed law text ───────────────────────────────────────────────────────
-  var lawText="Derri\u00e8re chaque masque, il y a une peur. Et derri\u00e8re cette peur, quelque chose que la peur a captur\u00e9 \u2014 une force, une capacit\u00e9, une fa\u00e7on d\u2019\u00eatre au monde qui est vraiment la v\u00f4tre.<br><br>"
-    +"<strong>Ce n\u2019est pas une m\u00e9taphore. C\u2019est une loi.</strong> Plus le masque est actif \u2014 plus ce qu\u2019il emprisonne est puissant. L\u2019intensit\u00e9 de la protection est toujours proportionnelle \u00e0 la valeur de ce qu\u2019elle retient.";
-
-  // ── General config text (per type, no mask name details) ────────────────
-  var configText='';
-  if(PROF.type==='dyade'||PROF.type==='dyade_moderee'){
-    configText="Votre questionnaire a calcul\u00e9 une configuration \u00e0 deux dimensions co-actives \u2014 une Dyade. Ce n\u2019est pas un hasard. C\u2019est un syst\u00e8me. Il g\u00e9n\u00e8re dans votre vie des sch\u00e9mas que vous reconnaissez sans les avoir choisis\u00a0: des r\u00e9actions qui se r\u00e9p\u00e8tent, des situations qui reviennent, des efforts qui s\u2019\u00e9puisent toujours au m\u00eame endroit.<br><br>Ce syst\u00e8me a sa propre logique. Et c\u2019est pr\u00e9cis\u00e9ment parce qu\u2019il a une logique \u2014 qu\u2019il est lisible, ciblable, traversable. Nommer un m\u00e9canisme, c\u2019est d\u00e9j\u00e0 commencer \u00e0 choisir plut\u00f4t que subir.";
-  }else if(PROF.type==='triade'){
-    configText="Votre questionnaire a calcul\u00e9 une configuration \u00e0 trois dimensions co-actives \u2014 une Triade. Trois m\u00e9canismes qui se verrouillent mutuellement chaque fois que l\u2019un s\u2019active. C\u2019est une configuration plus complexe. Et plus pr\u00e9cise.<br><br>Les sch\u00e9mas qu\u2019elle g\u00e9n\u00e8re ont une coh\u00e9rence que vous avez peut-\u00eatre longtemps cherch\u00e9 \u00e0 expliquer sans trouver les mots. Ces mots existent. Ce m\u00e9canisme se comprend. Et ce qui se comprend peut se traverser.";
-  }else if(PROF.type==='pan'){
-    configText="Votre questionnaire r\u00e9v\u00e8le cinq m\u00e9canismes de protection actifs simultan\u00e9ment \u2014 une configuration rare. Ce syst\u00e8me s\u2019est construit sur des ann\u00e9es. Il a ses raisons. Et derri\u00e8re son intensit\u00e9, il prot\u00e8ge quelque chose d\u2019une richesse exceptionnelle.<br><br>Ce que la m\u00e9thode V.A.L.E.U.R\u00a9 sait faire, c\u2019est traverser ce syst\u00e8me en lib\u00e9rant pr\u00e9cis\u00e9ment ce qu\u2019il retient \u2014 sans le briser.";
-  }else{
-    configText="Votre masque principal op\u00e8re avec une clart\u00e9 singuli\u00e8re. Sa logique est pr\u00e9cise, son origine identifiable, ses effets dans votre vie pr\u00e9visibles.<br><br>Et ce qui est pr\u00e9visible est lib\u00e9rable. Votre portrait complet d\u00e9taille ce m\u00e9canisme dans son int\u00e9gralit\u00e9 \u2014 d\u2019o\u00f9 il vient, comment il se maintient, et ce qu\u2019il emprisonne pour vous.";
-  }
-
-  // ── Sleeping force ───────────────────────────────────────────────────────
-  var elans='';
-  elans=META[DOM].elan||'';
-
-  el.innerHTML='<div class="pw-polar-section rv">'
-    +'<div class="pw-polar-inner">'
-    +'<div class="pw-polar-eyebrow rv">La loi des masques</div>'
-    +'<div class="pw-polar-law rv">'+lawText+'</div>'
-    +'<div class="pw-polar-dynamic rv" style="font-family:Jost,sans-serif;font-size:13.5px;font-weight:300;color:rgba(249,245,238,.55);line-height:1.95;margin-bottom:28px">'+configText+'</div>'
-    +(elans?'<div style="font-family:Jost,sans-serif;font-size:8.5px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:12px;margin-top:32px" class="rv">Ce qui vous appartient — et qui attend d’être libéré</div>'+'<div class="pw-polar-force rv">'+elans+'</div>':'')
-    +'</div>'
-    +'</div>';
-}
-
-function buildPublicMethod(){
-  const el=document.getElementById('sec-thoughts-real');
-  if(!el)return;
-  el.innerHTML='<div class="pw-method-section rv">'
-    +'<div class="pw-method-inner">'
-    +'<div class="pw-method-eyebrow rv">Ce qu\u2019est V.A.L.E.U.R\u00a9</div>'
-    +'<div class="pw-method-title rv">Un acc\u00e9l\u00e9rateur de conscience. Pas une th\u00e9rapie classique.</div>'
-    +'<div class="pw-method-body rv">'
-    +'V.A.L.E.U.R\u00a9 est une <em>th\u00e9rapie br\u00e8ve bas\u00e9e sur la psycho\u00e9ducation</em>, qui cible les m\u00e9canismes en jeu dans l\u2019anxi\u00e9t\u00e9 et les blocages de vie. L\u00e0 o\u00f9 une approche classique explore, V.A.L.E.U.R\u00a9 cible.<br><br>'
-    +'Elle ne travaille pas sur une anxi\u00e9t\u00e9 g\u00e9n\u00e9rique\u00a0\u2014 elle travaille sur <em>votre configuration sp\u00e9cifique</em>, sur la logique exacte de vos masques et sur la force qu\u2019ils retiennent. En 20 minutes, le questionnaire a cartographi\u00e9 ce que des ann\u00e9es d\u2019introspection n\u2019ont parfois pas nomm\u00e9.'
-    +'</div>'
-    +'<div class="pw-question rv">'
-    +'<div class="pw-question-q">Vos masques vont-ils diminuer avec le temps\u00a0?</div>'
-    +'<div class="pw-question-a">Pas d\u2019eux-m\u00eames, non. Les masques adopt\u00e9s jeunes deviennent progressivement automatiques, puis inconscients. Sans travail intentionnel, ils se figent\u00a0\u2014 ou s\u2019amplifient.<br><br>La bonne nouvelle\u00a0: avec une prise de conscience et un travail structur\u00e9, leur emprise peut \u00eatre consid\u00e9rablement r\u00e9duite. Vous ne les faites pas dispara\u00eetre\u00a0\u2014 vous changez votre relation \u00e0 eux. Et une fois un m\u00e9canisme clairement nomm\u00e9, le choix devient possible l\u00e0 o\u00f9 il n\u2019y avait que la r\u00e9action.</div>'
-    +'</div>'
-    +'<div class="pw-science rv">Les cat\u00e9gories psychologiques sous-jacentes \u00e0 V.A.L.E.U.R\u00a9 sont \u00e9tablies scientifiquement et reconnues dans la litt\u00e9rature clinique\u00a0: anxi\u00e9t\u00e9 de sant\u00e9 (HAI/Warwick), alexithymie (TAS-20/Bagby), intol\u00e9rance \u00e0 l\u2019incertitude (IUS-12/Carleton), attachement (ECR-R/Fraley), perfectionnisme (FMPS/Frost), identit\u00e9 (Winnicott 1960).</div>'
-    +'</div>'
-    +'</div>';
-}
-
-function buildPublicSteps(){
-  const el=document.getElementById('sec-lib-real');
-  if(!el)return;
-  const steps=[
-    {l:'V',v:'Voir',d:'Nommer ce qui se passe vraiment\u00a0\u2014 sans le minimiser, sans se d\u00e9fendre.'},
-    {l:'A',v:'Accueillir',d:'Recevoir ce qu\u2019on porte sans r\u00e9sister. Ce masque a eu sa raison d\u2019\u00eatre.'},
-    {l:'L',v:'Localiser',d:'Identifier l\u2019origine pr\u00e9cise\u00a0\u2014 le moment o\u00f9 ce m\u00e9canisme a commenc\u00e9.'},
-    {l:'E',v:'Explorer',d:'Comprendre la logique du masque de l\u2019int\u00e9rieur\u00a0\u2014 pour le traverser, pas le combattre.'},
-    {l:'U',v:'Unifier',d:'R\u00e9soudre le conflit int\u00e9rieur entre la peur et l\u2019\u00e9lan qu\u2019elle retient.'},
-    {l:'R',v:'Renforcer',d:'Ancrer la s\u00e9curit\u00e9 int\u00e9rieure dans le temps\u00a0\u2014 jusqu\u2019\u00e0 ce qu\u2019elle devienne naturelle.'}
+function nvGenPan(){
+  var sub=PROF.sub||'generalise', ex=DYADES_EXTRA[sub]||{};
+  var act=PROF.act||PROF.s.slice(0,5);
+  var stripeColors=act.map(function(m){return MC[m];});
+  var stripe='linear-gradient(90deg,'+stripeColors.join(',')+')';
+  var chips=act.map(function(m){return nvChip(ML[m],MC[m],nvHex2rgba(MC[m],.1));}).join('');
+  chips+=nvChip(act.length+' masques actifs','#A8873A','rgba(168,135,58,.1)');
+  var subtitles={ultra_plat:'Suradaptation Totale',generalise:'Activation G\u00e9n\u00e9ralis\u00e9e',structure:'Diffusion Structur\u00e9e'};
+  var nameHtml='Vous vous \u00eates adapt\u00e9\u00b7e<br><em>\u00e0 tout le monde</em>';
+  var fearline='Sauf \u00e0 vous-m\u00eame \u00b7 '+(subtitles[sub]||'Pan-Masques');
+  var intro=ex.intro||'Cinq masques ou plus actifs simultan\u00e9ment \u2014 ce n\u2019est pas un signe de fragilit\u00e9. C\u2019est le signe d\u2019une intelligence d\u2019adaptation exceptionnelle \u2014 construite au prix de quelque chose d\u2019essentiel.';
+  var b0=nvB0(stripe,chips,nameHtml,fearline,intro);
+  var mirror='Vous vous adaptez. \u00c0 la situation, aux personnes, aux attentes. Avec une facilit\u00e9 que tout le monde admire \u2014 et que vous ne comprenez pas toujours vous-m\u00eame. Mais \u00e0 force de vous ajuster \u00e0 tout le monde, quelque chose s\u2019est perdu. Vous ne savez plus tr\u00e8s bien ce que vous voulez, vous \u2014 quand personne ne regarde.';
+  var b1=nvB1(mirror,
+    'Et il y a quelqu\u2019un en vous qui attend d\u2019exister.',
+    'Exister sans s\u2019adapter. Dire ce que vous voulez vraiment. \u00catre vu\u00b7e pour ce que vous \u00eates \u2014 pas pour ce que vous faites bien.',
+    'Si vous arr\u00eatez de vous adapter, vous devenez trop difficile, trop encombrant\u00b7e \u2014 et les gens partent.',
+    '#2D7A4F','#A8873A');
+  var steps_raw=ex.meca_steps||[
+    'Avant m\u00eame de savoir ce que vous voulez, vous avez d\u00e9j\u00e0 capt\u00e9 ce qui est attendu. C\u2019est automatique, instantan\u00e9, invisible.',
+    'Vous devenez ce que la situation demande. \u00c7a marche. Les tensions se r\u00e9solvent, les gens sont satisfaits.',
+    'Une fatigue sans nom. Une impression d\u2019\u00eatre partout et nulle part \u00e0 la fois. De ne plus tr\u00e8s bien savoir o\u00f9 vous commencez.'
   ];
-  const stepsHTML=steps.map((s,i)=>
-    '<div class="pw-step-row rv">'
-    +'<div class="pw-step-letter-col"><div class="pw-step-ltr">'+s.l+'</div><div class="pw-step-seq">'+(i+1)+'/6</div></div>'
-    +'<div class="pw-step-body"><div class="pw-step-verb">'+s.v+'</div><div class="pw-step-def">'+s.d+'</div></div>'
-    +'</div>'
-  ).join('');
-  el.innerHTML='<div class="pw-steps-section">'
-    +'<div class="pw-steps-inner">'
-    +'<div class="pw-steps-eyebrow rv">La M\u00e9thode V.A.L.E.U.R\u00a9 en 6 temps</div>'
-    +'<div class="pw-steps-title rv">Un chemin de pr\u00e9cision</div>'
-    +'<div class="pw-steps-sub rv">Chaque \u00e9tape cible un niveau sp\u00e9cifique du m\u00e9canisme\u00a0\u2014 et travaille sur votre configuration, pas sur l\u2019anxi\u00e9t\u00e9 en g\u00e9n\u00e9ral.</div>'
-    +'<div>'+stepsHTML+'</div>'
-    +'</div>'
-    +'</div>';
+  var stepsH=nvStep('01','#A8873A',
+    '\u201cJe lis ce que la situation attend de moi.\u201d',steps_raw[0])
+    +nvStep('02','#A8873A',
+    '\u201cJe m\u2019ajuste pour que tout aille bien.\u201d',steps_raw[1])
+    +nvStep('03','#A8873A',
+    '\u201cMais moi, l\u00e0-dedans\u00a0?\u201d',steps_raw[2]);
+  var b2=nvB2(stepsH,'la boucle recommence \u2014 dans chaque nouvelle situation');
+  var origin=ex.c1||'Tr\u00e8s t\u00f4t, s\u2019adapter \u00e9tait la strat\u00e9gie la plus intelligente disponible. Elle vous a permis de cr\u00e9er des liens, de naviguer l\u00e0 o\u00f9 d\u2019autres \u00e9chouaient, de tenir dans des environnements exigeants. C\u2019\u00e9tait brillant.';
+  var flipTxt='Derri\u00e8re cette adaptation totale, il y a une sensibilit\u00e9 et une intelligence relationnelle <strong>d\u2019une raret\u00e9 absolue.</strong>';
+  var flipbody=ex.c2||'Sentir les autres, lire les situations, s\u2019ajuster avec une finesse invisible \u2014 c\u2019est un don extraordinaire. Le probl\u00e8me n\u2019est pas la sensibilit\u00e9. C\u2019est qu\u2019elle est enti\u00e8rement tourn\u00e9e vers l\u2019ext\u00e9rieur. Il y a quelqu\u2019un en vous qui n\u2019a jamais eu besoin de s\u2019adapter pour avoir de la valeur.';
+  var b3=nvB3(origin,flipTxt,flipbody);
+  var door='Et si cette intelligence des autres \u00e9tait enfin aussi disponible pour vous \u2014 pour ce que vous \u00eates, quand vous n\u2019essayez plus de plaire\u00a0?';
+  var b4=nvB4(door,SC.spa||0,PRENOM);
+  // Health warning for ultra_plat/generalise
+  var healthH='';
+  if(sub==='ultra_plat'||sub==='generalise'){
+    healthH='<div style="padding:16px 40px;background:#1A1814"><div style="border:.5px solid rgba(201,168,76,.3);padding:14px 16px"><div style="font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:8px">Note importante</div><div style="font-size:12px;font-weight:300;line-height:1.75;color:rgba(249,245,238,.5)">Ce profil indique une activation multi-dimensionnelle significative. V.A.L.E.U.R\u00a9 n\u2019est pas un diagnostic \u2014 mais ce que ce score r\u00e9v\u00e8le m\u00e9rite d\u2019\u00eatre re\u00e7u avec une personne de confiance.</div></div></div>';
+  }
+  var explainP='<div class="nv-explain">'    +'<div class="nv-explain-type">Profil Pan-Masques</div>'    +'<div class="nv-explain-title">Cinq masques ou plus actifs simultan\u00e9ment</div>'    +'<div class="nv-explain-body">Votre questionnaire r\u00e9v\u00e8le une <strong>configuration pan-masques</strong> \u2014 cinq protections ou plus actives \u00e0 un niveau significatif en m\u00eame temps. Ce n\u2019est pas un seul masque dominant\u00a0: c\u2019est un syst\u00e8me de protection d\u00e9ploy\u00e9 sur tous les fronts. Ce portrait explore cette activation dans son ensemble \u2014 aucun masque ne prend la parole seul.</div>'    +'</div>';
+  b0=explainP+b0;
+  return b0+b1+b2+b3+healthH+b4+nvFooter();
+}
 
-  // Inject bridge + CTA after sec-lib-real (before share-section)
-  const bridge=document.createElement('div');
-  bridge.innerHTML='<section class="section" style="background:var(--cream)">'
-    +'<div class="pw-bridge-section">'
-    +'<div class="pw-bridge-inner">'
-    +'<div class="pw-bridge-eyebrow rv">L\u2019invitation</div>'
-    +'<div class="pw-bridge-title rv">Le test vient de nommer ce qui vous retient.<br>C\u2019est une premi\u00e8re lumi\u00e8re \u2014 r\u00e9elle et pr\u00e9cieuse.</div>'
-    +'<div class="pw-bridge-body rv">Un masque identifi\u00e9 n\u2019est pas encore un masque travers\u00e9. Savoir ce qui nous retient n\u2019est pas la m\u00eame chose que s\u2019en lib\u00e9rer.<br><br>Ce portrait est une carte. Le travail V.A.L.E.U.R\u00a9 est le voyage.</div>'
-    +'<a href="https://valeur.psyh.fr" class="pw-bridge-btn rv" target="_blank">Commencer l\u2019accompagnement \u2192</a>'
-    +'<div class="pw-bridge-note rv">Votre portrait complet\u00a0\u2014 les 7 masques, la m\u00e9canique de votre configuration, la force emprisonn\u00e9e\u00a0\u2014 vous est remis lors de votre premi\u00e8re s\u00e9ance.</div>'
-    +'</div>'
-    +'</div>'
-    +'</section>';
-  const shareSection=document.getElementById('share-section');
-  if(shareSection&&shareSection.parentNode) shareSection.parentNode.insertBefore(bridge,shareSection);
+function nvGenAdaptatif(){
+  var isEq=PROF.type==='adapt_eq';
+  var stripe='linear-gradient(90deg,#A8873A,#C9A84C,#A8873A)';
+  var chips=nvChip('Profil Adaptatif','#A8873A','rgba(168,135,58,.1)')
+    +nvChip(isEq?'\u00c9quilibr\u00e9':'Vigilant','#2D7A4F','rgba(45,122,79,.1)');
+  var nameHtml='Vous \u00eates<br><em>d\u00e9j\u00e0 l\u00e0</em>';
+  var fearline='Aucun masque ne vous d\u00e9finit \u00b7 La libert\u00e9 d\u2019\u00eatre soi';
+  var intro='Votre r\u00e9sultat est inhabituel\u00a0: aucun m\u00e9canisme de d\u00e9fense ne domine. Ce n\u2019est pas l\u2019absence de r\u00e9sultat \u2014 c\u2019est un r\u00e9sultat en soi. Et il m\u00e9rite d\u2019\u00eatre compris pour ce qu\u2019il est vraiment.';
+  var b0=nvB0(stripe,chips,nameHtml,fearline,intro);
+  var mirror=isEq
+    ?'Face \u00e0 une difficult\u00e9, vous ressentez ce qu\u2019il y a \u00e0 ressentir \u2014 sans en \u00eatre submerg\u00e9\u00b7e. Vous vous adaptez aux situations sans perdre le fil de ce que vous \u00eates. Quand quelque chose ne va pas, vous le voyez, vous le nommez, et vous trouvez comment avancer. Ce n\u2019est pas de l\u2019indiff\u00e9rence. C\u2019est de la solidit\u00e9.'
+    :'Quelques m\u00e9canismes de protection sont pr\u00e9sents \u2014 en vigilance, non dominants. Vous ressentez parfois cette tension sans tout \u00e0 fait la nommer. La reconnaissez-vous\u00a0? Cette l\u00e9g\u00e8re r\u00e9sistance qui appara\u00eet dans certaines situations \u2014 avant de se r\u00e9sorber.';
+  var b1=nvB1adapt(mirror);
+  var stepsH=nvStep('01','#2D7A4F','\u201cJe per\u00e7ois quelque chose.\u201d','Clairement, sans l\u2019amplifier ni le minimiser. Votre lecture du r\u00e9el est directe et nuanc\u00e9e \u00e0 la fois.')
+    +nvStep('02','#A8873A','\u201cJe ressens ce que j\u2019ai \u00e0 ressentir.\u201d','Sans fuite, sans d\u00e9bordement. Les \u00e9motions vous informent \u2014 elles ne vous dirigent pas.')
+    +nvStep('03','#2D7A4F','\u201cJ\u2019avance.\u201d','Vous trouvez comment vous ajuster. Pas parfaitement. Mais honn\u00eatement \u2014 et sans en faire une catastrophe.');
+  var b2=nvB2(stepsH,'un cycle qui ne se referme pas sur lui-m\u00eame');
+  var origin='Une bonne r\u00e9gulation \u00e9motionnelle ne s\u2019improvise pas. Elle se construit \u2014 parfois dans des conditions difficiles, parfois naturellement, parfois les deux. Ce que vous avez l\u00e0 est pr\u00e9cieux.';
+  var flipTxt='\u00catre libre de ses peurs ne signifie pas ne plus rien ressentir. \u00c7a signifie que <strong>ce que vous ressentez ne gouverne plus vos choix \u00e0 votre insu.</strong>';
+  var flipbody='C\u2019est exactement ce que la M\u00e9thode V.A.L.E.U.R\u00a9 cherche \u00e0 atteindre pour les personnes qui souffrent de leurs masques. Vous y \u00eates d\u00e9j\u00e0 \u2014 d\u2019une mani\u00e8re qui m\u00e9rite d\u2019\u00eatre comprise et cultiv\u00e9e.';
+  var b3=nvB3(origin,flipTxt,flipbody);
+  var door=isEq
+    ?'Vous \u00eates en bonne sant\u00e9 psychologique. La question n\u2019est pas de vous lib\u00e9rer \u2014 c\u2019est de savoir ce que vous voulez faire de cette libert\u00e9.'
+    :'Et si vous nommiez ce qui se passe en vous \u2014 avant que \u00e7a s\u2019amplifie\u00a0? Le bon moment, c\u2019est maintenant.';
+  var b4=nvB4(door,SC.spa||0,PRENOM);
+  return b0+b1+b2+b3+b4+nvFooter();
+}
+
+function nvGenResiduel(){
+  // Fallback to mono
+  return nvGenMono();
+}
+
+function nvGenScores(){
+  var TIEBREAK=['jaune','rouge','indigo','vert','bleu','orange','violet'];
+  var all=['rouge','orange','jaune','vert','bleu','indigo','violet'];
+  var ordered=all.slice().sort(function(a,b){
+    var d=(SC[b]||0)-(SC[a]||0);
+    return d!==0?d:TIEBREAK.indexOf(a)-TIEBREAK.indexOf(b);
+  });
+  var type=PROF.type;
+  var nDom=1;
+  if(type==='dyade'||type==='dyade_moderee') nDom=2;
+  else if(type==='triade') nDom=3;
+  else if(type==='pan') nDom=ordered.filter(function(m){return(SC[m]||0)>=60;}).length;
+  else if(type.startsWith('adapt')) nDom=0;
+
+  var h='<div class="nv-div"></div><div class="nv-sc-wrap">'
+    +'<div class="nv-sc-label">Vos 7 masques</div>';
+  var prev=-1;
+  ordered.forEach(function(m,i){
+    var sc=SC[m]||0, col=MC[m], dom=(nDom>0&&i<nDom);
+    if(i>0&&sc===prev&&i<=nDom)
+      h+='<div class="nv-sc-tie">égalité · hiérarchie V.A.L.E.U.R©</div>';
+    prev=sc;
+    h+='<div class="nv-sc-row '+(dom?'nv-dom':'nv-sec')+'">'
+      +'<div class="nv-sc-name" style="color:'+(dom?col:'rgba(26,24,20,.3)')+'">'
+      +ML[m]+'</div>'
+      +'<div class="nv-sc-track">'
+      +'<div class="nv-sc-fill" data-sc="'+sc+'" style="background:'+col+';opacity:'+(dom?'.85':'.4')+'"></div>'
+      +'</div>'
+      +'<div class="nv-sc-val" style="color:'+(dom?col:'rgba(26,24,20,.35)')+'">'
+      +sc+'<span style="font-size:.5em;font-family:Jost,sans-serif;opacity:.55">%</span>'
+      +'</div></div>';
+  });
+  if(nDom===0) h+='<div class="nv-sc-note">Aucun masque dominant — bonne régulation émotionnelle.</div>';
+  h+='</div>';
+  return h;
+}
+
+
+function buildPortraitV2(){
+  // Hide legacy sections
+  var legacySections=['sec-carto','sec-timeline-real','sec-polarity-real','sec-thoughts-real','sec-lib-real'];
+  legacySections.forEach(function(id){
+    var s=document.getElementById(id);
+    if(s){s.style.display='none';s.style.margin='0';s.style.padding='0';s.style.minHeight='0';}
+  });
+
+  var el=document.getElementById('sec-mirror');
+  if(!el) return;
+
+  // Override section styling
+  el.className='';
+  el.style.cssText='background:#F7F4EE;padding:0;margin:0;border:none';
+
+  // Route to profile generator
+  var type=PROF.type, html='';
+  if(type==='adapt_eq'||type==='adapt_vig') html=nvGenAdaptatif();
+  else if(type==='pan') html=nvGenPan();
+  else if(type==='triade') html=nvGenTriade();
+  else if(type==='dyade'||type==='dyade_moderee') html=nvGenDyade();
+  else if(type==='residuel') html=nvGenResiduel();
+  else html=nvGenMono();
+
+  html+=nvGenScores();
+  el.innerHTML='<div class="nv-wrap">'+html+'</div>';
+
+  // Animate scores
+  setTimeout(function(){
+    el.querySelectorAll('.nv-sc-fill').forEach(function(f,i){
+      setTimeout(function(){f.style.width=(f.getAttribute('data-sc')||0)+'%';},i*55);
+    });
+  },600);
+
+  // Animate SPA
+  setTimeout(function(){
+    var bar=document.getElementById('nv-spa-fill');
+    if(bar) bar.style.width=Math.min(SC.spa||0,100)+'%';
+  },700);
 }
 
 function initPublicView(){
   buildHero();
-  buildPublicMirror();
-  buildPublicScore();
-  buildPublicPsy();
-  buildPublicPolar();
-  buildPublicMethod();
-  buildPublicSteps();
-  buildCard();
+  buildPortraitV2();
   if(SC.email) document.getElementById('ef-email').value=SC.email;
   initObserver();
   saveNeon();
