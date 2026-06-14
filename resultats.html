@@ -6,7 +6,6 @@
     <meta name="robots" content="noindex, nofollow">
     <title>V.A.L.E.U.R© — Votre Portrait</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <style>
         :root {
             --bg: #FCFAF7; --text: #2A2622; --text2: #4A4340; --text3: #8C827D;
@@ -133,22 +132,6 @@
         }
         .btn-print:hover { opacity: 0.9; }
         /* ── EMAIL ── */
-        .ef-row { display: flex; max-width: 400px; margin: 0 auto; }
-        .ef-input {
-            flex: 1; padding: 12px 16px;
-            background: var(--bg); border: 1px solid var(--line); border-right: none;
-            color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; outline: none;
-            -webkit-user-select: text; user-select: text;
-        }
-        .ef-input::placeholder { color: var(--text3); }
-        .ef-input:focus { border-color: rgba(201,168,76,.5); }
-        .ef-btn {
-            padding: 12px 20px; background: var(--gold); border: none; color: white;
-            font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500;
-            letter-spacing: .15em; text-transform: uppercase;
-            cursor: pointer; flex-shrink: 0; transition: background .2s;
-        }
-        .ef-btn:hover { background: #D4AF37; }
         /* ── CTA ── */
         .cta-sep {
             width: 1px; height: 48px;
@@ -164,20 +147,6 @@
         }
         .cta-btn:hover { border-color: var(--gold); color: var(--gold); }
         /* ── SHARE CARD ── */
-        .btn-share {
-            padding: 10px 28px; background: var(--gold); color: white; border: none;
-            border-radius: 40px; font-family: 'DM Sans', sans-serif; font-size: 13px;
-            font-weight: 500; cursor: pointer; transition: opacity .2s;
-        }
-        .btn-share:hover { opacity: .85; }
-        .btn-dl {
-            padding: 10px 28px; background: transparent; color: var(--text);
-            border: 1px solid var(--line); border-radius: 40px;
-            font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
-            cursor: pointer; text-decoration: none; display: inline-block;
-            transition: border-color .2s;
-        }
-        .btn-dl:hover { border-color: var(--gold); color: var(--gold); }
         /* ── FOOTER ── */
         .footer-valeur {
             text-align: center; margin-top: 60px;
@@ -199,81 +168,165 @@
         a { color: var(--gold); text-decoration: none; border-bottom: 1px solid transparent; transition: border .2s; }
         a:hover { border-bottom-color: var(--gold); }
         @media(max-width:600px) { .container { padding: 40px 16px 60px; } .block { padding: 24px 18px; } }
+
+
+
+        /* ── Feuille de route ── */
+        .roadmap { display:flex; flex-direction:column; gap:10px; margin:16px 0; }
+        .roadmap-step { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; background:rgba(255,255,255,.7); border-radius:8px; border-left:4px solid; }
+        .roadmap-num { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px; flex-shrink:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+        .roadmap-text { font-size:14px; line-height:1.5; color:var(--text); }
+        /* ── Micro-action ── */
+        .micro-action { background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.2); border-radius:8px; padding:18px 20px; margin-top:16px; }
+        .micro-action-title { font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+        /* ── Batterie ── */
+        .battery { display:flex; align-items:center; gap:12px; margin:10px 0; }
+        .battery-bar { flex:1; height:12px; background:rgba(0,0,0,.06); border-radius:6px; overflow:hidden; }
+        .battery-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,#C4581F,#B8930A,#2D7A4F); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+        /* ── COUVERTURE PORTRAIT ── */
+        .cover-page{background:#FDFAF6;border:1px solid rgba(201,168,76,.18);border-radius:4px;padding:44px 40px 36px;margin-bottom:32px;position:relative;overflow:hidden;}
+        /* barre chroma déjà dans .chroma-bar principal — pas de doublon */
+        .cover-letterhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid rgba(201,168,76,.2);}
+        .cover-brand{font-family:'DM Sans',sans-serif;}
+        .cover-brand-main{font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+        .cover-brand-sub{font-size:11px;color:var(--text3);letter-spacing:.08em;margin-top:3px;}
+        .cover-meta{text-align:right;font-size:11px;color:var(--text3);line-height:1.7;}
+        .cover-prenom-block{margin:28px 0 20px;}
+        .cover-label{font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+        .cover-prenom{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7vw,64px);font-weight:300;line-height:1.1;color:var(--text);letter-spacing:.02em;}
+        .cover-divider{height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.15));margin:24px 0;}
+        .cover-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.5vw,22px);font-style:italic;font-weight:300;line-height:1.55;color:var(--text);text-align:center;padding:4px 0 2px;}
+        .cover-tagline-attr{text-align:center;font-size:11px;color:var(--text3);letter-spacing:.1em;margin-top:8px;}
+        .cover-concept{margin:24px 0;padding:20px 22px;background:rgba(255,255,255,.7);border-left:3px solid rgba(201,168,76,.35);border-radius:0 4px 4px 0;}
+        .cover-concept p{font-size:14px;color:var(--text2);line-height:1.85;margin:0;}
+        .cover-findings{margin-top:24px;}
+        .cover-findings-label{font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;}
+        .cover-masks{display:flex;gap:16px;flex-wrap:wrap;}
+        .cover-mask-card{flex:1;min-width:180px;padding:16px 18px;border-radius:4px;border:1px solid rgba(0,0,0,.06);background:#fff;}
+        .cover-mask-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px;vertical-align:middle;}
+        .cover-mask-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;margin:8px 0 4px;letter-spacing:.03em;}
+        .cover-mask-score{font-size:28px;font-weight:600;line-height:1;margin-bottom:6px;}
+        .cover-mask-peur{font-size:12px;color:var(--text3);line-height:1.5;}
+        @media(max-width:500px){.cover-masks{flex-direction:column;}.cover-page{padding:32px 22px 28px;}}
+        @media print{
+            .cover-page{background:white!important;border:1px solid #DDD!important;page-break-after:always;margin-bottom:0;}
+            .cover-prenom{font-size:48pt;}
+            .cover-tagline{font-size:16pt;}
+            .cover-mask-score{font-size:22pt;}
+        }
+        /* ── RAPPORT PREMIUM ── */
+        .rapport-header { display:none; }
+        .rapport-footer { display:none; }
+        .intro-dyade { border-top:3px solid var(--gold); }
+        .mask-section { margin-bottom:0; }
+        .mask-section-label {
+            display:inline-block; padding:5px 18px; border-radius:0 20px 20px 0;
+            font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+            margin-bottom:20px; margin-left:-28px;
+        }
+        .compact-block { margin-bottom:20px; padding:24px 22px; }
+        .eyebrow { font-size:10px; font-weight:600; letter-spacing:.32em; text-transform:uppercase; color:rgba(201,168,76,.75); margin-bottom:8px; }
+        .page-break-before { page-break-before:auto; }
+        .no-print { }
+
+        /* ── PRINT PREMIUM HD ── */
         @media print {
-            body { background: white; }
+            @page { size:A4; margin:22mm 20mm 20mm 22mm; }
+            @page :first { margin-top:15mm; }
+            * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+            body { background:white !important; color:#1A1714 !important; font-size:11.5pt; line-height:1.75; }
+            .container { max-width:100%; padding:0; }
+
+            /* Éléments masqués */
+            .btn-print, #share-section,
+            .no-print,
+            .footer-valeur { display:none !important; }
+
+            /* En-tête et pied de page rapport */
+            .rapport-header { display:block !important; margin-bottom:24pt; }
+            .rapport-footer { display:block !important; margin-top:24pt; }
+            .print-only { display:block !important; }
+
+            /* Blocs */
+            .block { background:white !important; box-shadow:none !important;
+                     border:1px solid #DDD !important; margin-bottom:14pt;
+                     padding:18pt 16pt; page-break-inside:avoid; }
+            .compact-block { padding:14pt 16pt; }
+            .intro-dyade { border-top:3pt solid #C9A84C !important; }
+            .hero-mask { background:white !important; border:1px solid #DDD !important;
+                         page-break-after:avoid; }
+
+            /* Typographie */
+            h1 { font-size:26pt; }
+            h2 { font-size:15pt; color:#1A1714 !important; }
+            .mirror-phrase { font-size:14pt; border-left:3pt solid #C9A84C; }
+            .hero-mask-name { font-size:32pt; }
+            .metaphor-box { border-left:3pt solid #C9A84C; }
+
+            /* Couleurs texte renforcées */
+            .hero-tagline, p { color:#2A2622 !important; }
+            [style*="color:var(--text2)"] { color:#2A2622 !important; }
+            [style*="color:var(--text3)"] { color:#6B6460 !important; }
+
+            /* Sauts de page */
+            .page-break-before { page-break-before:always !important; }
+            .mask-section { page-break-inside:avoid; }
+            .mechanism { page-break-inside:avoid; }
+            .force-box { page-break-inside:avoid; }
+            .spa-ring { page-break-inside:avoid; }
+
+            /* Veuve et orphelin */
+            p { orphans:3; widows:3; }
+            h2 { page-break-after:avoid; }
+            h1 { page-break-after:avoid; }
+
+            /* Barre chromatique */
+            .chroma-bar { -webkit-print-color-adjust:exact; height:4pt; }
+
+            /* Mask section label */
+            .mask-section-label { margin-left:0 !important; border-radius:4px; }
+
+            /* SPA ring */
+            .spa-ring svg circle { stroke-width:6 !important; }
+
+            /* Liens invisibles */
+            a { color:inherit !important; text-decoration:none !important; border:none !important; }
+            a[href]:after { content:none !important; }
+        }
+        /* (old print merged above) */
+        @media print_DISABLED_OLD {
+            @page { margin: 20mm 18mm; size: A4; }
+            body { background: white; color: #1A1714; font-size: 12pt; }
             .container { max-width: 100%; padding: 0; }
-            .block { box-shadow: none; background: white; border: 1px solid #ddd; }
-            .btn-print, #share-section, #email-block, #cta-block { display: none !important; }
+            .block { box-shadow: none; background: white; border: 1px solid #ddd; margin-bottom: 16px; padding: 20px 18px; page-break-inside: avoid; }
+            .hero-mask { background: white !important; border: 1px solid #ddd; page-break-after: avoid; }
+            .mechanism { page-break-inside: avoid; }
+            .btn-print, #share-section, .footer-valeur { display: none !important; }
+            h2 { font-size: 16pt; }
+            .mirror-phrase { font-size: 15pt; border-left: 3px solid #C9A84C; }
+            .hero-mask-name { font-size: 36pt; }
+            a[href]:after { content: none !important; }
+            .chroma-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .step-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>
 </head>
 <body>
 <div class="container" id="app">
     <div class="chroma-bar"></div>
-    <div id="portrait-content"></div>
+    <div id="portrait-content"><p style="text-align:center;padding:60px 20px;color:var(--text3);">Chargement du portrait…</p></div>
 </div>
 
-<!-- CARTE PARTAGE -->
-<div class="container" style="padding-top:0">
-    <div class="block" id="share-section" style="display:none">
-        <h2>Votre carte</h2>
-        <p style="color:var(--text2);margin-bottom:20px">À partager — cliquez pour ouvrir le questionnaire.</p>
-        <div style="max-width:340px;margin:0 auto">
-            <a id="card-link" href="https://questionnaire.psyh.fr" target="_blank" rel="noopener"
-               style="display:block;border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.15);cursor:pointer;text-decoration:none">
-                <img id="card-img" alt="Ma carte V.A.L.E.U.R©" style="width:100%;display:block;min-height:20px;vertical-align:top">
-            </a>
-            <div id="card-fallback" style="display:none;padding:28px 24px;background:var(--card-bg);border-radius:0 12px 12px 0;border-left:4px solid var(--gold)"></div>
-        </div>
-        <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap">
-            <button class="btn-share" onclick="shareCard()">Partager</button>
-            <button class="btn-dl" onclick="downloadCard()">Télécharger</button>
-        </div>
-    </div>
-
-    </div>
-
-    <!-- EMAIL -->
-    <div class="block" id="email-block" style="text-align:center">
-        <h2>Garder une trace</h2>
-        <p style="color:var(--text2);margin-bottom:20px">Recevez le lien de votre portrait par email.<br>Aucun abonnement.</p>
-        <div id="ef-sent" style="display:none;padding:12px 0">
-            <p style="font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--gold)">✓ Portrait envoyé</p>
-        </div>
-        <div id="ef-form">
-            <div class="ef-row">
-                <input type="email" class="ef-input" id="ef-email" placeholder="votre@email.fr">
-                <button class="ef-btn" id="ef-btn" onclick="sendEmail()">Envoyer</button>
-            </div>
-            <p style="font-size:11px;color:var(--text3);margin-top:8px">Lien personnel · Aucun abonnement</p>
-        </div>
-    </div>
-
-    <!-- CTA DOCTOLIB -->
-    <div id="cta-block" style="text-align:center;padding:20px 0 40px">
-        <div class="cta-sep"></div>
-        <a href="https://www.doctolib.fr/psychologue/celine-bourbon" target="_blank" rel="noopener" class="cta-btn">
-            Commencer à traverser →
-        </a>
-        <div style="margin-top:40px">
-            <p style="font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--text3)">Céline Bourbon · Psychologue</p>
-            <p style="font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:rgba(201,168,76,.4);margin-top:4px">Méthode V.A.L.E.U.R© · © 2026</p>
-        </div>
-    </div>
-
-    <div class="footer-valeur">
-        <div class="fv-name">Céline Bourbon · Psychologue</div>
-        <div class="fv-method">Méthode V.A.L.E.U.R© · Tous droits réservés · © 2026</div>
-        <div class="fv-book"><em>De la peur à la joie d’être soi</em> · Éditions L’Harmattan</div>
-    </div>
+<div class="footer-valeur no-print">
+    <div class="fv-name">Céline Bourbon · Psychologue</div>
+    <div class="fv-method">Méthode V.A.L.E.U.R© · Tous droits réservés · © 2026</div>
+    <div class="fv-book"><em>De la peur à la joie d'être soi</em> · Éditions L'Harmattan</div>
 </div>
 
 <script>
 // ══════════════════════════════════
 // CONFIG
 // ══════════════════════════════════
-const EMAILJS_PUB = 'Qamyb35cCRJ5Pulqs';
-const EMAILJS_TPL = 'template_5c2aynj';
 const VERCEL_API  = 'https://valeur-backend-api.vercel.app/api';
 
 const MASKS = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
@@ -290,21 +343,19 @@ const MASK_LABELS = {
     rouge: 'Rouge', orange: 'Orange', jaune: 'Jaune',
     vert: 'Vert', bleu: 'Bleu', indigo: 'Indigo', violet: 'Violet'
 };
-const TIEBREAK = ['jaune','rouge','indigo','vert','bleu','orange','violet'];
+// Tiebreak — ordre de primauté développementale et transdiagnostique
+// Vert 1er : attachement = système motivationnel le plus fondamental (Bowlby 1969, Mikulincer 2007)
+// Rouge 2e : anxiété somatique = peur primaire concrète et autonome (Salkovskis 2002)
+// Bleu 3e : LOC = trait de personnalité fondamental (Rotter 1966)
+// Indigo 4e : perfectionnisme = peur performance-spécifique (Frost 1990)
+// Violet 5e : identité = peur existentielle, trajectoire variable (Winnicott 1960)
+// Orange 6e : mécanisme modérateur / bloqueur, pas peur primaire (Bagby 1994)
+// Jaune 7e : amplificateur transdiagnostique → satellite optimal (Carleton 2007)
+const TIEBREAK = ['vert','rouge','bleu','indigo','violet','orange','jaune'];
 const MC = MASK_COLORS;   // alias court pour drawCard
 const ML = MASK_LABELS;   // alias court pour drawCard
 function hexRgb(h){return{r:parseInt(h.slice(1,3),16),g:parseInt(h.slice(3,5),16),b:parseInt(h.slice(5,7),16)};}
 
-// Phrases fallback cartes (si PNG indisponible)
-const CARD_MSG = {
-    rouge:  "Et si c\u2019\u00e9tait grave cette fois-ci\u00a0?",
-    orange: "Je comprends tout ce que je ressens. Je le vis moins.",
-    jaune:  "Il me faut savoir avant de pouvoir avancer.",
-    vert:   "Est-ce qu\u2019ils m\u2019aimeraient encore si je d\u00e9cevais\u00a0?",
-    bleu:   "Si je ne tiens pas les r\u00eanes, quelque chose va m\u2019\u00e9chapper.",
-    indigo: "Ce n\u2019est pas encore assez bien.",
-    violet: "Je joue tellement bien mes r\u00f4les que je ne sais plus lequel est moi."
-};
 
 // ══════════════════════════════════
 // DONNÉES CLINIQUES
@@ -329,15 +380,52 @@ const MIRROR = {
     violet: "Vous passez d'un r\u00f4le \u00e0 l'autre avec une fluidit\u00e9 d\u00e9concertante \u2014 professionnel\u00b7le, parent, ami\u00b7e, amant\u00b7e. Mais dans le silence, une question revient\u00a0: qui \u00eates-vous quand personne ne regarde\u00a0? Vous avez tellement bien appris \u00e0 vous adapter que vous ne savez plus o\u00f9 se trouve votre centre."
 };
 
+
 const LOOPS = {
-    rouge: ["Une sensation corporelle \u00e9merge \u2014 un battement, une douleur, une g\u00eane.","Votre esprit l'interpr\u00e8te imm\u00e9diatement comme une menace potentielle.","Vous cherchez une confirmation, une r\u00e9assurance \u2014 mais la certitude parfaite n'existe pas, et l'alerte repart."],
-    orange: ["Une \u00e9motion douloureuse approche \u2014 tristesse, col\u00e8re, peur.","Votre esprit verrouille l'acc\u00e8s pour ne pas \u00eatre submerG\u00e9.","L'\u00e9motion, non travers\u00e9e, ressurgit ailleurs \u2014 fatigue, vide, irritabilit\u00e9 \u2014 sans que vous sachiez pourquoi."],
-    jaune: ["Une situation comporte une part d'incertitude \u2014 m\u00eame minime.","Votre esprit anticipe tous les sc\u00e9narios possibles pour \u00e9liminer le risque.","L'impr\u00e9vu est \u00e9vit\u00e9, mais la vie devient un exercice de contr\u00f4le permanent \u2014 \u00e9puisant."],
-    vert: ["Vous percevez un signal de distance chez l'autre \u2014 r\u00e9el ou imaginaire.","Vous adaptez votre comportement pour restaurer le lien.","Le lien est maintenu, mais au prix de vos propres besoins \u2014 qui finissent par peser."],
-    bleu: ["Quelque chose vous \u00e9chappe \u2014 une t\u00e2che, une d\u00e9cision, une personne.","Vous reprenez le contr\u00f4le, m\u00eame au d\u00e9triment de votre \u00e9nergie.","La situation est ma\u00eetris\u00e9e, mais vous \u00eates seul\u00b7e \u00e0 tout porter \u2014 et personne ne peut vous relayer."],
-    indigo: ["Vous anticipez le regard de l'autre \u2014 un jugement possible.","Vous perfectionnez, retravaillez, v\u00e9rifiez pour ne laisser aucune prise.","Le r\u00e9sultat est irr\u00e9prochable, mais vous \u00eates \u00e9puis\u00e9\u00b7e \u2014 et la barre monte pour la prochaine fois."],
-    violet: ["Une situation vous confronte \u00e0 la question\u00a0: qui suis-je vraiment\u00a0?","Vous endossez un r\u00f4le adapt\u00e9 \u00e0 ce qu'on attend de vous.","Vous passez inaper\u00e7u\u00b7e, mais votre identit\u00e9 profonde reste en retrait \u2014 et le vide s'installe."]
+    rouge: [
+        "Un symptôme banal — une douleur légère, un battement de cœur un peu plus fort.",
+        "Immédiatement, quelque chose en vous s'active. Vous devez savoir ce que c'est.",
+        "Vous consultez, vérifiez, cherchez jusqu'à être rassuré·e. L'apaisement arrive — mais ne dure pas.",
+        "Dès que la prochaine sensation apparaît, le cycle repart. C'est un réflexe de protection, pas un défaut de caractère."
+    ],
+    orange: [
+        "Quelqu'un vous blesse, ou vous traversez un moment fort.",
+        "Avant même que vous puissiez ressentir, quelque chose ferme l'accès automatiquement.",
+        "Vous continuez, vous gérez — mais à l'intérieur, c'est comme regarder la scène derrière une vitre.",
+        "Ce que vous n'avez pas pu traverser reste là, et ressort ailleurs, longtemps après. C'est une protection automatique, pas un manque de sensibilité."
+    ],
+    jaune: [
+        "Une décision doit être prise, ou un changement approche.",
+        "Votre esprit commence à envisager tous les scénarios possibles — y compris les pires.",
+        "Vous préparez, anticipez, cherchez à tout verrouiller avant d'agir.",
+        "Mais l'incertitude ne disparaît jamais vraiment. Il reste toujours un imprévu possible. Alors la préparation repart. C'est un mécanisme automatique, pas un défaut de caractère."
+    ],
+    vert: [
+        "Vous percevez un changement de ton chez quelqu'un qui compte pour vous.",
+        "Quelque chose en vous s'alarme : est-ce que je leur ai déplu ? Vont-ils s'éloigner ?",
+        "Vous cherchez à rétablir le lien — vous vous adaptez, vous donnez plus, parfois vous vous excusez sans savoir pourquoi.",
+        "Le lien est restauré — temporairement. Mais le besoin de le vérifier repart au moindre signal ambigu. C'est un réflexe de survie relationnelle, pas de la fragilité."
+    ],
+    bleu: [
+        "Une situation, une relation, ou une décision échappe à votre emprise.",
+        "Quelque chose en vous ne peut pas rester dans cet état. La perte de contrôle déclenche une réaction immédiate.",
+        "Vous intervenez, vous reprenez la main, vous réorganisez — même quand ce n'était pas nécessaire.",
+        "La situation est maîtrisée. Mais l'énergie dépensée pour maintenir ce contrôle s'accumule. Et la prochaine fois, tolérer l'incertitude sera encore plus difficile. C'est un mécanisme de protection, pas de l'autoritarisme."
+    ],
+    indigo: [
+        "Un regard, un commentaire, ou simplement l'anticipation du jugement de l'autre.",
+        "Quelque chose en vous cherche immédiatement la faille — ce qui pourrait être critiqué, amélioré, corrigé.",
+        "Vous retravaillez, vous vérifiez, vous recommencez. Mais même quand c'est terminé, l'insatisfaction reste.",
+        "La barre monte à chaque fois, sans jamais de ligne d'arrivée. Ce n'est pas de la prétention — c'est une protection contre le regard qui juge."
+    ],
+    violet: [
+        "Vous entrez dans une nouvelle situation — une réunion, une relation, un contexte inconnu.",
+        "Instinctivement, quelque chose en vous scanne ce qu'on attend de vous et s'y ajuste.",
+        "Vous jouez le rôle parfaitement. L'autre est satisfait. Mais dans le silence, une question revient.",
+        "Qui êtes-vous, vous, en dehors de ce que les autres attendent ? La réponse tarde à venir. C'est une stratégie de survie identitaire, pas un vide."
+    ]
 };
+
 
 const ORIGINS = {
     rouge: "\u00c0 un moment de votre vie, votre corps a \u00e9t\u00e9 source d'inqui\u00e9tude \u2014 une maladie, un proche souffrant, ou simplement l'impression que la sant\u00e9 pouvait basculer sans pr\u00e9venir. Votre syst\u00e8me nerveux a retenu la le\u00e7on\u00a0: ne jamais baisser la garde.",
@@ -349,72 +437,13 @@ const ORIGINS = {
     violet: "Il a \u00e9t\u00e9 plus s\u00fbr de s'adapter que d'\u00eatre soi. Vos \u00e9motions, vos questions, votre singularit\u00e9 \u00e9taient peut-\u00eatre trop intenses, trop diff\u00e9rentes. Alors vous avez appris \u00e0 devenir ce que les autres attendaient. Une strat\u00e9gie de survie identitaire \u2014 brillante, mais d\u00e9connect\u00e9e de votre nature profonde."
 };
 
-const RETAINED_EXPERIENCES = {
-    rouge: ["L'insouciance de ne pas penser \u00e0 votre corps pendant une journ\u00e9e enti\u00e8re.","La libert\u00e9 de ressentir une douleur sans y voir une menace.","Le plaisir de manger, de bouger, de vivre sans arri\u00e8re-pens\u00e9e.","La confiance de laisser votre corps se reposer sans le surveiller."],
-    orange: ["L'intimit\u00e9 d'un moment o\u00f9 vous auriez pu \u00eatre vraiment touch\u00e9\u00b7e.","La joie de pleurer sans vous demander pourquoi.","La spontan\u00e9it\u00e9 d'un fou rire, d'une col\u00e8re saine, d'une \u00e9motion travers\u00e9e.","La sensation d'\u00eatre pleinement pr\u00e9sent\u00b7e, sans distance."],
-    jaune: ["L'excitation de l'impr\u00e9vu, la surprise qui fait du bien.","La l\u00e9g\u00e8ret\u00e9 de ne pas avoir de plan, et de d\u00e9couvrir ce qui arrive.","La confiance de prendre une d\u00e9cision sans avoir toutes les r\u00e9ponses.","La libert\u00e9 d'agir avant d'\u00eatre certain\u00b7e."],
-    vert: ["La paix de dire non sans craindre de perdre l'autre.","La certitude d'\u00eatre aim\u00e9\u00b7e pour ce que vous \u00eates, pas pour ce que vous faites.","Le droit d'exister sans vous adapter en permanence.","L'espace de recevoir, sans avoir besoin de donner en retour."],
-    bleu: ["Le soulagement de d\u00e9poser les armes, de laisser quelqu'un d'autre porter.","La confiance de d\u00e9l\u00e9guer sans v\u00e9rifier.","Le repos de ne pas \u00eatre indispensable.","La douceur de recevoir de l'aide, sans la contr\u00f4ler."],
-    indigo: ["La libert\u00e9 de faire \u00ab\u00a0assez bien\u00a0\u00bb et de passer \u00e0 autre chose.","La fiert\u00e9 de montrer un travail en cours, imparfait mais vivant.","Le droit \u00e0 l'erreur, sans que cela remette en cause votre valeur.","La joie de cr\u00e9er sans vous juger."],
-    violet: ["La sensation de vous reconna\u00eetre dans un miroir, sans r\u00f4le.","La stabilit\u00e9 d'un \u00ab\u00a0je\u00a0\u00bb qui ne change pas selon les regards.","La libert\u00e9 d'\u00e9voluer sans craindre de vous perdre.","L'apaisement de savoir qui vous \u00eates, simplement."]
-};
 
-const VALEUR_STEPS = [
-    { lettre: 'V', nom: 'VOIR', desc: "Reconna\u00eetre le masque au moment o\u00f9 il s\u2019active." },
-    { lettre: 'A', nom: 'ACCUEILLIR', desc: "Cesser de lutter contre l\u2019\u00e9motion ou la pens\u00e9e automatique." },
-    { lettre: 'L', nom: 'LOCALISER', desc: "Revenir au corps, l\u00e0 o\u00f9 la peur se manifeste." },
-    { lettre: 'E', nom: 'EXPLORER', desc: "Clarifier le conflit entre s\u00e9curit\u00e9 et \u00e9lan de vie." },
-    { lettre: 'U', nom: 'UNIFIER', desc: "Trouver une voie qui honore \u00e0 la fois le besoin de protection et le d\u00e9sir d\u2019\u00eatre soi." },
-    { lettre: 'R', nom: 'RENFORCER', desc: "Poser des actions nouvelles, align\u00e9es avec votre nature profonde." }
-];
 
 // ══════════════════════════════════
 // 21 DYADES VALIDÉES
-// ══════════════════════════════════
-const DYADES_AMPLIFICATIONS = {
-    "jaune+rouge": { nom:"Anxi\u00e9t\u00e9 de sant\u00e9 amplifi\u00e9e", desc:"Votre masque Rouge surveille votre corps, votre masque Jaune exige des certitudes. Chaque sensation devient une question m\u00e9dicale qui doit avoir une r\u00e9ponse \u2014 et la r\u00e9ponse n'est jamais assez rassurante.", boucle:["Une sensation corporelle appara\u00eet (Rouge)","Jaune exige une certitude que la m\u00e9decine ne peut pas donner","Vous cherchez des informations, consultez, v\u00e9rifiez","La rassurance ne dure pas \u2192 la prochaine sensation relance le cycle"] },
-    "orange+vert": { nom:"Distance paradoxale", desc:"Votre masque Orange vous coupe de vos ressentis, votre masque Vert a besoin de lien. Vous cherchez la proximit\u00e9 tout en restant \u00e0 distance de vos \u00e9motions \u2014 l'autre ne vous atteint jamais vraiment.", boucle:["Vous avez besoin des autres (Vert)","L'\u00e9motion monte \u2192 Orange la coupe","Vous semblez froid\u00b7e ou distant\u00b7e","L'autre s'\u00e9loigne \u2192 Vert redouble d'efforts pour restaurer le lien"] },
-    "jaune+vert": { nom:"Surveillance relationnelle", desc:"Votre masque Jaune a besoin de certitudes, votre masque Vert craint l'abandon. Vous surveillez les signaux de vos relations pour v\u00e9rifier que tout va bien, ce qui cr\u00e9e une tension permanente.", boucle:["Un signal relationnel ambigu appara\u00eet (retard, silence) \u2014 Vert l'interpr\u00e8te comme une distance","Jaune exige de savoir ce que cela signifie avec certitude","Vous analysez, relisez, cherchez des indices","L'autre ressent cette attention constante comme une pression \u2014 ce qui cr\u00e9e la distance que vous craigniez"] },
-    "orange+rouge": { nom:"Le Corps sans Voix", desc:"Votre masque Rouge d\u00e9clenche une vigilance corporelle, votre masque Orange coupe l'acc\u00e8s \u00e9motionnel. L'anxi\u00e9t\u00e9 s'exprime par le corps sans pouvoir \u00eatre nomm\u00e9e ni travers\u00e9e.", boucle:["Une sensation corporelle anxieuse monte \u2014 Rouge d\u00e9clenche l'alerte","Orange coupe l'acc\u00e8s \u00e9motionnel \u00e0 cette anxi\u00e9t\u00e9","L'anxi\u00e9t\u00e9 s'exprime par le corps, plus fort (tensions, palpitations)","La surveillance corporelle s'intensifie (Rouge), alimentant de nouveaux sympt\u00f4mes"] },
-    "bleu+jaune": { nom:"Contr\u00f4le absolu", desc:"Votre masque Bleu a besoin de tout ma\u00eetriser, votre masque Jaune ne supporte pas l'impr\u00e9vu. Vous devez tout pr\u00e9voir et tout diriger \u2014 une double charge mentale \u00e9puisante.", boucle:["Quelque chose vous \u00e9chappe \u2192 Bleu veut reprendre la main","L'incertitude demeure \u2192 Jaune anticipe tous les sc\u00e9narios","Vous sur-planifiez et sur-contr\u00f4lez \u2192 \u00e9puisement","L'\u00e9puisement vous rend moins efficace \u2192 Bleu et Jaune s'activent encore plus"] },
-    "bleu+indigo": { nom:"Exigence totale", desc:"Votre masque Bleu veut tout contr\u00f4ler, votre masque Indigo veut tout r\u00e9ussir. Vous ne pouvez ni d\u00e9l\u00e9guer, ni vous satisfaire de ce qui est \u00ab\u00a0assez bien\u00a0\u00bb.", boucle:["Un r\u00e9sultat est attendu \u2192 Indigo exige la perfection","Bleu reprend la main pour s'assurer du r\u00e9sultat","Vous travaillez deux fois plus que n\u00e9cessaire","La r\u00e9ussite ne suffit pas \u2192 le standard monte pour la prochaine fois"] },
-    "indigo+vert": { nom:"S'effacer pour \u00eatre parfait", desc:"Votre masque Vert vous pousse \u00e0 vous adapter aux autres, votre masque Indigo vous impose des standards impossibles. Vous voulez \u00eatre \u00e0 la hauteur pour \u00eatre aim\u00e9\u00b7e \u2014 et vous vous \u00e9puisez \u00e0 r\u00e9pondre aux attentes.", boucle:["Vous percevez une attente \u2192 Vert veut y r\u00e9pondre","Indigo vous dit que ce n'est jamais assez bien","Vous en faites toujours plus \u2192 vous disparaissez derri\u00e8re la performance","La peur du rejet et du jugement se renforcent mutuellement"] },
-    "indigo+jaune": { nom:"Perfectionnisme paralysant", desc:"Votre masque Indigo exige la perfection, votre masque Jaune refuse l'incertitude. Ensemble, ils cr\u00e9ent une paralysie\u00a0: vous ne pouvez ni commencer sans garantie, ni finir sans avoir tout v\u00e9rifi\u00e9.", boucle:["Un projet se pr\u00e9sente \u2192 vous voulez qu'il soit parfait (Indigo)","L'incertitude du r\u00e9sultat vous bloque \u2192 vous reportez (Jaune)","Le report renforce la peur de l'\u00e9chec \u2192 Indigo devient plus exigeant","L'exigence accro\u00eet l'incertitude \u2192 Jaune verrouille davantage"] },
-    "jaune+violet": { nom:"Rigidit\u00e9 identitaire", desc:"Votre masque Violet ne sait pas qui il est sans ses rep\u00e8res, votre masque Jaune refuse le changement. Les routines s'alourdissent pour maintenir une stabilit\u00e9 indispensable.", boucle:["Un changement approche \u2014 Violet per\u00e7oit une menace pour l'identit\u00e9","Jaune exige de tout pr\u00e9voir, ce qui est impossible","Les deux masques cr\u00e9ent une r\u00e9sistance rigide \u2014 vous restez dans ce que vous connaissez","La vie r\u00e9tr\u00e9cit, chaque d\u00e9rogation aux habitudes d\u00e9clenche une anxi\u00e9t\u00e9"] },
-    "bleu+rouge": { nom:"Le Corps sous Contr\u00f4le", desc:"Votre masque Rouge surveille le corps, votre masque Bleu transforme toute alerte en plan d'action. Le corps devient un syst\u00e8me \u00e0 optimiser.", boucle:["Une sensation corporelle attire votre attention \u2014 Rouge l'interpr\u00e8te comme alerte","Bleu transforme l'alerte en plan\u00a0: protocoles, optimisation, discipline","Le corps r\u00e9siste naturellement \u00e0 la ma\u00eetrise totale","Cette r\u00e9sistance est interpr\u00e9t\u00e9e comme une nouvelle d\u00e9faillance \u2014 le contr\u00f4le se renforce"] },
-    "rouge+vert": { nom:"Le Corps comme Lien", desc:"Votre masque Rouge g\u00e9n\u00e8re une anxi\u00e9t\u00e9 corporelle, votre masque Vert a besoin de connexion. La pr\u00e9sence de l'autre apaise les sympt\u00f4mes, l'absence les amplifie.", boucle:["Un sympt\u00f4me surgit \u2014 Rouge g\u00e9n\u00e8re une anxi\u00e9t\u00e9 corporelle","La solitude amplifie l'anxi\u00e9t\u00e9 \u2014 Vert a besoin d'une pr\u00e9sence pour la traverser","La r\u00e9assurance de l'autre soulage momentan\u00e9ment \u2014 mais cr\u00e9e une d\u00e9pendance","La prochaine inqui\u00e9tude, seule, est plus difficile \u00e0 supporter"] },
-    "indigo+rouge": { nom:"Le Corps sous Exigence", desc:"Votre masque Rouge est vigilant sur le corps, votre masque Indigo impose des standards impossibles. La fatigue devient une insuffisance.", boucle:["Un signal de limite appara\u00eet (fatigue, douleur) \u2014 Rouge l'enregistre, Indigo le juge","Des standards corporels sont appliqu\u00e9s de fa\u00e7on rigide","Le corps s'\u00e9puise sous l'exigence \u2014 il produit de nouveaux signaux","Ces signaux sont interpr\u00e9t\u00e9s comme preuve d'insuffisance \u2014 le cycle recommence"] },
-    "rouge+violet": { nom:"L'Identit\u00e9 par la Sant\u00e9", desc:"Votre masque Rouge maintient une surveillance corporelle, votre masque Violet cherche une identit\u00e9 stable. La vigilance sant\u00e9 devient un rep\u00e8re identitaire.", boucle:["Une pr\u00e9occupation de sant\u00e9 survient \u2014 Rouge s'en saisit","Elle comble un vide identitaire \u2014 Violet trouve un r\u00f4le stable","L'identit\u00e9 se construit autour de la vigilance sant\u00e9","Les sympt\u00f4mes persistent, car ils remplissent une fonction identitaire"] },
-    "jaune+orange": { nom:"Planifier sans Habiter", desc:"Votre masque Jaune structure, planifie, votre masque Orange coupe l'acc\u00e8s aux \u00e9motions. Une vie parfaitement organis\u00e9e et \u00e9motionnellement vide.", boucle:["Une situation impr\u00e9vue survient \u2014 Jaune la cadre, la planifie, la contr\u00f4le","Orange emp\u00eache de ressentir l'anxi\u00e9t\u00e9 \u2014 et toute autre \u00e9motion","La planification ne procure aucune satisfaction","Plus de contr\u00f4le, moins de ressenti \u2014 la vie devient m\u00e9canique"] },
-    "bleu+orange": { nom:"La R\u00e9ussite sans Joie", desc:"Votre masque Bleu a besoin de r\u00e9ussir, votre masque Orange emp\u00eache l'acc\u00e8s \u00e0 la satisfaction. Les succ\u00e8s ne procurent rien.", boucle:["Une r\u00e9ussite arrive \u2014 Orange emp\u00eache de la ressentir","Le vide persiste \u2014 Bleu cherche la prochaine ma\u00eetrise","La prochaine r\u00e9ussite produit le m\u00eame vide","Le besoin de contr\u00f4le augmente sans jamais trouver de satisfaction"] },
-    "indigo+orange": { nom:"Performer sans Ressentir", desc:"Votre masque Indigo exige la perfection, votre masque Orange d\u00e9connecte l'\u00e9motion. Une performance sans retour sensoriel.", boucle:["Un travail est termin\u00e9 \u2014 Indigo l'\u00e9value imm\u00e9diatement","Orange emp\u00eache de ressentir la fiert\u00e9 ou la satisfaction","Le standard monte \u2014 puisque rien ne satisfait, il faut faire plus","L'\u00e9puisement s'installe sans signal \u00e9motionnel \u2014 jusqu'\u00e0 un arr\u00eat brutal"] },
-    "orange+violet": { nom:"L'Absence \u00e0 Soi", desc:"Votre masque Orange prive de l'acc\u00e8s aux ressentis, votre masque Violet prive d'une identit\u00e9 stable. Double absence\u00a0: le monde int\u00e9rieur est flou.", boucle:["Un moment de calme arrive \u2014 Violet cherche qui vous \u00eates, sans r\u00e9ponse","Orange emp\u00eache l'acc\u00e8s \u00e9motionnel \u2014 la question identitaire ne peut \u00eatre ressentie","Vous fonctionnez en pilote automatique \u2014 les d\u00e9cisions sont dict\u00e9es par l'ext\u00e9rieur","Le vide existentiel s'approfondit silencieusement"] },
-    "bleu+vert": { nom:"Tenir pour ne pas Perdre", desc:"Votre masque Vert a peur d'\u00eatre abandonn\u00e9, votre masque Bleu contr\u00f4le pour se sentir en s\u00e9curit\u00e9. Le besoin se transforme en surveillance.", boucle:["La peur d'\u00eatre quitt\u00e9\u00b7e s'active \u2014 Vert cherche \u00e0 s\u00e9curiser le lien","Bleu transforme cette peur en contr\u00f4le\u00a0: v\u00e9rifications, exigences","L'autre ressent la pression et s'\u00e9loigne \u2014 confirmant la menace d'abandon","Le contr\u00f4le se resserre \u2014 cr\u00e9ant l'\u00e9loignement qu'il cherchait \u00e0 \u00e9viter"] },
-    "vert+violet": { nom:"Fusion Identitaire", desc:"Votre masque Vert s'adapte pour \u00eatre accept\u00e9, votre masque Violet cherche une identit\u00e9 dans le reflet des autres. Une dissolution progressive de soi.", boucle:["Une relation se d\u00e9veloppe \u2014 Vert s'adapte pour ne pas \u00eatre rejet\u00e9","Violet trouve une identit\u00e9 dans le reflet de l'autre \u2014 fusion progressive","Vous disparaissez dans la relation \u2014 vos go\u00fbts, valeurs s'effacent","La peur de la s\u00e9paration devient existentielle \u2014 quitter serait n'\u00eatre plus rien"] },
-    "bleu+violet": { nom:"Le Pouvoir comme Identit\u00e9", desc:"Votre masque Bleu a besoin de contr\u00f4ler, votre masque Violet cherche une identit\u00e9. Le r\u00f4le devient la r\u00e9ponse\u00a0: 'je suis celui qui g\u00e8re'.", boucle:["Le r\u00f4le est remis en question \u2014 Violet per\u00e7oit une menace identitaire","Bleu s'accroche au contr\u00f4le \u2014 c'est la seule identit\u00e9 disponible","Plus le r\u00f4le est menac\u00e9, plus le contr\u00f4le devient rigide","L'identit\u00e9 r\u00e9elle, sous le r\u00f4le, reste inexpllor\u00e9e"] },
-    "indigo+violet": { nom:"L'Imposteur Existentiel", desc:"Votre masque Indigo impose des standards, votre masque Violet ne fournit pas d'identit\u00e9 stable. Les standards s'appliquent dans le vide.", boucle:["Un projet se pr\u00e9sente \u2014 Indigo active les standards","Violet ne fournit pas d'identit\u00e9 stable \u2014 les standards flottent, arbitraires","L'imposture semble totale \u2014 vous jouez un r\u00f4le, imparfaitement","Chaque nouvelle situation relance la m\u00eame question sans r\u00e9ponse"] }
-};
 
 // ══════════════════════════════════
 // 15 TRIADES VALIDÉES
-// ══════════════════════════════════
-const TRIADES_AMPLIFICATIONS = {
-    "jaune+orange+rouge": { nom:"Le Corps en Alerte Permanente", desc:"Votre masque Rouge maintient le corps en vigilance, votre masque Jaune exige des certitudes, votre masque Orange coupe l'acc\u00e8s aux \u00e9motions. L'anxi\u00e9t\u00e9 reste pi\u00e9g\u00e9e dans le corps.", boucle:["Une sensation corporelle \u00e9merge \u2014 Rouge l'interpr\u00e8te comme menace","Jaune exige une certitude que le corps ne peut pas fournir","Orange emp\u00eache de ressentir l'anxi\u00e9t\u00e9 comme une \u00e9motion","L'anxi\u00e9t\u00e9 s'exprime par le corps, plus fort \u2014 et le cycle red\u00e9marre"] },
-    "bleu+indigo+jaune": { nom:"L'Exigence sans Seuil", desc:"Le masque Jaune ne supporte pas l'incertitude, le masque Bleu a besoin de ma\u00eetriser, le masque Indigo exige des standards \u00e9lev\u00e9s. Rien n'est jamais assez.", boucle:["Un projet exige un r\u00e9sultat \u2014 Indigo veut la perfection, Jaune la certitude, Bleu le contr\u00f4le","Vous planifiez, v\u00e9rifiez, retravaillez \u2014 tout doit \u00eatre parfait","L'\u00e9puisement s'installe \u2014 mais vous ne pouvez pas vous arr\u00eater","Les trois masques s'activent simultan\u00e9ment \u00e0 chaque nouveau projet"] },
-    "indigo+orange+vert": { nom:"L'\u00c9puisement Invisible", desc:"Le masque Vert vous fait dispara\u00eetre dans les relations, le masque Indigo vous efface par peur du jugement, le masque Orange coupe l'acc\u00e8s \u00e0 vos ressentis. La souffrance est invisible.", boucle:["On attend quelque chose de vous \u2014 Vert s'adapte","Indigo exige que ce soit parfait","Orange emp\u00eache de ressentir la fatigue ou la frustration","Vous donnez sans compter \u2014 vous ne savez plus ce dont vous avez besoin"] },
-    "bleu+jaune+rouge": { nom:"Contr\u00f4le Total", desc:"Le masque Rouge surveille le corps, le masque Jaune anticipe, le masque Bleu contr\u00f4le les situations. Trois fronts de surveillance simultan\u00e9s.", boucle:["Une sensation corporelle appara\u00eet (Rouge)","Jaune exige de tout pr\u00e9voir, Bleu de tout ma\u00eetriser","La moindre d\u00e9viation d\u00e9clenche une r\u00e9action en cha\u00eene","L'\u00e9puisement est structurel \u2014 aucune surveillance ne s'arr\u00eate jamais"] },
-    "indigo+orange+violet": { nom:"L'Identit\u00e9 en Suspens", desc:"Le masque Violet ne sait pas qui il est, le masque Orange ne sait pas ce qu'il ressent, le masque Indigo exige que ce 'je' flou soit parfait.", boucle:["Une question sur votre identit\u00e9 surgit \u2014 Violet cherche sans r\u00e9ponse","Orange emp\u00eache de ressentir ce vide","Indigo exige d'\u00eatre parfait\u00b7e \u2014 mais qui doit l'\u00eatre\u00a0?","Les standards s'appliquent dans le vide \u2014 le doute s'approfondit"] },
-    "jaune+rouge+vert": { nom:"Anxi\u00e9t\u00e9 de Survie Relationnelle", desc:"Le masque Rouge g\u00e9n\u00e8re une anxi\u00e9t\u00e9 corporelle, le masque Vert a besoin de connexion, le masque Jaune exige de savoir si cette connexion est stable.", boucle:["Un sympt\u00f4me physique surgit \u2014 Rouge s'alarme","La solitude amplifie l'anxi\u00e9t\u00e9 \u2014 Vert a besoin de l'autre","Jaune exige de savoir si la relation est solide","La r\u00e9assurance ne dure pas \u2014 le prochain sympt\u00f4me relance le cycle"] },
-    "bleu+jaune+vert": { nom:"Ne Jamais L\u00e2cher le Lien", desc:"Le masque Vert a peur de l'abandon, le masque Bleu transforme cette peur en contr\u00f4le, le masque Jaune exige des certitudes sur la solidit\u00e9 du lien.", boucle:["Une inqui\u00e9tude relationnelle surgit \u2014 Vert cherche \u00e0 s\u00e9curiser le lien","Bleu transforme cette peur en comportements de contr\u00f4le","Jaune exige de savoir si tout va bien \u2014 v\u00e9rifications constantes","L'autre ressent la pression et s'\u00e9loigne \u2014 confirmant la peur initiale"] },
-    "orange+rouge+violet": { nom:"Le Corps comme Seul Rep\u00e8re", desc:"Le masque Rouge surveille le corps, le masque Orange coupe l'acc\u00e8s aux \u00e9motions, le masque Violet cherche une identit\u00e9 sans la trouver. Le corps devient le seul ancrage.", boucle:["Un sympt\u00f4me appara\u00eet \u2014 Rouge le surveille","Orange emp\u00eache de ressentir l'\u00e9motion sous-jacente","Violet s'accroche \u00e0 ce r\u00f4le de patient comme identit\u00e9","Aller mieux devient une menace \u2014 gu\u00e9rir serait perdre son identit\u00e9"] },
-    "bleu+indigo+orange": { nom:"La R\u00e9ussite sans Joie", desc:"Le masque Bleu a besoin de r\u00e9ussir, le masque Indigo exige la perfection, le masque Orange emp\u00eache de ressentir la satisfaction.", boucle:["Une r\u00e9ussite arrive \u2014 Orange emp\u00eache de la ressentir","Indigo juge que ce n'\u00e9tait pas assez bien","Bleu cherche la prochaine ma\u00eetrise pour combler le vide","Les succ\u00e8s s'accumulent sans jamais nourrir \u2014 l'effondrement guette"] },
-    "jaune+orange+vert": { nom:"La D\u00e9pendance Planifi\u00e9e", desc:"Le masque Vert s'adapte aux autres, le masque Jaune structure cette adaptation avec des routines, le masque Orange emp\u00eache de ressentir le co\u00fbt.", boucle:["Vous vous pliez aux attentes des autres (Vert)","Vous organisez votre vie autour de ces attentes (Jaune)","Vous ne ressentez pas la fatigue ou la frustration (Orange)","La question 'qu'est-ce que je veux, moi\u00a0?' reste sans r\u00e9ponse"] },
-    "indigo+jaune+rouge": { nom:"Perfectionnisme Sanitaire", desc:"Le masque Rouge surveille le corps, le masque Jaune exige des certitudes sur la sant\u00e9, le masque Indigo impose des standards impossibles.", boucle:["Une sensation corporelle appara\u00eet \u2014 Rouge s'alarme","Jaune veut une certitude m\u00e9dicale absolue","Indigo exige un corps parfait \u2014 r\u00e9gimes, protocoles","La recherche de la sant\u00e9 parfaite produit stress et fatigue"] },
-    "bleu+vert+violet": { nom:"Fusionner pour Exister", desc:"Le masque Vert fusionne avec l'autre, le masque Violet trouve dans cette fusion une identit\u00e9, le masque Bleu contr\u00f4le ce \u00e0 quoi il est attach\u00e9.", boucle:["Une relation se d\u00e9veloppe \u2014 Vert s'adapte, Violet fusionne","Bleu contr\u00f4le la relation pour la s\u00e9curiser","Vous disparaissez dans l'autre \u2014 votre identit\u00e9 d\u00e9pend de la relation","La s\u00e9paration devient existentiellement mena\u00e7ante"] },
-    "bleu+jaune+orange": { nom:"L'Efficacit\u00e9 Froide", desc:"Le masque Bleu contr\u00f4le, le masque Jaune anticipe, le masque Orange coupe les \u00e9motions. Une efficacit\u00e9 redoutable et une froideur qui \u00e9loigne.", boucle:["Vous g\u00e9rez les situations avec une pr\u00e9cision remarquable","Les \u00e9motions sont mises de c\u00f4t\u00e9 \u2014 les v\u00f4tres et celles des autres","Les relations s'appauvrissent \u2014 les gens s'\u00e9loignent","Vous vous sentez seul\u00b7e au milieu de votre r\u00e9ussite"] },
-    "rouge+vert+violet": { nom:"La Triple Fragilit\u00e9", desc:"Le masque Rouge fragilise le rapport au corps, le masque Vert fragilise l'autonomie relationnelle, le masque Violet fragilise la stabilit\u00e9 identitaire.", boucle:["Un sympt\u00f4me physique active le besoin de l'autre","Le besoin de l'autre active la question identitaire","La confusion identitaire amplifie l'anxi\u00e9t\u00e9 corporelle","Les trois piliers vacillent ensemble \u2014 l'autonomie est difficile"] },
-    "indigo+jaune+violet": { nom:"Le Perfectionnisme sans Ancrage", desc:"Le masque Indigo impose des standards, le masque Jaune exige des certitudes, le masque Violet ne fournit pas d'identit\u00e9 stable.", boucle:["Une d\u00e9cision se profile \u2014 Indigo veut la perfection","Jaune veut la certitude \u2014 Violet ne sait pas qui d\u00e9cide","Vous cherchez la bonne direction sans boussole","Les projets s'accumulent sans aboutir \u2014 \u00e9puisement"] }
-};
 
 const PAN_MASQUE = {
     nom: "L'Adaptation Multi-Protection",
@@ -423,44 +452,58 @@ const PAN_MASQUE = {
     exemples: ["Au travail\u00a0: vous passez d'un r\u00f4le \u00e0 l'autre selon les interlocuteurs, et vous terminez la journ\u00e9e \u00e9puis\u00e9\u00b7e sans savoir pourquoi.","Dans les relations\u00a0: vous vous adaptez \u00e0 chaque personne, au point de ne plus savoir quelle version de vous est la vraie."]
 };
 
-// ── CARTES VIRALES : textes et couleurs ──
-const CARD_QUOTES = {
-    rouge:  '« Je surveille de près les signaux de mon corps et ma santé … et je ne me sens jamais vraiment en sécurité. »',
-    orange: '« Même si ça ne se voit pas, je ressens très fort mes émotions — alors je coupe pour ne pas souffrir. »',
-    jaune:  '« Je m’inquiète en essayant d’imaginer toutes les façons dont les choses pourraient mal tourner. Je dois toujours anticiper pour éviter les imprévus. »',
-    vert:   '« J’ai le sentiment de ne pas vraiment compter — alors je donne jusqu’à m’effacer pour ne jamais être abandonné.e. »',
-    bleu:   '« Ma vérité a souvent déplu … alors je contrôle au lieu de dire ce que je pense vraiment. »',
-    indigo: '« J’ai peur de me tromper. L’échec n’est pas une option possible. Alors je multiplie les efforts pour sans cesse m’améliorer. »',
-    violet: '« Je me suis tellement adapté à tout le monde que parfois je ne sais plus quelle version est le vrai « moi ». »',
-    pan:    '« J’ai peur de ne pas être accepté.e — alors je deviens ce que les autres attendent plutôt que d’être vraiment moi-même. »'
-};
-const CARD_BG = {
-    rouge:  { bg1:'#1C0605', bg2:'#0D0302', acc:'#B5312A', gold:'#C9A84C' },
-    orange: { bg1:'#1C1004', bg2:'#0D0702', acc:'#C4581F', gold:'#C9A84C' },
-    jaune:  { bg1:'#181600', bg2:'#0C0B00', acc:'#B8930A', gold:'#C9A84C' },
-    vert:   { bg1:'#04120A', bg2:'#020805', acc:'#2D7A4F', gold:'#C9A84C' },
-    bleu:   { bg1:'#030C1A', bg2:'#01060E', acc:'#1D5F8A', gold:'#C9A84C' },
-    indigo: { bg1:'#0E0618', bg2:'#07030D', acc:'#5C3280', gold:'#C9A84C' },
-    violet: { bg1:'#120820', bg2:'#080410', acc:'#7A3594', gold:'#C9A84C' },
-    pan:    { bg1:'#08060E', bg2:'#040310', acc:'#C9A84C', gold:'#C9A84C' }
-};
 
-// Descriptions courtes — portrait Pan-Masques (liste dynamique)
-const PAN_DESC = {
-    rouge:  "le masque Rouge surveille votre corps sans rel\u00e2che",
-    orange: "le masque Orange coupe l\u2019acc\u00e8s aux \u00e9motions pour ne pas \u00eatre submerg\u00e9",
-    jaune:  "le masque Jaune ne supporte pas l\u2019incertitude et doit tout pr\u00e9voir",
-    vert:   "le masque Vert redoute l\u2019abandon et s\u2019adapte pour maintenir les liens",
-    bleu:   "le masque Bleu a besoin de tout ma\u00eetriser pour se sentir en s\u00e9curit\u00e9",
-    indigo: "le masque Indigo exige des standards impossibles et ne se satisfait jamais",
-    violet: "le masque Violet ne sait pas qui il est sans le regard des autres"
-};
 
 const ADAPTATIF = {
     nom: "Profil Adaptatif",
     desc: "Vos scores indiquent qu'aucune peur n'a pris le contr\u00f4le de votre fonctionnement quotidien. Vos d\u00e9fenses sont souples, proportionn\u00e9es. Elles s'activent quand c'est n\u00e9cessaire, et se retirent quand le danger passe. Ce n'est pas l'absence de vuln\u00e9rabilit\u00e9 \u2014 c'est la capacit\u00e9 \u00e0 la traverser sans en \u00eatre prisonnier\u00b7\u00e8re.",
     ce_qui_est_deja_la: ["Vous avez acc\u00e8s \u00e0 vos \u00e9motions sans \u00eatre submerG\u00e9\u00b7e.","Vous pouvez faire confiance, d\u00e9l\u00e9guer, l\u00e2cher prise.","Vous savez qui vous \u00eates, et cela ne d\u00e9pend pas du regard des autres.","Vous vivez des moments de pleine pr\u00e9sence, sans r\u00f4le \u00e0 jouer."],
     direction: "Vous \u00eates d\u00e9j\u00e0 sur le chemin de la pr\u00e9sence authentique. La m\u00e9thode V.A.L.E.U.R peut vous aider \u00e0 \u00e9largir encore cet espace de libert\u00e9, et \u00e0 comprendre ce qui, parfois, vous en \u00e9loigne."
+};
+
+
+// ══════════════════════════════════
+// DONNÉES ENRICHISSEMENT PORTRAIT
+// ══════════════════════════════════
+
+const VOICE = {
+    rouge: "Mon corps n'est jamais vraiment sûr. Je dois surveiller. Je dois savoir. Si je relâche, quelque chose va m'échapper.",
+    orange: "Je gère. Je ne ressens pas — je gère. Si je laisse entrer cette émotion, je ne sais pas comment ça va finir.",
+    jaune: "Il me faut savoir. Il me faut être certain·e. L'incertitude n'est pas une option — elle est une menace.",
+    vert: "Est-ce que je compte vraiment pour eux ? Est-ce que si je décevais, ils resteraient quand même ? Je dois m'assurer que oui.",
+    bleu: "Si je lâche, quelque chose va mal tourner. Personne ne peut faire ça comme moi. Je dois tenir.",
+    indigo: "Ce n'est pas assez bien. Il doit y avoir une faille. Je dois la trouver avant que quelqu'un d'autre ne la trouve.",
+    violet: "Est-ce qu'ils m'aimeraient s'ils savaient qui je suis vraiment ? Je joue tellement bien mes rôles que je ne sais plus lequel est moi."
+};
+
+const SCENE = {
+    rouge: "Vous ressentez une douleur inhabituelle. Une demi-heure plus tard, vous avez consulté trois sites médicaux, envisagé quatre diagnostics, et votre cœur bat un peu plus vite. Vous n'avez pas choisi cette réaction. Elle a été plus rapide que vous.",
+    orange: "Quelqu'un vous demande comment vous allez vraiment. Vous répondez « bien » avant même d'avoir eu le temps de chercher la réponse. Quelque chose s'est fermé automatiquement — avant que vous ne décidiez de l'ouvrir ou non.",
+    jaune: "Un projet change de forme à la dernière minute. Ce n'est pas grave objectivement — mais quelque chose en vous s'active. Vous commencez à recalculer, à réorganiser, à anticiper les conséquences. Vous n'avez pas décidé de faire ça. C'est parti tout seul.",
+    vert: "Vous sentez une tension dans une relation. L'autre n'a rien dit, mais vous avez senti quelque chose. Et depuis, vous cherchez à comprendre ce que vous avez fait, ce que vous pourriez corriger, ce que vous pourriez faire pour que tout redevienne normal.",
+    bleu: "Vous confiez une tâche. Vous essayez de lâcher prise. Mais quelques heures plus tard, vous vérifiez. Vous ne pouvez pas vous en empêcher — ce n'est pas de la méfiance, c'est une anxiété que vous ne savez pas poser ailleurs.",
+    indigo: "Vous recevez un compliment sur votre travail. La première pensée qui arrive n'est pas la satisfaction. C'est : « ils n'ont pas vu la partie qui n'était pas parfaite. » La satisfaction, si elle vient, ne dure pas.",
+    violet: "On vous demande ce que vous voulez — au restaurant, dans un projet, dans une relation. Vous commencez à chercher ce que l'autre préférerait pour répondre en fonction. La question de ce que vous voulez, vous, reste sans réponse."
+};
+
+const COUT = {
+    rouge: "Des années de vigilance qui ont empêché d'habiter votre corps autrement que comme un signal d'alarme. Des joies physiques — le mouvement, le sommeil, la légèreté — partiellement inaccessibles.",
+    orange: "Des liens qui auraient pu être plus profonds, mais qui sont restés en surface. Une intimité possible, mais évitée. Et un vide intérieur que vous n'arrivez pas tout à fait à nommer, parce que le nommer, ce serait le sentir.",
+    jaune: "Des décisions retardées parce qu'elles ne pouvaient pas être certaines. Des opportunités laissées passer parce qu'elles comportaient une part d'inconnu. Et une fatigue de penser — constante, invisible, épuisante.",
+    vert: "Des désirs tus. Des besoins niés. Des colères ravalées. Et quelque part, la question qui revient : qui suis-je vraiment, en dehors de ce que je fais pour les autres ?",
+    bleu: "Une solitude de ceux qui font tout eux-mêmes. Une difficulté à recevoir, à laisser l'autre contribuer. Et des relations où vous étiez présent·e — mais où personne ne vous a vraiment porté·e.",
+    indigo: "Un rapport au travail qui ne s'arrête jamais vraiment. Une incapacité à être fier·e de ce que vous faites sans aussitôt voir ce qui manque. Et une énergie considérable dépensée à prouver quelque chose que personne ne vous a jamais vraiment demandé de prouver.",
+    violet: "Des années à performer des rôles plutôt qu'à vivre. Une incertitude persistante sur ce qui compte vraiment pour vous. Et parfois, l'impression d'être spectateur·rice de votre propre vie."
+};
+
+const REFRAME = {
+    rouge:  { q: "« Je m'inquiète parce que je suis quelqu'un d'anxieux. »", r: "Vous vous inquiétez parce que votre système nerveux a appris qu'ignorer un signal pouvait être dangereux. Ce n'est pas votre caractère — c'est une solution que votre esprit a construite pour vous protéger. Elle continue de tourner parce qu'elle ne sait pas que la menace est passée." },
+    orange: { q: "« Je suis froid·e, je ne ressens rien. »", r: "Vous ressentez profondément. Votre esprit a simplement appris à couper l'accès avant que l'émotion n'arrive à la conscience — pas par insensibilité, mais parce qu'à un moment, ressentir était trop coûteux. Ce n'est pas qui vous êtes. C'est ce que vous avez construit pour survivre." },
+    jaune:  { q: "« Je suis quelqu'un d'anxieux, j'ai besoin de tout contrôler. »", r: "Votre esprit a décidé que la sécurité viendrait de la prévision. Une décision intelligente, prise à une époque où l'imprévu était vraiment menaçant. Aujourd'hui, l'imprévu a changé — mais la réponse automatique, elle, n'a pas encore été mise à jour." },
+    vert:   { q: "« Je suis trop sensible, je prends tout trop à cœur. »", r: "Votre cerveau a enregistré que perdre le lien était une menace réelle. Alors il surveille, anticipe, s'adapte. Ce n'est pas de la fragilité — c'est un système d'alerte très bien calibré pour une époque révolue. Il ne sait pas encore qu'il peut se reposer." },
+    bleu:   { q: "« Je suis perfectionniste, j'ai besoin de faire les choses moi-même. »", r: "Vous avez appris très tôt que lâcher prise exposait à l'effondrement. Tenir était la seule façon de ne pas sombrer. Ce n'était pas un choix — c'était une nécessité. Aujourd'hui, vous avez d'autres ressources. Mais le masque, lui, ne le sait pas encore." },
+    indigo: { q: "« Je suis exigeant·e avec moi-même, je n'y peux rien. »", r: "Cette exigence est née d'une conviction ancienne : que l'erreur avait un coût affectif, relationnel. Votre perfectionnisme est né de là — une protection contre le regard qui juge. Une armure qui vous a porté·e. Mais les armures ont un poids." },
+    violet: { q: "« Je ne sais pas vraiment qui je suis, je m'adapte à tout le monde. »", r: "Il a été plus sûr de s'adapter que d'exister. Vos émotions, vos questions, votre singularité étaient peut-être trop différentes. Alors vous avez appris à devenir ce que les autres attendaient. Le vrai self n'a pas disparu — il attend, intact, que ce soit enfin sûr d'être vu." }
 };
 
 // ══════════════════════════════════
@@ -473,10 +516,13 @@ function readScores() {
     MASKS.forEach(m => { if (p.has(m)) urlS[m] = Math.min(100, Math.max(0, parseInt(p.get(m)) || 0)); });
     if (p.has('spa')) urlS.spa = Math.min(100, Math.max(0, parseInt(p.get('spa')) || 0));
     if (Object.keys(urlS).filter(k => MASKS.includes(k)).length >= 7) scores = urlS;
-    if (!scores) {
+    if (!scores || Object.keys(scores).filter(function(k){return MASKS.includes(k);}).length < 7) {
+        return null;
+    }
+        if (!scores) {
         try { const ls = JSON.parse(localStorage.getItem('valeur_scores') || '{}'); if (ls && ls.rouge !== undefined) scores = ls; } catch(e) {}
     }
-    if (!scores || Object.keys(scores).filter(k => MASKS.includes(k)).length < 7) {
+    if (!scores || Object.keys(scores).filter(function(k){return MASKS.includes(k);}).length < 7) {
         scores = { rouge:44, orange:38, jaune:73, vert:56, bleu:69, indigo:79, violet:32, spa:61 };
     }
     scores.prenom = p.get('prenom') || localStorage.getItem('valeur_prenom') || scores.prenom || '';
@@ -489,245 +535,827 @@ function readScores() {
 // DÉTECTION PROFIL — algorithme Mai 2026
 // Ordre : 0-Adaptatif 1-Pan 2-Triade 3-Dyade 4-Mono 5-Résiduel
 // ══════════════════════════════════
-function detectValidProfile(scores) {
-    const VALID_DYADS  = Object.keys(DYADES_AMPLIFICATIONS).map(k => k.split('+').sort());
-    const VALID_TRIADS = Object.keys(TRIADES_AMPLIFICATIONS).map(k => k.split('+').sort());
 
-    // Tri tiebreak : Jaune > Rouge > Indigo > Vert > Bleu > Orange > Violet
-    const sorted = MASKS.map(m => ({ key: m, pct: scores[m] || 0 }))
-        .sort((a, b) => b.pct - a.pct || TIEBREAK.indexOf(a.key) - TIEBREAK.indexOf(b.key));
 
-    const S1 = sorted[0].pct;
-    const S2 = sorted[1] ? sorted[1].pct : 0;
-    const S3 = sorted[2] ? sorted[2].pct : 0;
-    const S4 = sorted[3] ? sorted[3].pct : 0;
+// ══════════════════════════════════════════════════════════════════════
+// DISCRIMINATION CLINIQUE — Seuils, types, priorités (Mai 2026)
+// Réf : documents internes V.A.L.E.U.R© + Carleton 2007 + Barlow 2004
+// ══════════════════════════════════════════════════════════════════════
 
-    // PRIORITÉ 0 — Adaptatif
-    if (S1 < 50) {
-        return { type: S1 < 30 ? 'adaptatif_eq' : 'adaptatif_vig', masks: sorted.map(m => m.key), primary: sorted[0].key };
+// Seuils d'activation clinique par masque (différenciés)
+const MASK_THRESHOLDS = {
+    rouge: 60, orange: 60, jaune: 70,
+    vert: 65,  bleu: 55,   indigo: 65, violet: 60
+};
+
+
+// Rôle clinique et psychoéducation par masque
+const MASK_ROLE = {
+    orange: {
+        role: 'Bloqueur émotionnel — priorité absolue',
+        ico:  '\ud83d\udd12',
+        psycho: "La fermeture émotionnelle agit par : changement automatique de sujet dès qu'une conversation devient émotionnelle, humour ou dérision pour éviter l'affect, suractivité compensatoire (travail, écrans), absence de larmes même dans des situations difficiles. Ces mécanismes protègent contre la souffrance — mais coupent aussi l’accès aux émotions qui permettraient de traverser les autres protections. Tant que cette protection est active, les autres ne peuvent être ni pleinement ressenties, ni nommées, ni déposées.",
+        priorite: 1
+    },
+    jaune: {
+        role: 'Amplificateur transdiagnostique',
+        ico:  '\ud83d\udce1',
+        psycho: "L’intolérance à l’incertitude s’exprime par : plans B, C, D pour chaque situation, vérifications compulsives des actions, routines très fixes difficiles à modifier, ruminations permanentes sur les scénarios catastrophes. Son rôle d’amplificateur est documenté : il intensifie chaque signal des autres masques actifs — un symptôme corporel devient plus menaçant (Rouge), un silence devient plus inquiétant (Vert), une imperfection devient plus catastrophique (Indigo). Traverser cette protection réduit mécaniquement l’intensité de tout le reste (Carleton et al., 2007 : 40–50 % de co‑activation entre patterns anxieux).",
+        priorite: 2
+    },
+    rouge: {
+        role: 'Protection somatique',
+        ico:  '\u26a0\ufe0f',
+        psycho: "La vigilance corporelle monopolise l\u2019attention et l\u2019\u00e9nergie. Elle transforme le corps en signal d\u2019alarme permanent, rendant la d\u00e9tente et la confiance physique progressivement inaccessibles.",
+        priorite: 3
+    },
+    vert: {
+        role: 'Protection relationnelle',
+        ico:  '\ud83e\udd1d',
+        psycho: "La peur du rejet oriente les d\u00e9cisions, les silences et les adaptations relationnelles. Elle co\u00fbte progressivement l\u2019acc\u00e8s aux propres besoins et d\u00e9sirs.",
+        priorite: 3
+    },
+    bleu: {
+        role: 'Protection par la ma\u00eetrise',
+        ico:  '\u26d3\ufe0f',
+        psycho: "Le besoin de contr\u00f4le s\u2019active d\u00e8s qu\u2019une situation ou une relation \u00e9chappe \u00e0 l\u2019emprise. Il s\u2019applique \u00e0 tout \u2014 personnes, corps, \u00e9v\u00e9nements. Le l\u00e2cher-prise devient physiologiquement difficile.",
+        priorite: 3
+    },
+    indigo: {
+        role: 'Protection par l\u2019excellence',
+        ico:  '\ud83c\udfaf',
+        psycho: "Le perfectionnisme maintient une exigence sans ligne d\u2019arriv\u00e9e. L\u2019excellence devient le prix d\u2019entr\u00e9e pour avoir le droit d\u2019exister pleinement \u2014 et ce prix monte \u00e0 chaque r\u00e9ussite.",
+        priorite: 3
+    },
+    violet: {
+        role: 'Protection identitaire',
+        ico:  '\ud83c\udfad',
+        psycho: "Les r\u00f4les adopt\u00e9s donnent une stabilit\u00e9 au prix de l\u2019authenticit\u00e9. La peur de perdre ces r\u00f4les peut rendre le changement existentiellement mena\u00e7ant.",
+        priorite: 3
     }
+};
 
-    // PRIORITÉ 1 — Pan-masques (avant triade)
-    const active60 = sorted.filter(m => m.pct >= 60);
-    if (active60.length >= 5) {
-        const spread = Math.max(...active60.map(m => m.pct)) - Math.min(...active60.map(m => m.pct));
-        if (spread <= 20) {
-            return { type: 'pan', masks: active60.map(m => m.key), primary: sorted[0].key };
-        }
-    }
 
-    // PRIORITÉ 2 — Triade : S1≥60%, S2≥55%, S3≥55%, Δ(S1-S3)≤15%, Δ(S2-S4)>10%
-    if (S1 >= 60 && S2 >= 55 && S3 >= 55 && (S1 - S3) <= 15 && (S2 - S4) > 10) {
-        const triadKeys = [sorted[0].key, sorted[1].key, sorted[2].key].sort();
-        if (VALID_TRIADS.some(t => t.join(',') === triadKeys.join(','))) {
-            return { type: 'triade', masks: triadKeys, primary: sorted[0].key, secondary: sorted[1].key, tertiary: sorted[2].key };
-        }
-    }
 
-    // PRIORITÉ 3 — Dyade (3 paires candidates pour couvrir les cas tiebreak)
-    const candidatePairs = [
-        [sorted[0].key, sorted[1].key],
-        [sorted[0].key, sorted[2] ? sorted[2].key : sorted[1].key],
-        [sorted[1].key, sorted[2] ? sorted[2].key : sorted[1].key]
-    ];
-    const validDyadeList = [];
-    for (const pair of candidatePairs) {
-        if (pair[0] === pair[1]) continue;
-        const pairSorted = [...pair].sort();
-        if (!VALID_DYADS.some(d => d.join(',') === pairSorted.join(','))) continue;
-        const sA = scores[pairSorted[0]] || 0;
-        const sB = scores[pairSorted[1]] || 0;
-        if (sA >= 55 && sB >= 55 && Math.abs(sA - sB) <= 10) {
-            const sub = (sA >= 65 && sB >= 65) ? 'forte' : 'mod\u00e9r\u00e9e';
-            const dKey = pairSorted.join('+');
-            if (!validDyadeList.find(x => x.key === dKey)) {
-                validDyadeList.push({ key: dKey, masks: pairSorted,
-                    primary: sA >= sB ? pairSorted[0] : pairSorted[1],
-                    secondary: sA >= sB ? pairSorted[1] : pairSorted[0],
-                    subtype: sub, d: DYADES_AMPLIFICATIONS[dKey] || null });
-            }
-        }
-    }
-    // Dyades croisées : ≥2 dyades documentées actives simultanément
-    if (validDyadeList.length >= 2) {
-        const allMasks = [...new Set(validDyadeList.flatMap(x => x.masks))];
-        return { type: 'dyades_croisees', dyades: validDyadeList, masks: allMasks,
-                 primary: sorted[0].key, secondary: sorted[1].key };
-    }
-    if (validDyadeList.length === 1) {
-        const d = validDyadeList[0];
-        return { type: d.subtype === 'forte' ? 'dyade' : 'dyade_moderee',
-                 masks: d.masks, primary: d.primary, secondary: d.secondary, subtype: d.subtype };
-    }
+// ── Psychoéducation spécifique par dyade ──────────────────────────────────
 
-    // PRIORITÉ 4 — Mono dominant
-    if (S1 >= 75 && (S1 - S2) > 10) {
-        return { type: 'mono', masks: [sorted[0].key], primary: sorted[0].key, secondary: (S2 >= 60) ? sorted[1].key : null };
-    }
-    // PRIORITÉ 4b — Mono fort
-    if (S1 >= 60 && (S1 - S2) > 10) {
-        return { type: 'mono_fort', masks: [sorted[0].key], primary: sorted[0].key };
-    }
 
-    // PRIORITÉ 5 — Résiduel
-    return { type: 'residuel', masks: [sorted[0].key], primary: sorted[0].key };
-}
 
+
+
+// ── Effets spécifiques du satellite sur le masque dominant ────────────────
+const JAUNE_ON_DOMINANT = {
+    rouge:  "L\u2019intol\u00e9rance \u00e0 l\u2019incertitude rend chaque signal corporel plus mena\u00e7ant. La recherche de certitude m\u00e9dicale ne peut jamais \u00eatre compl\u00e8te \u2014 une r\u00e9ponse appelle la prochaine question.",
+    vert:   "Le besoin de certitude affective s\u2019intensifie. Chaque silence, chaque ambigu\u00eft\u00e9 relationnelle devient une menace urgente \u00e0 r\u00e9soudre.",
+    bleu:   "Le besoin de ma\u00eetrise devient total. Chaque situation qui \u00e9chappe est v\u00e9cue comme une urgence, pas comme un impr\u00e9vu tol\u00e9rable.",
+    indigo: "Les conditions pour commencer ne sont jamais r\u00e9unies. L\u2019incertitude du r\u00e9sultat bloque le d\u00e9marrage, la deadline approche, la qualit\u00e9 en souffre.",
+    violet: "Le changement devient existentiellement mena\u00e7ant. Les routines qui stabilisent l\u2019identit\u00e9 doivent rester absolument fixes.",
+    orange: "La planification est efficace mais vide \u2014 les d\u00e9cisions sont structur\u00e9es sans ressentir les motivations qui devraient les guider."
+};
+
+const ORANGE_ON_DOMINANT = {
+    rouge:  "L\u2019inqui\u00e9tude corporelle s\u2019intellectualise \u2014 elle est pr\u00e9sente mais sans charge \u00e9motionnelle visible. L\u2019entourage ne comprend pas la gravit\u00e9.",
+    vert:   "Le besoin de connexion coexiste avec une incapacit\u00e9 \u00e0 laisser l\u2019intimit\u00e9 devenir r\u00e9elle. La proximit\u00e9 d\u00e9clenche un retrait automatique.",
+    bleu:   "Les r\u00e9ussites n\u2019apportent ni satisfaction ni fiert\u00e9. La reconnaissance externe est cherch\u00e9e mais l\u2019exp\u00e9rience \u00e9motionnelle de la valider reste inaccessible.",
+    indigo: "L\u2019excellence est produite mais la fiert\u00e9 est coup\u00e9e \u00e0 l\u2019arriv\u00e9e. \u00ab\u00a0\u00c0 quoi \u00e7a sert si je ne sens rien\u00a0?\u00bb",
+    jaune:  "La planification efficace se vide de sens. La vie devient une suite de t\u00e2ches sans saveur, sans pr\u00e9sence \u00e0 ce qui se vit.",
+    violet: "Les r\u00f4les sont tenus avec pr\u00e9cision mais sans pr\u00e9sence int\u00e9rieure. Le pilote automatique s\u2019installe durablement."
+};
+
+
+
+// ── Justifications scientifiques des seuils par instrument ───────────────
+const MASK_THRESHOLD_EXPLAIN = {
+    rouge: {
+        instrument: 'SHAI \u2014 Short Health Anxiety Inventory',
+        ref: 'Salkovskis et al., 2002 \u00b7 \u03b1\u00a0=\u00a00,86',
+        why: "En dessous de 60\u00a0%, l\u2019hypervigilance somatique est pr\u00e9sente mais ne g\u00e9n\u00e8re pas encore le cycle rumination\u2013v\u00e9rification\u2013r\u00e9assurance auto-entretenu."
+    },
+    orange: {
+        instrument: 'TAS-20 \u2014 Toronto Alexithymia Scale',
+        ref: 'Bagby et al., 1994 \u00b7 \u03b1\u00a0=\u00a00,81',
+        why: "\u00c0 partir de 60\u00a0%, la coupure \u00e9motionnelle devient syst\u00e9matique et bloque l\u2019acc\u00e8s aux \u00e9motions comme information utile pour les autres protections."
+    },
+    jaune: {
+        instrument: 'IUS-12 \u2014 Intolerance of Uncertainty Scale',
+        ref: 'Carleton et al., 2007 \u00b7 \u03b1\u00a0=\u00a00,84',
+        why: "Le seuil est plus \u00e9lev\u00e9 (70\u00a0%) car valid\u00e9 sur populations cliniques TAG. En dessous de 70\u00a0%, l\u2019IU est pr\u00e9sente mais n\u2019amplifie pas encore syst\u00e9matiquement les autres patterns anxieux (40\u201350\u00a0% de co-activation au-del\u00e0 de ce seuil)."
+    },
+    vert: {
+        instrument: 'ECR-R \u2014 Experiences in Close Relationships-Revised',
+        ref: 'Fraley et al., 2000 \u00b7 \u03b1\u00a0=\u00a00,88',
+        why: "En dessous de 65\u00a0%, l\u2019anxi\u00e9t\u00e9 d\u2019attachement est pr\u00e9sente mais n\u2019entra\u00eene pas encore de comportements de r\u00e9assurance ou d\u2019hypervigilance relationnelle syst\u00e9matiques."
+    },
+    bleu: {
+        instrument: 'Locus of Control \u2014 Rotter + DC Scale',
+        ref: 'Rotter, 1966 \u00b7 \u03b1\u00a0=\u00a00,82',
+        why: "Le seuil est plus bas (55\u00a0%) car le besoin de contr\u00f4le s\u2019active pr\u00e9cocement et discr\u00e8tement. D\u00e8s 55\u00a0%, le LOC interne pathologique influence les comportements de direction et de d\u00e9l\u00e9gation."
+    },
+    indigo: {
+        instrument: 'FMPS \u2014 Frost Multidimensional Perfectionism Scale',
+        ref: 'Frost et al., 1990 \u00b7 \u03b1\u00a0=\u00a00,90',
+        why: "En dessous de 65\u00a0%, les standards \u00e9lev\u00e9s sont pr\u00e9sents mais ne g\u00e9n\u00e8rent pas encore procrastination, auto-critique ou syndrome de l\u2019imposteur syst\u00e9matiques."
+    },
+    violet: {
+        instrument: 'MSI + Faux-Self (Winnicott, 1960)',
+        ref: 'Winnicott, 1960 \u00b7 \u03b1\u00a0=\u00a00,79',
+        why: "En dessous de 60\u00a0%, l\u2019adaptation identitaire reste de la flexibilit\u00e9 normale. \u00c0 partir de 60\u00a0%, le faux self devient dominant\u00a0: les r\u00f4les adopt\u00e9s commencent \u00e0 remplacer l\u2019identit\u00e9 authentique."
+    }
+};
+
+
+
+// ── Comportements typiques du satellite selon le masque dominant ──────────
+// Ancrage : TAS-20 items (Bagby 1994) pour Orange · IUS-12 items (Carleton 2007) pour Jaune
+
+
+
+
+
+const MICRO_ACTIONS = {
+    rouge: "Cette semaine, notez chaque fois que vous cherchez un sympt\u00f4me sur Internet \u2014 sans rien faire d\u2019autre que l\u2019observer.",
+    orange: "Chaque jour, demandez-vous\u00a0: \u00ab\u00a0Qu\u2019est-ce que je ressens l\u00e0, maintenant\u00a0?\u00a0\u00bb Ne cherchez pas \u00e0 changer \u2014 juste \u00e0 nommer.",
+    jaune: "Quand l\u2019incertitude monte, dites-vous\u00a0: \u00ab\u00a0Je n\u2019ai pas besoin de savoir maintenant.\u00a0\u00bb Observez sans planifier.",
+    vert: "Avant de dire oui, faites une pause de 10 secondes. Demandez-vous\u00a0: \u00ab\u00a0Est-ce que je le veux vraiment\u00a0?\u00a0\u00bb",
+    bleu: "D\u00e9l\u00e9guez une petite t\u00e2che cette semaine \u2014 sans v\u00e9rifier ensuite. Notez ce que vous ressentez.",
+    indigo: "Quand vous terminez quelque chose, dites \u00e0 voix haute\u00a0: \u00ab\u00a0C\u2019est assez bien.\u00a0\u00bb Ne corrigez rien.",
+    violet: "Avant de r\u00e9pondre sur vos go\u00fbts, demandez-vous\u00a0: \u00ab\u00a0Qu\u2019est-ce que j\u2019aime, moi\u00a0?\u00a0\u00bb avant de chercher ce que l\u2019autre attend."
+};
+
+const NORMALIZATION = {
+    rouge: "Environ 15\u00a0\u00e0\u00a020\u00a0% des personnes pr\u00e9sentent ce m\u00eame pattern de vigilance corporelle. Vous n\u2019\u00eates pas seul\u00b7e.",
+    orange: "Environ 10\u00a0\u00e0\u00a015\u00a0% des personnes utilisent ce m\u00e9canisme de coupure \u00e9motionnelle. C\u2019est une protection fr\u00e9quente.",
+    jaune: "L\u2019intol\u00e9rance \u00e0 l\u2019incertitude touche pr\u00e8s de 20\u00a0% de la population. C\u2019est l\u2019un des m\u00e9canismes anxieux les plus document\u00e9s.",
+    vert: "La peur du rejet est l\u2019une des peurs les plus universelles. Elle touche environ 25\u00a0% des personnes.",
+    bleu: "Le besoin de contr\u00f4le excessif concerne environ 12\u00a0\u00e0\u00a018\u00a0% des personnes. C\u2019est une strat\u00e9gie de s\u00e9curit\u00e9 tr\u00e8s r\u00e9pandue.",
+    indigo: "Le perfectionnisme cliniquement significatif touche environ 15\u00a0% de la population. Vous \u00eates loin d\u2019\u00eatre seul\u00b7e.",
+    violet: "La recherche d\u2019identit\u00e9 est une question humaine fondamentale. Environ 10\u00a0% des personnes vivent cette adaptation de fa\u00e7on marqu\u00e9e."
+};
+
+
+// ── Score de Présence Authentique ─────────────────────────────────────────
+// 7 items SPA (positions 11,22,33,44,55,66,77) · SPA_MAX = 35
 function computeSPA(scores) {
-    if (scores.spa !== undefined && scores.spa !== null) return parseInt(scores.spa);
-    const sum = MASKS.reduce((s, m) => s + (scores[m] || 0), 0);
-    return Math.round(100 - sum / 7);
+    const raw = scores.spa_raw !== undefined ? scores.spa_raw : null;
+    if (raw !== null) return Math.round((raw / 35) * 100);
+    // Fallback : estimation depuis l'absence de scores masques
+    const maskSum = ['rouge','orange','jaune','vert','bleu','indigo','violet']
+        .reduce(function(acc, m) { return acc + (scores[m] || 0); }, 0);
+    const avg = maskSum / 7;
+    return Math.max(0, Math.min(100, Math.round(100 - avg)));
 }
-// ══════════════════════════════════
-// CONSTRUCTION DU PORTRAIT (textes Céline Bourbon — inchangés)
-// ══════════════════════════════════
-function buildPortrait(scores, profile, prenom) {
-    const dom = profile.primary;
-    const meta = META[dom];
-    const spa = computeSPA(scores);
-    let html = '';
-    const maskLabel = MASK_LABELS[dom];
 
-    // ── HERO ──
-    html += `<div class="hero-mask" style="background:${MASK_PASTELS[dom]};border:1.5px solid ${MASK_COLORS[dom]}30;">
-        <span style="font-size:13px; letter-spacing:3px; text-transform:uppercase; color:${MASK_COLORS[dom]}; font-weight:600;">Votre protection principale</span>
-        <div class="hero-mask-name" style="color:var(--text);">Masque ${maskLabel}</div>
-        <div class="hero-separator" style="background:${MASK_COLORS[dom]};opacity:.5;"></div>
-        <p class="hero-tagline" style="color:var(--text2);">C\u2019est le masque qui s\u2019active le plus automatiquement en vous. Il colore vos r\u00e9actions, oriente vos d\u00e9cisions, et influence la mani\u00e8re dont vos autres d\u00e9fenses se manifestent.</p>
-        <p style="color:var(--text3); font-size:14px; margin-top:16px;">${profile.type === 'mono' || profile.type === 'mono_fort' ? 'Il agit souvent seul, concentrant l\u2019essentiel de votre \u00e9nergie d\u00e9fensive.' : `Il dialogue avec d\u2019autres masques \u2014 nous vous montrons plus bas comment ils se r\u00e9pondent.`}</p>
-    </div>`;
+// ══════════════════════════════════════════════════════════════════════
+// DÉTECTION PROFIL — v4 (Juin 2026) — seuils cliniques par masque
+// Réf : SHAI · TAS-20 · IUS-12 · ECR-R · LOC · FMPS · MSI · Ben-Porath 2003
+// ══════════════════════════════════════════════════════════════════════
+// DÉTECTION PROFIL — v5 (Modèle simplifié · Juin 2026)
+// Un masque dominant + satellites Orange/Jaune transdiagnostiques
+// Réf : Barlow 2004 · Carleton 2007 · Ben-Porath 2003 · MASK_THRESHOLDS
+// ══════════════════════════════════════════════════════════════════════
+function detectValidProfile(scores) {
+    // Tri complet des 7 masques
+    const sorted = MASKS.map(m => ({ key:m, pct:scores[m]||0 }))
+        .sort((a,b) => b.pct-a.pct || TIEBREAK.indexOf(a.key)-TIEBREAK.indexOf(b.key));
 
-    // ── BLOC 1 : CE QUE LE TEST A RECONNU
-    // Prenom en eyebrow · Mirror en ouverture · Reminder APRÈS (reframe, pas disclaimer)
-    html += `<div class="block">`;
-    if (prenom) html += `<p style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:10px">${prenom.toUpperCase()}</p>`;
-    html += `<h2>Ce que le test a reconnu</h2>
-        <div class="mirror-phrase">${MIRROR[dom] || ''}</div>
-        <div class="reminder-box" style="margin-top:20px;margin-bottom:20px;text-align:left;">
-            <strong>Ce n\u2019est pas vous.</strong> C\u2019est ce que la peur a construit pour vous prot\u00e9ger \u2014
-            non une identit\u00e9, une strat\u00e9gie. Construite \u00e0 une \u00e9poque o\u00f9 vous n\u2019aviez pas d\u2019autre choix.
-            Elle a rempli son r\u00f4le. Et vous pouvez maintenant en choisir un autre.
-        </div>
-        <p style="color: var(--text2); font-size:14px; margin-top:12px;">Cette r\u00e9action n\u2019est pas un d\u00e9faut de caract\u00e8re. Votre esprit a r\u00e9solu un probl\u00e8me. Le probl\u00e8me a chang\u00e9, mais la solution est rest\u00e9e. Ce n\u2019est pas vous qui dysfonctionnez \u2014 c\u2019est une protection qui continue de tourner alors que le danger est pass\u00e9.</p>
-    </div>`;
+    // Masques cliniquement actifs (seuil propre à chaque instrument)
+    const active = sorted.filter(m => m.pct >= MASK_THRESHOLDS[m.key]);
+    const S1 = sorted[0]?.pct || 0;
 
-    // ── BLOC 2 : POURQUOI ÇA CONTINUE
-    const steps = LOOPS[dom] || [];
-    html += `<div class="block"><h2>Pourquoi \u00e7a continue \u2014 m\u00eame quand vous voulez changer</h2><p style="margin-bottom:16px; color:var(--text2);">Voici la boucle qui se r\u00e9p\u00e8te, souvent sans que vous en ayez conscience\u00a0:</p><div class="mechanism">${steps.map((step, i) => `<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${step}</div></div>`).join('')}</div><div class="metaphor-box">Imaginez un d\u00e9tecteur de fum\u00e9e r\u00e9gl\u00e9 trop sensiblement. Il prot\u00e8ge la maison. Mais il sonne aussi quand les toasts br\u00fblent. Votre masque fonctionne comme cela\u00a0: il ne sait pas encore que la guerre est finie.</div></div>`;
+    // Mécanismes transdiagnostiques — actifs quel que soit le profil
+    // Orange ≥ 60% : bloqueur émotionnel (Bagby 1994)
+    // Jaune  ≥ 70% : amplificateur systémique (Carleton 2007)
+    const tdOrange = (scores['orange']||0) >= MASK_THRESHOLDS['orange'];
+    const tdJaune  = (scores['jaune'] ||0) >= MASK_THRESHOLDS['jaune'];
 
-    // ── BLOC 2bis : QUAND VOS PROTECTIONS S'AMPLIFIENT (pan / dyades_croisees / dyade / triade)
-    if (['dyade','dyade_moderee','triade','pan','dyades_croisees'].includes(profile.type)) {
-
-        if (profile.type === 'dyades_croisees') {
-            html += `<div class="block" style="border-left:3px solid ${MASK_COLORS[dom]};">`;
-            html += `<h2>Deux protections en réseau</h2>`;
-            html += `<p style="color:var(--text2);margin-bottom:16px;">Votre configuration ne se réduit pas à une seule interaction. Ces trois masques forment entre eux plusieurs dynamiques simultanées — chaque paire a sa propre logique, et toutes sont actives en même temps.</p>`;
-            html += `<div style="display:flex;gap:8px;margin:0 0 20px;flex-wrap:wrap;">${profile.masks.map(m => `<span style="background:${MASK_COLORS[m]};color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">${MASK_LABELS[m]}</span>`).join('')}</div>`;
-            profile.dyades.forEach((dy, idx) => {
-                html += `<div style="${idx > 0 ? 'margin-top:24px;padding-top:20px;border-top:1px solid var(--line);' : ''}">`;
-                html += `<div style="display:flex;gap:6px;margin-bottom:8px;align-items:center;flex-wrap:wrap;">${dy.masks.map(m => `<span style="background:${MASK_COLORS[m]};color:#fff;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:500;">${MASK_LABELS[m]}</span>`).join('<span style="color:var(--text3);font-size:11px;padding:0 3px">+</span>')}</div>`;
-                if (dy.d) {
-                    html += `<p style="font-weight:600;color:var(--gold);margin-bottom:6px;">${dy.d.nom}</p>`;
-                    html += `<p style="color:var(--text2);font-size:14px;">${dy.d.desc}</p>`;
-                    if (dy.d.boucle) {
-                        html += `<div class="mechanism" style="margin-top:12px;">${dy.d.boucle.map((step, i) => `<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${step}</div></div>`).join('')}</div>`;
-                    }
-                }
-                html += `</div>`;
-            });
-            html += `</div>`;
-
-        } else if (profile.type === 'pan') {
-            const activeMasks = profile.masks;
-            const maskListSentence = activeMasks.map((m, i) => {
-                const desc = PAN_DESC[m] || ('le masque ' + MASK_LABELS[m]);
-                return (i === activeMasks.length - 1 && activeMasks.length > 1) ? 'et ' + desc : desc;
-            }).join(', ') + '.';
-            html += `<div class="block" style="border-left:3px solid ${MASK_COLORS[dom]};">`;
-            html += `<h2>Quand vos protections s’amplifient</h2>`;
-            html += `<div style="display:flex;gap:8px;margin:0 0 20px;flex-wrap:wrap;">${activeMasks.map(m => `<span style="background:${MASK_COLORS[m]};color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">${MASK_LABELS[m]}</span>`).join('')}</div>`;
-            html += `<p style="font-weight:600;color:var(--gold);margin-bottom:12px;">${PAN_MASQUE.nom}</p>`;
-            html += `<p style="color:var(--text2);">Quand un seul masque domine, l’énergie est concentrée. Dans votre cas, elle est dispersée sur plusieurs fronts : <strong style="color:var(--text);">${maskListSentence}</strong></p>`;
-            html += `<p style="color:var(--text2);margin-top:12px;">Votre cerveau a enregistré que le danger pouvait venir de partout. Vous avez construit non pas un mur, mais un filet — souple, adaptable. Cette plasticité est remarquable, mais elle a un coût : une fatigue diffuse et la sensation de ne pas avoir de ‘chez-soi’ intérieur.</p>`;
-            if (PAN_MASQUE.boucle) {
-                html += `<div class="mechanism" style="margin-top:16px;">${PAN_MASQUE.boucle.map((step, i) => `<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${step}</div></div>`).join('')}</div>`;
-            }
-            if (PAN_MASQUE.exemples) {
-                html += `<div style="margin-top:20px;"><p style="font-weight:600;color:var(--gold);margin-bottom:10px;">Dans votre vie quotidienne, cela peut ressembler à :</p>${PAN_MASQUE.exemples.map(ex => `<div style="display:flex;gap:10px;margin-bottom:10px;align-items:baseline;"><span style="color:var(--gold);font-size:14px;">▸</span><span style="font-size:14px;color:var(--text2);line-height:1.6;">${ex}</span></div>`).join('')}</div>`;
-            }
-            html += `</div>`;
-
-        } else {
-            const sortedKeys = [...profile.masks].sort();
-            const key = sortedKeys.join('+');
-            const ampData = (profile.type === 'triade' ? TRIADES_AMPLIFICATIONS[key] : null) || DYADES_AMPLIFICATIONS[key] || null;
-            html += `<div class="block" style="border-left:3px solid ${MASK_COLORS[dom]};"><h2>Quand vos protections s’amplifient</h2>`;
-            html += `<p style="color:var(--text2);">Votre configuration n’est pas une simple addition de peurs. Les masques interagissent, s’amplifient, et créent ensemble des schémas plus complexes que chacun ne le ferait seul.</p>`;
-            html += `<div style="display:flex;gap:10px;margin:16px 0;flex-wrap:wrap;">${profile.masks.slice(0, 3).map(m => `<span style="background:${MASK_COLORS[m]};color:#fff;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:500;">${MASK_LABELS[m]}</span>`).join('')}</div>`;
-            if (ampData) {
-                html += `<p style="font-weight:600;color:var(--gold);">${ampData.nom}</p>`;
-                html += `<p style="color:var(--text2);">${ampData.desc}</p>`;
-                if (ampData.boucle) {
-                    html += `<div class="mechanism" style="margin-top:16px;">${ampData.boucle.map((step, i) => `<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${step}</div></div>`).join('')}</div>`;
-                }
-                if (ampData.exemples) {
-                    html += `<div style="margin-top:20px;"><p style="font-weight:600;color:var(--gold);margin-bottom:10px;">Dans votre vie quotidienne, cela peut ressembler à :</p>${ampData.exemples.map(ex => `<div style="display:flex;gap:10px;margin-bottom:10px;align-items:baseline;"><span style="color:var(--gold);font-size:14px;">▸</span><span style="font-size:14px;color:var(--text2);line-height:1.6;">${ex}</span></div>`).join('')}</div>`;
-                }
-            } else {
-                html += `<p style="color:var(--text2);font-style:italic;">Vos masques forment une combinaison unique. Ensemble, ils créent un système de protection qui mérite d’être exploré avec un accompagnement personnalisé.</p>`;
-            }
-            html += `</div>`;
-        }
+    // ── 0. ADAPTATIF ─────────────────────────────────────────────────────
+    if (S1 < 50 || active.length === 0) {
+        return { type: S1 < 30 ? 'adaptatif_eq' : 'adaptatif_vig',
+                 primary: sorted[0].key, masks: sorted.map(m=>m.key),
+                 satellites: [], tdOrange, tdJaune };
     }
-    // ── BLOC 3 : D'OÙ VIENT CETTE PROTECTION
-    html += `<div class="block"><h2>D\u2019o\u00f9 vient cette protection</h2><p style="color:var(--text2);">${ORIGINS[dom] || ''}</p><p style="color:var(--text2); margin-top:12px;">Des millions de personnes vivent avec ce m\u00eame m\u00e9canisme. Vous n\u2019\u00eates pas cass\u00e9\u00b7e. Vous \u00eates simplement humain\u00b7e.</p><div class="force-box"><p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;">Derri\u00e8re ce masque, il y a une force r\u00e9elle\u00a0:</p><p style="font-weight:500;margin-top:8px;">${meta.force}</p></div><p style="color:var(--text2); margin-top:8px;">Cette force n\u2019est pas une compensation. Elle est la preuve que, sous le masque, quelqu\u2019un de r\u00e9el attend d\u2019exister sans avoir besoin de se d\u00e9fendre. Votre nature vraie n\u2019a pas disparu \u2014 elle est recouverte, intacte, et attend d\u2019\u00eatre lib\u00e9r\u00e9e.</p></div>`;
 
-    // ── BLOC 4 : CE QUE VOUS N'AVEZ PAS ENCORE PU ÊTRE
-    const experiences = RETAINED_EXPERIENCES[dom] || [];
-    html += `<div class="block"><h2>Ce que vous n\u2019avez pas encore pu \u00eatre</h2><p style="color:var(--text2); margin-bottom:16px;">Chaque fois que le masque s\u2019est activ\u00e9 pour vous prot\u00e9ger, il a aussi retenu quelque chose. Un \u00e9lan. Une parole. Une envie. Une direction. Ces forces n\u2019ont pas disparu. Elles sont rest\u00e9es en attente, comme des graines sous la neige.</p><ul style="list-style:none; padding:0;">${experiences.map(exp => `<li style="padding:8px 0; border-bottom:1px solid var(--line); color:var(--text2); font-size:15px;">\u2726 ${exp}</li>`).join('')}</ul><p style="color:var(--text2); margin-top:16px; font-style:italic;">Ces exp\u00e9riences ne sont pas perdues. Elles sont en attente. Et c\u2019est pr\u00e9cis\u00e9ment ce que la m\u00e9thode V.A.L.E.U.R vous aide \u00e0 retrouver.</p></div>`;
+    // ── 1. PAN-MASQUES — ≥5 actifs, spread ≤ 20% ─────────────────────────
+    if (active.length >= 5) {
+        const spread = active[0].pct - active[active.length-1].pct;
+        if (spread <= 20)
+            return { type:'pan', masks: active.map(m=>m.key),
+                     primary: active[0].key, satellites: [] };
+    }
 
-    // ── BLOC 5 : L'INTENSITÉ DE VOS PROTECTIONS + SPA enrichi
-    html += `<div class="block"><h2>L\u2019intensit\u00e9 de vos protections</h2><p style="color:var(--text2); margin-bottom:20px;">Voici la photographie compl\u00e8te de vos d\u00e9fenses en ce moment. Chaque masque a un niveau d\u2019emprise diff\u00e9rent \u2014 cela n\u2019a rien de d\u00e9finitif, c\u2019est une base de d\u00e9part pour mieux vous conna\u00eetre.</p>`;
-    const sortedMasks = [...MASKS].sort((a, b) => (scores[b] || 0) - (scores[a] || 0));
-    sortedMasks.forEach(m => {
-        const pct = scores[m] || 0;
-        const level = getLevelLabel(pct);
-        const color = MASK_COLORS[m];
-        html += `<div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;"><div style="width:9px; height:9px; border-radius:50%; background:${color}; flex-shrink:0;"></div><span style="font-size:14px; font-weight:500; width:70px; color:var(--text);">${MASK_LABELS[m]}</span><div style="flex:1; height:6px; background:rgba(0,0,0,0.06); border-radius:3px; overflow:hidden;"><div style="width:${pct}%; height:100%; background:${color}; border-radius:3px;"></div></div><span style="font-size:14px; font-weight:500; width:36px; text-align:right; color:var(--text);">${pct}%</span><span style="font-size:11px; width:80px; text-align:right; color:var(--text3);">${level}</span></div>`;
+    // ── 2. MASQUE DOMINANT + SATELLITES ──────────────────────────────────
+    // Indice de dominance : ratio pct/seuil — plus révélateur que le score brut
+    // Ex : Bleu=76%/55% = 1.38 > Indigo=78%/65% = 1.20 → Bleu est plus "au-dessus de son seuil"
+    const withRatio = active.map(function(m) {
+        return { key:m.key, pct:m.pct, ratio: m.pct / MASK_THRESHOLDS[m.key] };
+    });
+    withRatio.sort(function(a,b) {
+        return (b.ratio-a.ratio) || (b.pct-a.pct) || (TIEBREAK.indexOf(a.key)-TIEBREAK.indexOf(b.key));
+    });
+    const dom = withRatio[0];
+
+    // Satellites : Orange (bloqueur) et/ou Jaune (amplificateur)
+    // Condition : actifs selon leur seuil propre ET ne sont pas le masque dominant
+    const satellites = ['orange','jaune'].filter(function(m) {
+        return m !== dom.key && (scores[m]||0) >= MASK_THRESHOLDS[m];
     });
 
-    // SPA — expliqué et interprété précisément
+    // Type selon intensité du dominant
+    const type = dom.pct >= 75 ? 'mono_dominant' : dom.pct >= 60 ? 'mono_modere' : 'residuel';
+    return { type, primary: dom.key, masks: [dom.key], satellites, tdOrange, tdJaune };
+}
+
+
+
+// ── Enrichissement profil : sévérité, flags, ordre clinique ───────────────
+// ── Enrichissement post-détection (léger) ─────────────────────────────────
+function enrichProfile(profile, scores) {
+    // Les satellites sont déjà dans profile.satellites (via detectValidProfile)
+    // On calcule juste les flags d'affichage
+    profile.orangeBlocker  = (profile.satellites||[]).includes('orange');
+    profile.jauneAmplifier = (profile.satellites||[]).includes('jaune');
+    return profile;
+}
+
+
+
+
+// ── Portrait compact d'un masque ──────────────────────────────────────────
+function buildMaskPortrait(m, scores, isMain) {
+    const meta = META[m], color = MASK_COLORS[m];
+    const steps = LOOPS[m] || [];
+    let h = '';
+    if (isMain) {
+        h += `<div class="hero-mask" style="background:${MASK_PASTELS[m]};border:1.5px solid ${color}30;">
+            <span style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:${color};font-weight:600;">Votre protection</span>
+            <div class="hero-mask-name">Masque ${MASK_LABELS[m]}</div>
+            
+            <p class="hero-tagline">${meta.peur ? 'Une peur centrale : ' + meta.peur + '.' : ''}</p>
+        </div>`;
+    }
+    // Ouverture
+    h += `<div class="block${isMain ? '' : ' compact-block'}">
+        <h2 style="color:${color};">Ce que le test a reconnu</h2>
+        <p style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:16px;">
+            Ce n\u2019est pas vous. C\u2019est ce que la peur a construit pour vous prot\u00e9ger \u2014
+            non une identit\u00e9, une strat\u00e9gie. Construite \u00e0 une \u00e9poque o\u00f9 vous n\u2019aviez pas d\u2019autre choix.
+            Elle a rempli son r\u00f4le. Et vous pouvez maintenant en choisir un autre.
+        </p>
+        <div class="mirror-phrase" style="border-left-color:${color};">${MIRROR[m] || ''}</div>
+    </div>`;
+    // Pensées
+    if (VOICE[m]) {
+        h += `<div class="block${isMain ? '' : ' compact-block'}">
+            <h2 style="color:${color};">Les pens\u00e9es que cette peur g\u00e9n\u00e8re</h2>
+            <p style="font-size:13px;color:var(--text3);margin-bottom:12px;">Avant m\u00eame que vous ayez eu le temps de d\u00e9cider, cette peur vous souffle\u00a0:</p>
+            <div class="metaphor-box" style="border-left-color:${color};font-style:italic;font-size:16px;">${VOICE[m]}</div>
+        </div>`;
+    }
+    // Scène
+    if (SCENE[m]) {
+        h += `<div class="block${isMain ? '' : ' compact-block'}">
+            <h2 style="color:${color};">Cette peur en action</h2>
+            <p style="color:var(--text2);line-height:1.8;">${SCENE[m]}</p>
+            <p style="color:var(--text3);font-size:13px;margin-top:12px;">Vous n\u2019avez pas choisi cette r\u00e9action. La peur a d\u00e9cid\u00e9 avant vous.</p>
+        </div>`;
+    }
+    // Boucle
+    if (steps.length) {
+        h += `<div class="block${isMain ? '' : ' compact-block'}">
+            <h2 style="color:${color};">Pourquoi c\u2019est plus fort que vous</h2>
+            <p style="color:var(--text2);font-size:15px;line-height:1.85;margin-bottom:16px;">
+                Cette r\u00e9action n\u2019est pas un d\u00e9faut de caract\u00e8re. Votre esprit a r\u00e9solu un probl\u00e8me.
+                Le probl\u00e8me a chang\u00e9, mais la solution est rest\u00e9e. Voici comment elle fonctionne\u00a0:
+            </p>
+            <div class="mechanism">${steps.map((s,i) => `<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join('')}</div>
+            <div class="metaphor-box">Imaginez un d\u00e9tecteur de fum\u00e9e r\u00e9gl\u00e9 trop sensiblement. Il prot\u00e8ge la maison. Mais il sonne aussi quand les toasts br\u00fblent. Votre masque fonctionne comme cela\u00a0: il ne sait pas encore que la guerre est finie.</div>
+        </div>`;
+    }
+    // Coût
+    if (COUT[m]) {
+        h += `<div class="block${isMain ? '' : ' compact-block'}">
+            <h2 style="color:${color};">Ce que ce masque a co\u00fbt\u00e9 \u00e0 votre vie</h2>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;line-height:1.7;color:var(--text2);">${COUT[m]}</p>
+        </div>`;
+    }
+    // Force
+    h += `<div class="block${isMain ? '' : ' compact-block'}" style="background:linear-gradient(135deg,#FCFAF7,#F3F1EC);">
+        <h2 style="color:${color};">Ce que vous portez derri\u00e8re ce masque</h2>
+        <p style="color:var(--text2);margin-bottom:12px;">La peur prend de la place. Et l\u00e0 o\u00f9 elle s\u2019est install\u00e9e, quelque chose n\u2019a pas pu s\u2019exprimer pleinement. Ce n\u2019est pas perdu\u00a0\u2014 c\u2019est l\u00e0, derri\u00e8re le masque.</p>
+        <div class="force-box"><p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;">Derri\u00e8re ce masque, il y a une force r\u00e9elle\u00a0:</p><p style="font-weight:500;margin-top:8px;">${meta.force}</p></div>
+    </div>`;
+    return h;
+}
+
+
+
+// ── Section satellite transdiagnostique ───────────────────────────────────
+
+
+
+
+
+// ── Section Priorités de travail V.A.L.E.U.R© ─────────────────────────────
+
+
+// ── Portrait compact masque secondaire ────────────────────────────────────
+function buildMaskPortraitCompact(m, scores) {
+    const color = MASK_COLORS[m];
+    const pct   = scores[m] || 0;
+    const steps = LOOPS[m] || [];
+    let h = `<div class="block compact-block" style="border-left:3px solid ${color}50;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:${color};flex-shrink:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:${color};">Masque ${MASK_LABELS[m]}</span>
+            <span style="font-size:13px;color:var(--text3);">${pct}%</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:${color};background:${color}15;padding:2px 8px;border-radius:20px;margin-left:auto;">Protection active</span>
+        </div>
+        <div class="mirror-phrase" style="border-left-color:${color};font-size:15px;margin-bottom:12px;">${MIRROR[m]||''}</div>`;
+
+    if (VOICE[m]) h += `<div style="font-style:italic;color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:12px;padding-left:12px;border-left:2px solid ${color}30;">${VOICE[m]}</div>`;
+
+    if (steps.length) {
+        h += `<div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;">Pourquoi c\u2019est plus fort que vous</div>
+        <div class="mechanism" style="margin-bottom:12px;">${steps.map(function(s,i){
+            return '<div class="step"><div class="step-num">'+( i+1)+'</div><div class="step-text">'+s+'</div></div>';
+        }).join('')}</div>`;
+    }
+
+    h += `<div class="force-box" style="padding:10px 14px;margin-top:4px;">
+        <span style="font-size:13px;font-weight:500;">${META[m]?META[m].force:''}</span>
+    </div></div>`;
+    return h;
+}
+
+
+// ── Section transdiagnostique systémique (PAN et mono avec masques multiples) ──
+function buildTransdiagSection(profile, scores, contextMasks) {
+    // contextMasks : liste des masques "dominés" par les transdiag (pan masks ou actifs hors dominant)
+    const dom = profile.primary;
+    const sections = [];
+
+    // ─ ORANGE bloqueur ────────────────────────────────────────────────────
+    if (profile.tdOrange && !contextMasks.every(function(m){return m==='orange';})) {
+        const color = MASK_COLORS['orange'];
+        const pct   = scores['orange']||0;
+        const others = contextMasks.filter(function(m){return m!=='orange' && m!=='jaune';});
+
+        let rows = '';
+        others.forEach(function(m) {
+            const txt = ORANGE_ON_DOMINANT[m];
+            if (txt) rows += `<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;">
+                <span style="background:${MASK_COLORS[m]};color:#fff;padding:1px 8px;border-radius:20px;flex-shrink:0;font-size:11px;height:fit-content;margin-top:1px;">${MASK_LABELS[m]}</span>
+                <span style="color:var(--text2);line-height:1.6;">${txt}</span>
+            </div>`;
+        });
+
+        sections.push(`<div class="block" style="border-left:4px solid ${color}40;background:${color}06;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+                <div style="width:12px;height:12px;border-radius:50%;background:${color};flex-shrink:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:${color};">Masque Orange</span>
+                <span style="font-size:13px;color:var(--text3);">${pct}%</span>
+                <span style="margin-left:auto;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:${color};background:${color}15;padding:3px 10px;border-radius:20px;">Bloqueur \u00e9motionnel \u2014 priorit\u00e9 absolue</span>
+            </div>
+            <p style="color:var(--text2);font-size:14px;line-height:1.85;margin-bottom:14px;">
+                La coupure \u00e9motionnelle conditionne l\u2019acc\u00e8s \u00e0 chaque protection active.
+                Tant qu\u2019elle est active, les \u00e9motions n\u00e9cessaires pour traverser chaque masque
+                restent difficiles d\u2019acc\u00e8s \u2014 ni nomm\u00e9es, ni d\u00e9pos\u00e9es.
+                <em>(TAS-20, Bagby et al., 1994\u00a0: l\u2019alexithymie est un m\u00e9canisme mod\u00e9rateur
+                de tous les troubles anxieux.)</em>
+            </p>
+            ${rows ? `<div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;">Effet sur chaque protection active</div>${rows}` : ''}
+            <div style="margin-top:12px;padding:8px 12px;background:rgba(0,0,0,.03);border-radius:4px;font-size:11px;color:var(--text3);">
+                TAS-20 \u00b7 Bagby et al., 1994 \u00b7 \u03b1\u00a0=\u00a00,81 \u00b7 Seuil\u00a0: 60%
+            </div>
+        </div>`);
+    }
+
+    // ─ JAUNE amplificateur ────────────────────────────────────────────────
+    if (profile.tdJaune && !contextMasks.every(function(m){return m==='jaune';})) {
+        const color = MASK_COLORS['jaune'];
+        const pct   = scores['jaune']||0;
+        const others = contextMasks.filter(function(m){return m!=='jaune' && m!=='orange';});
+
+        let rows = '';
+        others.forEach(function(m) {
+            const txt = JAUNE_ON_DOMINANT[m];
+            if (txt) rows += `<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;">
+                <span style="background:${MASK_COLORS[m]};color:#fff;padding:1px 8px;border-radius:20px;flex-shrink:0;font-size:11px;height:fit-content;margin-top:1px;">${MASK_LABELS[m]}</span>
+                <span style="color:var(--text2);line-height:1.6;">${txt}</span>
+            </div>`;
+        });
+
+        sections.push(`<div class="block" style="border-left:4px solid ${color}40;background:${color}06;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+                <div style="width:12px;height:12px;border-radius:50%;background:${color};flex-shrink:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:${color};">Masque Jaune</span>
+                <span style="font-size:13px;color:var(--text3);">${pct}%</span>
+                <span style="margin-left:auto;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:${color};background:${color}15;padding:3px 10px;border-radius:20px;">Amplificateur syst\u00e9mique</span>
+            </div>
+            <p style="color:var(--text2);font-size:14px;line-height:1.85;margin-bottom:14px;">
+                L\u2019intol\u00e9rance \u00e0 l\u2019incertitude intensifie chaque protection active simultan\u00e9ment.
+                Plus les protections actives sont nombreuses, plus son effet amplificateur est fort.
+                <em>(IUS-12, Carleton et al., 2007\u00a0: 40\u201350\u00a0% de la co-activation entre patterns anxieux.)</em>
+            </p>
+            ${rows ? `<div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;">Effet sur chaque protection active</div>${rows}` : ''}
+            <div style="margin-top:12px;padding:8px 12px;background:rgba(0,0,0,.03);border-radius:4px;font-size:11px;color:var(--text3);">
+                IUS-12 \u00b7 Carleton et al., 2007 \u00b7 \u03b1\u00a0=\u00a00,84 \u00b7 Seuil\u00a0: 70%
+            </div>
+        </div>`);
+    }
+
+    return sections.join('');
+}
+
+
+// ── Priorités de travail — ordre de traversée ─────────────────────────────
+// ── Ordre de traversée ────────────────────────────────────────────────────
+function buildPrioritySection(profile, scores, secondary) {
+    const dom  = profile.primary;
+    const sec  = secondary || [];
+
+    // Construire l'ordre : Orange → Jaune → dominant → secondaires
+    const order = [];
+    if (profile.tdOrange) order.push({m:'orange', role:'Bloqueur \u00e9motionnel \u2014 priorit\u00e9 absolue'});
+    if (profile.tdJaune)  order.push({m:'jaune',  role:'Amplificateur \u2014 intensifie tout le reste'});
+    order.push({m:dom, role:'Protection dominante'});
+    sec.forEach(function(m){ order.push({m, role:'Protection active'}); });
+
+    if (order.length <= 1) return ''; // Rien à ordonner
+
+    let h = `<div class="block" style="border-top:2px solid rgba(201,168,76,.2);">
+        <h2>Ordre de travers\u00e9e V.A.L.E.U.R\u00a9</h2>
+        <p style="color:var(--text2);font-size:14px;line-height:1.8;margin-bottom:20px;">
+            V.A.L.E.U.R\u00a9 ne travaille pas contre vos protections \u2014 elle travaille avec elles,
+            dans l\u2019ordre o\u00f9 elles peuvent \u00eatre entendues.
+        </p>`;
+
+    order.forEach(function(item, idx) {
+        const color = MASK_COLORS[item.m];
+        const role  = MASK_ROLE[item.m];
+        h += `<div style="display:flex;gap:16px;align-items:flex-start;margin-bottom:${idx<order.length-1?'18px;padding-bottom:18px;border-bottom:1px solid rgba(0,0,0,.05)':'0'}">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:38px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:${color};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">${idx+1}</div>
+                ${idx<order.length-1?'<div style="width:1px;height:20px;background:rgba(0,0,0,.1);"></div>':''}
+            </div>
+            <div style="flex:1;padding-top:6px;">
+                <div style="font-family:\'Cormorant Garamond\',serif;font-size:18px;font-weight:300;color:${color};margin-bottom:3px;">Masque ${MASK_LABELS[item.m]}</div>
+                <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:${color};opacity:.8;margin-bottom:6px;">${item.role}</div>
+                <p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">${role ? role.psycho : ''}</p>
+            </div>
+        </div>`;
+    });
+
+    h += '</div>';
+    return h;
+}
+
+
+
+
+
+
+
+// ── Révélation quaternaire ─────────────────────────────────────────────────
+
+
+
+// ── Révélation triade ──────────────────────────────────────────────────────
+
+
+
+// ── Révélation dyade ──────────────────────────────────────────────────────
+
+
+// ── Reframe final ─────────────────────────────────────────────────────────
+function buildReframe(dom) {
+    const rf = REFRAME[dom];
+    const orText = ORIGINS[dom] || '';
+    let h = '';
+    if (orText) {
+        h += `<div class="block">
+            <h2>D\u2019o\u00f9 vient cette protection</h2>
+            <p style="color:var(--text2);">${orText}</p>
+            <p style="color:var(--text2);margin-top:12px;">Des millions de personnes vivent avec ce m\u00eame m\u00e9canisme. Vous n\u2019\u00eates pas cass\u00e9\u00b7e. Vous \u00eates simplement humain\u00b7e.</p>
+        </div>`;
+    }
+    if (rf) {
+        h += `<div class="block" style="background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.2);">
+            <h2>Ce que V.A.L.E.U.R\u00a9 r\u00e9v\u00e8le</h2>
+            <p style="font-size:13px;color:var(--text3);margin-bottom:8px;font-style:italic;">Ce que vous avez peut-\u00eatre toujours cru\u00a0:</p>
+            <p style="font-size:15px;color:var(--text2);margin-bottom:16px;font-style:italic;">${rf.q}</p>
+            <p style="font-size:13px;color:var(--text3);margin-bottom:8px;">Ce que le test met en lumi\u00e8re\u00a0:</p>
+            <p style="font-size:15px;color:var(--text);line-height:1.75;">${rf.r}</p>
+        </div>`;
+    }
+    return h;
+}
+
+// ── Scores + SPA ──────────────────────────────────────────────────────────
+function buildScoresSPA(scores, spa, dom) {
     const spaText = spa >= 70
-        ? `Vous avez d\u00e9j\u00e0 de larges espaces o\u00f9 vous agissez depuis vous-m\u00eame \u2014 non depuis la peur. Ces espaces peuvent encore s\u2019\u00e9largir.`
-        : spa >= 50
-        ? `Environ une r\u00e9ponse sur deux vient de votre propre centre, pas de la protection. Cet espace existe. Il peut grandir.`
-        : spa >= 30
-        ? `La protection guide beaucoup de vos r\u00e9actions en ce moment. Ce n\u2019est pas un verdict \u2014 c\u2019est une information pr\u00e9cise sur l\u2019endroit d\u2019o\u00f9 repartir.`
-        : `Votre protection est tr\u00e8s active. Ce score dit surtout qu\u2019elle a d\u00fb travailler \u00e9norm\u00e9ment pour vous permettre de fonctionner. \u00c7a m\u00e9rite du respect \u2014 et de l\u2019attention.`;
-    html += `<div style="margin-top:28px; border-top:1px solid var(--line); padding-top:20px;">
-        <p style="font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:4px">Ce que le masque ne peut pas enti\u00e8rement recouvrir</p>
-        <p style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:400;color:var(--text2);font-style:italic;margin-bottom:18px">Ce score mesure la part de vos r\u00e9ponses qui vient de vous-m\u00eame \u2014 non de vos peurs, de vos d\u00e9fenses ou de la confusion.</p>
-        <div style="display:flex; align-items:center; gap:20px;">
-            <div class="spa-ring" style="width:70px; height:70px;"><svg width="70" height="70" viewBox="0 0 100 100"><circle cx="50" cy="50" r="42" fill="none" stroke="#E5E0D8" stroke-width="6"/><circle cx="50" cy="50" r="42" fill="none" stroke="#C9A84C" stroke-width="6" stroke-dasharray="264" stroke-dashoffset="${264 * (1 - spa/100)}" stroke-linecap="round"/></svg><div class="spa-value" style="font-size:20px;">${spa}%</div></div>
-            <div><p style="font-weight:600; color:var(--text); margin-bottom:4px;">Pr\u00e9sence authentique \u2014 ${spa}%</p><p style="color:var(--text3); font-size:14px; line-height:1.65;">${spaText}</p></div>
+        ? "Vous agissez majoritairement depuis vous-m\u00eame \u2014 non depuis la peur."
+        : spa >= 50 ? "Environ une r\u00e9ponse sur deux vient de votre propre centre. Cet espace peut grandir."
+        : spa >= 30 ? "La protection guide beaucoup de vos r\u00e9actions. Ce n\u2019est pas un verdict \u2014 c\u2019est une information pr\u00e9cise."
+        : "Vos protections sont tr\u00e8s actives. Ce score dit surtout qu\u2019elles ont beaucoup travaill\u00e9. \u00c7a m\u00e9rite du respect.";
+
+    let h = `<div class="block page-break-before">
+        <h2>L\u2019intensit\u00e9 de vos protections</h2>
+        <p style="color:var(--text2);margin-bottom:20px;font-size:14px;">
+            Chaque score est compar\u00e9 au seuil de significativit\u00e9 clinique de son instrument de r\u00e9f\u00e9rence.
+            Ces seuils varient selon les masques\u00a0\u2014 l\u2019encadr\u00e9 ci-dessous explique pourquoi.
+        </p>`;
+
+    // Barres avec marqueur de seuil
+    const sortedM = [...MASKS].sort((a,b) => (scores[b]||0)-(scores[a]||0));
+    sortedM.forEach(function(m) {
+        const pct     = scores[m]||0;
+        const color   = MASK_COLORS[m];
+        const thresh  = MASK_THRESHOLDS[m];
+        const isActive = pct >= thresh;
+        const lv = isActive
+            ? (pct>=85?'Dominant':pct>=70?'\u00c9lev\u00e9':'Significatif')
+            : (pct>=30?'Pr\u00e9sent':'Faible');
+
+        h += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:${isActive?color:'#CCC'};flex-shrink:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+            <span style="font-size:14px;font-weight:${isActive?'600':'400'};width:68px;color:${isActive?'var(--text)':'var(--text3)'};">${MASK_LABELS[m]}</span>
+            <div style="flex:1;position:relative;height:8px;background:rgba(0,0,0,.06);border-radius:4px;overflow:visible;">
+                <div style="position:absolute;top:0;left:0;width:${pct}%;height:100%;background:${isActive?color:'#CCC'};border-radius:4px;-webkit-print-color-adjust:exact;print-color-adjust:exact;transition:width .6s ease;"></div>
+                <div title="Seuil clinique : ${thresh}%"
+                     style="position:absolute;top:-3px;left:${thresh}%;width:2px;height:14px;background:rgba(0,0,0,.25);border-radius:1px;z-index:2;"></div>
+            </div>
+            <span style="font-size:14px;font-weight:600;width:36px;text-align:right;color:${isActive?color:'var(--text3)'};">${pct}%</span>
+            <span style="font-size:11px;width:80px;text-align:right;color:${isActive?color:'var(--text3)'};">${lv}</span>
+        </div>`;
+    });
+
+    // ── Encadré explicatif scientifique ────────────────────────────────────
+    h += `<details style="margin-top:24px;border:1px solid rgba(201,168,76,.25);border-radius:6px;overflow:hidden;">
+        <summary style="padding:14px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gold);letter-spacing:.06em;background:rgba(201,168,76,.05);list-style:none;">
+            &#9656;\u00a0Pourquoi ces seuils sont-ils diff\u00e9rents selon les masques\u00a0?
+        </summary>
+        <div style="padding:16px 18px 18px;background:rgba(201,168,76,.03);">
+            <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:16px;">
+                Chaque masque est mesur\u00e9 par un instrument valid\u00e9 dans des populations cliniques sp\u00e9cifiques.
+                Le seuil de significativit\u00e9 correspond au niveau \u00e0 partir duquel la recherche documente
+                un impact mesurable sur le fonctionnement quotidien\u00a0\u2014 il n\u2019est pas arbitraire.
+                Un score en dessous du seuil n\u2019est pas \u00ab\u00a0normal\u00a0\u00bb\u00a0\u2014 il indique une tendance pr\u00e9sente
+                qui n\u2019atteint pas encore le niveau d\u2019activation syst\u00e9matique.
+            </p>
+            ${MASKS.map(function(m) {
+                const ex = MASK_THRESHOLD_EXPLAIN[m];
+                const pct = scores[m]||0;
+                const thresh = MASK_THRESHOLDS[m];
+                const active = pct >= thresh;
+                const color = MASK_COLORS[m];
+                return `<div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05);align-items:flex-start;">
+                    <div style="min-width:58px;text-align:right;">
+                        <span style="font-size:12px;font-weight:600;color:${active?color:'#AAA'};">${MASK_LABELS[m]}</span><br>
+                        <span style="font-size:10px;color:${active?color:'#CCC'};">${pct}%</span>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:2px;">${ex.instrument} \u00b7 seuil\u00a0: ${thresh}% \u00b7 ${ex.ref}</div>
+                        <div style="font-size:12px;color:var(--text2);line-height:1.6;">${ex.why}</div>
+                    </div>
+                    <div style="min-width:80px;text-align:right;font-size:10px;font-weight:600;padding-top:2px;
+                        color:${active?color:'#BBB'};">
+                        ${active?'\u2714 Significatif':'\u25cb Sous le seuil'}
+                    </div>
+                </div>`;
+            }).join('')}
+        </div>
+    </details>`;
+
+    // ── SPA ────────────────────────────────────────────────────────────────
+    h += `<div style="margin-top:24px;border-top:1px solid var(--line);padding-top:18px;">
+        <p style="font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;">Pr\u00e9sence authentique</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text2);margin-bottom:16px;">La part de vos r\u00e9ponses qui vient de vous-m\u00eame \u2014 non de vos peurs ou de vos d\u00e9fenses.</p>
+        <div style="display:flex;align-items:center;gap:20px;">
+            <div class="spa-ring" style="width:70px;height:70px;flex-shrink:0;position:relative;">
+                <svg width="70" height="70" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#E5E0D8" stroke-width="6"/>
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#C9A84C" stroke-width="6"
+                        stroke-dasharray="264" stroke-dashoffset="${264*(1-spa/100)}"
+                        stroke-linecap="round" transform="rotate(-90 50 50)"
+                        style="-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
+                </svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:var(--gold);">${spa}%</div>
+            </div>
+            <div>
+                <p style="font-weight:600;margin-bottom:4px;">Pr\u00e9sence authentique \u2014 ${spa}%</p>
+                <p style="color:var(--text3);font-size:14px;line-height:1.65;">${spaText}</p>
+            </div>
         </div>
     </div>`;
-    // Bouton impression — logique ici : "je veux garder cette photo de moi"
-    html += `<p style="margin-top:24px; text-align:center;"><button class="btn-print" onclick="window.print()">Enregistrer mon portrait en PDF</button></p></div>`;
 
-    // ── BLOC 6 : CE QUI VOUS ATTEND (narratif, pas tableau acronyme)
-    html += `<div class="block"><h2>Ce qui vous attend de l\u2019autre c\u00f4t\u00e9</h2>
-        <p style="color:var(--text2); margin-bottom:16px; line-height:1.8;">La m\u00e9thode V.A.L.E.U.R ne cherche pas \u00e0 supprimer ce que vous ressentez. Elle commence par le <em>voir</em> \u2014 sans jugement, sans interpr\u00e9tation. Puis \u00e0 <em>accueillir</em> ce qui est l\u00e0, \u00e0 le <em>localiser</em> dans le corps plut\u00f4t que de le combattre dans la t\u00eate.</p>
-        <p style="color:var(--text2); margin-bottom:20px; line-height:1.8;">Ce qui suit \u2014 <em>explorer</em> ce que la protection prot\u00e8ge vraiment, <em>unifier</em> ce qui a \u00e9t\u00e9 s\u00e9par\u00e9, <em>renforcer</em> les comportements choisis \u2014 c\u2019est le chemin par lequel ce qui vous a prot\u00e9g\u00e9\u00b7e cesse d\u2019\u00eatre une prison pour devenir une ressource.</p>
-        <div class="force-box"><p style="font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;">Ce n\u2019est pas un protocole en six \u00e9tapes. C\u2019est un retour \u00e0 soi.</p></div>
+
+    // ── Batterie charge / libert\u00e9 ───────────────────────────────────────────
+    const avgMask = Math.round(MASKS.reduce(function(s,m){return s+(scores[m]||0);}, 0) / 7);
+    h += `<div style="margin-top:24px;border-top:1px solid var(--line);padding-top:18px;">
+        <p style="font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;">Votre niveau de charge des protections</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text2);margin-bottom:14px;">
+            Vos protections tournent actuellement \u00e0 <strong>${avgMask}%</strong> de leur capacit\u00e9.
+            Votre espace de libert\u00e9 est de <strong>${spa}%</strong>.
+            L\u2019objectif n\u2019est pas 100\u00a0% \u2014 c\u2019est de vous rendre la majorit\u00e9 du contr\u00f4le.
+        </p>
+        <div class="battery">
+            <span style="font-size:11px;color:var(--text3);min-width:70px;">Protections</span>
+            <div class="battery-bar"><div class="battery-fill" style="width:${avgMask}%;"></div></div>
+            <span style="font-size:11px;font-weight:600;color:var(--text);">${avgMask}%</span>
+        </div>
+        <div class="battery">
+            <span style="font-size:11px;color:var(--text3);min-width:70px;">Libert\u00e9</span>
+            <div class="battery-bar"><div class="battery-fill" style="width:${spa}%;background:#C9A84C;"></div></div>
+            <span style="font-size:11px;font-weight:600;color:var(--gold);">${spa}%</span>
+        </div>
     </div>`;
 
-    if (profile.type.startsWith('adaptatif')) {
-        html += `<div class="block"><h2>Votre profil adaptatif</h2><p style="color:var(--text2);">${ADAPTATIF.desc}</p><ul style="list-style:none; padding:0; margin-top:16px;">${ADAPTATIF.ce_qui_est_deja_la.map(item => `<li style="padding:6px 0; border-bottom:1px solid var(--line); color:var(--text2); font-size:14px;">\u2726 ${item}</li>`).join('')}</ul><p style="margin-top:16px; color:var(--text2); font-style:italic;">${ADAPTATIF.direction}</p></div>`;
+    // ── Phrase de normalisation ────────────────────────────────────────────
+    const norm = dom && NORMALIZATION[dom] ? NORMALIZATION[dom] : '';
+    if (norm) {
+        h += `<div class="reminder-box" style="margin-top:18px;font-size:13px;color:var(--text2);">${norm}</div>`;
     }
+
+    // ── Micro-action ──────────────────────────────────────────────────────
+    const micro = dom && MICRO_ACTIONS[dom] ? MICRO_ACTIONS[dom] : '';
+    if (micro) {
+        h += `<div class="micro-action">
+            <div class="micro-action-title">D\u00e8s maintenant</div>
+            <p style="font-size:14px;color:var(--text2);line-height:1.6;">${micro}</p>
+            <p style="font-size:11px;color:var(--text3);margin-top:8px;">Ce petit geste ne changera pas tout. Mais il commence \u00e0 nommer ce qui \u00e9tait automatique.</p>
+        </div>`;
+    }
+
+    h += `<p style="margin-top:24px;text-align:center;" class="no-print">
+        <button class="btn-print" onclick="window.print()">Enregistrer en PDF</button>
+    </p></div>`;
+    return h;
+}
+
+// ── Section V.A.L.E.U.R ───────────────────────────────────────────────────
+function buildValeurSection() {
+    return `<div class="block">
+        <h2>Ce qui vous attend de l\u2019autre c\u00f4t\u00e9</h2>
+        <p style="color:var(--text2);line-height:1.8;margin-bottom:16px;">La m\u00e9thode V.A.L.E.U.R ne cherche pas \u00e0 supprimer ce que vous ressentez. Elle commence par le <em>voir</em> \u2014 sans jugement. Puis \u00e0 <em>accueillir</em> ce qui est l\u00e0, \u00e0 le <em>localiser</em> dans le corps plut\u00f4t que de le combattre dans la t\u00eate.</p>
+        <p style="color:var(--text2);line-height:1.8;margin-bottom:20px;">Ce qui suit \u2014 <em>explorer</em>, <em>unifier</em>, <em>renforcer</em> \u2014 est le chemin par lequel ce qui vous a prot\u00e9g\u00e9\u00b7e cesse d\u2019\u00eatre une prison pour devenir une ressource.</p>
+        <div class="force-box"><p style="font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;">Ce n\u2019est pas un protocole en six \u00e9tapes. C\u2019est un retour \u00e0 soi.</p></div>
+    </div>`;
+}
+
+
+// ── Page de couverture ─────────────────────────────────────────────────────
+// ── Page de couverture ─────────────────────────────────────────────────────
+function buildCoverPage(profile, scores, prenom) {
+    const dateStr = new Date().toLocaleDateString('fr-FR',
+        {weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const dom  = profile.primary;
+    const sats = profile.satellites || [];
+
+    // Masques à afficher en couverture : dominant + satellites si présents
+    const coverMasks = [dom];
+    ['orange','jaune'].forEach(function(s){ if(sats.includes(s)) coverMasks.push(s); });
+
+    let masksHtml = '';
+    coverMasks.forEach(function(m) {
+        const color = MASK_COLORS[m], pct = scores[m]||0;
+        const fear  = META[m] && META[m].peur ? META[m].peur : '';
+        const isSat = m !== dom;
+        masksHtml += `<div class="cover-mask-card" style="${isSat?'border-style:dashed;opacity:.85;':''}">
+            <span class="cover-mask-dot" style="background:${color};-webkit-print-color-adjust:exact;print-color-adjust:exact;"></span>
+            <div class="cover-mask-name" style="color:${color};">Masque ${MASK_LABELS[m]}</div>
+            <div class="cover-mask-score" style="color:${color};">${pct}<span style="font-size:16px;font-weight:400;">%</span></div>
+            <div class="cover-mask-peur">${fear ? 'Peur\u00a0: '+fear : ''}</div>
+            ${isSat ? `<div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:${color};margin-top:4px;">${m==='orange'?'Bloqueur':'Amplificateur'}</div>` : ''}
+        </div>`;
+    });
+
+    return `<div class="cover-page">
+        <div class="cover-letterhead">
+            <div class="cover-brand">
+                <div class="cover-brand-main">M\u00e9thode V.A.L.E.U.R\u00a9 \u00b7 C\u00e9line Bourbon</div>
+                <div class="cover-brand-sub">Psychologue Humaniste \u00b7 Bordeaux</div>
+            </div>
+            <div class="cover-meta">
+                <div>${dateStr}</div>
+                <div style="margin-top:2px;font-weight:600;letter-spacing:.08em;">CONFIDENTIEL</div>
+            </div>
+        </div>
+        <div class="cover-prenom-block">
+            <div class="cover-label">Rapport personnel</div>
+            <div class="cover-prenom">${prenom || 'Votre portrait'}</div>
+        </div>
+        <div class="cover-divider"></div>
+        <p class="cover-tagline">
+            \u00ab\u00a0Le premier test qui ne dit pas qui vous \u00eates<br>mais ce qui vous emp\u00eache d\u2019\u00eatre vous.\u00a0\u00bb
+        </p>
+        <p class="cover-tagline-attr">\u2014\u00a0C\u00e9line Bourbon</p>
+        <div class="cover-divider"></div>
+        <div class="cover-concept">
+            <p>Ce test n\u2019a pas mesur\u00e9 votre personnalit\u00e9. Il a identifi\u00e9 la protection automatique qui a le plus d\u2019influence sur votre quotidien \u2014 construite \u00e0 une \u00e9poque o\u00f9 vous en aviez besoin. Elle est plus forte que la volont\u00e9 parce qu\u2019elle est inconsciente. Ce document la nomme pour la premi\u00e8re fois.</p>
+        </div>
+        <div class="cover-findings">
+            <div class="cover-findings-label">Ce qui a \u00e9t\u00e9 identifi\u00e9</div>
+            <div class="cover-masks">${masksHtml}</div>
+        </div>
+    </div>`;
+}
+
+
+
+// ── Portrait principal ─────────────────────────────────────────────────────
+// ── Portrait principal ─────────────────────────────────────────────────────
+// ── Portrait principal — architecture unifiée ─────────────────────────────
+function buildPortrait(scores, profile, prenom) {
+    const dom  = profile.primary;
+    const spa  = computeSPA(scores);
+    let   html = '';
+
+    html += buildCoverPage(profile, scores, prenom);
+
+    if (profile.type.startsWith('adaptatif')) {
+        const sub = profile.type === 'adaptatif_eq' ? 'eq' : 'vig';
+        html += `<div class="block"><h2>Profil adaptatif</h2>
+            <p style="color:var(--text2);">${ADAPTATIF[sub].desc}</p></div>`;
+    }
+
+    else if (profile.type === 'pan') {
+        html += `<div class="block intro-dyade" style="border-top:3px solid rgba(201,168,76,.3);">
+            <p style="color:var(--text2);font-size:15px;line-height:1.8;">${PAN_MASQUE.desc}</p>
+        </div>`;
+        profile.masks.forEach(function(m) {
+            html += `<div class="mask-section" style="border-left:4px solid ${MASK_COLORS[m]}20;">
+                <div class="mask-section-label" style="background:${MASK_COLORS[m]};color:#fff;">Masque ${MASK_LABELS[m]}</div>`;
+            html += buildMaskPortrait(m, scores, false);
+            html += '</div>';
+        });
+        html += buildTransdiagSection(profile, scores, profile.masks);
+        html += buildReframe(dom);
+    }
+
+    else {
+        // Masques secondaires actifs (hors dominant, hors Orange/Jaune)
+        const secondary = MASKS.filter(function(m) {
+            return m !== dom
+                && m !== 'orange' && m !== 'jaune'
+                && (scores[m]||0) >= MASK_THRESHOLDS[m];
+        });
+
+        // ── Introduction normalis\u00e9e ─────────────────────────────────────
+        const total = 1 + secondary.length
+            + (profile.tdJaune ? 1 : 0)
+            + (profile.tdOrange ? 1 : 0);
+        html += `<div class="block intro-dyade" style="border-top:3px solid rgba(201,168,76,.2);">
+            <p style="color:var(--text2);font-size:15px;line-height:1.8;">
+                Votre test a mis en \u00e9vidence ${total > 1
+                    ? 'plusieurs protections automatiques'
+                    : 'une protection automatique dominante'}.
+                Ces protections ne sont pas des d\u00e9fauts, mais des solutions mises en place
+                par votre esprit \u00e0 une \u00e9poque o\u00f9 vous en aviez besoin.
+                Voici comment elles se manifestent.
+            </p>
+        </div>`;
+
+        // ── [1] Portrait complet du masque dominant ───────────────────────
+        html += buildMaskPortrait(dom, scores, true);
+
+        // ── [2] M\u00e9canismes transdiagnostiques — juste apr\u00e8s le dominant ──
+        const contextMasks = [dom].concat(secondary);
+        html += buildTransdiagSection(profile, scores, contextMasks);
+
+        // ── [3] Portraits compacts des masques secondaires actifs ─────────
+        secondary.forEach(function(m) {
+            html += buildMaskPortraitCompact(m, scores);
+        });
+
+        // ── [4] Feuille de route ──────────────────────────────────────────
+        if (profile.tdOrange || profile.tdJaune || secondary.length > 0) {
+            html += buildPrioritySection(profile, scores, secondary);
+        }
+
+        // ── [5] D\u2019o\u00f9 vient cette protection ──────────────────────────────
+        html += buildReframe(dom);
+    }
+
+    html += buildScoresSPA(scores, spa, dom);
+    html += buildValeurSection();
+
+    html += `<div class="rapport-footer print-only">
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text3);border-top:1px solid var(--line);padding-top:10px;">
+            <span>V.A.L.E.U.R\u00a9 \u00b7 Rapport Personnel \u00b7 Confidentiel</span>
+            <span>C\u00e9line Bourbon \u00b7 Psychologue \u00b7 \u00a9 2026</span>
+        </div>
+    </div>`;
 
     return html;
 }
+
+
+
+
+
+
+
 
 function getLevelLabel(pct) {
     if (pct >= 85) return 'Dominant';
@@ -740,68 +1368,11 @@ function getLevelLabel(pct) {
 // ══════════════════════════════════
 // CARTE PARTAGE (PNG IONOS)
 // ══════════════════════════════════
-function getCardSrc() {
-    const isPan = SC && SC._profType === 'pan';
-    const dom = SC ? SC._dom : 'rouge';
-    return '/img/' + (isPan ? 'carte-pan' : 'carte-' + dom) + '.png';
-}
 
 // ══════════════════════════════════
 // CARTES VIRALES — Canvas Generator
 // ══════════════════════════════════
-// ══ CARTES CANVA — PNG IONOS (/img/carte-{dom}.png) ══
-let _cardSrc='', _cardKey='rouge';
 
-function buildShareCard(){
-    const dom=PROF?PROF.primary:'rouge';
-    const isPan=PROF&&PROF.type==='pan';
-    const key=isPan?'pan':dom;
-    const src='/img/carte-'+key+'.png';
-    _cardSrc=src; _cardKey=key;
-    const section=document.getElementById('share-section');
-    const img=document.getElementById('card-img');
-    const fallback=document.getElementById('card-fallback');
-    img.onload=()=>{ fallback.style.display='none'; section.style.display='block'; };
-    img.onerror=()=>{
-        img.style.display='none';
-        const mc=isPan?'#C9A84C':MASK_COLORS[dom];
-        const lbl=isPan?'Pan-Masques':'Masque '+MASK_LABELS[dom];
-        const msg=CARD_MSG[dom]||'';
-        fallback.style.cssText+=';border-left:4px solid '+mc;
-        fallback.innerHTML='<p style="font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:'+mc+';margin-bottom:12px">V.A.L.E.U.R©</p>'
-            +'<p style="font-family:Cormorant Garamond,serif;font-size:26px;color:var(--text);margin-bottom:12px">'+lbl+'</p>'
-            +'<p style="font-family:Cormorant Garamond,serif;font-size:17px;font-style:italic;color:var(--text2);line-height:1.55;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">'+msg+'</p>'
-            +'<a href="https://questionnaire.psyh.fr" target="_blank" rel="noopener" style="display:block;margin-top:14px;text-align:center;font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);text-decoration:none">Découvrir mon masque →</a>';
-        fallback.style.display='block'; section.style.display='block';
-    };
-    img.src=src;
-}
-
-function downloadCard(){
-    const a=document.createElement('a');
-    a.href=_cardSrc; a.download='masque-valeur-'+_cardKey+'.png';
-    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-}
-
-async function shareCard(){
-    const qUrl='https://questionnaire.psyh.fr';
-    if(navigator.share){
-        try{
-            const resp=await fetch(_cardSrc);
-            const blob=await resp.blob();
-            const file=new File([blob],'masque-valeur-'+_cardKey+'.png',{type:'image/png'});
-            if(navigator.canShare&&navigator.canShare({files:[file]})){
-                await navigator.share({files:[file],title:'Mon Masque V.A.L.E.U.R©',
-                    text:'Découvre ton masque → '+qUrl, url:qUrl});
-                return;
-            }
-        }catch(e){}
-        try{ await navigator.share({title:'Découvre ton masque V.A.L.E.U.R©',url:qUrl}); return; }catch(e){}
-    }
-    downloadCard();
-}
-
-// NEON (silencieux)
 // ══════════════════════════════════
 async function saveNeon() {
     if (!SC.pid) return;
@@ -816,35 +1387,6 @@ async function saveNeon() {
 // ══════════════════════════════════
 // EMAIL
 // ══════════════════════════════════
-function sendEmail() {
-    const inp = document.getElementById('ef-email');
-    const email = inp.value.trim();
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        inp.style.borderColor = 'rgba(181,49,42,.5)';
-        setTimeout(() => inp.style.borderColor = '', 2000);
-        return;
-    }
-    if (window._adminMode) {
-        document.getElementById('ef-form').style.display = 'none';
-        document.getElementById('ef-sent').style.display = 'block';
-        return;
-    }
-    const btn = document.getElementById('ef-btn');
-    btn.textContent = '\u2026'; btn.disabled = true;
-    emailjs.init(EMAILJS_PUB);
-    emailjs.send('service_valeur', EMAILJS_TPL, {
-        to_email: email, prenom: SC.prenom || '',
-        masque_dominant: MASK_LABELS[PROF.primary],
-        peur_centrale: META[PROF.primary].peur,
-        message_accueil: MIRROR[PROF.primary] ? MIRROR[PROF.primary].substring(0, 200) + '\u2026' : '',
-        lien_rapport: window.location.href,
-        lien_psycho: 'https://www.doctolib.fr/psychologue/celine-bourbon',
-        date_passation: new Date().toLocaleDateString('fr-FR')
-    }).then(() => {
-        document.getElementById('ef-form').style.display = 'none';
-        document.getElementById('ef-sent').style.display = 'block';
-    }).catch(() => { btn.textContent = 'Envoyer'; btn.disabled = false; });
-}
 
 // ══════════════════════════════════
 // STATE & INIT
@@ -852,9 +1394,17 @@ function sendEmail() {
 let SC, PROF;
 
 async function init() {
-    SC   = readScores();
+    SC = readScores();
+    if (!SC) {
+        document.getElementById('portrait-content').innerHTML =
+            '<div class="block" style="text-align:center;padding:40px;">' +
+            '<h2>Aucune donnée trouvée</h2>' +
+            '<p style="color:var(--text2);margin:16px 0;">Votre portrait ne peut pas être généré sans données valides.</p>' +
+            '<a href="questionnaire_index.html" class="btn-print">Refaire le questionnaire</a></div>';
+        return;
+    }
     PROF = detectValidProfile(SC);
-    // Stockage pour buildShareCard
+    PROF = enrichProfile(PROF, SC);     // sévérité · flags · ordre clinique
     SC._dom = PROF.primary;
     SC._profType = PROF.type;
 
@@ -862,10 +1412,7 @@ async function init() {
     document.getElementById('portrait-content').innerHTML = buildPortrait(SC, PROF, prenom);
 
     // Carte partage (sauf adaptatif)
-    if (!PROF.type.startsWith('adaptatif')) buildShareCard();
 
-    // Pré-remplir email
-    if (SC.email) { const inp = document.getElementById('ef-email'); if (inp) inp.value = SC.email; }
 
     // Neon (silencieux, hors mode admin)
     if (!window._adminMode) saveNeon();
@@ -874,6 +1421,7 @@ async function init() {
 const _ap = new URLSearchParams(location.search);
 if (_ap.get('admin') === 'VALEUR-ADMIN-2025') window._adminMode = true;
 window.addEventListener('DOMContentLoaded', init);
+
 </script>
 </body>
 </html>
