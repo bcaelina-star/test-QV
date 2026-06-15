@@ -1,7 +1,1433 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <meta charset="UT<!DOCTYPE html>
+<html lang="fr">
+<head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>V.A.L.E.U.R© — Votre Portrait</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FCFAF7; --text: #2A2622; --text2: #4A4340; --text3: #8C827D;
+            --gold: #C9A84C; --line: #E5E0D8; --card-bg: #F6F4F0;
+            --rouge: #B5312A; --orange: #C4581F; --jaune: #B8930A;
+            --vert: #2D7A4F; --bleu: #1D5F8A; --indigo: #5C3280; --violet: #7A3594;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 300;
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 60px 24px 80px;
+        }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; color: var(--text); }
+        h1 { font-size: clamp(36px, 6vw, 56px); line-height: 1.1; margin-bottom: 8px; }
+        h2 { font-size: 22px; margin-bottom: 16px; color: var(--gold); }
+        .chroma-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--rouge), var(--orange), var(--jaune), var(--vert), var(--bleu), var(--indigo), var(--violet));
+            margin-bottom: 48px;
+        }
+        .block {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 32px 28px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+        }
+        .mask-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 16px;
+        }
+        .mirror-phrase {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--text);
+            margin: 24px 0;
+            padding-left: 16px;
+            border-left: 3px solid var(--gold);
+        }
+        .reminder-box {
+            background: #FFFDF7;
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: var(--text2);
+            text-align: center;
+        }
+        .reminder-box strong { color: var(--gold); font-weight: 500; }
+        .metaphor-box {
+            background: #FFFDF7;
+            border-left: 3px solid var(--gold);
+            padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: var(--text2);
+            font-style: italic;
+        }
+        .mechanism { display: flex; flex-direction: column; gap: 16px; margin: 24px 0; }
+        .step { display: flex; gap: 16px; align-items: flex-start; }
+        .step-num {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: var(--gold); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 600; font-size: 14px; flex-shrink: 0;
+        }
+        .step-text { font-size: 15px; line-height: 1.6; }
+        .force-box {
+            background: linear-gradient(135deg, #FCFAF7 0%, #F3F1EC 100%);
+            border-left: 3px solid var(--gold);
+            padding: 20px 24px;
+            border-radius: 0 8px 8px 0;
+            margin: 24px 0;
+        }
+        .spa-section { display: flex; align-items: center; gap: 20px; margin: 32px 0; }
+        .spa-ring { position: relative; width: 80px; height: 80px; flex-shrink: 0; }
+        .spa-ring svg { transform: rotate(-90deg); }
+        .spa-value {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px; color: var(--gold);
+        }
+        .hero-mask {
+            text-align: center; padding: 48px 20px 40px; margin-bottom: 32px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--card-bg) 0%, rgba(201,168,76,0.06) 100%);
+            border: 1px solid rgba(201,168,76,0.15);
+        }
+        .hero-mask-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(48px, 8vw, 80px); font-weight: 300; line-height: 1;
+            color: var(--text); margin-bottom: 12px;
+        }
+        .hero-separator { width: 60px; height: 2px; background: var(--gold); margin: 20px auto; }
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px; font-style: italic; color: var(--text2);
+            max-width: 500px; margin: 0 auto; line-height: 1.5;
+        }
+        .btn-print {
+            display: inline-block; background: var(--gold); color: white;
+            padding: 12px 28px; border-radius: 40px; font-size: 14px; font-weight: 500;
+            text-decoration: none; cursor: pointer; border: none; margin-top: 16px;
+        }
+        .btn-print:hover { opacity: 0.9; }
+        /* ── EMAIL ── */
+        /* ── CTA ── */
+        .cta-sep {
+            width: 1px; height: 48px;
+            background: linear-gradient(to bottom, transparent, rgba(201,168,76,.3), transparent);
+            margin: 0 auto 32px;
+        }
+        .cta-btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 14px 36px;
+            border: 1px solid rgba(42,38,34,.2); background: transparent;
+            color: var(--text2); font-family: 'DM Sans', sans-serif;
+            font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase;
+            cursor: pointer; text-decoration: none; transition: all .25s;
+        }
+        .cta-btn:hover { border-color: var(--gold); color: var(--gold); }
+        /* ── SHARE CARD ── */
+        /* ── FOOTER ── */
+        .footer-valeur {
+            text-align: center; margin-top: 60px;
+            border-top: 1px solid var(--line); padding-top: 28px;
+        }
+        .footer-valeur .fv-name {
+            font-family: 'Cormorant Garamond', serif; font-size: 15px; font-weight: 500;
+            color: var(--text3); letter-spacing: .06em; margin-bottom: 5px;
+        }
+        .footer-valeur .fv-method {
+            font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 600;
+            letter-spacing: .3em; text-transform: uppercase;
+            color: rgba(201,168,76,.55); margin-bottom: 5px;
+        }
+        .footer-valeur .fv-book {
+            font-family: 'Cormorant Garamond', serif; font-size: 12px;
+            font-style: italic; color: var(--text3); opacity: .7;
+        }
+        a { color: var(--gold); text-decoration: none; border-bottom: 1px solid transparent; transition: border .2s; }
+        a:hover { border-bottom-color: var(--gold); }
+        @media(max-width:600px) { .container { padding: 40px 16px 60px; } .block { padding: 24px 18px; } }
+
+
+
+        /* ── Feuille de route ── */
+        .roadmap { display:flex; flex-direction:column; gap:10px; margin:16px 0; }
+        .roadmap-step { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; background:rgba(255,255,255,.7); border-radius:8px; border-left:4px solid; }
+        .roadmap-num { width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700; font-size:14px; flex-shrink:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+        .roadmap-text { font-size:14px; line-height:1.5; color:var(--text); }
+        /* ── Micro-action ── */
+        .micro-action { background:rgba(201,168,76,.08); border:1px solid rgba(201,168,76,.2); border-radius:8px; padding:18px 20px; margin-top:16px; }
+        .micro-action-title { font-size:11px; font-weight:600; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:8px; }
+        /* ── Batterie ── */
+        .battery { display:flex; align-items:center; gap:12px; margin:10px 0; }
+        .battery-bar { flex:1; height:12px; background:rgba(0,0,0,.06); border-radius:6px; overflow:hidden; }
+        .battery-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,#C4581F,#B8930A,#2D7A4F); -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+        /* ── COUVERTURE PORTRAIT ── */
+        .cover-page{background:#FDFAF6;border:1px solid rgba(201,168,76,.18);border-radius:4px;padding:44px 40px 36px;margin-bottom:32px;position:relative;overflow:hidden;}
+        /* barre chroma déjà dans .chroma-bar principal — pas de doublon */
+        .cover-letterhead{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid rgba(201,168,76,.2);}
+        .cover-brand{font-family:'DM Sans',sans-serif;}
+        .cover-brand-main{font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+        .cover-brand-sub{font-size:11px;color:var(--text3);letter-spacing:.08em;margin-top:3px;}
+        .cover-meta{text-align:right;font-size:11px;color:var(--text3);line-height:1.7;}
+        .cover-prenom-block{margin:28px 0 20px;}
+        .cover-label{font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--text3);margin-bottom:10px;}
+        .cover-prenom{font-family:'Cormorant Garamond',serif;font-size:clamp(38px,7vw,64px);font-weight:300;line-height:1.1;color:var(--text);letter-spacing:.02em;}
+        .cover-divider{height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,.15));margin:24px 0;}
+        .cover-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.5vw,22px);font-style:italic;font-weight:300;line-height:1.55;color:var(--text);text-align:center;padding:4px 0 2px;}
+        .cover-tagline-attr{text-align:center;font-size:11px;color:var(--text3);letter-spacing:.1em;margin-top:8px;}
+        .cover-concept{margin:24px 0;padding:20px 22px;background:rgba(255,255,255,.7);border-left:3px solid rgba(201,168,76,.35);border-radius:0 4px 4px 0;}
+        .cover-concept p{font-size:14px;color:var(--text2);line-height:1.85;margin:0;}
+        .cover-findings{margin-top:24px;}
+        .cover-findings-label{font-size:10px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;}
+        .cover-masks{display:flex;gap:16px;flex-wrap:wrap;}
+        .cover-mask-card{flex:1;min-width:180px;padding:16px 18px;border-radius:4px;border:1px solid rgba(0,0,0,.06);background:#fff;}
+        .cover-mask-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px;vertical-align:middle;}
+        .cover-mask-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;margin:8px 0 4px;letter-spacing:.03em;}
+        .cover-mask-score{font-size:28px;font-weight:600;line-height:1;margin-bottom:6px;}
+        .cover-mask-peur{font-size:12px;color:var(--text3);line-height:1.5;}
+        @media(max-width:500px){.cover-masks{flex-direction:column;}.cover-page{padding:32px 22px 28px;}}
+        @media print{
+            .cover-page{background:white!important;border:1px solid #DDD!important;page-break-after:always;margin-bottom:0;}
+            .cover-prenom{font-size:48pt;}
+            .cover-tagline{font-size:16pt;}
+            .cover-mask-score{font-size:22pt;}
+        }
+        /* ── RAPPORT PREMIUM ── */
+        .rapport-header { display:none; }
+        .rapport-footer { display:none; }
+        .intro-dyade { border-top:3px solid var(--gold); }
+        .mask-section { margin-bottom:0; }
+        .mask-section-label {
+            display:inline-block; padding:5px 18px; border-radius:0 20px 20px 0;
+            font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+            margin-bottom:20px; margin-left:-28px;
+        }
+        .compact-block { margin-bottom:20px; padding:24px 22px; }
+        .eyebrow { font-size:10px; font-weight:600; letter-spacing:.32em; text-transform:uppercase; color:rgba(201,168,76,.75); margin-bottom:8px; }
+        .page-break-before { page-break-before:auto; }
+        .no-print { }
+
+        /* ── PRINT PREMIUM HD ── */
+        @media print {
+            @page { size:A4; margin:22mm 20mm 20mm 22mm; }
+            @page :first { margin-top:15mm; }
+            * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+            body { background:white !important; color:#1A1714 !important; font-size:11.5pt; line-height:1.75; }
+            .container { max-width:100%; padding:0; }
+
+            /* Éléments masqués */
+            .btn-print, #share-section,
+            .no-print,
+            .footer-valeur { display:none !important; }
+
+            /* En-tête et pied de page rapport */
+            .rapport-header { display:block !important; margin-bottom:24pt; }
+            .rapport-footer { display:block !important; margin-top:24pt; }
+            .print-only { display:block !important; }
+
+            /* Blocs */
+            .block { background:white !important; box-shadow:none !important;
+                     border:1px solid #DDD !important; margin-bottom:14pt;
+                     padding:18pt 16pt; page-break-inside:avoid; }
+            .compact-block { padding:14pt 16pt; }
+            .intro-dyade { border-top:3pt solid #C9A84C !important; }
+            .hero-mask { background:white !important; border:1px solid #DDD !important;
+                         page-break-after:avoid; }
+
+            /* Typographie */
+            h1 { font-size:26pt; }
+            h2 { font-size:15pt; color:#1A1714 !important; }
+            .mirror-phrase { font-size:14pt; border-left:3pt solid #C9A84C; }
+            .hero-mask-name { font-size:32pt; }
+            .metaphor-box { border-left:3pt solid #C9A84C; }
+
+            /* Couleurs texte renforcées */
+            .hero-tagline, p { color:#2A2622 !important; }
+            [style*="color:var(--text2)"] { color:#2A2622 !important; }
+            [style*="color:var(--text3)"] { color:#6B6460 !important; }
+
+            /* Sauts de page */
+            .page-break-before { page-break-before:always !important; }
+            .mask-section { page-break-inside:avoid; }
+            .mechanism { page-break-inside:avoid; }
+            .force-box { page-break-inside:avoid; }
+            .spa-ring { page-break-inside:avoid; }
+
+            /* Veuve et orphelin */
+            p { orphans:3; widows:3; }
+            h2 { page-break-after:avoid; }
+            h1 { page-break-after:avoid; }
+
+            /* Barre chromatique */
+            .chroma-bar { -webkit-print-color-adjust:exact; height:4pt; }
+
+            /* Mask section label */
+            .mask-section-label { margin-left:0 !important; border-radius:4px; }
+
+            /* SPA ring */
+            .spa-ring svg circle { stroke-width:6 !important; }
+
+            /* Liens invisibles */
+            a { color:inherit !important; text-decoration:none !important; border:none !important; }
+            a[href]:after { content:none !important; }
+        }
+        /* (old print merged above) */
+        @media print_DISABLED_OLD {
+            @page { margin: 20mm 18mm; size: A4; }
+            body { background: white; color: #1A1714; font-size: 12pt; }
+            .container { max-width: 100%; padding: 0; }
+            .block { box-shadow: none; background: white; border: 1px solid #ddd; margin-bottom: 16px; padding: 20px 18px; page-break-inside: avoid; }
+            .hero-mask { background: white !important; border: 1px solid #ddd; page-break-after: avoid; }
+            .mechanism { page-break-inside: avoid; }
+            .btn-print, #share-section, .footer-valeur { display: none !important; }
+            h2 { font-size: 16pt; }
+            .mirror-phrase { font-size: 15pt; border-left: 3px solid #C9A84C; }
+            .hero-mask-name { font-size: 36pt; }
+            a[href]:after { content: none !important; }
+            .chroma-bar { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .step-num { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="app">
+    <div class="chroma-bar"></div>
+    <div id="portrait-content"><p style="text-align:center;padding:60px 20px;color:var(--text3);">Chargement du portrait…</p></div>
+</div>
+
+<div class="footer-valeur no-print">
+    <div class="fv-name">Céline Bourbon · Psychologue</div>
+    <div class="fv-method">Méthode V.A.L.E.U.R© · Tous droits réservés · © 2026</div>
+    <div class="fv-book"><em>De la peur à la joie d'être soi</em> · Éditions L'Harmattan</div>
+</div>
+
+<script>
+// ══════════════════════════════════
+// CONFIG
+// ══════════════════════════════════
+const VERCEL_API  = 'https://valeur-backend-api.vercel.app/api';
+
+const MASKS = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
+const MASK_COLORS = {
+    rouge: '#B5312A', orange: '#C4581F', jaune: '#B8930A',
+    vert: '#2D7A4F', bleu: '#1D5F8A', indigo: '#5C3280', violet: '#7A3594'
+};
+// Pastels : teinte masque à 12% sur fond crème
+const MASK_PASTELS = {
+    rouge:'rgba(181,49,42,.12)', orange:'rgba(196,88,31,.12)', jaune:'rgba(184,147,10,.12)',
+    vert:'rgba(45,122,79,.12)', bleu:'rgba(29,95,138,.12)', indigo:'rgba(92,50,128,.12)', violet:'rgba(122,53,148,.12)'
+};
+const MASK_LABELS = {
+    rouge: 'Rouge', orange: 'Orange', jaune: 'Jaune',
+    vert: 'Vert', bleu: 'Bleu', indigo: 'Indigo', violet: 'Violet'
+};
+// Tiebreak — ordre de primauté développementale et transdiagnostique
+// Vert 1er : attachement = système motivationnel le plus fondamental (Bowlby 1969, Mikulincer 2007)
+// Rouge 2e : anxiété somatique = peur primaire concrète et autonome (Salkovskis 2002)
+// Bleu 3e : LOC = trait de personnalité fondamental (Rotter 1966)
+// Indigo 4e : perfectionnisme = peur performance-spécifique (Frost 1990)
+// Violet 5e : identité = peur existentielle, trajectoire variable (Winnicott 1960)
+// Orange 6e : mécanisme modérateur / bloqueur, pas peur primaire (Bagby 1994)
+// Jaune 7e : amplificateur transdiagnostique → satellite optimal (Carleton 2007)
+const TIEBREAK = ['vert','rouge','bleu','indigo','violet','orange','jaune'];
+const MC = MASK_COLORS;   // alias court pour drawCard
+const ML = MASK_LABELS;   // alias court pour drawCard
+function hexRgb(h){return{r:parseInt(h.slice(1,3),16),g:parseInt(h.slice(3,5),16),b:parseInt(h.slice(5,7),16)};}
+
+
+// ══════════════════════════════════
+// DONNÉES CLINIQUES
+// ══════════════════════════════════
+const META = {
+    rouge: { peur: "la peur de la maladie et de l'ins\u00e9curit\u00e9 corporelle", force: "Une pr\u00e9sence incarn\u00e9e, capable de s'ancrer dans l'instant sans \u00eatre happ\u00e9e par l'inqui\u00e9tude." },
+    orange: { peur: "la peur de ressentir des \u00e9motions douloureuses", force: "Une intelligence \u00e9motionnelle profonde, qui transforme la sensibilit\u00e9 en boussole plut\u00f4t qu'en menace." },
+    jaune: { peur: "la peur de l'inconnu et de l'incertitude", force: "Une confiance in\u00e9branlable, capable d'agir sans avoir besoin de tout pr\u00e9voir." },
+    vert: { peur: "la peur du rejet et de l'abandon", force: "Un amour authentique, libre et g\u00e9n\u00e9reux, qui n'a plus besoin de se sacrifier pour exister." },
+    bleu: { peur: "la peur de perdre le contr\u00f4le", force: "Une autorit\u00e9 naturelle, une parole juste qui inspire sans \u00e9craser." },
+    indigo: { peur: "la peur du jugement et de ne pas \u00eatre \u00e0 la hauteur", force: "Une vision claire et intuitive, qui apprend de chaque exp\u00e9rience sans se punir." },
+    violet: { peur: "la peur de ne pas savoir qui l'on est vraiment", force: "Une paix profonde, une authenticit\u00e9 qui rayonne sans avoir besoin de r\u00f4le." }
+};
+
+const MIRROR = {
+    rouge: "Avant m\u00eame de poser le pied hors du lit, vous \u00e9coutez votre corps. Une tension dans la poitrine, un battement un peu plus rapide \u2014 et votre esprit part en qu\u00eate d'une explication. Non par hypochondrie, mais parce que votre syst\u00e8me nerveux a appris qu'ignorer un signal pouvait \u00eatre dangereux.",
+    orange: "Quand on vous demande comment vous allez vraiment, vous r\u00e9pondez \u00ab\u00a0\u00e7a va\u00a0\u00bb sans y penser. Parce que nommer ce qui se passe \u00e0 l'int\u00e9rieur, ce serait ouvrir une porte que vous avez appris \u00e0 garder ferm\u00e9e. Ressentir a eu un prix \u2014 alors vous avez mis les \u00e9motions \u00e0 distance.",
+    jaune: "Vous avez d\u00e9j\u00e0 trois plans pour une situation qui n'est pas encore arriv\u00e9e. Vous v\u00e9rifiez les horaires, les issues, les alternatives. Pas par plaisir \u2014 par n\u00e9cessit\u00e9 int\u00e9rieure. Votre esprit ne supporte pas le vide laiss\u00e9 par l'incertitude, alors il le remplit de pr\u00e9visions.",
+    vert: "Vous sentez le moindre changement de ton chez l'autre. Vous adaptez votre r\u00e9ponse, votre posture, parfois votre opinion \u2014 pour maintenir l'harmonie. Non par faiblesse, mais parce que votre cerveau a enregistr\u00e9 que perdre le lien \u00e9tait une menace bien plus grande que de perdre un argument.",
+    bleu: "D\u00e9l\u00e9guer vous demande plus d'\u00e9nergie que de faire vous-m\u00eame. Vous repassez derri\u00e8re, v\u00e9rifiez, corrigez. Pas par arrogance \u2014 par impossibilit\u00e9 de l\u00e2cher prise sans angoisse. Vous avez appris que tenir les r\u00eanes \u00e9tait la seule fa\u00e7on de ne pas vous effondrer.",
+    indigo: "Vous relisez un email d\u00e9j\u00e0 envoy\u00e9. Vous retravaillez un dossier d\u00e9j\u00e0 valid\u00e9. Vous cherchez la faille \u2014 parce que si quelqu'un la trouve avant vous, cela confirmera ce que vous craignez secr\u00e8tement\u00a0: que vous n'\u00eates pas vraiment \u00e0 la hauteur.",
+    violet: "Vous passez d'un r\u00f4le \u00e0 l'autre avec une fluidit\u00e9 d\u00e9concertante \u2014 professionnel\u00b7le, parent, ami\u00b7e, amant\u00b7e. Mais dans le silence, une question revient\u00a0: qui \u00eates-vous quand personne ne regarde\u00a0? Vous avez tellement bien appris \u00e0 vous adapter que vous ne savez plus o\u00f9 se trouve votre centre."
+};
+
+
+const LOOPS = {
+    rouge: [
+        "Un symptôme banal — une douleur légère, un battement de cœur un peu plus fort.",
+        "Immédiatement, quelque chose en vous s'active. Vous devez savoir ce que c'est.",
+        "Vous consultez, vérifiez, cherchez jusqu'à être rassuré·e. L'apaisement arrive — mais ne dure pas.",
+        "Dès que la prochaine sensation apparaît, le cycle repart. C'est un réflexe de protection, pas un défaut de caractère."
+    ],
+    orange: [
+        "Quelqu'un vous blesse, ou vous traversez un moment fort.",
+        "Avant même que vous puissiez ressentir, quelque chose ferme l'accès automatiquement.",
+        "Vous continuez, vous gérez — mais à l'intérieur, c'est comme regarder la scène derrière une vitre.",
+        "Ce que vous n'avez pas pu traverser reste là, et ressort ailleurs, longtemps après. C'est une protection automatique, pas un manque de sensibilité."
+    ],
+    jaune: [
+        "Une décision doit être prise, ou un changement approche.",
+        "Votre esprit commence à envisager tous les scénarios possibles — y compris les pires.",
+        "Vous préparez, anticipez, cherchez à tout verrouiller avant d'agir.",
+        "Mais l'incertitude ne disparaît jamais vraiment. Il reste toujours un imprévu possible. Alors la préparation repart. C'est un mécanisme automatique, pas un défaut de caractère."
+    ],
+    vert: [
+        "Vous percevez un changement de ton chez quelqu'un qui compte pour vous.",
+        "Quelque chose en vous s'alarme : est-ce que je leur ai déplu ? Vont-ils s'éloigner ?",
+        "Vous cherchez à rétablir le lien — vous vous adaptez, vous donnez plus, parfois vous vous excusez sans savoir pourquoi.",
+        "Le lien est restauré — temporairement. Mais le besoin de le vérifier repart au moindre signal ambigu. C'est un réflexe de survie relationnelle, pas de la fragilité."
+    ],
+    bleu: [
+        "Une situation, une relation, ou une décision échappe à votre emprise.",
+        "Quelque chose en vous ne peut pas rester dans cet état. La perte de contrôle déclenche une réaction immédiate.",
+        "Vous intervenez, vous reprenez la main, vous réorganisez — même quand ce n'était pas nécessaire.",
+        "La situation est maîtrisée. Mais l'énergie dépensée pour maintenir ce contrôle s'accumule. Et la prochaine fois, tolérer l'incertitude sera encore plus difficile. C'est un mécanisme de protection, pas de l'autoritarisme."
+    ],
+    indigo: [
+        "Un regard, un commentaire, ou simplement l'anticipation du jugement de l'autre.",
+        "Quelque chose en vous cherche immédiatement la faille — ce qui pourrait être critiqué, amélioré, corrigé.",
+        "Vous retravaillez, vous vérifiez, vous recommencez. Mais même quand c'est terminé, l'insatisfaction reste.",
+        "La barre monte à chaque fois, sans jamais de ligne d'arrivée. Ce n'est pas de la prétention — c'est une protection contre le regard qui juge."
+    ],
+    violet: [
+        "Vous entrez dans une nouvelle situation — une réunion, une relation, un contexte inconnu.",
+        "Instinctivement, quelque chose en vous scanne ce qu'on attend de vous et s'y ajuste.",
+        "Vous jouez le rôle parfaitement. L'autre est satisfait. Mais dans le silence, une question revient.",
+        "Qui êtes-vous, vous, en dehors de ce que les autres attendent ? La réponse tarde à venir. C'est une stratégie de survie identitaire, pas un vide."
+    ]
+};
+
+
+const ORIGINS = {
+    rouge: "\u00c0 un moment de votre vie, votre corps a \u00e9t\u00e9 source d'inqui\u00e9tude \u2014 une maladie, un proche souffrant, ou simplement l'impression que la sant\u00e9 pouvait basculer sans pr\u00e9venir. Votre syst\u00e8me nerveux a retenu la le\u00e7on\u00a0: ne jamais baisser la garde.",
+    orange: "Il fut un temps o\u00f9 laisser entrer les \u00e9motions \u00e9tait trop co\u00fbteux \u2014 une souffrance qui d\u00e9bordait, un entourage qui ne savait pas les accueillir. Votre esprit a alors \u00e9lev\u00e9 un mur. Un mur qui prot\u00e8ge \u2014 mais qui isole aussi.",
+    jaune: "L'impr\u00e9vu vous a d\u00e9j\u00e0 fait mal. Votre esprit a d\u00e9duit que la s\u00e9curit\u00e9 viendrait de la pr\u00e9vision. Une strat\u00e9gie brillante, devenue un pi\u00e8ge\u00a0: tout vouloir anticiper emp\u00eache parfois de vivre ce qui arrive.",
+    vert: "Un jour, perdre le lien a \u00e9t\u00e9 une douleur r\u00e9elle. Votre cerveau a enregistr\u00e9 que l'amour devait se m\u00e9riter \u2014 par la disponibilit\u00e9, l'attention, l'adaptation. Une logique de survie relationnelle qui vous a prot\u00e9g\u00e9\u00b7e, mais qui vous \u00e9puise aujourd'hui.",
+    bleu: "Vous avez appris tr\u00e8s t\u00f4t que l\u00e2cher prise exposait \u00e0 l'effondrement. Que tenir, d\u00e9cider, contr\u00f4ler \u00e9tait la seule fa\u00e7on d'exister sans sombrer. Ce n'\u00e9tait pas un choix \u2014 c'\u00e9tait une n\u00e9cessit\u00e9. Aujourd'hui, cette n\u00e9cessit\u00e9 est devenue une prison dor\u00e9e.",
+    indigo: "Quelque chose dans votre histoire vous a fait comprendre que l'erreur avait un co\u00fbt. Pas seulement pratique \u2014 affectif, relationnel. Votre exigence est n\u00e9e de l\u00e0\u00a0: une protection contre le regard qui juge. Une armure qui vous a port\u00e9\u00b7e \u2014 mais qui p\u00e8se.",
+    violet: "Il a \u00e9t\u00e9 plus s\u00fbr de s'adapter que d'\u00eatre soi. Vos \u00e9motions, vos questions, votre singularit\u00e9 \u00e9taient peut-\u00eatre trop intenses, trop diff\u00e9rentes. Alors vous avez appris \u00e0 devenir ce que les autres attendaient. Une strat\u00e9gie de survie identitaire \u2014 brillante, mais d\u00e9connect\u00e9e de votre nature profonde."
+};
+
+
+
+// ══════════════════════════════════
+// 21 DYADES VALIDÉES
+
+// ══════════════════════════════════
+// 15 TRIADES VALIDÉES
+
+const PAN_MASQUE = {
+    nom: "L'Adaptation Multi-Protection",
+    desc: "Quand un seul masque domine, l'\u00e9nergie est concentr\u00e9e. Dans votre cas, elle est dispers\u00e9e sur plusieurs fronts. Votre cerveau a enregistr\u00e9 que le danger pouvait venir de partout. Vous avez construit non pas un mur, mais un filet \u2014 souple, adaptable. Cette plasticit\u00e9 est remarquable, mais elle a un co\u00fbt\u00a0: une fatigue diffuse et la sensation de ne pas avoir de 'chez-soi' int\u00e9rieur.",
+    boucle: ["Une situation active un masque sp\u00e9cifique","Avant qu'il ne se d\u00e9sactive, une autre facette en active un deuxi\u00e8me","Les masques s'empilent, cr\u00e9ant un \u00e9tat de fond anxieux","L'\u00e9nergie est consomm\u00e9e par cette navigation constante \u2014 le repos ne les \u00e9teint pas"],
+    exemples: ["Au travail\u00a0: vous passez d'un r\u00f4le \u00e0 l'autre selon les interlocuteurs, et vous terminez la journ\u00e9e \u00e9puis\u00e9\u00b7e sans savoir pourquoi.","Dans les relations\u00a0: vous vous adaptez \u00e0 chaque personne, au point de ne plus savoir quelle version de vous est la vraie."]
+};
+
+
+
+const ADAPTATIF = {
+    nom: "Profil Adaptatif",
+    desc: "Vos scores indiquent qu'aucune peur n'a pris le contr\u00f4le de votre fonctionnement quotidien. Vos d\u00e9fenses sont souples, proportionn\u00e9es. Elles s'activent quand c'est n\u00e9cessaire, et se retirent quand le danger passe. Ce n'est pas l'absence de vuln\u00e9rabilit\u00e9 \u2014 c'est la capacit\u00e9 \u00e0 la traverser sans en \u00eatre prisonnier\u00b7\u00e8re.",
+    ce_qui_est_deja_la: ["Vous avez acc\u00e8s \u00e0 vos \u00e9motions sans \u00eatre submerG\u00e9\u00b7e.","Vous pouvez faire confiance, d\u00e9l\u00e9guer, l\u00e2cher prise.","Vous savez qui vous \u00eates, et cela ne d\u00e9pend pas du regard des autres.","Vous vivez des moments de pleine pr\u00e9sence, sans r\u00f4le \u00e0 jouer."],
+    direction: "Vous \u00eates d\u00e9j\u00e0 sur le chemin de la pr\u00e9sence authentique. La m\u00e9thode V.A.L.E.U.R peut vous aider \u00e0 \u00e9largir encore cet espace de libert\u00e9, et \u00e0 comprendre ce qui, parfois, vous en \u00e9loigne."
+};
+
+
+// ══════════════════════════════════
+// DONNÉES ENRICHISSEMENT PORTRAIT
+// ══════════════════════════════════
+
+const VOICE = {
+    rouge: "Mon corps n'est jamais vraiment sûr. Je dois surveiller. Je dois savoir. Si je relâche, quelque chose va m'échapper.",
+    orange: "Je gère. Je ne ressens pas — je gère. Si je laisse entrer cette émotion, je ne sais pas comment ça va finir.",
+    jaune: "Il me faut savoir. Il me faut être certain·e. L'incertitude n'est pas une option — elle est une menace.",
+    vert: "Est-ce que je compte vraiment pour eux ? Est-ce que si je décevais, ils resteraient quand même ? Je dois m'assurer que oui.",
+    bleu: "Si je lâche, quelque chose va mal tourner. Personne ne peut faire ça comme moi. Je dois tenir.",
+    indigo: "Ce n'est pas assez bien. Il doit y avoir une faille. Je dois la trouver avant que quelqu'un d'autre ne la trouve.",
+    violet: "Est-ce qu'ils m'aimeraient s'ils savaient qui je suis vraiment ? Je joue tellement bien mes rôles que je ne sais plus lequel est moi."
+};
+
+const SCENE = {
+    rouge: "Vous ressentez une douleur inhabituelle. Une demi-heure plus tard, vous avez consulté trois sites médicaux, envisagé quatre diagnostics, et votre cœur bat un peu plus vite. Vous n'avez pas choisi cette réaction. Elle a été plus rapide que vous.",
+    orange: "Quelqu'un vous demande comment vous allez vraiment. Vous répondez « bien » avant même d'avoir eu le temps de chercher la réponse. Quelque chose s'est fermé automatiquement — avant que vous ne décidiez de l'ouvrir ou non.",
+    jaune: "Un projet change de forme à la dernière minute. Ce n'est pas grave objectivement — mais quelque chose en vous s'active. Vous commencez à recalculer, à réorganiser, à anticiper les conséquences. Vous n'avez pas décidé de faire ça. C'est parti tout seul.",
+    vert: "Vous sentez une tension dans une relation. L'autre n'a rien dit, mais vous avez senti quelque chose. Et depuis, vous cherchez à comprendre ce que vous avez fait, ce que vous pourriez corriger, ce que vous pourriez faire pour que tout redevienne normal.",
+    bleu: "Vous confiez une tâche. Vous essayez de lâcher prise. Mais quelques heures plus tard, vous vérifiez. Vous ne pouvez pas vous en empêcher — ce n'est pas de la méfiance, c'est une anxiété que vous ne savez pas poser ailleurs.",
+    indigo: "Vous recevez un compliment sur votre travail. La première pensée qui arrive n'est pas la satisfaction. C'est : « ils n'ont pas vu la partie qui n'était pas parfaite. » La satisfaction, si elle vient, ne dure pas.",
+    violet: "On vous demande ce que vous voulez — au restaurant, dans un projet, dans une relation. Vous commencez à chercher ce que l'autre préférerait pour répondre en fonction. La question de ce que vous voulez, vous, reste sans réponse."
+};
+
+const COUT = {
+    rouge: "Des années de vigilance qui ont empêché d'habiter votre corps autrement que comme un signal d'alarme. Des joies physiques — le mouvement, le sommeil, la légèreté — partiellement inaccessibles.",
+    orange: "Des liens qui auraient pu être plus profonds, mais qui sont restés en surface. Une intimité possible, mais évitée. Et un vide intérieur que vous n'arrivez pas tout à fait à nommer, parce que le nommer, ce serait le sentir.",
+    jaune: "Des décisions retardées parce qu'elles ne pouvaient pas être certaines. Des opportunités laissées passer parce qu'elles comportaient une part d'inconnu. Et une fatigue de penser — constante, invisible, épuisante.",
+    vert: "Des désirs tus. Des besoins niés. Des colères ravalées. Et quelque part, la question qui revient : qui suis-je vraiment, en dehors de ce que je fais pour les autres ?",
+    bleu: "Une solitude de ceux qui font tout eux-mêmes. Une difficulté à recevoir, à laisser l'autre contribuer. Et des relations où vous étiez présent·e — mais où personne ne vous a vraiment porté·e.",
+    indigo: "Un rapport au travail qui ne s'arrête jamais vraiment. Une incapacité à être fier·e de ce que vous faites sans aussitôt voir ce qui manque. Et une énergie considérable dépensée à prouver quelque chose que personne ne vous a jamais vraiment demandé de prouver.",
+    violet: "Des années à performer des rôles plutôt qu'à vivre. Une incertitude persistante sur ce qui compte vraiment pour vous. Et parfois, l'impression d'être spectateur·rice de votre propre vie."
+};
+
+const REFRAME = {
+    rouge:  { q: "« Je m'inquiète parce que je suis quelqu'un d'anxieux. »", r: "Vous vous inquiétez parce que votre système nerveux a appris qu'ignorer un signal pouvait être dangereux. Ce n'est pas votre caractère — c'est une solution que votre esprit a construite pour vous protéger. Elle continue de tourner parce qu'elle ne sait pas que la menace est passée." },
+    orange: { q: "« Je suis froid·e, je ne ressens rien. »", r: "Vous ressentez profondément. Votre esprit a simplement appris à couper l'accès avant que l'émotion n'arrive à la conscience — pas par insensibilité, mais parce qu'à un moment, ressentir était trop coûteux. Ce n'est pas qui vous êtes. C'est ce que vous avez construit pour survivre." },
+    jaune:  { q: "« Je suis quelqu'un d'anxieux, j'ai besoin de tout contrôler. »", r: "Votre esprit a décidé que la sécurité viendrait de la prévision. Une décision intelligente, prise à une époque où l'imprévu était vraiment menaçant. Aujourd'hui, l'imprévu a changé — mais la réponse automatique, elle, n'a pas encore été mise à jour." },
+    vert:   { q: "« Je suis trop sensible, je prends tout trop à cœur. »", r: "Votre cerveau a enregistré que perdre le lien était une menace réelle. Alors il surveille, anticipe, s'adapte. Ce n'est pas de la fragilité — c'est un système d'alerte très bien calibré pour une époque révolue. Il ne sait pas encore qu'il peut se reposer." },
+    bleu:   { q: "« Je suis perfectionniste, j'ai besoin de faire les choses moi-même. »", r: "Vous avez appris très tôt que lâcher prise exposait à l'effondrement. Tenir était la seule façon de ne pas sombrer. Ce n'était pas un choix — c'était une nécessité. Aujourd'hui, vous avez d'autres ressources. Mais le masque, lui, ne le sait pas encore." },
+    indigo: { q: "« Je suis exigeant·e avec moi-même, je n'y peux rien. »", r: "Cette exigence est née d'une conviction ancienne : que l'erreur avait un coût affectif, relationnel. Votre perfectionnisme est né de là — une protection contre le regard qui juge. Une armure qui vous a porté·e. Mais les armures ont un poids." },
+    violet: { q: "« Je ne sais pas vraiment qui je suis, je m'adapte à tout le monde. »", r: "Il a été plus sûr de s'adapter que d'exister. Vos émotions, vos questions, votre singularité étaient peut-être trop différentes. Alors vous avez appris à devenir ce que les autres attendaient. Le vrai self n'a pas disparu — il attend, intact, que ce soit enfin sûr d'être vu." }
+};
+
+// ══════════════════════════════════
+// LECTURE SCORES (URL → localStorage → démo)
+// ══════════════════════════════════
+function readScores() {
+    const p = new URLSearchParams(location.search);
+    let scores = null;
+    const urlS = {};
+    MASKS.forEach(m => { if (p.has(m)) urlS[m] = Math.min(100, Math.max(0, parseInt(p.get(m)) || 0)); });
+    if (p.has('spa')) urlS.spa = Math.min(100, Math.max(0, parseInt(p.get('spa')) || 0));
+    if (Object.keys(urlS).filter(k => MASKS.includes(k)).length >= 7) scores = urlS;
+    if (!scores || Object.keys(scores).filter(function(k){return MASKS.includes(k);}).length < 7) {
+        return null;
+    }
+        if (!scores) {
+        try { const ls = JSON.parse(localStorage.getItem('valeur_scores') || '{}'); if (ls && ls.rouge !== undefined) scores = ls; } catch(e) {}
+    }
+    if (!scores || Object.keys(scores).filter(function(k){return MASKS.includes(k);}).length < 7) {
+        scores = { rouge:44, orange:38, jaune:73, vert:56, bleu:69, indigo:79, violet:32, spa:61 };
+    }
+    scores.prenom = p.get('prenom') || localStorage.getItem('valeur_prenom') || scores.prenom || '';
+    scores.email  = p.get('email')  || localStorage.getItem('valeur_email')  || scores.email  || '';
+    scores.pid    = p.get('pid')    || scores.pid || '';
+    return scores;
+}
+
+// ══════════════════════════════════
+// DÉTECTION PROFIL — algorithme Mai 2026
+// Ordre : 0-Adaptatif 1-Pan 2-Triade 3-Dyade 4-Mono 5-Résiduel
+// ══════════════════════════════════
+
+
+// ══════════════════════════════════════════════════════════════════════
+// DISCRIMINATION CLINIQUE — Seuils, types, priorités (Mai 2026)
+// Réf : documents internes V.A.L.E.U.R© + Carleton 2007 + Barlow 2004
+// ══════════════════════════════════════════════════════════════════════
+
+// Seuils d'activation clinique par masque (différenciés)
+const MASK_THRESHOLDS = {
+    rouge: 60, orange: 60, jaune: 70,
+    vert: 65,  bleu: 55,   indigo: 65, violet: 60
+};
+
+
+// Rôle clinique et psychoéducation par masque
+const MASK_ROLE = {
+    orange: {
+        role: 'Bloqueur émotionnel — priorité absolue',
+        ico:  '\ud83d\udd12',
+        psycho: "La fermeture émotionnelle agit par : changement automatique de sujet dès qu'une conversation devient émotionnelle, humour ou dérision pour éviter l'affect, suractivité compensatoire (travail, écrans), absence de larmes même dans des situations difficiles. Ces mécanismes protègent contre la souffrance — mais coupent aussi l’accès aux émotions qui permettraient de traverser les autres protections. Tant que cette protection est active, les autres ne peuvent être ni pleinement ressenties, ni nommées, ni déposées.",
+        priorite: 1
+    },
+    jaune: {
+        role: 'Amplificateur transdiagnostique',
+        ico:  '\ud83d\udce1',
+        psycho: "L’intolérance à l’incertitude s’exprime par : plans B, C, D pour chaque situation, vérifications compulsives des actions, routines très fixes difficiles à modifier, ruminations permanentes sur les scénarios catastrophes. Son rôle d’amplificateur est documenté : il intensifie chaque signal des autres masques actifs — un symptôme corporel devient plus menaçant (Rouge), un silence devient plus inquiétant (Vert), une imperfection devient plus catastrophique (Indigo). Traverser cette protection réduit mécaniquement l’intensité de tout le reste (Carleton et al., 2007 : 40–50 % de co‑activation entre patterns anxieux).",
+        priorite: 2
+    },
+    rouge: {
+        role: 'Protection somatique',
+        ico:  '\u26a0\ufe0f',
+        psycho: "La vigilance corporelle monopolise l\u2019attention et l\u2019\u00e9nergie. Elle transforme le corps en signal d\u2019alarme permanent, rendant la d\u00e9tente et la confiance physique progressivement inaccessibles.",
+        priorite: 3
+    },
+    vert: {
+        role: 'Protection relationnelle',
+        ico:  '\ud83e\udd1d',
+        psycho: "La peur du rejet oriente les d\u00e9cisions, les silences et les adaptations relationnelles. Elle co\u00fbte progressivement l\u2019acc\u00e8s aux propres besoins et d\u00e9sirs.",
+        priorite: 3
+    },
+    bleu: {
+        role: 'Protection par la ma\u00eetrise',
+        ico:  '\u26d3\ufe0f',
+        psycho: "Le besoin de contr\u00f4le s\u2019active d\u00e8s qu\u2019une situation ou une relation \u00e9chappe \u00e0 l\u2019emprise. Il s\u2019applique \u00e0 tout \u2014 personnes, corps, \u00e9v\u00e9nements. Le l\u00e2cher-prise devient physiologiquement difficile.",
+        priorite: 3
+    },
+    indigo: {
+        role: 'Protection par l\u2019excellence',
+        ico:  '\ud83c\udfaf',
+        psycho: "Le perfectionnisme maintient une exigence sans ligne d\u2019arriv\u00e9e. L\u2019excellence devient le prix d\u2019entr\u00e9e pour avoir le droit d\u2019exister pleinement \u2014 et ce prix monte \u00e0 chaque r\u00e9ussite.",
+        priorite: 3
+    },
+    violet: {
+        role: 'Protection identitaire',
+        ico:  '\ud83c\udfad',
+        psycho: "Les r\u00f4les adopt\u00e9s donnent une stabilit\u00e9 au prix de l\u2019authenticit\u00e9. La peur de perdre ces r\u00f4les peut rendre le changement existentiellement mena\u00e7ant.",
+        priorite: 3
+    }
+};
+
+
+
+// ── Psychoéducation spécifique par dyade ──────────────────────────────────
+
+
+
+
+
+// ── Effets spécifiques du satellite sur le masque dominant ────────────────
+const JAUNE_ON_DOMINANT = {
+    rouge:  "L\u2019intol\u00e9rance \u00e0 l\u2019incertitude rend chaque signal corporel plus mena\u00e7ant. La recherche de certitude m\u00e9dicale ne peut jamais \u00eatre compl\u00e8te \u2014 une r\u00e9ponse appelle la prochaine question.",
+    vert:   "Le besoin de certitude affective s\u2019intensifie. Chaque silence, chaque ambigu\u00eft\u00e9 relationnelle devient une menace urgente \u00e0 r\u00e9soudre.",
+    bleu:   "Le besoin de ma\u00eetrise devient total. Chaque situation qui \u00e9chappe est v\u00e9cue comme une urgence, pas comme un impr\u00e9vu tol\u00e9rable.",
+    indigo: "Les conditions pour commencer ne sont jamais r\u00e9unies. L\u2019incertitude du r\u00e9sultat bloque le d\u00e9marrage, la deadline approche, la qualit\u00e9 en souffre.",
+    violet: "Le changement devient existentiellement mena\u00e7ant. Les routines qui stabilisent l\u2019identit\u00e9 doivent rester absolument fixes.",
+    orange: "La planification est efficace mais vide \u2014 les d\u00e9cisions sont structur\u00e9es sans ressentir les motivations qui devraient les guider."
+};
+
+const ORANGE_ON_DOMINANT = {
+    rouge:  "L\u2019inqui\u00e9tude corporelle s\u2019intellectualise \u2014 elle est pr\u00e9sente mais sans charge \u00e9motionnelle visible. L\u2019entourage ne comprend pas la gravit\u00e9.",
+    vert:   "Le besoin de connexion coexiste avec une incapacit\u00e9 \u00e0 laisser l\u2019intimit\u00e9 devenir r\u00e9elle. La proximit\u00e9 d\u00e9clenche un retrait automatique.",
+    bleu:   "Les r\u00e9ussites n\u2019apportent ni satisfaction ni fiert\u00e9. La reconnaissance externe est cherch\u00e9e mais l\u2019exp\u00e9rience \u00e9motionnelle de la valider reste inaccessible.",
+    indigo: "L\u2019excellence est produite mais la fiert\u00e9 est coup\u00e9e \u00e0 l\u2019arriv\u00e9e. \u00ab\u00a0\u00c0 quoi \u00e7a sert si je ne sens rien\u00a0?\u00bb",
+    jaune:  "La planification efficace se vide de sens. La vie devient une suite de t\u00e2ches sans saveur, sans pr\u00e9sence \u00e0 ce qui se vit.",
+    violet: "Les r\u00f4les sont tenus avec pr\u00e9cision mais sans pr\u00e9sence int\u00e9rieure. Le pilote automatique s\u2019installe durablement."
+};
+
+
+
+// ── Justifications scientifiques des seuils par instrument ───────────────
+const MASK_THRESHOLD_EXPLAIN = {
+    rouge: {
+        instrument: 'SHAI \u2014 Short Health Anxiety Inventory',
+        ref: 'Salkovskis et al., 2002 \u00b7 \u03b1\u00a0=\u00a00,86',
+        why: "En dessous de 60\u00a0%, l\u2019hypervigilance somatique est pr\u00e9sente mais ne g\u00e9n\u00e8re pas encore le cycle rumination\u2013v\u00e9rification\u2013r\u00e9assurance auto-entretenu."
+    },
+    orange: {
+        instrument: 'TAS-20 \u2014 Toronto Alexithymia Scale',
+        ref: 'Bagby et al., 1994 \u00b7 \u03b1\u00a0=\u00a00,81',
+        why: "\u00c0 partir de 60\u00a0%, la coupure \u00e9motionnelle devient syst\u00e9matique et bloque l\u2019acc\u00e8s aux \u00e9motions comme information utile pour les autres protections."
+    },
+    jaune: {
+        instrument: 'IUS-12 \u2014 Intolerance of Uncertainty Scale',
+        ref: 'Carleton et al., 2007 \u00b7 \u03b1\u00a0=\u00a00,84',
+        why: "Le seuil est plus \u00e9lev\u00e9 (70\u00a0%) car valid\u00e9 sur populations cliniques TAG. En dessous de 70\u00a0%, l\u2019IU est pr\u00e9sente mais n\u2019amplifie pas encore syst\u00e9matiquement les autres patterns anxieux (40\u201350\u00a0% de co-activation au-del\u00e0 de ce seuil)."
+    },
+    vert: {
+        instrument: 'ECR-R \u2014 Experiences in Close Relationships-Revised',
+        ref: 'Fraley et al., 2000 \u00b7 \u03b1\u00a0=\u00a00,88',
+        why: "En dessous de 65\u00a0%, l\u2019anxi\u00e9t\u00e9 d\u2019attachement est pr\u00e9sente mais n\u2019entra\u00eene pas encore de comportements de r\u00e9assurance ou d\u2019hypervigilance relationnelle syst\u00e9matiques."
+    },
+    bleu: {
+        instrument: 'Locus of Control \u2014 Rotter + DC Scale',
+        ref: 'Rotter, 1966 \u00b7 \u03b1\u00a0=\u00a00,82',
+        why: "Le seuil est plus bas (55\u00a0%) car le besoin de contr\u00f4le s\u2019active pr\u00e9cocement et discr\u00e8tement. D\u00e8s 55\u00a0%, le LOC interne pathologique influence les comportements de direction et de d\u00e9l\u00e9gation."
+    },
+    indigo: {
+        instrument: 'FMPS \u2014 Frost Multidimensional Perfectionism Scale',
+        ref: 'Frost et al., 1990 \u00b7 \u03b1\u00a0=\u00a00,90',
+        why: "En dessous de 65\u00a0%, les standards \u00e9lev\u00e9s sont pr\u00e9sents mais ne g\u00e9n\u00e8rent pas encore procrastination, auto-critique ou syndrome de l\u2019imposteur syst\u00e9matiques."
+    },
+    violet: {
+        instrument: 'MSI + Faux-Self (Winnicott, 1960)',
+        ref: 'Winnicott, 1960 \u00b7 \u03b1\u00a0=\u00a00,79',
+        why: "En dessous de 60\u00a0%, l\u2019adaptation identitaire reste de la flexibilit\u00e9 normale. \u00c0 partir de 60\u00a0%, le faux self devient dominant\u00a0: les r\u00f4les adopt\u00e9s commencent \u00e0 remplacer l\u2019identit\u00e9 authentique."
+    }
+};
+
+
+
+// ── Comportements typiques du satellite selon le masque dominant ──────────
+// Ancrage : TAS-20 items (Bagby 1994) pour Orange · IUS-12 items (Carleton 2007) pour Jaune
+
+
+
+
+
+const MICRO_ACTIONS = {
+    rouge: "Cette semaine, notez chaque fois que vous cherchez un sympt\u00f4me sur Internet \u2014 sans rien faire d\u2019autre que l\u2019observer.",
+    orange: "Chaque jour, demandez-vous\u00a0: \u00ab\u00a0Qu\u2019est-ce que je ressens l\u00e0, maintenant\u00a0?\u00a0\u00bb Ne cherchez pas \u00e0 changer \u2014 juste \u00e0 nommer.",
+    jaune: "Quand l\u2019incertitude monte, dites-vous\u00a0: \u00ab\u00a0Je n\u2019ai pas besoin de savoir maintenant.\u00a0\u00bb Observez sans planifier.",
+    vert: "Avant de dire oui, faites une pause de 10 secondes. Demandez-vous\u00a0: \u00ab\u00a0Est-ce que je le veux vraiment\u00a0?\u00a0\u00bb",
+    bleu: "D\u00e9l\u00e9guez une petite t\u00e2che cette semaine \u2014 sans v\u00e9rifier ensuite. Notez ce que vous ressentez.",
+    indigo: "Quand vous terminez quelque chose, dites \u00e0 voix haute\u00a0: \u00ab\u00a0C\u2019est assez bien.\u00a0\u00bb Ne corrigez rien.",
+    violet: "Avant de r\u00e9pondre sur vos go\u00fbts, demandez-vous\u00a0: \u00ab\u00a0Qu\u2019est-ce que j\u2019aime, moi\u00a0?\u00a0\u00bb avant de chercher ce que l\u2019autre attend."
+};
+
+const NORMALIZATION = {
+    rouge: "Environ 15\u00a0\u00e0\u00a020\u00a0% des personnes pr\u00e9sentent ce m\u00eame pattern de vigilance corporelle. Vous n\u2019\u00eates pas seul\u00b7e.",
+    orange: "Environ 10\u00a0\u00e0\u00a015\u00a0% des personnes utilisent ce m\u00e9canisme de coupure \u00e9motionnelle. C\u2019est une protection fr\u00e9quente.",
+    jaune: "L\u2019intol\u00e9rance \u00e0 l\u2019incertitude touche pr\u00e8s de 20\u00a0% de la population. C\u2019est l\u2019un des m\u00e9canismes anxieux les plus document\u00e9s.",
+    vert: "La peur du rejet est l\u2019une des peurs les plus universelles. Elle touche environ 25\u00a0% des personnes.",
+    bleu: "Le besoin de contr\u00f4le excessif concerne environ 12\u00a0\u00e0\u00a018\u00a0% des personnes. C\u2019est une strat\u00e9gie de s\u00e9curit\u00e9 tr\u00e8s r\u00e9pandue.",
+    indigo: "Le perfectionnisme cliniquement significatif touche environ 15\u00a0% de la population. Vous \u00eates loin d\u2019\u00eatre seul\u00b7e.",
+    violet: "La recherche d\u2019identit\u00e9 est une question humaine fondamentale. Environ 10\u00a0% des personnes vivent cette adaptation de fa\u00e7on marqu\u00e9e."
+};
+
+
+// ── Score de Présence Authentique ─────────────────────────────────────────
+// 7 items SPA (positions 11,22,33,44,55,66,77) · SPA_MAX = 35
+function computeSPA(scores) {
+    const raw = scores.spa_raw !== undefined ? scores.spa_raw : null;
+    if (raw !== null) return Math.round((raw / 35) * 100);
+    // Fallback : estimation depuis l'absence de scores masques
+    const maskSum = ['rouge','orange','jaune','vert','bleu','indigo','violet']
+        .reduce(function(acc, m) { return acc + (scores[m] || 0); }, 0);
+    const avg = maskSum / 7;
+    return Math.max(0, Math.min(100, Math.round(100 - avg)));
+}
+
+// ══════════════════════════════════════════════════════════════════════
+// DÉTECTION PROFIL — v4 (Juin 2026) — seuils cliniques par masque
+// Réf : SHAI · TAS-20 · IUS-12 · ECR-R · LOC · FMPS · MSI · Ben-Porath 2003
+// ══════════════════════════════════════════════════════════════════════
+// DÉTECTION PROFIL — v5 (Modèle simplifié · Juin 2026)
+// Un masque dominant + satellites Orange/Jaune transdiagnostiques
+// Réf : Barlow 2004 · Carleton 2007 · Ben-Porath 2003 · MASK_THRESHOLDS
+// ══════════════════════════════════════════════════════════════════════
+function detectValidProfile(scores) {
+    // Tri complet des 7 masques
+    const sorted = MASKS.map(m => ({ key:m, pct:scores[m]||0 }))
+        .sort((a,b) => b.pct-a.pct || TIEBREAK.indexOf(a.key)-TIEBREAK.indexOf(b.key));
+
+    // Masques cliniquement actifs (seuil propre à chaque instrument)
+    const active = sorted.filter(m => m.pct >= MASK_THRESHOLDS[m.key]);
+    const S1 = sorted[0]?.pct || 0;
+
+    // Mécanismes transdiagnostiques — actifs quel que soit le profil
+    // Orange ≥ 60% : bloqueur émotionnel (Bagby 1994)
+    // Jaune  ≥ 70% : amplificateur systémique (Carleton 2007)
+    const tdOrange = (scores['orange']||0) >= MASK_THRESHOLDS['orange'];
+    const tdJaune  = (scores['jaune'] ||0) >= MASK_THRESHOLDS['jaune'];
+
+    // ── 0. ADAPTATIF ─────────────────────────────────────────────────────
+    if (S1 < 50 || active.length === 0) {
+        return { type: S1 < 30 ? 'adaptatif_eq' : 'adaptatif_vig',
+                 primary: sorted[0].key, masks: sorted.map(m=>m.key),
+                 satellites: [], tdOrange, tdJaune };
+    }
+
+    // ── 1. PAN-MASQUES — ≥5 actifs, spread ≤ 20% ─────────────────────────
+    if (active.length >= 5) {
+        const spread = active[0].pct - active[active.length-1].pct;
+        if (spread <= 20)
+            return { type:'pan', masks: active.map(m=>m.key),
+                     primary: active[0].key, satellites: [] };
+    }
+
+    // ── 2. MASQUE DOMINANT + SATELLITES ──────────────────────────────────
+    // Indice de dominance : ratio pct/seuil — plus révélateur que le score brut
+    // Ex : Bleu=76%/55% = 1.38 > Indigo=78%/65% = 1.20 → Bleu est plus "au-dessus de son seuil"
+    const withRatio = active.map(function(m) {
+        return { key:m.key, pct:m.pct, ratio: m.pct / MASK_THRESHOLDS[m.key] };
+    });
+    withRatio.sort(function(a,b) {
+        return (b.ratio-a.ratio) || (b.pct-a.pct) || (TIEBREAK.indexOf(a.key)-TIEBREAK.indexOf(b.key));
+    });
+    const dom = withRatio[0];
+
+    // Satellites : Orange (bloqueur) et/ou Jaune (amplificateur)
+    // Condition : actifs selon leur seuil propre ET ne sont pas le masque dominant
+    const satellites = ['orange','jaune'].filter(function(m) {
+        return m !== dom.key && (scores[m]||0) >= MASK_THRESHOLDS[m];
+    });
+
+    // Type selon intensité du dominant
+    const type = dom.pct >= 75 ? 'mono_dominant' : dom.pct >= 60 ? 'mono_modere' : 'residuel';
+    return { type, primary: dom.key, masks: [dom.key], satellites, tdOrange, tdJaune };
+}
+
+
+
+// ── Enrichissement profil : sévérité, flags, ordre clinique ───────────────
+// ── Enrichissement post-détection (léger) ─────────────────────────────────
+function enrichProfile(profile, scores) {
+    // Les satellites sont déjà dans profile.satellites (via detectValidProfile)
+    // On calcule juste les flags d'affichage
+    profile.orangeBlocker  = (profile.satellites||[]).includes('orange');
+    profile.jauneAmplifier = (profile.satellites||[]).includes('jaune');
+    return profile;
+}
+
+
+
+
+// ── Portrait compact d'un masque ──────────────────────────────────────────
+function buildMaskPortrait(m, scores, isMain) {
+    const meta = META[m], color = MASK_COLORS[m];
+    const steps = LOOPS[m] || [];
+    let h = '';
+    if (isMain) {
+        h += `<div class="hero-mask" style="background:${MASK_PASTELS[m]};border:1.5px solid ${color}30;">
+            <span style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:${color};font-weight:600;">Votre protection</span>
+            <div class="hero-mask-name">Masque ${MASK_LABELS[m]}</div>
+            
+            <p class="hero-tagline">${meta.peur ? 'Une peur centrale : ' + meta.peur + '.' : ''}</p>
+        </div>`;
+    }
+    // Ouverture
+    h += `<div class="block${isMain ? '' : ' compact-block'}">
+        <h2 style="color:${color};">Ce que le test a reconnu</h2>
+        <p style="font-size:15px;color:var(--text2);line-height:1.8;margin-bottom:16px;">
+            Ce n\u2019est pas vous. C\u2019est ce que la peur a construit pour vous prot\u00e9ger \u2014
+            non une identit\u00e9, une strat\u00e9gie. Construite \u00e0 une \u00e9poque o\u00f9 vous n\u2019aviez pas d\u2019autre choix.
+            Elle a rempli son r\u00f4le. Et vous pouvez maintenant en choisir un autre.
+        </p>
+        <div class="mirror-phrase" style="border-left-color:${color};">${MIRROR[m] || ''}</div>
+    </div>`;
+    // Pensées
+    if (VOICE[m]) {
+        h += `<div class="block${isMain ? '' : ' compact-block'}">
+            <h2 style="color:${color};">Les pens\u00e9es que cette peur g\u00e9n\u00e8re</h2>
+            <p style="font-size:13px;color:var(--text3);margin-bottom:12px;">Avant m\u00eame que vous ayez eu le temps de d\u00e9cider, cette peur vous souffle\u00a0:</p>
+            <div class="metaphor-box" style="border-left-color:${color};font-style:italic;font-size:16px;">${VOICE[m]}</div>
+        </div>`;
+    }
+    // Scène
+    if (SCENE[m]) {
+        h += `<div class="block${isMain ? '' : ' compact-block'}">
+            <h2 style="color:${color};">Cette peur en action</h2>
+            <p style="color:var(--text2);line-height:1.8;">${SCENE[m]}</p>
+            <p style="color:var(--text3);font-size:13px;margin-top:12px;">Vous n\u2019avez pas choisi cette r\u00e9action. La peur a d\u00e9cid\u00e9 avant vous.</p>
+        </div>`;
+    }
+    // Boucle
+    if (steps.length) {
+        h += `<div class="block${isMain ? '' : ' compact-block'}">
+            <h2 style="color:${color};">Pourquoi c\u2019est plus fort que vous</h2>
+            <p style="color:var(--text2);font-size:15px;line-height:1.85;margin-bottom:16px;">
+                Cette r\u00e9action n\u2019est pas un d\u00e9faut de caract\u00e8re. Votre esprit a r\u00e9solu un probl\u00e8me.
+                Le probl\u00e8me a chang\u00e9, mais la solution est rest\u00e9e. Voici comment elle fonctionne\u00a0:
+            </p>
+            <div class="mechanism">${steps.map((s,i) => `<div class="step"><div class="step-num">${i+1}</div><div class="step-text">${s}</div></div>`).join('')}</div>
+            <div class="metaphor-box">Imaginez un d\u00e9tecteur de fum\u00e9e r\u00e9gl\u00e9 trop sensiblement. Il prot\u00e8ge la maison. Mais il sonne aussi quand les toasts br\u00fblent. Votre masque fonctionne comme cela\u00a0: il ne sait pas encore que la guerre est finie.</div>
+        </div>`;
+    }
+    // Coût
+    if (COUT[m]) {
+        h += `<div class="block${isMain ? '' : ' compact-block'}">
+            <h2 style="color:${color};">Ce que ce masque a co\u00fbt\u00e9 \u00e0 votre vie</h2>
+            <p style="font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;line-height:1.7;color:var(--text2);">${COUT[m]}</p>
+        </div>`;
+    }
+    // Force
+    h += `<div class="block${isMain ? '' : ' compact-block'}" style="background:linear-gradient(135deg,#FCFAF7,#F3F1EC);">
+        <h2 style="color:${color};">Ce que vous portez derri\u00e8re ce masque</h2>
+        <p style="color:var(--text2);margin-bottom:12px;">La peur prend de la place. Et l\u00e0 o\u00f9 elle s\u2019est install\u00e9e, quelque chose n\u2019a pas pu s\u2019exprimer pleinement. Ce n\u2019est pas perdu\u00a0\u2014 c\u2019est l\u00e0, derri\u00e8re le masque.</p>
+        <div class="force-box"><p style="font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;">Derri\u00e8re ce masque, il y a une force r\u00e9elle\u00a0:</p><p style="font-weight:500;margin-top:8px;">${meta.force}</p></div>
+    </div>`;
+    return h;
+}
+
+
+
+// ── Section satellite transdiagnostique ───────────────────────────────────
+
+
+
+
+
+// ── Section Priorités de travail V.A.L.E.U.R© ─────────────────────────────
+
+
+// ── Portrait compact masque secondaire ────────────────────────────────────
+function buildMaskPortraitCompact(m, scores) {
+    const color = MASK_COLORS[m];
+    const pct   = scores[m] || 0;
+    const steps = LOOPS[m] || [];
+    let h = `<div class="block compact-block" style="border-left:3px solid ${color}50;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:${color};flex-shrink:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:${color};">Masque ${MASK_LABELS[m]}</span>
+            <span style="font-size:13px;color:var(--text3);">${pct}%</span>
+            <span style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:${color};background:${color}15;padding:2px 8px;border-radius:20px;margin-left:auto;">Protection active</span>
+        </div>
+        <div class="mirror-phrase" style="border-left-color:${color};font-size:15px;margin-bottom:12px;">${MIRROR[m]||''}</div>`;
+
+    if (VOICE[m]) h += `<div style="font-style:italic;color:var(--text2);font-size:14px;line-height:1.7;margin-bottom:12px;padding-left:12px;border-left:2px solid ${color}30;">${VOICE[m]}</div>`;
+
+    if (steps.length) {
+        h += `<div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:8px;">Pourquoi c\u2019est plus fort que vous</div>
+        <div class="mechanism" style="margin-bottom:12px;">${steps.map(function(s,i){
+            return '<div class="step"><div class="step-num">'+( i+1)+'</div><div class="step-text">'+s+'</div></div>';
+        }).join('')}</div>`;
+    }
+
+    h += `<div class="force-box" style="padding:10px 14px;margin-top:4px;">
+        <span style="font-size:13px;font-weight:500;">${META[m]?META[m].force:''}</span>
+    </div></div>`;
+    return h;
+}
+
+
+// ── Section transdiagnostique systémique (PAN et mono avec masques multiples) ──
+function buildTransdiagSection(profile, scores, contextMasks) {
+    // contextMasks : liste des masques "dominés" par les transdiag (pan masks ou actifs hors dominant)
+    const dom = profile.primary;
+    const sections = [];
+
+    // ─ ORANGE bloqueur ────────────────────────────────────────────────────
+    if (profile.tdOrange && !contextMasks.every(function(m){return m==='orange';})) {
+        const color = MASK_COLORS['orange'];
+        const pct   = scores['orange']||0;
+        const others = contextMasks.filter(function(m){return m!=='orange' && m!=='jaune';});
+
+        let rows = '';
+        others.forEach(function(m) {
+            const txt = ORANGE_ON_DOMINANT[m];
+            if (txt) rows += `<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;">
+                <span style="background:${MASK_COLORS[m]};color:#fff;padding:1px 8px;border-radius:20px;flex-shrink:0;font-size:11px;height:fit-content;margin-top:1px;">${MASK_LABELS[m]}</span>
+                <span style="color:var(--text2);line-height:1.6;">${txt}</span>
+            </div>`;
+        });
+
+        sections.push(`<div class="block" style="border-left:4px solid ${color}40;background:${color}06;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+                <div style="width:12px;height:12px;border-radius:50%;background:${color};flex-shrink:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:${color};">Masque Orange</span>
+                <span style="font-size:13px;color:var(--text3);">${pct}%</span>
+                <span style="margin-left:auto;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:${color};background:${color}15;padding:3px 10px;border-radius:20px;">Bloqueur \u00e9motionnel \u2014 priorit\u00e9 absolue</span>
+            </div>
+            <p style="color:var(--text2);font-size:14px;line-height:1.85;margin-bottom:14px;">
+                La coupure \u00e9motionnelle conditionne l\u2019acc\u00e8s \u00e0 chaque protection active.
+                Tant qu\u2019elle est active, les \u00e9motions n\u00e9cessaires pour traverser chaque masque
+                restent difficiles d\u2019acc\u00e8s \u2014 ni nomm\u00e9es, ni d\u00e9pos\u00e9es.
+                <em>(TAS-20, Bagby et al., 1994\u00a0: l\u2019alexithymie est un m\u00e9canisme mod\u00e9rateur
+                de tous les troubles anxieux.)</em>
+            </p>
+            ${rows ? `<div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;">Effet sur chaque protection active</div>${rows}` : ''}
+            <div style="margin-top:12px;padding:8px 12px;background:rgba(0,0,0,.03);border-radius:4px;font-size:11px;color:var(--text3);">
+                TAS-20 \u00b7 Bagby et al., 1994 \u00b7 \u03b1\u00a0=\u00a00,81 \u00b7 Seuil\u00a0: 60%
+            </div>
+        </div>`);
+    }
+
+    // ─ JAUNE amplificateur ────────────────────────────────────────────────
+    if (profile.tdJaune && !contextMasks.every(function(m){return m==='jaune';})) {
+        const color = MASK_COLORS['jaune'];
+        const pct   = scores['jaune']||0;
+        const others = contextMasks.filter(function(m){return m!=='jaune' && m!=='orange';});
+
+        let rows = '';
+        others.forEach(function(m) {
+            const txt = JAUNE_ON_DOMINANT[m];
+            if (txt) rows += `<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.05);font-size:13px;">
+                <span style="background:${MASK_COLORS[m]};color:#fff;padding:1px 8px;border-radius:20px;flex-shrink:0;font-size:11px;height:fit-content;margin-top:1px;">${MASK_LABELS[m]}</span>
+                <span style="color:var(--text2);line-height:1.6;">${txt}</span>
+            </div>`;
+        });
+
+        sections.push(`<div class="block" style="border-left:4px solid ${color}40;background:${color}06;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+                <div style="width:12px;height:12px;border-radius:50%;background:${color};flex-shrink:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+                <span style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:${color};">Masque Jaune</span>
+                <span style="font-size:13px;color:var(--text3);">${pct}%</span>
+                <span style="margin-left:auto;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:${color};background:${color}15;padding:3px 10px;border-radius:20px;">Amplificateur syst\u00e9mique</span>
+            </div>
+            <p style="color:var(--text2);font-size:14px;line-height:1.85;margin-bottom:14px;">
+                L\u2019intol\u00e9rance \u00e0 l\u2019incertitude intensifie chaque protection active simultan\u00e9ment.
+                Plus les protections actives sont nombreuses, plus son effet amplificateur est fort.
+                <em>(IUS-12, Carleton et al., 2007\u00a0: 40\u201350\u00a0% de la co-activation entre patterns anxieux.)</em>
+            </p>
+            ${rows ? `<div style="font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;">Effet sur chaque protection active</div>${rows}` : ''}
+            <div style="margin-top:12px;padding:8px 12px;background:rgba(0,0,0,.03);border-radius:4px;font-size:11px;color:var(--text3);">
+                IUS-12 \u00b7 Carleton et al., 2007 \u00b7 \u03b1\u00a0=\u00a00,84 \u00b7 Seuil\u00a0: 70%
+            </div>
+        </div>`);
+    }
+
+    return sections.join('');
+}
+
+
+// ── Priorités de travail — ordre de traversée ─────────────────────────────
+// ── Ordre de traversée ────────────────────────────────────────────────────
+function buildPrioritySection(profile, scores, secondary) {
+    const dom  = profile.primary;
+    const sec  = secondary || [];
+
+    // Construire l'ordre : Orange → Jaune → dominant → secondaires
+    const order = [];
+    if (profile.tdOrange) order.push({m:'orange', role:'Bloqueur \u00e9motionnel \u2014 priorit\u00e9 absolue'});
+    if (profile.tdJaune)  order.push({m:'jaune',  role:'Amplificateur \u2014 intensifie tout le reste'});
+    order.push({m:dom, role:'Protection dominante'});
+    sec.forEach(function(m){ order.push({m, role:'Protection active'}); });
+
+    if (order.length <= 1) return ''; // Rien à ordonner
+
+    let h = `<div class="block" style="border-top:2px solid rgba(201,168,76,.2);">
+        <h2>Ordre de travers\u00e9e V.A.L.E.U.R\u00a9</h2>
+        <p style="color:var(--text2);font-size:14px;line-height:1.8;margin-bottom:20px;">
+            V.A.L.E.U.R\u00a9 ne travaille pas contre vos protections \u2014 elle travaille avec elles,
+            dans l\u2019ordre o\u00f9 elles peuvent \u00eatre entendues.
+        </p>`;
+
+    order.forEach(function(item, idx) {
+        const color = MASK_COLORS[item.m];
+        const role  = MASK_ROLE[item.m];
+        h += `<div style="display:flex;gap:16px;align-items:flex-start;margin-bottom:${idx<order.length-1?'18px;padding-bottom:18px;border-bottom:1px solid rgba(0,0,0,.05)':'0'}">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;min-width:38px;">
+                <div style="width:36px;height:36px;border-radius:50%;background:${color};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;-webkit-print-color-adjust:exact;print-color-adjust:exact;">${idx+1}</div>
+                ${idx<order.length-1?'<div style="width:1px;height:20px;background:rgba(0,0,0,.1);"></div>':''}
+            </div>
+            <div style="flex:1;padding-top:6px;">
+                <div style="font-family:\'Cormorant Garamond\',serif;font-size:18px;font-weight:300;color:${color};margin-bottom:3px;">Masque ${MASK_LABELS[item.m]}</div>
+                <div style="font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:${color};opacity:.8;margin-bottom:6px;">${item.role}</div>
+                <p style="font-size:13px;color:var(--text2);margin:0;line-height:1.65;">${role ? role.psycho : ''}</p>
+            </div>
+        </div>`;
+    });
+
+    h += '</div>';
+    return h;
+}
+
+
+
+
+
+
+
+// ── Révélation quaternaire ─────────────────────────────────────────────────
+
+
+
+// ── Révélation triade ──────────────────────────────────────────────────────
+
+
+
+// ── Révélation dyade ──────────────────────────────────────────────────────
+
+
+// ── Reframe final ─────────────────────────────────────────────────────────
+function buildReframe(dom) {
+    const rf = REFRAME[dom];
+    const orText = ORIGINS[dom] || '';
+    let h = '';
+    if (orText) {
+        h += `<div class="block">
+            <h2>D\u2019o\u00f9 vient cette protection</h2>
+            <p style="color:var(--text2);">${orText}</p>
+            <p style="color:var(--text2);margin-top:12px;">Des millions de personnes vivent avec ce m\u00eame m\u00e9canisme. Vous n\u2019\u00eates pas cass\u00e9\u00b7e. Vous \u00eates simplement humain\u00b7e.</p>
+        </div>`;
+    }
+    if (rf) {
+        h += `<div class="block" style="background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.2);">
+            <h2>Ce que V.A.L.E.U.R\u00a9 r\u00e9v\u00e8le</h2>
+            <p style="font-size:13px;color:var(--text3);margin-bottom:8px;font-style:italic;">Ce que vous avez peut-\u00eatre toujours cru\u00a0:</p>
+            <p style="font-size:15px;color:var(--text2);margin-bottom:16px;font-style:italic;">${rf.q}</p>
+            <p style="font-size:13px;color:var(--text3);margin-bottom:8px;">Ce que le test met en lumi\u00e8re\u00a0:</p>
+            <p style="font-size:15px;color:var(--text);line-height:1.75;">${rf.r}</p>
+        </div>`;
+    }
+    return h;
+}
+
+// ── Scores + SPA ──────────────────────────────────────────────────────────
+function buildScoresSPA(scores, spa, dom) {
+    const spaText = spa >= 70
+        ? "Vous agissez majoritairement depuis vous-m\u00eame \u2014 non depuis la peur."
+        : spa >= 50 ? "Environ une r\u00e9ponse sur deux vient de votre propre centre. Cet espace peut grandir."
+        : spa >= 30 ? "La protection guide beaucoup de vos r\u00e9actions. Ce n\u2019est pas un verdict \u2014 c\u2019est une information pr\u00e9cise."
+        : "Vos protections sont tr\u00e8s actives. Ce score dit surtout qu\u2019elles ont beaucoup travaill\u00e9. \u00c7a m\u00e9rite du respect.";
+
+    let h = `<div class="block page-break-before">
+        <h2>L\u2019intensit\u00e9 de vos protections</h2>
+        <p style="color:var(--text2);margin-bottom:20px;font-size:14px;">
+            Chaque score est compar\u00e9 au seuil de significativit\u00e9 clinique de son instrument de r\u00e9f\u00e9rence.
+            Ces seuils varient selon les masques\u00a0\u2014 l\u2019encadr\u00e9 ci-dessous explique pourquoi.
+        </p>`;
+
+    // Barres avec marqueur de seuil
+    const sortedM = [...MASKS].sort((a,b) => (scores[b]||0)-(scores[a]||0));
+    sortedM.forEach(function(m) {
+        const pct     = scores[m]||0;
+        const color   = MASK_COLORS[m];
+        const thresh  = MASK_THRESHOLDS[m];
+        const isActive = pct >= thresh;
+        const lv = isActive
+            ? (pct>=85?'Dominant':pct>=70?'\u00c9lev\u00e9':'Significatif')
+            : (pct>=30?'Pr\u00e9sent':'Faible');
+
+        h += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+            <div style="width:10px;height:10px;border-radius:50%;background:${isActive?color:'#CCC'};flex-shrink:0;-webkit-print-color-adjust:exact;print-color-adjust:exact;"></div>
+            <span style="font-size:14px;font-weight:${isActive?'600':'400'};width:68px;color:${isActive?'var(--text)':'var(--text3)'};">${MASK_LABELS[m]}</span>
+            <div style="flex:1;position:relative;height:8px;background:rgba(0,0,0,.06);border-radius:4px;overflow:visible;">
+                <div style="position:absolute;top:0;left:0;width:${pct}%;height:100%;background:${isActive?color:'#CCC'};border-radius:4px;-webkit-print-color-adjust:exact;print-color-adjust:exact;transition:width .6s ease;"></div>
+                <div title="Seuil clinique : ${thresh}%"
+                     style="position:absolute;top:-3px;left:${thresh}%;width:2px;height:14px;background:rgba(0,0,0,.25);border-radius:1px;z-index:2;"></div>
+            </div>
+            <span style="font-size:14px;font-weight:600;width:36px;text-align:right;color:${isActive?color:'var(--text3)'};">${pct}%</span>
+            <span style="font-size:11px;width:80px;text-align:right;color:${isActive?color:'var(--text3)'};">${lv}</span>
+        </div>`;
+    });
+
+    // ── Encadré explicatif scientifique ────────────────────────────────────
+    h += `<details style="margin-top:24px;border:1px solid rgba(201,168,76,.25);border-radius:6px;overflow:hidden;">
+        <summary style="padding:14px 16px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gold);letter-spacing:.06em;background:rgba(201,168,76,.05);list-style:none;">
+            &#9656;\u00a0Pourquoi ces seuils sont-ils diff\u00e9rents selon les masques\u00a0?
+        </summary>
+        <div style="padding:16px 18px 18px;background:rgba(201,168,76,.03);">
+            <p style="font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:16px;">
+                Chaque masque est mesur\u00e9 par un instrument valid\u00e9 dans des populations cliniques sp\u00e9cifiques.
+                Le seuil de significativit\u00e9 correspond au niveau \u00e0 partir duquel la recherche documente
+                un impact mesurable sur le fonctionnement quotidien\u00a0\u2014 il n\u2019est pas arbitraire.
+                Un score en dessous du seuil n\u2019est pas \u00ab\u00a0normal\u00a0\u00bb\u00a0\u2014 il indique une tendance pr\u00e9sente
+                qui n\u2019atteint pas encore le niveau d\u2019activation syst\u00e9matique.
+            </p>
+            ${MASKS.map(function(m) {
+                const ex = MASK_THRESHOLD_EXPLAIN[m];
+                const pct = scores[m]||0;
+                const thresh = MASK_THRESHOLDS[m];
+                const active = pct >= thresh;
+                const color = MASK_COLORS[m];
+                return `<div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05);align-items:flex-start;">
+                    <div style="min-width:58px;text-align:right;">
+                        <span style="font-size:12px;font-weight:600;color:${active?color:'#AAA'};">${MASK_LABELS[m]}</span><br>
+                        <span style="font-size:10px;color:${active?color:'#CCC'};">${pct}%</span>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="font-size:11px;font-weight:600;color:var(--text3);margin-bottom:2px;">${ex.instrument} \u00b7 seuil\u00a0: ${thresh}% \u00b7 ${ex.ref}</div>
+                        <div style="font-size:12px;color:var(--text2);line-height:1.6;">${ex.why}</div>
+                    </div>
+                    <div style="min-width:80px;text-align:right;font-size:10px;font-weight:600;padding-top:2px;
+                        color:${active?color:'#BBB'};">
+                        ${active?'\u2714 Significatif':'\u25cb Sous le seuil'}
+                    </div>
+                </div>`;
+            }).join('')}
+        </div>
+    </details>`;
+
+    // ── SPA ────────────────────────────────────────────────────────────────
+    h += `<div style="margin-top:24px;border-top:1px solid var(--line);padding-top:18px;">
+        <p style="font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;">Pr\u00e9sence authentique</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text2);margin-bottom:16px;">La part de vos r\u00e9ponses qui vient de vous-m\u00eame \u2014 non de vos peurs ou de vos d\u00e9fenses.</p>
+        <div style="display:flex;align-items:center;gap:20px;">
+            <div class="spa-ring" style="width:70px;height:70px;flex-shrink:0;position:relative;">
+                <svg width="70" height="70" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#E5E0D8" stroke-width="6"/>
+                    <circle cx="50" cy="50" r="42" fill="none" stroke="#C9A84C" stroke-width="6"
+                        stroke-dasharray="264" stroke-dashoffset="${264*(1-spa/100)}"
+                        stroke-linecap="round" transform="rotate(-90 50 50)"
+                        style="-webkit-print-color-adjust:exact;print-color-adjust:exact;"/>
+                </svg>
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:var(--gold);">${spa}%</div>
+            </div>
+            <div>
+                <p style="font-weight:600;margin-bottom:4px;">Pr\u00e9sence authentique \u2014 ${spa}%</p>
+                <p style="color:var(--text3);font-size:14px;line-height:1.65;">${spaText}</p>
+            </div>
+        </div>
+    </div>`;
+
+
+    // ── Batterie charge / libert\u00e9 ───────────────────────────────────────────
+    const avgMask = Math.round(MASKS.reduce(function(s,m){return s+(scores[m]||0);}, 0) / 7);
+    h += `<div style="margin-top:24px;border-top:1px solid var(--line);padding-top:18px;">
+        <p style="font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:4px;">Votre niveau de charge des protections</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text2);margin-bottom:14px;">
+            Vos protections tournent actuellement \u00e0 <strong>${avgMask}%</strong> de leur capacit\u00e9.
+            Votre espace de libert\u00e9 est de <strong>${spa}%</strong>.
+            L\u2019objectif n\u2019est pas 100\u00a0% \u2014 c\u2019est de vous rendre la majorit\u00e9 du contr\u00f4le.
+        </p>
+        <div class="battery">
+            <span style="font-size:11px;color:var(--text3);min-width:70px;">Protections</span>
+            <div class="battery-bar"><div class="battery-fill" style="width:${avgMask}%;"></div></div>
+            <span style="font-size:11px;font-weight:600;color:var(--text);">${avgMask}%</span>
+        </div>
+        <div class="battery">
+            <span style="font-size:11px;color:var(--text3);min-width:70px;">Libert\u00e9</span>
+            <div class="battery-bar"><div class="battery-fill" style="width:${spa}%;background:#C9A84C;"></div></div>
+            <span style="font-size:11px;font-weight:600;color:var(--gold);">${spa}%</span>
+        </div>
+    </div>`;
+
+    // ── Phrase de normalisation ────────────────────────────────────────────
+    const norm = dom && NORMALIZATION[dom] ? NORMALIZATION[dom] : '';
+    if (norm) {
+        h += `<div class="reminder-box" style="margin-top:18px;font-size:13px;color:var(--text2);">${norm}</div>`;
+    }
+
+    // ── Micro-action ──────────────────────────────────────────────────────
+    const micro = dom && MICRO_ACTIONS[dom] ? MICRO_ACTIONS[dom] : '';
+    if (micro) {
+        h += `<div class="micro-action">
+            <div class="micro-action-title">D\u00e8s maintenant</div>
+            <p style="font-size:14px;color:var(--text2);line-height:1.6;">${micro}</p>
+            <p style="font-size:11px;color:var(--text3);margin-top:8px;">Ce petit geste ne changera pas tout. Mais il commence \u00e0 nommer ce qui \u00e9tait automatique.</p>
+        </div>`;
+    }
+
+    h += `<p style="margin-top:24px;text-align:center;" class="no-print">
+        <button class="btn-print" onclick="window.print()">Enregistrer en PDF</button>
+    </p></div>`;
+    return h;
+}
+
+// ── Section V.A.L.E.U.R ───────────────────────────────────────────────────
+function buildValeurSection() {
+    return `<div class="block">
+        <h2>Ce qui vous attend de l\u2019autre c\u00f4t\u00e9</h2>
+        <p style="color:var(--text2);line-height:1.8;margin-bottom:16px;">La m\u00e9thode V.A.L.E.U.R ne cherche pas \u00e0 supprimer ce que vous ressentez. Elle commence par le <em>voir</em> \u2014 sans jugement. Puis \u00e0 <em>accueillir</em> ce qui est l\u00e0, \u00e0 le <em>localiser</em> dans le corps plut\u00f4t que de le combattre dans la t\u00eate.</p>
+        <p style="color:var(--text2);line-height:1.8;margin-bottom:20px;">Ce qui suit \u2014 <em>explorer</em>, <em>unifier</em>, <em>renforcer</em> \u2014 est le chemin par lequel ce qui vous a prot\u00e9g\u00e9\u00b7e cesse d\u2019\u00eatre une prison pour devenir une ressource.</p>
+        <div class="force-box"><p style="font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;">Ce n\u2019est pas un protocole en six \u00e9tapes. C\u2019est un retour \u00e0 soi.</p></div>
+    </div>`;
+}
+
+
+// ── Page de couverture ─────────────────────────────────────────────────────
+// ── Page de couverture ─────────────────────────────────────────────────────
+function buildCoverPage(profile, scores, prenom) {
+    const dateStr = new Date().toLocaleDateString('fr-FR',
+        {weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    const dom  = profile.primary;
+    const sats = profile.satellites || [];
+
+    // Masques à afficher en couverture : dominant + satellites si présents
+    const coverMasks = [dom];
+    ['orange','jaune'].forEach(function(s){ if(sats.includes(s)) coverMasks.push(s); });
+
+    let masksHtml = '';
+    coverMasks.forEach(function(m) {
+        const color = MASK_COLORS[m], pct = scores[m]||0;
+        const fear  = META[m] && META[m].peur ? META[m].peur : '';
+        const isSat = m !== dom;
+        masksHtml += `<div class="cover-mask-card" style="${isSat?'border-style:dashed;opacity:.85;':''}">
+            <span class="cover-mask-dot" style="background:${color};-webkit-print-color-adjust:exact;print-color-adjust:exact;"></span>
+            <div class="cover-mask-name" style="color:${color};">Masque ${MASK_LABELS[m]}</div>
+            <div class="cover-mask-score" style="color:${color};">${pct}<span style="font-size:16px;font-weight:400;">%</span></div>
+            <div class="cover-mask-peur">${fear ? 'Peur\u00a0: '+fear : ''}</div>
+            ${isSat ? `<div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:${color};margin-top:4px;">${m==='orange'?'Bloqueur':'Amplificateur'}</div>` : ''}
+        </div>`;
+    });
+
+    return `<div class="cover-page">
+        <div class="cover-letterhead">
+            <div class="cover-brand">
+                <div class="cover-brand-main">M\u00e9thode V.A.L.E.U.R\u00a9 \u00b7 C\u00e9line Bourbon</div>
+                <div class="cover-brand-sub">Psychologue Humaniste \u00b7 Bordeaux</div>
+            </div>
+            <div class="cover-meta">
+                <div>${dateStr}</div>
+                <div style="margin-top:2px;font-weight:600;letter-spacing:.08em;">CONFIDENTIEL</div>
+            </div>
+        </div>
+        <div class="cover-prenom-block">
+            <div class="cover-label">Rapport personnel</div>
+            <div class="cover-prenom">${prenom || 'Votre portrait'}</div>
+        </div>
+        <div class="cover-divider"></div>
+        <p class="cover-tagline">
+            \u00ab\u00a0Le premier test qui ne dit pas qui vous \u00eates<br>mais ce qui vous emp\u00eache d\u2019\u00eatre vous.\u00a0\u00bb
+        </p>
+        <p class="cover-tagline-attr">\u2014\u00a0C\u00e9line Bourbon</p>
+        <div class="cover-divider"></div>
+        <div class="cover-concept">
+            <p>Ce test n\u2019a pas mesur\u00e9 votre personnalit\u00e9. Il a identifi\u00e9 la protection automatique qui a le plus d\u2019influence sur votre quotidien \u2014 construite \u00e0 une \u00e9poque o\u00f9 vous en aviez besoin. Elle est plus forte que la volont\u00e9 parce qu\u2019elle est inconsciente. Ce document la nomme pour la premi\u00e8re fois.</p>
+        </div>
+        <div class="cover-findings">
+            <div class="cover-findings-label">Ce qui a \u00e9t\u00e9 identifi\u00e9</div>
+            <div class="cover-masks">${masksHtml}</div>
+        </div>
+    </div>`;
+}
+
+
+
+// ── Portrait principal ─────────────────────────────────────────────────────
+// ── Portrait principal ─────────────────────────────────────────────────────
+// ── Portrait principal — architecture unifiée ─────────────────────────────
+function buildPortrait(scores, profile, prenom) {
+    const dom  = profile.primary;
+    const spa  = computeSPA(scores);
+    let   html = '';
+
+    html += buildCoverPage(profile, scores, prenom);
+
+    if (profile.type.startsWith('adaptatif')) {
+        const sub = profile.type === 'adaptatif_eq' ? 'eq' : 'vig';
+        html += `<div class="block"><h2>Profil adaptatif</h2>
+            <p style="color:var(--text2);">${ADAPTATIF[sub].desc}</p></div>`;
+    }
+
+    else if (profile.type === 'pan') {
+        html += `<div class="block intro-dyade" style="border-top:3px solid rgba(201,168,76,.3);">
+            <p style="color:var(--text2);font-size:15px;line-height:1.8;">${PAN_MASQUE.desc}</p>
+        </div>`;
+        profile.masks.forEach(function(m) {
+            html += `<div class="mask-section" style="border-left:4px solid ${MASK_COLORS[m]}20;">
+                <div class="mask-section-label" style="background:${MASK_COLORS[m]};color:#fff;">Masque ${MASK_LABELS[m]}</div>`;
+            html += buildMaskPortrait(m, scores, false);
+            html += '</div>';
+        });
+        html += buildTransdiagSection(profile, scores, profile.masks);
+        html += buildReframe(dom);
+    }
+
+    else {
+        // Masques secondaires actifs (hors dominant, hors Orange/Jaune)
+        const secondary = MASKS.filter(function(m) {
+            return m !== dom
+                && m !== 'orange' && m !== 'jaune'
+                && (scores[m]||0) >= MASK_THRESHOLDS[m];
+        });
+
+        // ── Introduction normalis\u00e9e ─────────────────────────────────────
+        const total = 1 + secondary.length
+            + (profile.tdJaune ? 1 : 0)
+            + (profile.tdOrange ? 1 : 0);
+        html += `<div class="block intro-dyade" style="border-top:3px solid rgba(201,168,76,.2);">
+            <p style="color:var(--text2);font-size:15px;line-height:1.8;">
+                Votre test a mis en \u00e9vidence ${total > 1
+                    ? 'plusieurs protections automatiques'
+                    : 'une protection automatique dominante'}.
+                Ces protections ne sont pas des d\u00e9fauts, mais des solutions mises en place
+                par votre esprit \u00e0 une \u00e9poque o\u00f9 vous en aviez besoin.
+                Voici comment elles se manifestent.
+            </p>
+        </div>`;
+
+        // ── [1] Portrait complet du masque dominant ───────────────────────
+        html += buildMaskPortrait(dom, scores, true);
+
+        // ── [2] M\u00e9canismes transdiagnostiques — juste apr\u00e8s le dominant ──
+        const contextMasks = [dom].concat(secondary);
+        html += buildTransdiagSection(profile, scores, contextMasks);
+
+        // ── [3] Portraits compacts des masques secondaires actifs ─────────
+        secondary.forEach(function(m) {
+            html += buildMaskPortraitCompact(m, scores);
+        });
+
+        // ── [4] Feuille de route ──────────────────────────────────────────
+        if (profile.tdOrange || profile.tdJaune || secondary.length > 0) {
+            html += buildPrioritySection(profile, scores, secondary);
+        }
+
+        // ── [5] D\u2019o\u00f9 vient cette protection ──────────────────────────────
+        html += buildReframe(dom);
+    }
+
+    html += buildScoresSPA(scores, spa, dom);
+    html += buildValeurSection();
+
+    html += `<div class="rapport-footer print-only">
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text3);border-top:1px solid var(--line);padding-top:10px;">
+            <span>V.A.L.E.U.R\u00a9 \u00b7 Rapport Personnel \u00b7 Confidentiel</span>
+            <span>C\u00e9line Bourbon \u00b7 Psychologue \u00b7 \u00a9 2026</span>
+        </div>
+    </div>`;
+
+    return html;
+}
+
+
+
+
+
+
+
+
+function getLevelLabel(pct) {
+    if (pct >= 85) return 'Dominant';
+    if (pct >= 70) return '\u00c9lev\u00e9';
+    if (pct >= 50) return 'Significatif';
+    if (pct >= 30) return 'Mod\u00e9r\u00e9';
+    return 'Non significatif';
+}
+
+// ══════════════════════════════════
+// CARTE PARTAGE (PNG IONOS)
+// ══════════════════════════════════
+
+// ══════════════════════════════════
+// CARTES VIRALES — Canvas Generator
+// ══════════════════════════════════
+
+// ══════════════════════════════════
+async function saveNeon() {
+    if (!SC.pid) return;
+    try {
+        await fetch(VERCEL_API + '/save-portrait', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pid: SC.pid, email: SC.email, prenom: SC.prenom, scores: SC, profil: PROF.type, masque: PROF.primary, spa: SC.spa })
+        });
+    } catch(e) {}
+}
+
+// ══════════════════════════════════
+// EMAIL
+// ══════════════════════════════════
+
+// ══════════════════════════════════
+// STATE & INIT
+// ══════════════════════════════════
+let SC, PROF;
+
+async function init() {
+    SC = readScores();
+    if (!SC) {
+        document.getElementById('portrait-content').innerHTML =
+            '<div class="block" style="text-align:center;padding:40px;">' +
+            '<h2>Aucune donnée trouvée</h2>' +
+            '<p style="color:var(--text2);margin:16px 0;">Votre portrait ne peut pas être généré sans données valides.</p>' +
+            '<a href="questionnaire_index.html" class="btn-print">Refaire le questionnaire</a></div>';
+        return;
+    }
+    PROF = detectValidProfile(SC);
+    PROF = enrichProfile(PROF, SC);     // sévérité · flags · ordre clinique
+    SC._dom = PROF.primary;
+    SC._profType = PROF.type;
+
+    const prenom = SC.prenom || '';
+    document.getElementById('portrait-content').innerHTML = buildPortrait(SC, PROF, prenom);
+
+    // Carte partage (sauf adaptatif)
+
+
+    // Neon (silencieux, hors mode admin)
+    if (!window._adminMode) saveNeon();
+}
+
+const _ap = new URLSearchParams(location.search);
+if (_ap.get('admin') === 'VALEUR-ADMIN-2025') window._adminMode = true;
+window.addEventListener('DOMContentLoaded', init);
+
+</script>
+</body>
+</html>F-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>V.A.L.E.U.R© — Votre Portrait</title>
