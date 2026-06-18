@@ -1565,9 +1565,7 @@ function buildCoverPage(profile, scores, prenom) {
 }
 
 
-// ── Les ajouts pour les sections annexes (manifeste, carte, appuis, etc.) restent inchangés ci-dessous ──
-// ... (le code non modifié continue)
-
+// ── Les ajouts pour les sections annexes (manifeste, carte, appuis, etc.)
 // ── [NOUVEAU] Manifeste d'ouverture (inchangé) ──
 function buildManifeste() {
     const grid = MASKS.map(function(m){
@@ -1604,15 +1602,480 @@ function buildManifeste() {
     </div>`;
 }
 
-// Fonctions utilitaires non modifiées, puis le code principal buildPortrait...
-// (Tout le reste du script jusqu'à la fin est identique, je l'omets ici pour ne pas dépasser la limite,
-//  mais dans la réponse finale il faut inclure l'intégralité du fichier avec les changements.)
-
-// ═══════════════ INITIALISATION ═══════════════
-async function init() {
-    // ... (inchangé)
+// ── [NOUVEAU] Carte en un coup d'œil ──
+function shortFear(m){ return (META[m].peur||'').replace(/^la\s+/i,''); }
+function elanRetenuPhrase(pct){
+    if (pct >= 80) return `À ${pct}\u00a0%, c'est une part majeure de cet élan qui est aujourd'hui retenue\u00a0: la tension est presque permanente, et la bascule vers la défense se fait au moindre déclencheur. Autant d'énergie immobilisée — autant à rendre, peu à peu, disponible.`;
+    if (pct >= 65) return `À ${pct}\u00a0%, une bonne part de cet élan est retenue\u00a0: la tension est forte, mais connaît des répits. Il reste des moments où l'élan circule librement — ce sont eux qu'on élargit.`;
+    return `À ${pct}\u00a0%, l'élan n'est retenu qu'en partie\u00a0: la tension se déclenche surtout dans certains contextes et s'apaise ailleurs. La marge de liberté est déjà réelle.`;
 }
+
+function buildCarte(scores) {
+    const ranked = MASKS.slice().sort(function(a,b){ return (scores[b]||0)-(scores[a]||0); });
+    const rows = ranked.map(function(m){
+        const pct = scores[m]||0, c = MASK_COLORS[m];
+        const zone = pct >= MASK_THRESHOLDS[m] ? 'retenu' : (pct < LOW_CUTOFF ? 'intact' : 'partiel');
+        const pill = zone==='retenu'
+            ? `<span class="zone-pill" style="color:${c};background:${c}15;">élan retenu</span>`
+            : zone==='intact'
+                ? `<span class="zone-pill" style="color:#2D7A4F;background:rgba(45,122,79,.1);">élan intact</span>`
+                : `<span class="zone-pill" style="color:var(--text3);background:rgba(0,0,0,.04);">partiel</span>`;
+        const elan = sensibleResource(m), fear = shortFear(m);
+        const state = zone==='retenu' ? `aujourd'hui <strong>retenu</strong> par la ${fear}`
+            : zone==='intact' ? `<strong>resté libre</strong>`
+            : `<strong>partiellement retenu</strong> par la ${fear}`;
+        return `<div class="carte-row">
+            <span class="carte-dot" style="background:${c};"></span>
+            <div class="carte-main">
+                <div class="carte-head">
+                    <span class="carte-name" style="color:${c};">Masque ${MASK_LABELS[m]}</span>
+                    <span class="carte-bar"><span class="carte-fill" style="width:${pct}%;background:${c};"></span></span>
+                    <span class="carte-pct">${pct}\u00a0%</span>
+                    ${pill}
+                </div>
+                <div class="carte-elan"><span style="color:${c};font-weight:600;">Élan\u00a0:</span> ${elan} \u2014 ${state}.</div>
+            </div>
+        </div>`;
+    }).join('');
+    return `<div class="block" style="border-top:3px solid rgba(201,168,76,.25);">
+        <div class="eyebrow" style="color:var(--gold);">Votre carte en un coup d'œil</div>
+        <h2>Vos 7 protections, d'un seul regard</h2>
+        <p style="color:var(--text2);font-size:14.5px;line-height:1.85;margin-bottom:6px;">
+            Chaque masque est un <strong>élan</strong> — une part vivante de vous. Quand une peur le retient, l'élan
+            se rigidifie en tension\u00a0: c'est un <strong>élan retenu</strong> (une protection active). Quand rien ne le retient,
+            il reste libre\u00a0: c'est un <strong>élan intact</strong> — un appui. Pour chaque masque ci-dessous, vous lisez
+            l'élan concret dont il s'agit, et s'il est aujourd'hui retenu ou libre.
+        </p>
+        <div class="carte">${rows}</div>
+    </div>`;
+}
+
+// ── [NOUVEAU] Vos appuis ──
+const LOW_READING = {
+    rouge: { flag:true,
+        libre:"un rapport apaisé au corps — la sensation ne déclenche pas d'alarme",
+        angle:"une mise à distance de la peur de la mort : non son absence, mais son maintien hors du champ de conscience" },
+    orange: { flag:false,
+        libre:"un accès direct aux émotions — elles circulent sans être tenues à distance",
+        angle:"une coupure si ancienne que l'émotion n'est plus même perçue comme un enjeu — fluidité et anesthésie profonde se ressemblent en surface" },
+    jaune: { flag:false,
+        libre:"une tolérance réelle à l'imprévu — l'incertitude n'a pas besoin d'être verrouillée",
+        angle:"un évitement de tout ce qui demande d'anticiper — on ne s'inquiète pas de ce qu'on a cessé de regarder" },
+    vert: { flag:false,
+        libre:"une sécurité relationnelle — le lien ne se paie pas d'effacement",
+        angle:"un retrait relationnel ancien : ne plus craindre le rejet parce qu'on n'attend plus rien du lien" },
+    bleu: { flag:true,
+        libre:"une aisance à lâcher prise — déléguer, ne pas tout tenir, sans angoisse",
+        angle:"une résignation devant l'autorité installée tôt (peut-être un parent autoritaire) : on ne cherche plus à maîtriser parce qu'on a appris qu'on ne le pouvait pas" },
+    indigo: { flag:false,
+        libre:"une liberté face au regard — l'exigence ne se retourne pas en tribunal",
+        angle:"un renoncement à l'exigence : se protéger du jugement en ne s'exposant plus, en visant bas" },
+    violet: { flag:false,
+        libre:"un ancrage identitaire — on sait, globalement, qui l'on est",
+        angle:"une identité si fixée qu'elle interdit le doute — une certitude défensive plutôt qu'un vrai repos identitaire" }
+};
+const LOW_CUTOFF = 25;
+const ELAN_ENABLE = {
+    rouge: "habiter votre corps et l'instant présent sans qu'une alarme vienne tout recouvrir",
+    orange: "ressentir et nommer ce qui vous traverse — une matière première précieuse pour le travail",
+    jaune: "avancer dans l'incertitude sans avoir besoin de tout verrouiller d'avance",
+    vert: "nouer des liens sans vous y perdre, et rester vous-même dans la relation",
+    bleu: "déléguer, lâcher, faire confiance sans que cela vous coûte une angoisse",
+    indigo: "agir, créer, vous tromper sans que votre valeur soit remise en jeu",
+    violet: "rester relié·e à qui vous êtes, même quand vous vous adaptez aux autres"
+};
+
+function buildAppuis(scores) {
+    let low = MASKS.filter(function(m){ return (scores[m]||0) < 30; })
+        .sort(function(a,b){ return (scores[a]||0)-(scores[b]||0); });
+    if (!low.length) { // garantir au moins l'appui le plus net
+        low = MASKS.slice().sort(function(a,b){ return (scores[a]||0)-(scores[b]||0); }).slice(0,1);
+    }
+    const OPEN = ["Ici, l'élan est resté libre", "Là, rien ne vient brider l'élan", "Sur ce terrain, l'élan circule sans entrave", "Ce versant de vous est demeuré ouvert"];
+    const CLOSE = ["C'est un appui réel pour le travail à venir.", "Un sol stable sur lequel s'appuyer.", "Une ressource déjà disponible, à mobiliser plutôt qu'à conquérir.", "Une force acquise, sur laquelle compter."];
+    const cards = low.map(function(m, i){
+        const lr = LOW_READING[m], c = MASK_COLORS[m], pct = scores[m]||0;
+        const suspect = lr.flag && pct < LOW_CUTOFF;
+        const enable = ELAN_ENABLE[m];
+        return `<div class="appui-card" style="border-left:3px solid #2D7A4F;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:17px;color:${c};margin-bottom:4px;">
+                Masque ${MASK_LABELS[m]} \u00b7 ${pct}\u00a0%
+            </div>
+            <p style="font-size:14px;line-height:1.75;color:var(--text2);margin:0;">
+                ${OPEN[i % OPEN.length]}\u00a0: ${lr.libre}.${enable ? ` Cela vous rend sans doute plus libre de ${enable}.` : ''} ${CLOSE[i % CLOSE.length]}
+            </p>
+            ${suspect ? `<p class="note">Note\u00a0: un score aussi bas mérite d'être nommé — il peut, plus rarement, signaler ${lr.angle}. À explorer.</p>` : ''}
+        </div>`;
+    }).join('');
+    return `<div class="block" style="background:rgba(45,122,79,.04);border:1px solid rgba(45,122,79,.18);">
+        <div class="eyebrow" style="color:#2D7A4F;">Vos appuis</div>
+        <h2>Là où vous êtes déjà libre</h2>
+        <p style="color:var(--text2);font-size:14.5px;line-height:1.85;margin-bottom:14px;">
+            Un masque bas est un espace de liberté disponible\u00a0: c'est un élan qui est resté vivant.
+            Ces domaines bougent librement en vous. On construit le changement sur ce qui tient déjà\u00a0:
+            voici vos points d'appui.
+        </p>
+        ${cards}
+    </div>`;
+}
+
+// ── [NOUVEAU] L'expérience d'ensemble ──
+function buildExperienceEnsemble(profile, scores) {
+    const active = MASKS.filter(function(m){ return (scores[m]||0) >= MASK_THRESHOLDS[m]; });
+    const n = active.length;
+    if (n < 2) return '';
+    const word = n===2?'deux':n===3?'trois':n===4?'quatre':n===5?'cinq':(''+n);
+    return `<div class="block" style="border-left:4px solid var(--gold);">
+        <h2>L'expérience d'ensemble</h2>
+        <p style="color:var(--text2);font-size:15px;line-height:1.85;margin:0;">
+            Avec <strong>${word} protections actives</strong> en même temps, vous pouvez avoir l'impression que chaque
+            domaine de votre vie réclame sa propre vigilance — comme si vous teniez plusieurs fronts à la fois.
+            Cette fatigue n'est pas un défaut de volonté\u00a0: c'est le coût normal d'un système qui n'a pas encore reçu
+            le signal que la menace est passée. Le travail ne consiste pas à en faire plus, mais à rendre, une à une,
+            ces vigilances inutiles.
+        </p>
+    </div>`;
+}
+
+// ── [NOUVEAU] Réseau dirigé ──
+function buildSystem(profile, scores) {
+    const dom = profile.primary, o = profile.tdOrange, j = profile.tdJaune;
+    const others = MASKS.filter(function(m){ return m!==dom && m!=='orange' && m!=='jaune' && (scores[m]||0)>=MASK_THRESHOLDS[m]; })
+        .sort(function(a,b){ return (scores[b]||0)-(scores[a]||0); });
+    const chain = [];
+    if (o) chain.push({m:'orange', verb:'bloque la régulation'});
+    if (j) chain.push({m:'jaune',  verb:'amplifie par l\'incertitude'});
+    chain.push({m:dom, verb: chain.length?'reçoit la pression':'se déclenche'});
+    others.slice(0,2).forEach(function(m){ chain.push({m, verb:'prend le relais'}); });
+    if (chain.length < 2) return '';
+
+    const partner = others[0] || (j?'jaune':o?'orange':null);
+    const nom = partner ? (DYAD_NAMES[dom+'_'+partner] || DYAD_NAMES[partner+'_'+dom]) : null;
+    const multi = (o?1:0)+(j?1:0)+others.length >= 1;
+
+    const visual = chain.map(function(s,i){
+        const c = MASK_COLORS[s.m];
+        return `${i>0?`<span class="sys-arrow">\u2192</span>`:''}<span class="sys-node"><span class="sys-dot" style="background:${c};"></span><span style="color:${c};font-size:13px;font-weight:600;">${MASK_LABELS[s.m]}</span></span>`;
+    }).join('');
+
+    return `<div class="block" style="border:1px solid rgba(201,168,76,.2);background:rgba(201,168,76,.04);">
+        <div class="eyebrow" style="color:var(--gold);">Un système, pas une liste</div>
+        <h2>Comment vos protections se répondent</h2>
+        <div class="sys-chain">${visual}</div>
+        <p style="color:var(--text2);font-size:14.5px;line-height:1.85;margin:14px 0 0;">
+            Vos protections ne s'additionnent pas\u00a0: elles s'<strong>appellent l'une l'autre</strong>.
+            ${o?`Votre <strong style="color:${MASK_COLORS.orange};">Orange</strong> tient l'émotion à distance, ce qui prive de signal\u00a0; `:''}${j?`votre <strong style="color:${MASK_COLORS.jaune};">Jaune</strong> transforme l'incertitude en alerte permanente, qui vient nourrir `:'tout vient converger sur '}votre <strong style="color:${MASK_COLORS[dom]};">${MASK_LABELS[dom]}</strong>${others.length?`, que votre <strong style="color:${MASK_COLORS[others[0]]};">${MASK_LABELS[others[0]]}</strong> tente alors de gérer`:''}.
+            ${nom?` Cette configuration porte un nom documenté\u00a0: <em>${nom}</em>.`:''}
+        </p>
+        ${multi?`<p style="font-size:14px;color:var(--text2);line-height:1.8;margin:12px 0 0;border-top:1px solid var(--line);padding-top:12px;">
+            C'est pourquoi vous pouvez vous sentir bien plus tendu\u00b7e ou épuisé\u00b7e que chacun de vos scores, pris isolément,
+            ne le laisserait croire\u00a0: ce que vous ressentez n'est pas exagéré — c'est l'effet d'ensemble, quand plusieurs
+            protections tournent en même temps.
+        </p>`:''}
+    </div>`;
+}
+
+const ITEM_BANK = [
+  {id:"R01", mask:"rouge", inv:false, text:"Je surveille les sensations et les signaux de mon corps pour repérer un éventuel problème."},
+  {id:"R02", mask:"rouge", inv:false, text:"Une sensation physique inhabituelle évoque vite pour moi une maladie sérieuse."},
+  {id:"R03", mask:"rouge", inv:false, text:"J'estime mes risques de tomber gravement malade plus élevés que ceux des autres."},
+  {id:"R04", mask:"rouge", inv:false, text:"Je cherche des informations médicales (internet, proches, médecins) pour vérifier mes symptômes."},
+  {id:"R05", mask:"rouge", inv:false, text:"Même rassuré(e) par un médecin, le doute sur ma santé revient rapidement."},
+  {id:"R06", mask:"rouge", inv:false, text:"Une sensation corporelle peut occuper mon esprit au point de m'empêcher de me concentrer."},
+  {id:"R07", mask:"rouge", inv:false, text:"Tomber gravement malade serait une catastrophe à laquelle je ne pourrais pas faire face."},
+  {id:"R08", mask:"rouge", inv:false, text:"Je consacre du temps à m'examiner ou à m'assurer que tout va bien physiquement."},
+  {id:"R09", mask:"rouge", inv:true, text:"La plupart du temps, je me sens en bonne santé et tranquille à propos de mon corps."},
+  {id:"R10", mask:"rouge", inv:true, text:"Une gêne passagère ne m'alarme pas : je l'attribue facilement à quelque chose de banal."},
+  {id:"R11", mask:"rouge", inv:false, text:"Mon entourage trouve que je me préoccupe trop de ma santé."},
+  {id:"R12", mask:"rouge", inv:true, text:"Les pensées liées à la maladie ne s'imposent pas à moi ; je les écarte sans effort."},
+  {id:"O01", mask:"orange", inv:false, text:"Il m'est difficile de mettre des mots précis sur ce que je ressens."},
+  {id:"O02", mask:"orange", inv:false, text:"Je ressens des tensions dans mon corps sans savoir quelle émotion les accompagne."},
+  {id:"O03", mask:"orange", inv:false, text:"J'ai du mal à expliquer mes émotions aux autres, même à des proches."},
+  {id:"O04", mask:"orange", inv:false, text:"Je préfère parler de faits concrets plutôt que de ce qui me touche personnellement."},
+  {id:"O05", mask:"orange", inv:false, text:"Quand je repense à un moment, peu d'images ou de scènes me reviennent en tête."},
+  {id:"O06", mask:"orange", inv:false, text:"Quand une discussion devient émotionnelle, je m'en détache ou je change de sujet."},
+  {id:"O07", mask:"orange", inv:false, text:"Lors d'événements forts, agréables ou pénibles, je reste souvent sans grande réaction intérieure."},
+  {id:"O08", mask:"orange", inv:false, text:"Quand je suis tendu(e), j'ai du mal à dire si c'est de la tristesse, de l'agacement ou autre chose."},
+  {id:"O09", mask:"orange", inv:true, text:"Je repère assez bien mes émotions au moment où elles surgissent."},
+  {id:"O10", mask:"orange", inv:true, text:"Quand quelque chose me touche, je prends le temps d'en comprendre le sens."},
+  {id:"O11", mask:"orange", inv:true, text:"Je sais décrire mes états intérieurs à une personne de confiance."},
+  {id:"O12", mask:"orange", inv:false, text:"Je préfère m'occuper (travail, écrans, activités) plutôt que de rester avec mes ressentis."},
+  {id:"J01", mask:"jaune", inv:false, text:"J'ai besoin de savoir à l'avance comment les choses vont se passer."},
+  {id:"J02", mask:"jaune", inv:false, text:"Les situations floues ou ambiguës me mettent mal à l'aise."},
+  {id:"J03", mask:"jaune", inv:false, text:"Je planifie en détail pour ne rien laisser au hasard."},
+  {id:"J04", mask:"jaune", inv:false, text:"Je passe en revue tous les scénarios possibles et leurs conséquences."},
+  {id:"J05", mask:"jaune", inv:false, text:"Quand l'issue est incertaine, j'ai du mal à passer à l'action."},
+  {id:"J06", mask:"jaune", inv:false, text:"L'incertitude me désorganise et m'empêche de fonctionner comme d'habitude."},
+  {id:"J07", mask:"jaune", inv:false, text:"J'évite les situations dont je ne peux pas prévoir le déroulement."},
+  {id:"J08", mask:"jaune", inv:false, text:"Un imprévu, même mineur, peut me sembler tout remettre en cause."},
+  {id:"J09", mask:"jaune", inv:false, text:"L'incertitude sur des événements à venir perturbe mon sommeil ou ma détente."},
+  {id:"J10", mask:"jaune", inv:true, text:"Je me sens à l'aise face à une situation imprévue."},
+  {id:"J11", mask:"jaune", inv:true, text:"Je peux décider et avancer même sans avoir toutes les informations."},
+  {id:"J12", mask:"jaune", inv:true, text:"L'inconnu m'apparaît comme une part normale et acceptable de la vie."},
+  {id:"V01", mask:"vert", inv:false, text:"Je m'inquiète à l'idée que mes proches pourraient s'éloigner de moi."},
+  {id:"V02", mask:"vert", inv:false, text:"J'ai besoin d'être rassuré(e) régulièrement sur l'affection qu'on me porte."},
+  {id:"V03", mask:"vert", inv:false, text:"J'ai souvent l'impression de tenir aux autres plus qu'ils ne tiennent à moi."},
+  {id:"V04", mask:"vert", inv:false, text:"Je suis très attentif(ve) au moindre changement d'humeur de mes proches."},
+  {id:"V05", mask:"vert", inv:false, text:"Quand un proche tarde à me répondre, j'imagine vite qu'il se détache."},
+  {id:"V06", mask:"vert", inv:false, text:"J'ai besoin de savoir où en est la relation pour me sentir tranquille."},
+  {id:"V07", mask:"vert", inv:false, text:"Je préfère me taire plutôt que de risquer un désaccord qui abîmerait le lien."},
+  {id:"V08", mask:"vert", inv:false, text:"Je fais beaucoup d'efforts pour qu'on m'apprécie."},
+  {id:"V09", mask:"vert", inv:false, text:"Je fais tout ce que je peux pour éviter de me retrouver seul(e)."},
+  {id:"V10", mask:"vert", inv:false, text:"Je reste parfois dans des relations insatisfaisantes plutôt que d'affronter la solitude."},
+  {id:"V11", mask:"vert", inv:true, text:"Je me sens en sécurité dans mes liens, même quand je suis loin de mes proches."},
+  {id:"V12", mask:"vert", inv:true, text:"Je peux exprimer un désaccord sans craindre pour la relation."},
+  {id:"B01", mask:"bleu", inv:false, text:"Je reprends vite la main quand les choses sont faites autrement que je le voudrais."},
+  {id:"B02", mask:"bleu", inv:false, text:"J'ai du mal à déléguer : je préfère garder le contrôle."},
+  {id:"B03", mask:"bleu", inv:false, text:"J'ai tendance à diriger et à organiser pour les autres, même sans qu'on me le demande."},
+  {id:"B04", mask:"bleu", inv:false, text:"Je supporte mal qu'on me dicte ma conduite ou mes choix."},
+  {id:"B05", mask:"bleu", inv:false, text:"J'ai besoin de sentir que les choses dépendent de moi pour être à l'aise."},
+  {id:"B06", mask:"bleu", inv:false, text:"Quand un événement m'échappe, je ressens une forte irritation."},
+  {id:"B07", mask:"bleu", inv:false, text:"Me sentir impuissant(e) face à une situation m'est presque insupportable."},
+  {id:"B08", mask:"bleu", inv:false, text:"Quand je perds le contrôle, je me sens complètement démuni(e)."},
+  {id:"B09", mask:"bleu", inv:false, text:"Dépendre entièrement de quelqu'un d'autre me met très mal à l'aise."},
+  {id:"B10", mask:"bleu", inv:false, text:"Ne rien pouvoir faire face à un problème important me donne envie de tout abandonner."},
+  {id:"B11", mask:"bleu", inv:true, text:"Je peux laisser les autres gérer sans éprouver le besoin de vérifier."},
+  {id:"B12", mask:"bleu", inv:true, text:"Je vis sereinement les situations où je n'ai pas la main."},
+  {id:"I01", mask:"indigo", inv:false, text:"J'ai l'impression de paraître plus compétent(e) que je ne le suis réellement."},
+  {id:"I02", mask:"indigo", inv:false, text:"Même quand je réussis, je doute de ma réelle compétence."},
+  {id:"I03", mask:"indigo", inv:false, text:"Je me fixe des exigences si élevées qu'elles sont rarement atteintes."},
+  {id:"I04", mask:"indigo", inv:false, text:"Une petite erreur me fait douter de ma valeur tout entière."},
+  {id:"I05", mask:"indigo", inv:false, text:"Quand je réussis, je l'attribue à la chance ou à la facilité de la tâche."},
+  {id:"I06", mask:"indigo", inv:false, text:"J'ai besoin de l'approbation des autres pour me sentir légitime."},
+  {id:"I07", mask:"indigo", inv:false, text:"Mon discours intérieur envers moi-même est très critique."},
+  {id:"I08", mask:"indigo", inv:false, text:"Je reviens sur un travail déjà terminé, jamais tout à fait sûr(e) de l'avoir bien fait."},
+  {id:"I09", mask:"indigo", inv:false, text:"Je me compare aux autres et je me trouve souvent en dessous."},
+  {id:"I10", mask:"indigo", inv:false, text:"Je préfère ne pas me lancer plutôt que de risquer un échec visible."},
+  {id:"I11", mask:"indigo", inv:true, text:"Je me sens compétent(e) et légitime dans mes domaines."},
+  {id:"I12", mask:"indigo", inv:true, text:"Je peux être satisfait(e) d'un travail même quand il n'est pas parfait."},
+  {id:"Vi01", mask:"violet", inv:false, text:"L'image que j'ai de moi peut changer fortement d'un jour à l'autre."},
+  {id:"Vi02", mask:"violet", inv:false, text:"J'ai du mal à dire ce qui compte vraiment pour moi."},
+  {id:"Vi03", mask:"violet", inv:false, text:"Mon comportement en public ne reflète pas ce que je suis à l'intérieur."},
+  {id:"Vi04", mask:"violet", inv:false, text:"Seul(e), sans le regard des autres, j'ai du mal à savoir qui je suis."},
+  {id:"Vi05", mask:"violet", inv:false, text:"Je calcule intérieurement ce que je dois dire ou faire, même quand rien ne m'y oblige."},
+  {id:"Vi06", mask:"violet", inv:false, text:"J'ai mis de côté mes goûts ou aspirations pour correspondre aux attentes des autres."},
+  {id:"Vi07", mask:"violet", inv:false, text:"Je change tellement selon les contextes que je ne sais plus lequel est le vrai moi."},
+  {id:"Vi08", mask:"violet", inv:false, text:"J'ai l'impression de vivre en mode automatique, un peu à côté de moi-même."},
+  {id:"Vi09", mask:"violet", inv:false, text:"Il m'arrive de regretter une version de moi plus spontanée et authentique."},
+  {id:"Vi10", mask:"violet", inv:true, text:"Je me connais bien, mes forces comme mes limites."},
+  {id:"Vi11", mask:"violet", inv:true, text:"Je reste fidèle à mes valeurs, même quand c'est difficile."},
+  {id:"Vi12", mask:"violet", inv:true, text:"Je me montre tel(le) que je suis plutôt que de jouer un rôle."},
+];
+
+const ITEM_INSIGHT = {"R01": "Surveillance corporelle continue : le corps est scruté comme s'il fallait y détecter une menace.", "R02": "Mésinterprétation catastrophique : une sensation banale est lue comme le signe d'une maladie sérieuse.", "R03": "Surestimation du risque : le danger de santé est jugé plus probable qu'il ne l'est.", "R04": "Rituel de vérification : la quête d'information apaise un instant puis relance le doute.", "R05": "La réassurance ne tient pas : c'est le doute lui-même qui est intolérable.", "R06": "Capture attentionnelle : la sensation monopolise l'esprit — hypervigilance somatique.", "R07": "Anticipation catastrophée des conséquences : la maladie est vécue d'avance comme insurmontable.", "R08": "Comportements de contrôle de la santé : du temps consacré à se rassurer sur son corps.", "R09": "Au quotidien, la tranquillité à propos du corps est rare — préoccupation somatique de fond.", "R10": "Toute gêne tend à être interprétée comme un signe, plutôt qu'attribuée à du banal.", "R11": "L'écart avec la perception de l'entourage souligne le caractère excessif du souci de santé.", "R12": "Les pensées de maladie s'imposent et résistent à la mise à distance.", "O01": "Difficulté à identifier les émotions : le ressenti existe, les mots manquent.", "O02": "Confusion entre sensations physiques et émotions : l'affect n'est pas distingué de sa trace corporelle.", "O03": "Difficulté à décrire ses émotions à autrui : l'intérieur reste indicible.", "O04": "Pensée tournée vers l'extérieur : le concret est préféré à l'intime.", "O05": "Vie imaginaire appauvrie (pensée opératoire), souvent liée à la coupure émotionnelle.", "O06": "Évitement émotionnel : la mise à distance s'active dès que l'affect monte.", "O07": "Émoussement affectif : peu de réaction intérieure là où l'émotion devrait surgir.", "O08": "Difficulté à différencier les émotions les unes des autres.", "O09": "Repérer ses émotions à mesure qu'elles surgissent reste difficile.", "O10": "Le ressenti est peu exploré : on passe à autre chose plutôt que d'en chercher le sens.", "O11": "Décrire ses états intérieurs, même en confiance, reste ardu.", "O12": "Stratégie d'occupation : se remplir pour ne pas rester avec ses ressentis.", "J01": "Besoin d'anticiper : savoir d'avance pour se sentir en sécurité.", "J02": "L'ambiguïté elle-même est le déclencheur : ne pas savoir est inconfortable.", "J03": "Planification excessive : ne rien laisser au hasard pour contenir l'incertitude.", "J04": "Rumination anticipatoire : dérouler les scénarios sans pouvoir s'arrêter.", "J05": "Anxiété inhibitrice : l'incertitude bloque le passage à l'action.", "J06": "L'incertitude désorganise le fonctionnement quotidien.", "J07": "Évitement de l'imprévisible : la vie se rétrécit pour éviter l'inconnu.", "J08": "Rigidité : un imprévu mineur est vécu comme une rupture, non comme une variation.", "J09": "Retentissement somatique : l'incertitude perturbe sommeil et détente.", "J10": "L'imprévu met mal à l'aise : l'incertitude est difficile à tolérer.", "J11": "Sans informations complètes, l'action se bloque.", "J12": "L'inconnu est vécu comme une menace plutôt que comme une part normale de la vie.", "V01": "Anticipation de l'abandon : l'éloignement des proches est redouté.", "V02": "Besoin de réassurance affective : la sécurité du lien ne tient jamais acquise.", "V03": "Asymétrie ressentie du lien : tenir aux autres plus qu'on ne se sent tenu.", "V04": "Hypervigilance relationnelle : le radar sur l'humeur des proches ne s'éteint pas.", "V05": "Hyperactivation de l'attachement : un délai anodin est lu comme un éloignement.", "V06": "Besoin de certitude relationnelle : la sécurité du lien doit être vérifiée.", "V07": "Effacement de soi : l'auto-affirmation sacrifiée pour préserver le lien.", "V08": "Hyper-adaptation : l'affection est vécue comme à mériter par l'effort.", "V09": "Évitement de la solitude, vécue comme une menace.", "V10": "La crainte de perdre l'emporte sur le besoin d'être bien.", "V11": "La sécurité intérieure dans les liens fait défaut, surtout à distance.", "V12": "Exprimer un désaccord paraît risqué pour la relation.", "B01": "Reprise en main : lâcher est vécu comme un risque, non comme une délégation.", "B02": "Délégation difficile : la confiance cède devant le besoin de maîtrise.", "B03": "Prise de direction réflexe : organiser pour les autres rassure.", "B04": "Réactance : qu'on dicte sa conduite est vécu comme une menace.", "B05": "Le bien-être est conditionné au contrôle : la maîtrise sert de régulateur.", "B06": "La perte de maîtrise déclenche une charge émotionnelle forte.", "B07": "Intolérance à l'impuissance : ne rien pouvoir faire est insupportable.", "B08": "La perte de contrôle est vécue comme un effondrement, sans zone intermédiaire.", "B09": "Intolérance à la dépendance : l'autonomie comme condition de sécurité.", "B10": "Face à l'impuissance, repli ou abandon plutôt que tolérance.", "B11": "Laisser les autres gérer sans vérifier est presque impossible — besoin de contrôle.", "B12": "Les situations où l'on n'a pas la main restent difficiles à vivre sereinement.", "I01": "Sentiment d'imposture : l'impression de paraître plus compétent qu'on ne se sent.", "I02": "Le doute sur sa compétence résiste à la réussite.", "I03": "Standards personnels excessifs : la barre placée si haut qu'elle reste hors d'atteinte.", "I04": "Surgénéralisation : une faille locale devient un verdict global sur la valeur de soi.", "I05": "Attribution externe des succès : si ça marche, c'est la chance ou la facilité.", "I06": "La légitimité doit être reconfirmée du dehors, sans cesse.", "I07": "Le juge intérieur impitoyable : l'exigence retournée contre soi.", "I08": "Doutes sur ses actions : rien n'est jamais assez sûr d'avoir été bien fait.", "I09": "Comparaison ascendante : se ranger sous les autres.", "I10": "Évitement défensif : ne pas se lancer protège du jugement d'un échec.", "I11": "Le sentiment de compétence et de légitimité fait défaut.", "I12": "La satisfaction dépend de la perfection : rien d'imparfait n'est acceptable.", "Vi01": "Instabilité du sentiment de soi : l'image de soi varie fortement d'un jour à l'autre.", "Vi02": "Repères de valeurs flous : difficulté à nommer ce qui compte.", "Vi03": "Faux self : écart entre le moi montré et le moi vécu.", "Vi04": "Le sentiment de soi vacille hors du regard d'autrui.", "Vi05": "Perte de spontanéité : l'adaptation est devenue calcul permanent.", "Vi06": "Le désir propre s'est effacé sous l'adaptation aux attentes externes.", "Vi07": "Fragmentation : les rôles multiples brouillent le sentiment d'un soi unifié.", "Vi08": "Déréalisation douce : vivre en retrait, à côté de soi.", "Vi09": "Conscience douloureuse du faux self : nostalgie d'un soi plus authentique.", "Vi10": "Connaissance de soi peu assurée — marqueur de diffusion identitaire.", "Vi11": "Tenir ses valeurs sous pression est difficile — instabilité du noyau identitaire.", "Vi12": "Tendance à jouer un rôle plutôt qu'à se montrer tel qu'on est — faux self."};
+
+function decodeItems(str) {
+    if (!str || str.length < ITEM_BANK.length) return null;
+    const out = {};
+    for (let i = 0; i < ITEM_BANK.length; i++) {
+        const d = str.charCodeAt(i) - 48;
+        out[ITEM_BANK[i].id] = (d >= 0 && d <= 5) ? d : null;
+    }
+    return out;
+}
+function buildExtremeResponses(scores) {
+    const resp = decodeItems(scores.items);
+    if (!resp) return '';
+    const byMask = {};
+    ITEM_BANK.forEach(function(it) {
+        const r = resp[it.id];
+        if (r === null || r === undefined) return;
+        const extreme = (!it.inv && r === 4) || (it.inv && r === 0);
+        if (extreme) (byMask[it.mask] = byMask[it.mask] || []).push(it);
+    });
+    const masks = MASKS.filter(function(m){ return byMask[m] && byMask[m].length; })
+        .sort(function(a, b){ return (scores[b]||0) - (scores[a]||0); });
+    if (!masks.length) return '';
+    const total = masks.reduce(function(a, m){ return a + byMask[m].length; }, 0);
+    const groups = masks.map(function(m) {
+        const c = MASK_COLORS[m];
+        const lines = byMask[m].map(function(it) {
+            const ins = ITEM_INSIGHT[it.id] || '';
+            return '<div class="xr-line" style="border-left:3px solid ' + c + ';">'
+                + (it.inv ? '<span class="xr-flip">Réponse « pas du tout » à un énoncé inversé\u00a0: </span>' : '')
+                + '<div style="color:var(--text);margin-bottom:' + (ins ? '7px' : '0') + ';">«\u00a0' + it.text + '\u00a0»</div>'
+                + (ins ? '<div class="xr-read"><span style="font-weight:600;color:' + c + ';">Une piste à explorer\u00a0\u00b7 </span>' + ins + '</div>' : '')
+                + '</div>';
+        }).join('');
+        return '<div style="margin-bottom:16px;">'
+            + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">'
+            + '<span style="width:10px;height:10px;border-radius:50%;background:' + c + ';-webkit-print-color-adjust:exact;print-color-adjust:exact;"></span>'
+            + '<span style="font-family:\'Cormorant Garamond\',serif;font-size:17px;color:' + c + ';">Masque ' + MASK_LABELS[m] + '</span>'
+            + '<span style="font-size:11px;color:var(--text3);">' + byMask[m].length + ' réponse' + (byMask[m].length>1?'s':'') + ' au maximum</span>'
+            + '</div>' + lines + '</div>';
+    }).join('');
+    return '<div class="block" style="border-top:2px solid rgba(201,168,76,.25);">'
+        + '<div class="eyebrow" style="color:var(--gold);">Vos réponses, telles quelles</div>'
+        + '<h2>Ce que vous avez affirmé sans nuance</h2>'
+        + '<p style="color:var(--text2);font-size:14.5px;line-height:1.85;margin-bottom:16px;">'
+        + 'Au-delà des scores, voici les <strong>' + total + '</strong> énoncé' + (total>1?'s':'') + ' auxquels vous avez répondu à l\u2019extrême '
+        + '\u2014 «\u00a0tout à fait\u00a0», ou «\u00a0pas du tout\u00a0» pour les formulations inversées. Ce sont vos patterns défensifs les '
+        + 'plus directs, dans vos propres mots. Les lectures qui les accompagnent sont des <strong>pistes à explorer</strong>, '
+        + 'non des verdicts\u00a0: à confirmer ou à nuancer avec votre praticien.</p>'
+        + groups + '</div>';
+}
+
+function buildPortrait(scores, profile, prenom) {
+    const dom  = profile.primary;
+    const spa  = computeSPA(scores);
+    let   html = '';
+
+    html += buildCoverPage(profile, scores, prenom);
+
+    // ── Manifeste : pourquoi ce test + concept de masque + grille des 7 ──
+    html += buildManifeste();
+
+    // ── Carte d'orientation (tôt) : les 7 masques + appuis (élans intacts) ──
+    html += buildCarte(scores);
+    html += buildAppuis(scores);
+
+    if (profile.type.startsWith('adaptatif')) {
+        html += `<div class="block"><h2>${ADAPTATIF.nom}</h2>
+            <p style="color:var(--text2);line-height:1.8;margin-bottom:16px;">${ADAPTATIF.desc}</p>
+            <div class="force-box"><p style="font-weight:500;">${ADAPTATIF.direction}</p></div></div>`;
+        html += buildValeurSection();
+    }
+
+    else if (profile.type === 'pan') {
+        html += `<div class="block intro-dyade" style="border-top:3px solid rgba(201,168,76,.3);">
+            <p style="color:var(--text2);font-size:15px;line-height:1.8;">${PAN_MASQUE.desc}</p>
+        </div>`;
+        profile.masks.forEach(function(m) {
+            html += `<div class="mask-section" style="border-left:4px solid ${MASK_COLORS[m]}20;">
+                <div class="mask-section-label" style="background:${MASK_COLORS[m]};color:#fff;">Masque ${MASK_LABELS[m]}</div>`;
+            html += buildMaskPortrait(m, scores, false);
+            html += '</div>';
+        });
+        html += buildReframe(dom);
+        html += buildSystem(profile, scores);
+        html += buildTransdiagSection(profile, scores, profile.masks);
+        html += buildExtremeResponses(scores);
+        html += buildValeurSection();
+    }
+
+    else {
+        // Masques secondaires actifs (hors dominant, hors Orange/Jaune)
+        const secondary = MASKS.filter(function(m) {
+            return m !== dom
+                && m !== 'orange' && m !== 'jaune'
+                && (scores[m]||0) >= MASK_THRESHOLDS[m];
+        });
+
+        // ── Votre protection principale (+ origine intégrée) ──────────────
+        html += buildMaskPortrait(dom, scores, true);
+        html += buildReframe(dom);
+
+        // ── Comment elles se répondent : réseau + bloqueurs transdiag ─────
+        const contextMasks = [dom].concat(secondary);
+        html += buildSystem(profile, scores);
+        html += buildTransdiagSection(profile, scores, contextMasks);
+
+        // ── Portraits compacts des masques secondaires actifs ─────────────
+        secondary.forEach(function(m) {
+            html += buildMaskPortraitCompact(m, scores);
+        });
+
+        // ── Vos réponses les plus tranchées (sur-mesure) ──────────────────
+        html += buildExtremeResponses(scores);
+
+        // ── L'expérience d'ensemble (pont vers le vécu, avant le plan) ─────
+        html += buildExperienceEnsemble(profile, scores);
+
+        // ── Par où commencer : plan + rituel + méthode (clôture mobilisante) ─
+        html += buildPrioritySection(profile, scores, secondary);
+        html += buildNamingRitual(dom);
+        html += buildSPACompass(spa);
+        html += buildValeurSection();
+    }
+
+    // ── Annexe clinicien (repliable) : scores chiffrés, SPA, charge, seuils ──
+    html += `<details class="annexe-clinicien no-print">
+        <summary>Annexe clinicien \u00b7 scores détaillés, SPA, charge globale &amp; repères psychométriques</summary>
+        <div class="annexe-body">${buildScoresSPA(scores, spa, dom)}</div>
+    </details>
+    <div class="print-only">${buildScoresSPA(scores, spa, dom)}</div>`;
+
+    html += `<div class="rapport-footer print-only">
+        <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text3);border-top:1px solid var(--line);padding-top:10px;">
+            <span>V.A.L.E.U.R\u00a9 \u00b7 Rapport Personnel \u00b7 Confidentiel</span>
+            <span>C\u00e9line Bourbon \u00b7 Psychologue \u00b7 \u00a9 2026</span>
+        </div>
+    </div>`;
+
+    return html;
+}
+
+
+
+
+
+
+
+
+function getLevelLabel(pct) {
+    if (pct >= 85) return 'Dominant';
+    if (pct >= 70) return '\u00c9lev\u00e9';
+    if (pct >= 50) return 'Significatif';
+    if (pct >= 30) return 'Mod\u00e9r\u00e9';
+    return 'Non significatif';
+}
+
+// ══════════════════════════════════
+// CARTE PARTAGE (PNG IONOS)
+// ══════════════════════════════════
+
+// ══════════════════════════════════
+// CARTES VIRALES — Canvas Generator
+// ══════════════════════════════════
+
+async function saveNeon() {
+    if (!SC.pid) return;
+    try {
+        await fetch(VERCEL_API + '/save-portrait', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ pid: SC.pid, email: SC.email, prenom: SC.prenom, scores: SC, profil: PROF.type, masque: PROF.primary, spa: SC.spa })
+        });
+    } catch(e) {}
+}
+
+// ══════════════════════════════════
+// EMAIL
+// ══════════════════════════════════
+
+// ══════════════════════════════════
+// STATE & INIT
+// ══════════════════════════════════
+let SC, PROF;
+
+async function init() {
+    SC = readScores();
+    if (!SC) {
+        document.getElementById('portrait-content').innerHTML =
+            '<div class="block" style="text-align:center;padding:40px;">' +
+            '<h2>Aucune donnée trouvée</h2>' +
+            '<p style="color:var(--text2);margin:16px 0;">Votre portrait ne peut pas être généré sans données valides.</p>' +
+            '<a href="questionnaire_index.html" class="btn-print">Refaire le questionnaire</a></div>';
+        return;
+    }
+    PROF = detectValidProfile(SC);
+    PROF = enrichProfile(PROF, SC);     // sévérité · flags · ordre clinique
+    SC._dom = PROF.primary;
+    SC._profType = PROF.type;
+
+    const prenom = SC.prenom || '';
+    document.getElementById('portrait-content').innerHTML = buildPortrait(SC, PROF, prenom);
+
+    // Carte partage (sauf adaptatif)
+
+
+    // Neon (silencieux, hors mode admin)
+    if (!window._adminMode) saveNeon();
+}
+
+const _ap = new URLSearchParams(location.search);
+if (_ap.get('admin') === 'VALEUR-ADMIN-2025') window._adminMode = true;
 window.addEventListener('DOMContentLoaded', init);
+
 </script>
 </body>
 </html>
