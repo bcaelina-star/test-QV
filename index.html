@@ -133,8 +133,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
 .item-num{flex-shrink:0;font-size:.66rem;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;padding:2px 8px;background:rgba(168,135,58,.08);border:1px solid rgba(168,135,58,.18);border-radius:3px;margin-top:2px;font-weight:600}
 .item-num.spa{background:rgba(168,135,58,.15);border-color:rgba(168,135,58,.35);color:var(--gold2)}
 .item-text{font-family:'Cormorant Garamond',serif;font-size:clamp(.98rem,2.1vw,1.14rem);line-height:1.7;color:var(--ink);font-weight:400}
-/* Likert 0-5 */
-.likert{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+/* Likert 0-4 (5 points) */
+.likert{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
 .likert-option{display:flex;flex-direction:column;align-items:center;gap:5px}
 .likert-option input[type="radio"]{display:none}
 .likert-btn{width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(26,24,20,.18);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:.95rem;font-weight:400;color:var(--ink4);transition:all .18s;user-select:none}
@@ -253,7 +253,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
     <h2>Votre cartographie des masques</h2>
     <p>Ce questionnaire d'auto-évaluation identifie vos stratégies de protection psychologique selon la Méthode V.A.L.E.U.R©. Ces mécanismes sont universels — ils ont tous été utiles à un moment. L'objectif est de mieux les comprendre pour retrouver liberté et authenticité.</p>
     <div class="info-grid">
-      <div class="info-chip"><div class="value">85</div><div class="label">Affirmations</div></div>
+      <div class="info-chip"><div class="value">96</div><div class="label">Affirmations</div></div>
       <div class="info-chip"><div class="value">7</div><div class="label">Masques</div></div>
       <div class="info-chip"><div class="value">~15-20 min</div><div class="label">Durée estimée</div></div>
     </div>
@@ -268,7 +268,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
        · Répondez selon votre fonctionnement réel ces <strong>6 derniers mois</strong><br>
        · Privilégiez votre premier ressenti plutôt que l'analyse intellectuelle<br>
        · Suspendez tout jugement — toutes les réponses sont valides</p>
-    <p style="margin-top:12px"><strong>Échelle :</strong> 0 = Pas du tout vrai pour moi → 5 = Décrit parfaitement mon expérience</p>
+    <p style="margin-top:12px"><strong>Échelle :</strong> 0 = Pas du tout vrai pour moi · 4 = Décrit parfaitement mon expérience</p>
   </div>
   <button class="btn btn-primary btn-full" onclick="goToScreen('screen-demo')">Commencer le questionnaire →</button>
 </div>
@@ -341,8 +341,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;height:62px;display:flex;ali
  
 /* ================================================================
    © Céline Bourbon — Méthode V.A.L.E.U.R©
-   Questionnaire V3.0 — 85 items (78 masques + 7 SPA)
-   Échelle 0-5 · IONOS : questionnaire.psyh.fr
+   Questionnaire V5.0 — 96 items (84 masques + 12 SPA) — échelle 0-4
+   Échelle 0-4 · IONOS : questionnaire.psyh.fr
    ================================================================ */
  
 // ── CONFIG (inchangé IONOS) ──────────────────────────────────────
@@ -352,143 +352,146 @@ const CONFIG = {
   EMAILJS_TEMPLATE_ID: 'template_inscription',
   ADMIN_EMAIL:         'celine.bourbon@gmail.com',
   RESULTS_URL:         'resultats.html',   // chemin relatif IONOS
-  ITEMS_PP:            17,                  // 17 items/page → 5 pages
+  ITEMS_PP:            20,                  // 20 items/page → 5 pages
 };
 const VERCEL_API = 'https://valeur-backend-api.vercel.app/api';
 
-// ── MASK_MAX (échelle 0-5) ────────────────────────────────────────
-// MAX = nb_items × 5
+// ── MASK_MAX (échelle 0-4) ────────────────────────────────────────
+// MAX = nb_items × 4
 const MASK_MAX = {
-  rouge:  50,   // 10 items × 5
-  orange: 65,   // 13 items × 5
-  jaune:  45,   //  9 items × 5
-  vert:   55,   // 11 items × 5
-  bleu:   55,   // 11 items × 5
-  indigo: 60,   // 12 items × 5
-  violet: 60,   // 12 items × 5
+  rouge:  48,   // 12 items × 4
+  orange: 48,   // 12 items × 4
+  jaune:  48,   // 12 items × 4
+  vert:   48,   // 12 items × 4
+  bleu:   48,   // 12 items × 4
+  indigo: 48,   // 12 items × 4
+  violet: 48,   // 12 items × 4
 };
-const SPA_MAX = 35;  // 7 items × 5
+const SPA_MAX = 48;  // 12 items × 4
 
-// ── ALL_ITEMS — 78 items masques ─────────────────────────────────
-// inv:true → score corrigé = 5 − raw
+// ── ALL_ITEMS — 84 items masques ─────────────────────────────────
+// inv:true → score corrigé = 4 − raw
 // inv:false → score corrigé = raw
 const MASQUE_ITEMS = [
-  // 🔴 ROUGE — 10 items
-  {id:'R1', mask:'rouge', inv:false, text:"Je surveille régulièrement les signaux de mon corps (rythme cardiaque, sensations) pour détecter un problème de santé."},
-  {id:'R2', mask:'rouge', inv:false, text:"Quand j'observe une sensation physique inhabituelle, ma pensée va rapidement vers une maladie grave."},
-  {id:'R3', mask:'rouge', inv:false, text:"Je consulte régulièrement des sources médicales (internet, médecins) pour vérifier mes symptômes."},
-  {id:'R4', mask:'rouge', inv:false, text:"La peur de développer une maladie grave (cancer, AVC…) occupe une place significative dans mes pensées."},
-  {id:'R5', mask:'rouge', inv:false, text:"J'ai déjà consulté plusieurs médecins pour les mêmes symptômes, en espérant trouver une rassurance définitive."},
-  {id:'R6', mask:'rouge', inv:false, text:"Je cherche fréquemment à être rassuré(e) par des professionnels de santé sur mon état physique."},
-  {id:'R7', mask:'rouge', inv:false, text:"Si j'apprenais avoir une maladie grave, je pense que je ne pourrais pas y faire face émotionnellement."},
-  {id:'R8', mask:'rouge', inv:false, text:"Je crois qu'une maladie grave ruinerait ma vie de façon permanente et irrémédiable."},
-  {id:'R9', mask:'rouge', inv:false, text:"Je pense souvent que je pourrais avoir une maladie grave sans le savoir encore."},
-  {id:'R10',mask:'rouge', inv:false, text:"Lorsqu'un proche est malade, je crains rapidement de contracter la même chose."},
-  // 🟠 ORANGE — 13 items
-  {id:'O1', mask:'orange', inv:false, text:"Lorsqu'une conversation devient émotionnelle, je change naturellement de sujet ou je m'en détache."},
-  {id:'O2', mask:'orange', inv:false, text:"Je me sens plus à l'aise en m'occupant (travail, écrans) qu'en restant seul(e) avec mes émotions."},
-  {id:'O3', mask:'orange', inv:false, text:"Il m'est difficile de décrire précisément ce que je ressens émotionnellement dans une situation donnée."},
-  {id:'O4', mask:'orange', inv:false, text:"Même lors d'événements difficiles (deuil, échec important), je reste souvent sans larmes ni affect visible."},
-  {id:'O5', mask:'orange', inv:false, text:"Je préfère analyser les situations de façon logique plutôt que d'explorer les émotions qu'elles génèrent."},
-  {id:'O6', mask:'orange', inv:false, text:"Je me sens davantage observateur(trice) de ma propre vie que réellement acteur(trice) de mes émotions."},
-  {id:'O7', mask:'orange', inv:false, text:"Je préfère me concentrer sur les événements extérieurs et les faits concrets plutôt que sur mes états intérieurs."},
-  {id:'O8', mask:'orange', inv:false, text:"Face à un problème, je préfère l'analyser rationnellement plutôt que d'explorer les émotions qu'il génère."},
-  {id:'O9', mask:'orange', inv:false, text:"Je me demande souvent pourquoi je réagis émotionnellement comme je le fais."},
-  {id:'O10',mask:'orange', inv:false, text:"Mes émotions me déconcertent souvent."},
-  {id:'O11',mask:'orange', inv:false, text:"Il m'est difficile de révéler mes sentiments intimes, même à des personnes proches."},
-  {id:'O12',mask:'orange', inv:false, text:"Mon imagination et ma vie intérieure me semblent limitées."},
-  {id:'O13',mask:'orange', inv:false, text:"Je préfère laisser les choses se passer naturellement plutôt que de les comprendre émotionnellement."},
-  // 🟡 JAUNE — 9 items (J6 inversé)
-  {id:'J1', mask:'jaune', inv:false, text:"Je me sens très mal à l'aise lorsqu'un événement prévu est modifié sans préavis."},
-  {id:'J2', mask:'jaune', inv:false, text:"Avant de décider, je dois réunir le maximum d'informations, même pour des décisions mineures."},
-  {id:'J3', mask:'jaune', inv:false, text:"Je prépare systématiquement des plans alternatifs (B, C, D) en cas d'imprévu."},
-  {id:'J4', mask:'jaune', inv:false, text:"Les situations ambiguës ou sans issue claire me sont particulièrement difficiles à tolérer."},
-  {id:'J5', mask:'jaune', inv:false, text:"Je prévois et planifie les activités du quotidien de façon très détaillée pour éviter tout imprévu."},
-  {id:'J6', mask:'jaune', inv:true,  text:"Je tolère bien de ne pas savoir comment les choses vont se dérouler et j'avance malgré l'incertitude."},
-  {id:'J7', mask:'jaune', inv:false, text:"Il m'est difficile d'agir quand je ne sais pas ce qui va se passer."},
-  {id:'J8', mask:'jaune', inv:false, text:"Il faut que je sache ce que l'avenir me réserve."},
-  {id:'J9', mask:'jaune', inv:false, text:"Je dois toujours être en mesure d'anticiper les événements."},
-  // 🟢 VERT — 11 items (V5, V11 inversés)
-  {id:'V1', mask:'vert', inv:false, text:"J'accepte le point de vue d'autrui même si je ne le partage pas, pour éviter tout conflit."},
-  {id:'V2', mask:'vert', inv:false, text:"La pensée d'être seul(e) ou abandonné(e) me provoque une angoisse significative."},
-  {id:'V3', mask:'vert', inv:false, text:"Je maintiens parfois des relations insatisfaisantes car la rupture me semblerait encore plus difficile."},
-  {id:'V4', mask:'vert', inv:false, text:"Je ressens un besoin fort d'être rassuré(e) par mes proches sur leur affection pour moi."},
-  {id:'V5', mask:'vert', inv:true,  text:"Je me sens généralement bien dans ma peau et capable d'assumer les défis relationnels."},
-  {id:'V6', mask:'vert', inv:false, text:"J'analyse en permanence les signes d'acceptation ou de rejet dans les comportements de mon entourage."},
-  {id:'V7', mask:'vert', inv:false, text:"J'ai peur que les personnes importantes pour moi ne souhaitent pas rester avec moi aussi longtemps que je le souhaite avec elles."},
-  {id:'V8', mask:'vert', inv:false, text:"Il m'est difficile de faire confiance totalement à mes partenaires ou proches."},
-  {id:'V9', mask:'vert', inv:false, text:"Il m'est difficile de me sentir vraiment à l'aise avec mes proches."},
-  {id:'V10',mask:'vert', inv:false, text:"Mes désirs d'être très proche des autres les effraient parfois."},
-  {id:'V11',mask:'vert', inv:true,  text:"J'ai confiance dans la capacité des autres à m'aimer de façon stable et durable."},
-  // 🔵 BLEU — 11 items (B8 inversé)
-  {id:'B1', mask:'bleu', inv:false, text:"Lorsque je vois quelqu'un faire une tâche « de travers », j'ai une forte impulsion à reprendre le contrôle."},
-  {id:'B2', mask:'bleu', inv:false, text:"J'ai tendance à diriger les groupes ou situations, même sans y avoir été invité(e)."},
-  {id:'B3', mask:'bleu', inv:false, text:"Lorsque quelqu'un prend une décision sans me consulter dans un domaine me concernant, je ressens une irritation marquée."},
-  {id:'B4', mask:'bleu', inv:false, text:"J'ai besoin de sentir que je suis indispensable dans mes relations professionnelles ou personnelles."},
-  {id:'B5', mask:'bleu', inv:false, text:"Quand je confie une tâche, j'ai régulièrement envie de vérifier ou corriger le travail de l'autre."},
-  {id:'B6', mask:'bleu', inv:false, text:"Je ressens de la colère ou une forte frustration lorsqu'une situation m'échappe ou ne se déroule pas comme prévu."},
-  {id:'B7', mask:'bleu', inv:false, text:"J'ai l'impression que ce qui m'arrive dépend surtout des autres ou du hasard, et peu de moi-même."},
-  {id:'B8', mask:'bleu', inv:true,  text:"Je me sens maître(sse) de ce qui se passe dans ma vie et de mes choix importants."},
-  {id:'B9', mask:'bleu', inv:false, text:"La perspective de ne pas contrôler mes émotions m'angoisse."},
-  {id:'B10',mask:'bleu', inv:false, text:"Je préfère tout faire moi-même pour éviter de dépendre du jugement ou de l'action des autres."},
-  {id:'B11',mask:'bleu', inv:false, text:"Je préfère prendre les risques moi-même plutôt que de laisser les autres décider à ma place."},
-  // 🟣 INDIGO — 12 items
-  {id:'I1', mask:'indigo', inv:false, text:"Je retravaille mes productions (projets, présentations) bien au-delà de ce qui est objectivement nécessaire."},
-  {id:'I2', mask:'indigo', inv:false, text:"Je reporte souvent le démarrage d'un projet car je crains de ne pas être à la hauteur."},
-  {id:'I3', mask:'indigo', inv:false, text:"Je minimise spontanément mes réussites en les attribuant à la chance ou aux autres plutôt qu'à moi."},
-  {id:'I4', mask:'indigo', inv:false, text:"J'ai du mal à me sentir légitime dans mon rôle professionnel, même quand mes résultats sont objectivement bons."},
-  {id:'I5', mask:'indigo', inv:false, text:"Je sabote parfois inconsciemment une opportunité de réussite juste avant qu'elle se concrétise."},
-  {id:'I6', mask:'indigo', inv:false, text:"Mon dialogue intérieur est souvent très critique envers moi-même lorsque je n'atteins pas mes propres standards."},
-  {id:'I7', mask:'indigo', inv:false, text:"Lorsque j'échoue, j'ai honte de moi-même."},
-  {id:'I8', mask:'indigo', inv:false, text:"Lorsque j'échoue, je commence à me demander si je suis capable de faire quoi que ce soit correctement."},
-  {id:'I9', mask:'indigo', inv:false, text:"Quand je n'atteins pas mon objectif, j'ai l'impression d'être moins bien que les autres."},
-  {id:'I10',mask:'indigo', inv:false, text:"Lorsque j'échoue, je remets en question mes aptitudes et mes capacités profondes."},
-  {id:'I11',mask:'indigo', inv:false, text:"Quand j'échoue, je m'imagine perdre des opportunités importantes qui ne reviendront pas."},
-  {id:'I12',mask:'indigo', inv:false, text:"Quand j'échoue, je me sens coupable d'avoir déçu les personnes qui comptaient sur moi."},
-  // 💜 VIOLET — 12 items
-  {id:'Vi1', mask:'violet', inv:false, text:"J'ai l'impression de vivre ma vie « en pilote automatique », comme si je me regardais de l'extérieur."},
-  {id:'Vi2', mask:'violet', inv:false, text:"Il m'est difficile d'exprimer des préférences authentiques car je ne sais plus ce que je veux vraiment."},
-  {id:'Vi3', mask:'violet', inv:false, text:"J'ai abandonné progressivement des passions ou centres d'intérêt qui me définissaient autrefois."},
-  {id:'Vi4', mask:'violet', inv:false, text:"En situation de silence ou de solitude, je ressens un vide intérieur difficile à définir."},
-  {id:'Vi5', mask:'violet', inv:false, text:"Je refuse souvent des opportunités de changement (nouveau poste, déménagement) pour ne pas perturber ma stabilité."},
-  {id:'Vi6', mask:'violet', inv:false, text:"J'ai la sensation d'être une personne différente selon les périodes de ma vie, sans véritable fil conducteur."},
-  {id:'Vi7', mask:'violet', inv:false, text:"Je serais incapable de décrire clairement qui j'étais il y a 5 ans et qui je serai dans 5 ans."},
-  {id:'Vi8', mask:'violet', inv:false, text:"L'idée de changer profondément qui je suis me provoque une crainte existentielle que j'évite d'explorer."},
-  {id:'Vi9', mask:'violet', inv:false, text:"Je me sens déconnecté(e) de la personne que j'étais dans le passé."},
-  {id:'Vi10',mask:'violet', inv:false, text:"Je me sens comme une personne différente de celle que j'étais autrefois."},
-  {id:'Vi11',mask:'violet', inv:false, text:"J'ai souvent l'impression de ne pas savoir qui je suis vraiment."},
-  {id:'Vi12',mask:'violet', inv:false, text:"L'idée de me définir ou d'expliquer qui je suis m'angoisse ou me laisse dans le vide."},
+  {id:"R01", mask:"rouge", inv:false, text:"Je surveille les sensations et les signaux de mon corps pour repérer un éventuel problème."},
+  {id:"R02", mask:"rouge", inv:false, text:"Une sensation physique inhabituelle évoque vite pour moi une maladie sérieuse."},
+  {id:"R03", mask:"rouge", inv:false, text:"J'estime mes risques de tomber gravement malade plus élevés que ceux des autres."},
+  {id:"R04", mask:"rouge", inv:false, text:"Je cherche des informations médicales (internet, proches, médecins) pour vérifier mes symptômes."},
+  {id:"R05", mask:"rouge", inv:false, text:"Même rassuré(e) par un médecin, le doute sur ma santé revient rapidement."},
+  {id:"R06", mask:"rouge", inv:false, text:"Une sensation corporelle peut occuper mon esprit au point de m'empêcher de me concentrer."},
+  {id:"R07", mask:"rouge", inv:false, text:"Tomber gravement malade serait une catastrophe à laquelle je ne pourrais pas faire face."},
+  {id:"R08", mask:"rouge", inv:false, text:"Je consacre du temps à m'examiner ou à m'assurer que tout va bien physiquement."},
+  {id:"R09", mask:"rouge", inv:true, text:"La plupart du temps, je me sens en bonne santé et tranquille à propos de mon corps."},
+  {id:"R10", mask:"rouge", inv:true, text:"Une gêne passagère ne m'alarme pas : je l'attribue facilement à quelque chose de banal."},
+  {id:"R11", mask:"rouge", inv:false, text:"Mon entourage trouve que je me préoccupe trop de ma santé."},
+  {id:"R12", mask:"rouge", inv:true, text:"Les pensées liées à la maladie ne s'imposent pas à moi ; je les écarte sans effort."},
+
+  {id:"O01", mask:"orange", inv:false, text:"Il m'est difficile de mettre des mots précis sur ce que je ressens."},
+  {id:"O02", mask:"orange", inv:false, text:"Je ressens des tensions dans mon corps sans savoir quelle émotion les accompagne."},
+  {id:"O03", mask:"orange", inv:false, text:"J'ai du mal à expliquer mes émotions aux autres, même à des proches."},
+  {id:"O04", mask:"orange", inv:false, text:"Je préfère parler de faits concrets plutôt que de ce qui me touche personnellement."},
+  {id:"O05", mask:"orange", inv:false, text:"Quand je repense à un moment, peu d'images ou de scènes me reviennent en tête."},
+  {id:"O06", mask:"orange", inv:false, text:"Quand une discussion devient émotionnelle, je m'en détache ou je change de sujet."},
+  {id:"O07", mask:"orange", inv:false, text:"Lors d'événements forts, agréables ou pénibles, je reste souvent sans grande réaction intérieure."},
+  {id:"O08", mask:"orange", inv:false, text:"Quand je suis tendu(e), j'ai du mal à dire si c'est de la tristesse, de l'agacement ou autre chose."},
+  {id:"O09", mask:"orange", inv:true, text:"Je repère assez bien mes émotions au moment où elles surgissent."},
+  {id:"O10", mask:"orange", inv:true, text:"Quand quelque chose me touche, je prends le temps d'en comprendre le sens."},
+  {id:"O11", mask:"orange", inv:true, text:"Je sais décrire mes états intérieurs à une personne de confiance."},
+  {id:"O12", mask:"orange", inv:false, text:"Je préfère m'occuper (travail, écrans, activités) plutôt que de rester avec mes ressentis."},
+
+  {id:"J01", mask:"jaune", inv:false, text:"J'ai besoin de savoir à l'avance comment les choses vont se passer."},
+  {id:"J02", mask:"jaune", inv:false, text:"Les situations floues ou ambiguës me mettent mal à l'aise."},
+  {id:"J03", mask:"jaune", inv:false, text:"Je planifie en détail pour ne rien laisser au hasard."},
+  {id:"J04", mask:"jaune", inv:false, text:"Je passe en revue tous les scénarios possibles et leurs conséquences."},
+  {id:"J05", mask:"jaune", inv:false, text:"Quand l'issue est incertaine, j'ai du mal à passer à l'action."},
+  {id:"J06", mask:"jaune", inv:false, text:"L'incertitude me désorganise et m'empêche de fonctionner comme d'habitude."},
+  {id:"J07", mask:"jaune", inv:false, text:"J'évite les situations dont je ne peux pas prévoir le déroulement."},
+  {id:"J08", mask:"jaune", inv:false, text:"Un imprévu, même mineur, peut me sembler tout remettre en cause."},
+  {id:"J09", mask:"jaune", inv:false, text:"L'incertitude sur des événements à venir perturbe mon sommeil ou ma détente."},
+  {id:"J10", mask:"jaune", inv:true, text:"Je me sens à l'aise face à une situation imprévue."},
+  {id:"J11", mask:"jaune", inv:true, text:"Je peux décider et avancer même sans avoir toutes les informations."},
+  {id:"J12", mask:"jaune", inv:true, text:"L'inconnu m'apparaît comme une part normale et acceptable de la vie."},
+
+  {id:"V01", mask:"vert", inv:false, text:"Je m'inquiète à l'idée que mes proches pourraient s'éloigner de moi."},
+  {id:"V02", mask:"vert", inv:false, text:"J'ai besoin d'être rassuré(e) régulièrement sur l'affection qu'on me porte."},
+  {id:"V03", mask:"vert", inv:false, text:"J'ai souvent l'impression de tenir aux autres plus qu'ils ne tiennent à moi."},
+  {id:"V04", mask:"vert", inv:false, text:"Je suis très attentif(ve) au moindre changement d'humeur de mes proches."},
+  {id:"V05", mask:"vert", inv:false, text:"Quand un proche tarde à me répondre, j'imagine vite qu'il se détache."},
+  {id:"V06", mask:"vert", inv:false, text:"J'ai besoin de savoir où en est la relation pour me sentir tranquille."},
+  {id:"V07", mask:"vert", inv:false, text:"Je préfère me taire plutôt que de risquer un désaccord qui abîmerait le lien."},
+  {id:"V08", mask:"vert", inv:false, text:"Je fais beaucoup d'efforts pour qu'on m'apprécie."},
+  {id:"V09", mask:"vert", inv:false, text:"Je fais tout ce que je peux pour éviter de me retrouver seul(e)."},
+  {id:"V10", mask:"vert", inv:false, text:"Je reste parfois dans des relations insatisfaisantes plutôt que d'affronter la solitude."},
+  {id:"V11", mask:"vert", inv:true, text:"Je me sens en sécurité dans mes liens, même quand je suis loin de mes proches."},
+  {id:"V12", mask:"vert", inv:true, text:"Je peux exprimer un désaccord sans craindre pour la relation."},
+
+  {id:"B01", mask:"bleu", inv:false, text:"Je reprends vite la main quand les choses sont faites autrement que je le voudrais."},
+  {id:"B02", mask:"bleu", inv:false, text:"J'ai du mal à déléguer : je préfère garder le contrôle."},
+  {id:"B03", mask:"bleu", inv:false, text:"J'ai tendance à diriger et à organiser pour les autres, même sans qu'on me le demande."},
+  {id:"B04", mask:"bleu", inv:false, text:"Je supporte mal qu'on me dicte ma conduite ou mes choix."},
+  {id:"B05", mask:"bleu", inv:false, text:"J'ai besoin de sentir que les choses dépendent de moi pour être à l'aise."},
+  {id:"B06", mask:"bleu", inv:false, text:"Quand un événement m'échappe, je ressens une forte irritation."},
+  {id:"B07", mask:"bleu", inv:false, text:"Me sentir impuissant(e) face à une situation m'est presque insupportable."},
+  {id:"B08", mask:"bleu", inv:false, text:"Quand je perds le contrôle, je me sens complètement démuni(e)."},
+  {id:"B09", mask:"bleu", inv:false, text:"Dépendre entièrement de quelqu'un d'autre me met très mal à l'aise."},
+  {id:"B10", mask:"bleu", inv:false, text:"Ne rien pouvoir faire face à un problème important me donne envie de tout abandonner."},
+  {id:"B11", mask:"bleu", inv:true, text:"Je peux laisser les autres gérer sans éprouver le besoin de vérifier."},
+  {id:"B12", mask:"bleu", inv:true, text:"Je vis sereinement les situations où je n'ai pas la main."},
+
+  {id:"I01", mask:"indigo", inv:false, text:"J'ai l'impression de paraître plus compétent(e) que je ne le suis réellement."},
+  {id:"I02", mask:"indigo", inv:false, text:"Même quand je réussis, je doute de ma réelle compétence."},
+  {id:"I03", mask:"indigo", inv:false, text:"Je me fixe des exigences si élevées qu'elles sont rarement atteintes."},
+  {id:"I04", mask:"indigo", inv:false, text:"Une petite erreur me fait douter de ma valeur tout entière."},
+  {id:"I05", mask:"indigo", inv:false, text:"Quand je réussis, je l'attribue à la chance ou à la facilité de la tâche."},
+  {id:"I06", mask:"indigo", inv:false, text:"J'ai besoin de l'approbation des autres pour me sentir légitime."},
+  {id:"I07", mask:"indigo", inv:false, text:"Mon discours intérieur envers moi-même est très critique."},
+  {id:"I08", mask:"indigo", inv:false, text:"Je reviens sur un travail déjà terminé, jamais tout à fait sûr(e) de l'avoir bien fait."},
+  {id:"I09", mask:"indigo", inv:false, text:"Je me compare aux autres et je me trouve souvent en dessous."},
+  {id:"I10", mask:"indigo", inv:false, text:"Je préfère ne pas me lancer plutôt que de risquer un échec visible."},
+  {id:"I11", mask:"indigo", inv:true, text:"Je me sens compétent(e) et légitime dans mes domaines."},
+  {id:"I12", mask:"indigo", inv:true, text:"Je peux être satisfait(e) d'un travail même quand il n'est pas parfait."},
+
+  {id:"Vi01", mask:"violet", inv:false, text:"L'image que j'ai de moi peut changer fortement d'un jour à l'autre."},
+  {id:"Vi02", mask:"violet", inv:false, text:"J'ai du mal à dire ce qui compte vraiment pour moi."},
+  {id:"Vi03", mask:"violet", inv:false, text:"Mon comportement en public ne reflète pas ce que je suis à l'intérieur."},
+  {id:"Vi04", mask:"violet", inv:false, text:"Seul(e), sans le regard des autres, j'ai du mal à savoir qui je suis."},
+  {id:"Vi05", mask:"violet", inv:false, text:"Je calcule intérieurement ce que je dois dire ou faire, même quand rien ne m'y oblige."},
+  {id:"Vi06", mask:"violet", inv:false, text:"J'ai mis de côté mes goûts ou aspirations pour correspondre aux attentes des autres."},
+  {id:"Vi07", mask:"violet", inv:false, text:"Je change tellement selon les contextes que je ne sais plus lequel est le vrai moi."},
+  {id:"Vi08", mask:"violet", inv:false, text:"J'ai l'impression de vivre en mode automatique, un peu à côté de moi-même."},
+  {id:"Vi09", mask:"violet", inv:false, text:"Il m'arrive de regretter une version de moi plus spontanée et authentique."},
+  {id:"Vi10", mask:"violet", inv:true, text:"Je me connais bien, mes forces comme mes limites."},
+  {id:"Vi11", mask:"violet", inv:true, text:"Je reste fidèle à mes valeurs, même quand c'est difficile."},
+  {id:"Vi12", mask:"violet", inv:true, text:"Je me montre tel(le) que je suis plutôt que de jouer un rôle."},
 ];
 
-// ✦ SPA — 7 items (textes exacts PDF, aucune inversion)
+// ✦ SPA — 12 items, sans inversion
 // Fondement : Wood et al. (2008) / Kernis & Goldman (2006)
 const SPA_ITEMS = [
-  {id:'SPA-1', mask:'spa', inv:false, fenetre:'État de flux',
-   text:"Il m'arrive d'être tellement absorbé(e) par ce que je fais que je perds la notion du temps et du regard des autres."},
-  {id:'SPA-2', mask:'spa', inv:false, fenetre:'Résonance corporelle',
-   text:"Je ressens parfois dans mon corps un signal clair — légèreté, élan, soulagement — et je lui fais confiance sans chercher à l'analyser."},
-  {id:'SPA-3', mask:'spa', inv:false, fenetre:'Opinion spontanée',
-   text:"Il m'arrive de savoir ce que je pense ou ce que je veux avant de me demander ce que les autres en penseraient."},
-  {id:'SPA-4', mask:'spa', inv:false, fenetre:'Joie sans témoin',
-   text:"Je peux éprouver de la joie ou de la satisfaction dans un moment, sans avoir besoin de le partager ou de le faire valider."},
-  {id:'SPA-5', mask:'spa', inv:false, fenetre:'Élan sans raison',
-   text:"Il m'arrive d'être attiré(e) vers quelque chose — une idée, une activité, une direction — sans pouvoir l'expliquer rationnellement, et de le suivre quand même."},
-  {id:'SPA-6', mask:'spa', inv:false, fenetre:'Présence à soi',
-   text:"Dans certains moments, j'ai la sensation claire d'être moi-même — sans effort, sans rôle à tenir."},
-  {id:'SPA-7', mask:'spa', inv:false, fenetre:'Authenticité relationnelle',
-   text:"Il m'arrive d'exprimer une opinion, une émotion ou un besoin — même si je sais que ce n'est pas ce que l'autre attendait d'entendre."},
+  {id:"SPA01", mask:"spa", inv:false, text:"J'observe mes émotions sans me laisser emporter par elles."},
+  {id:"SPA02", mask:"spa", inv:false, text:"Même en présence de pensées dérangeantes, je reste calme et centré(e)."},
+  {id:"SPA03", mask:"spa", inv:false, text:"Je peux décrire avec des mots ce que je ressens."},
+  {id:"SPA04", mask:"spa", inv:false, text:"Quand des pensées ou des images pénibles surgissent, je les remarque sans y réagir aussitôt."},
+  {id:"SPA05", mask:"spa", inv:false, text:"Je prête attention aux détails autour de moi (formes, couleurs, sons, odeurs)."},
+  {id:"SPA06", mask:"spa", inv:false, text:"Je distingue une inquiétude imaginaire d'une intuition fiable."},
+  {id:"SPA07", mask:"spa", inv:false, text:"Je reste concentré(e) sur ce que je fais, même si d'autres pensées traversent mon esprit."},
+  {id:"SPA08", mask:"spa", inv:false, text:"J'accueille mes pensées sans les juger bonnes ou mauvaises."},
+  {id:"SPA09", mask:"spa", inv:false, text:"Je sais ce que je veux ou ce que je pense avant de me demander l'avis des autres."},
+  {id:"SPA10", mask:"spa", inv:false, text:"J'accueille mes émotions comme des informations utiles."},
+  {id:"SPA11", mask:"spa", inv:false, text:"Je remarque les sensations fines de mon corps (le contact d'un vêtement, l'air sur la peau)."},
+  {id:"SPA12", mask:"spa", inv:false, text:"J'ai conscience de ma respiration et je sais l'apaiser dans un moment de tension."},
 ];
 
 // SPA insérés aux positions 11, 22, 33, 44, 55, 66, 77
-// (espacement ~10 items masques entre chaque SPA sur 85 items total)
-const SPA_POSITIONS = {11:'SPA-1', 22:'SPA-4', 33:'SPA-2', 44:'SPA-5', 55:'SPA-3', 66:'SPA-6', 77:'SPA-7'};
+// (espacement ~10 items masques entre chaque SPA sur 96 items total)
+const SPA_POSITIONS = {7:"SPA01", 15:"SPA02", 22:"SPA03", 30:"SPA04", 37:"SPA05", 44:"SPA06", 52:"SPA07", 59:"SPA08", 66:"SPA09", 74:"SPA10", 81:"SPA11", 89:"SPA12"};
 const SPA_MAP = {};
 SPA_ITEMS.forEach(s => { SPA_MAP[s.id] = s; });
 
 // ── ÉTAT GLOBAL ───────────────────────────────────────────────────
 let responses     = {};
 let demographics  = {};
-let shuffledItems = []; // séquence complète 85 items (masques mélangés + SPA aux positions fixes)
+let shuffledItems = []; // séquence complète 96 items (masques mélangés + SPA aux positions fixes)
 let pages         = []; // tableaux de 17 items
 
 // ── INIT ──────────────────────────────────────────────────────────
@@ -515,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// ── SÉQUENCE 85 ITEMS ────────────────────────────────────────────
+// ── SÉQUENCE 96 ITEMS ────────────────────────────────────────────
 function shuffle(arr) {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
@@ -526,10 +529,10 @@ function shuffle(arr) {
 }
 
 function buildShuffledSequence() {
-  const shuffledMasques = shuffle(MASQUE_ITEMS); // 78 items mélangés
+  const shuffledMasques = shuffle(MASQUE_ITEMS); // 84 items mélangés
   shuffledItems = [];
   let mi = 0;
-  for (let pos = 1; pos <= 85; pos++) {
+  for (let pos = 1; pos <= 96; pos++) {
     if (SPA_POSITIONS[pos]) {
       shuffledItems.push(SPA_MAP[SPA_POSITIONS[pos]]);
     } else {
@@ -545,19 +548,18 @@ function buildPages() {
   }
 }
 
-// ── LABELS LIKERT 0-5 ─────────────────────────────────────────────
+// ── LABELS LIKERT 0-4 ─────────────────────────────────────────────
 const LIKERT_LABELS = [
-  'Pas du tout\nvrai pour moi',
-  'Rarement\nvrai pour moi',
-  'Parfois\nvrai pour moi',
-  'Souvent\nvrai pour moi',
-  'Généralement\nvrai pour moi',
-  'Décrit parfaitement\nmon expérience'
+  'Jamais ou\npresque jamais',
+  'Rarement',
+  'Parfois',
+  'Souvent',
+  'Très souvent ou\npresque toujours'
 ];
 
 function buildLikert(item, pageIdx) {
   var html = '<div class="likert">';
-  for (var v = 0; v < 6; v++) {
+  for (var v = 0; v <= 4; v++) {
     var oa = "onAnswer('" + item.id + "'," + v + "," + pageIdx + ")";
     html += '<label class="likert-option">'
       + '<input type="radio" name="item_' + item.id + '" value="' + v + '" onchange="' + oa + '">'
@@ -583,7 +585,7 @@ function buildPageScreens() {
 function buildPageHTML(items, idx) {
   const total = pages.length;
   const answered = Object.keys(responses).length;
-  const pct = Math.round(answered / 85 * 100);
+  const pct = Math.round(answered / 96 * 100);
   const isLast = idx === total - 1;
 
   const dots = Array.from({length: total + 1}, (_, i) => {
@@ -607,7 +609,7 @@ function buildPageHTML(items, idx) {
   return `
   <div class="progress-wrapper">
     <div class="progress-info">
-      <span id="lbl-${idx}">${answered} / 85 affirmations répondues</span>
+      <span id="lbl-${idx}">${answered} / 96 affirmations répondues</span>
       <span>Partie ${idx+1} / ${total}</span>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="fill-${idx}" style="width:${pct}%"></div></div>
@@ -622,7 +624,7 @@ function buildPageHTML(items, idx) {
   <div class="page-header">
     <span class="page-badge">Partie ${idx+1} / ${total}</span>
     <h2 class="page-title">Répondez spontanément</h2>
-    <p class="page-desc">0 = Pas du tout vrai · 5 = Décrit parfaitement mon expérience — ces 6 derniers mois</p>
+    <p class="page-desc">0 = Pas du tout vrai · 4 = Décrit parfaitement mon expérience — ces 6 derniers mois</p>
   </div>
   <div class="items-container">${itemsHTML}</div>
   <div id="warn-${idx}" class="unanswered-msg hidden">
@@ -728,11 +730,11 @@ function onAnswer(id, val, pageIdx) {
   responses[id] = parseInt(val);
   document.getElementById(`card-${id}`)?.classList.add('answered');
   const answered = Object.keys(responses).length;
-  const pct = Math.round(answered / 85 * 100);
+  const pct = Math.round(answered / 96 * 100);
   const fill = document.getElementById(`fill-${pageIdx}`);
   const lbl  = document.getElementById(`lbl-${pageIdx}`);
   if (fill) fill.style.width = pct + '%';
-  if (lbl)  lbl.textContent = `${answered} / 85 affirmations répondues`;
+  if (lbl)  lbl.textContent = `${answered} / 96 affirmations répondues`;
   updateDots(pageIdx);
   saveWIP(pageIdx);
 }
@@ -774,12 +776,12 @@ function showResumePrompt(answered, lastPageIdx) {
   banner.innerHTML = `
     <div style="font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#48BB78;margin-bottom:6px">Session en cours détectée</div>
     <div style="font-size:14px;color:var(--ink);margin-bottom:12px">
-      Vous avez déjà répondu à <strong style="color:#48BB78">${answered} questions sur 85</strong>.<br>Voulez-vous reprendre ?
+      Vous avez déjà répondu à <strong style="color:#48BB78">${answered} questions sur 96</strong>.<br>Voulez-vous reprendre ?
     </div>
     <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
       <button onclick="resumeQuestionnaire(${lastPageIdx})"
         style="background:#48BB78;color:#fff;border:none;border-radius:6px;padding:10px 20px;font-size:13px;font-weight:600;cursor:pointer">
-        Reprendre (${answered}/85) →
+        Reprendre (${answered}/96) →
       </button>
       <button onclick="startFresh()"
         style="background:rgba(0,0,0,.05);color:var(--ink3);border:1px solid rgba(0,0,0,.12);border-radius:6px;padding:10px 16px;font-size:13px;cursor:pointer">
@@ -820,8 +822,6 @@ async function nextPage(idx) {
   const sc = computeScores();
 
   // Sauvegarde locale des scores
-  // valeur_scores = clé lue par resultats.html (compatibilité)
-  // spa inclus dans le payload pour computeSPA direct dans resultats.html
   try {
     const _scorePayload = JSON.stringify({
       rouge:  sc.rouge,
@@ -845,32 +845,33 @@ async function nextPage(idx) {
   const masks   = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
   const scPct   = {};
   masks.forEach(m => { scPct[m] = sc[m]; });
-  const dom     = masks.sort((a,b) => scPct[b]-scPct[a])[0];
-  const profil  = detectConfigExcel(scPct);
 
   // Fire-and-forget : envoi async sans bloquer la redirection
   sendEmailAdmin(sc, scPct).catch(function(){});
-  saveResult(pid, scPct, sc.spa, dom, profil, demographics.consent || false).catch(function(){});
+  saveResult(pid, scPct, sc.spa).catch(function(){});
 
   // Redirection immédiate vers le portrait
   const _masks = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
   const _scoresQuery = _masks.map(function(m){ return m + '=' + (scPct[m] || 0); }).join('&');
+  const _items = MASQUE_ITEMS.map(function(it){ return (responses[it.id] != null ? responses[it.id] : 0); }).join('');
+  try { localStorage.setItem('valeur_items', _items); } catch(e){}
   window.location.href = 'https://questionnaire.psyh.fr/resultats.html?'
     + _scoresQuery
     + '&spa=' + (sc.spa || 0)
     + '&email=' + encodeURIComponent(demographics.email || '')
     + '&prenom=' + encodeURIComponent(demographics.prenom || '')
+    + '&items=' + _items
     + (pid ? '&pid=' + encodeURIComponent(pid) : '');
 }
 
 // ════════════════════════════════════════════════════════
-// SCORING V3 — Échelle 0-5
-// adj(item, raw) = inv ? 5-raw : raw
+// SCORING V3 — Échelle 0-4
+// adj(item, raw) = inv ? (4 - raw) : raw
 // score_masque% = round(Σadj / MASK_MAX[mask] × 100)
-// score_SPA%    = round(Σ7_SPA / SPA_MAX × 100)  — indépendant
+// score_SPA%    = round(Σ12_SPA / SPA_MAX × 100)
 // ════════════════════════════════════════════════════════
 function adj(item, raw) {
-  return item.inv ? (5 - raw) : raw;
+  return item.inv ? (4 - raw) : raw;
 }
 
 function computeScores() {
@@ -891,48 +892,8 @@ function computeScores() {
   return sc;
 }
 
-// ── NIVEAU D'EMPRISE ─────────────────────────────────────────────
-// Seuils du test actuel — INCHANGÉS
-function getLevelFromBrut(pct) {
-  if (pct < 30) return { label: 'FAIBLE',       key: 'faible' };
-  if (pct < 50) return { label: 'MODÉRÉ',       key: 'modéré' };
-  if (pct < 70) return { label: 'SIGNIFICATIF', key: 'significatif' };
-  if (pct < 85) return { label: 'ÉLEVÉ',        key: 'élevé' };
-  return           { label: 'DOMINANT',      key: 'dominant' };
-}
-
-// ── DÉTECTION PROFIL ──────────────────────────────────────────────
-function detectConfigExcel(scPct) {
-  const masks = ['rouge','orange','jaune','vert','bleu','indigo','violet'];
-  const sorted = masks.map(m => ({key:m, pct:scPct[m]||0})).sort((a,b) => b.pct-a.pct);
-  const [m0,m1,m2] = sorted;
-  const violetNote = (scPct.violet||0) >= 80;
-
-  // Pan-masques : ≥ 6 masques ≥ 60 %, aucun < 50 %, écart ≤ 20
-  const above60 = sorted.filter(m => m.pct >= 60);
-  const minPct  = sorted[sorted.length-1].pct;
-  if (above60.length >= 6 && minPct >= 50 && (m0.pct - minPct) <= 20) {
-    return { type:'Pan-masques', masks: above60.map(m=>m.key), violetNote };
-  }
-  // Triade : ≥ 3 masques ≥ 50 %, écart ≤ 15 entre les 3
-  if (m0.pct >= 50 && m1 && m1.pct >= 50 && m2 && m2.pct >= 50 && (m0.pct - m2.pct) <= 15) {
-    return { type:'Triade', masks:[m0.key,m1.key,m2.key], violetNote };
-  }
-  // Dyade : ≥ 2 masques ≥ 60 %, écart ≤ 10
-  if (m0.pct >= 60 && m1 && m1.pct >= 60 && (m0.pct - m1.pct) <= 10) {
-    return { type:'Dyade', masks:[m0.key,m1.key], violetNote };
-  }
-  // Mono dominant : 1 masque ≥ 70 %
-  if (m0.pct >= 70) {
-    const secondary = (m1 && m1.pct >= 50 && (m0.pct - m1.pct) >= 10) ? m1.key : null;
-    return { type:'Mono', masks:[m0.key], secondary, violetNote };
-  }
-  // Résiduel
-  return { type:'Résiduel', masks:[m0.key], violetNote };
-}
-
 // ── SAUVEGARDE RÉSULTAT (Neon via Vercel) ────────────────────────
-async function saveResult(pid, scPct, spa, dominant, profil, consent) {
+async function saveResult(pid, scPct, spa) {
   try {
     const r = await fetch(VERCEL_API + '/save-result', {
       method:'POST',
@@ -945,10 +906,8 @@ async function saveResult(pid, scPct, spa, dominant, profil, consent) {
         genre:      demographics.genre  || null,
         scores:     scPct,
         spa:        spa,
-        dominant:   dominant,
-        profil:     profil,
         source:     pid ? 'cabinet' : 'public',
-        consent:    consent === true,
+        consent:    demographics.consent === true,
         version:    'v3'
       })
     });
@@ -958,7 +917,7 @@ async function saveResult(pid, scPct, spa, dominant, profil, consent) {
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body: JSON.stringify({
-          patient_id: pid, scores: scPct, spa, dominant, profil,
+          patient_id: pid, scores: scPct, spa, dominant: null, profil: null,
           prenom: demographics.prenom || null, source: 'questionnaire'
         })
       });
@@ -990,27 +949,6 @@ async function sendEmailAdmin(sc, scPct) {
   });
   const sorted  = masks.map(m => ({key:m, pct:scPct[m]||0})).sort((a,b)=>b.pct-a.pct);
   const dom     = sorted[0].key;
-  const profil  = detectConfigExcel(scPct);
-  const config  = profil.type + ' — ' + profil.masks.map(m=>MASK_NAMES[m]).join(' + ');
-
-  // Items à score extrême (5 sur directs, 0 sur inversés)
-  let itemsCritiques = '';
-  masks.forEach(m => {
-    const crits = MASQUE_ITEMS.filter(it =>
-      it.mask === m &&
-      ((!it.inv && (responses[it.id] ?? -1) === 5) || (it.inv && (responses[it.id] ?? -1) === 0))
-    );
-    if (crits.length) {
-      itemsCritiques += '[' + MASK_NAMES[m] + ']\n';
-      crits.forEach(it => { itemsCritiques += '  • ' + it.text.slice(0, 80) + '\n'; });
-      itemsCritiques += '\n';
-    }
-  });
-  if (!itemsCritiques) itemsCritiques = 'Aucun item à score extrême.';
-
-  const secondaires = masks
-    .filter(m => m !== dom && (scPct[m]||0) >= 50)
-    .map(m => MASK_NAMES[m] + ' (' + scPct[m] + '%)');
 
   try {
     await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
@@ -1022,12 +960,20 @@ async function sendEmailAdmin(sc, scPct) {
                        + masks.map(m => m + '=' + (scPct[m] || 0)).join('&')
                        + '&spa=' + (sc.spa || 0)
                        + '&email=' + encodeURIComponent(demographics.email || '')
-                       + '&prenom=' + encodeURIComponent(demographics.prenom || ''),
+                       + '&prenom=' + encodeURIComponent(demographics.prenom || '')
+                       + '&items=' + MASQUE_ITEMS.map(function(it){ return (responses[it.id] != null ? responses[it.id] : 0); }).join(''),
       lien_psycho:     'https://www.doctolib.fr/psychologue/bordeaux/celine-bourbon/booking/motives?source=profile',
       date_passation:  dateStr
     });
   } catch(e) { console.warn('EmailJS:', e); }
 }
+
+// ═══════════════════════════════════════════
+// Seuils d'activation révisés (pour référence)
+// Ces seuils seront utilisés dans le rapport.
+// rouge:50, orange:60, jaune:60, vert:60,
+// bleu:55, indigo:60, violet:55
+// ═══════════════════════════════════════════
 </script>
 </body>
 </html>
