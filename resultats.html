@@ -246,6 +246,48 @@ a:hover{border-bottom-color:var(--gold);}
  .chroma-bar{margin:0 auto 18pt;}
  .footer-legal{font-size:8pt;}
 }
+
+.ordre-list{display:flex;flex-direction:column;gap:16px;margin:22px 0 0;}
+.ordre-step{display:flex;gap:16px;align-items:flex-start;}
+.ordre-num{flex-shrink:0;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;box-shadow:0 0 0 4px var(--card-bg);}
+.ordre-body{flex:1;padding-bottom:2px;}
+.ordre-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:5px;}
+.ordre-titre{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;line-height:1.2;}
+.ordre-vbadge{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink);background:rgba(185,150,63,.1);border:1px solid var(--hair);border-radius:20px;padding:3px 11px;white-space:nowrap;}
+.ordre-why{font-size:15px;color:var(--text2);line-height:1.68;font-family:'EB Garamond',serif;}
+@media print{ .ordre-num{box-shadow:0 0 0 4px #fff;} }
+
+/* Les deux pôles — polarité protection / élan retenu */
+.polarite{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;margin:22px 0 4px;border:1px solid var(--hair);border-radius:6px;overflow:hidden;}
+.pol-side{padding:18px 20px;}
+.pol-protection{background:rgba(28,24,19,.035);}
+.pol-elan{background:var(--pol-c,rgba(185,150,63,.08));}
+.pol-lab{font-family:'DM Sans',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;}
+.pol-protection .pol-lab{color:var(--text3);}
+.pol-elan .pol-lab{color:var(--pol-ink,var(--gold-ink));}
+.pol-txt{font-size:15px;line-height:1.56;color:var(--text2);font-family:'EB Garamond',serif;}
+.pol-elan .pol-txt{color:var(--text);}
+.pol-link{display:flex;align-items:center;justify-content:center;padding:0 8px;border-left:1px solid var(--hair);border-right:1px solid var(--hair);}
+.pol-link .sym{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--gold);line-height:1;}
+.pol-bridge{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.45;color:var(--text);text-align:center;margin:14px 0 2px;}
+.pol-sign{font-size:14px;color:var(--text3);text-align:center;font-family:'EB Garamond',serif;font-style:italic;margin-top:4px;}
+@media(max-width:600px){.polarite{grid-template-columns:1fr;}.pol-link{border-left:none;border-right:none;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:6px;}}
+@media print{.polarite{break-inside:avoid;}.pol-protection{background:#F3EEE3!important;}}
+
+.elans-list{display:flex;flex-direction:column;gap:10px;margin:18px 0 6px;}
+.elan-row{display:flex;gap:12px;align-items:center;padding:11px 16px;background:#FFFDF8;border:1px solid var(--hair);border-radius:4px;}
+.elan-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
+.elan-body{font-size:15px;color:var(--text2);line-height:1.5;font-family:'EB Garamond',serif;}
+.elan-mask{font-weight:600;}
+@media print{.elan-row{background:#fff!important;break-inside:avoid;}}
+
+.ref-sci{margin-top:8px;padding-left:16px;border-left:1px solid var(--hair);font-family:'EB Garamond',serif;font-size:13.5px;line-height:1.58;color:var(--text3);}
+.ref-sci .lab{display:inline-block;font-family:'DM Sans',sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-ink);margin-right:9px;vertical-align:1px;}
+@media print{.ref-sci{break-inside:avoid;}}
+
+.clot-p{font-family:'EB Garamond',serif;font-size:16.5px;line-height:1.66;color:var(--text2);margin-bottom:4px;}
+.clot-p strong{color:var(--text);font-weight:500;}
+.cloture-emphase{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:21px;line-height:1.5;color:var(--text);margin:20px 0;padding-left:18px;border-left:2px solid var(--gold);}
 </style>
 </head>
 <body>
@@ -298,7 +340,7 @@ const MIRROR={
  orange:"Quand on vous demande comment vous allez vraiment, vous répondez « ça va » sans y penser. Sous l'emprise du masque, nommer ce qui se passe à l'intérieur, ce serait ouvrir une porte que vous avez appris à garder fermée. Ressentir a eu un prix — alors les émotions sont mises à distance.",
  jaune:"Sous l'emprise du masque, vous avez déjà trois plans pour une situation qui n'est pas encore arrivée. Vous vérifiez les horaires, les issues, les alternatives. Pas par plaisir — par nécessité intérieure. Votre esprit ne supporte pas le vide laissé par l'incertitude, alors il le remplit de prévisions.",
  vert:"Sous l'emprise du masque, vous sentez le moindre changement de ton chez l'autre. Vous adaptez votre réponse, votre posture, parfois votre opinion — pour maintenir l'harmonie. Non par faiblesse, mais parce que votre cerveau a enregistré que perdre le lien était une menace bien plus grande que de perdre un argument.",
- bleu:"Sous l'emprise du masque, déléguer vous demande plus d'énergie que de faire vous-même. Vous repassez derrière, vérifiez, corrigez. Mais avant cela, vous avez déjà passé un temps invisible à préparer, répéter, anticiper tout ce qui pourrait déraper. Pas par arrogance — par impossibilité de lâcher prise sans angoisse. Vous avez appris que tenir les rênes était la seule façon de ne pas vous effondrer.",
+ bleu:"Les autres comptent sur vous — souvent sans le dire. Vous êtes celui ou celle qui porte, qui tient, qui fait que les choses tiennent debout. C'est un vrai don : une autorité naturelle, une parole qui pourrait inspirer et entraîner. Mais sous l'emprise du masque, ce don reste sous garde. Déléguer, recevoir de l'aide, laisser un autre tenir les rênes un instant — tout cela demande plus d'énergie que de tout porter vous-même. Non par défiance : parce que lâcher prise, même une seconde, réveille une vieille insécurité. Alors votre leadership reste prudent — et votre parole, souvent, reste à l'intérieur.",
  indigo:"Sous l'emprise du masque, vous relisez un message déjà envoyé. Vous retravaillez un dossier déjà validé. Vous cherchez la faille — parce que si quelqu'un la trouve avant vous, cela confirmera ce que vous craignez en secret : que vous n'êtes pas vraiment à la hauteur.",
  violet:"Sous l'emprise du masque, vous passez d'un rôle à l'autre avec une fluidité déconcertante — au travail, en famille, entre amis. Mais dans le silence, une question revient : qui êtes-vous quand personne ne regarde ? Vous avez si bien appris à vous adapter que vous ne savez plus tout à fait où se trouve votre centre."
 };
@@ -308,7 +350,7 @@ const VOICE={
  orange:"Je gère. Je ne ressens pas — je gère. Si je laisse entrer cette émotion, je ne sais pas comment ça va finir.",
  jaune:"Il me faut savoir. Il me faut être certain·e. L'incertitude n'est pas une option — elle est une menace.",
  vert:"Est-ce que je compte vraiment pour eux ? Est-ce que si je décevais, ils resteraient quand même ? Je dois m'assurer que oui.",
- bleu:"Si je lâche, quelque chose va mal tourner. Personne ne peut faire ça comme moi. Je dois tenir. Et quand on m'aide, je me sens redevable. Quand on me complimente, je minimise. Recevoir, c'est risquer de perdre la main.",
+ bleu:"Si je lâche, qui tiendra ? On a besoin de moi solide. Ma voix compte — mais tant que tout n'est pas sûr, je la garde. Recevoir de l'aide, c'est risquer de dépendre ; alors je porte, encore.",
  indigo:"Ce n'est pas assez bien. Il doit y avoir une faille. Je dois la trouver avant que quelqu'un d'autre ne la trouve.",
  violet:"Est-ce qu'ils m'aimeraient s'ils savaient qui je suis vraiment ? Je joue si bien mes rôles que je ne sais plus lequel est moi."
 };
@@ -318,7 +360,7 @@ const SCENE={
  orange:"Quelqu'un vous demande comment vous allez vraiment. Sous l'emprise du masque, vous répondez « bien » avant même d'avoir cherché la réponse. Quelque chose s'est fermé tout seul — avant que vous ne décidiez de l'ouvrir ou non.",
  jaune:"Un projet change de forme à la dernière minute. Objectivement, rien de grave — mais sous l'emprise du masque, quelque chose en vous s'active. Vous recalculez, vous réorganisez, vous anticipez les conséquences. Vous n'avez pas décidé de le faire. C'est parti tout seul.",
  vert:"Vous sentez une tension dans une relation. L'autre n'a rien dit, mais votre système s'est mis en alerte : le masque a pris les commandes, vous n'êtes plus en contrôle de la relation. Et depuis, vous cherchez ce que vous avez bien pu faire, ce que vous pourriez corriger, ce qui ramènerait l'apaisement.",
- bleu:"Vous recevez un compliment sur votre travail. Sous l'emprise du masque, la première pensée n'est pas la satisfaction. C'est : « ils n'ont pas vu la partie qui n'était pas parfaite. » Et vous minimisez le compliment, vous le relativisez. Vous ne savez pas recevoir. Ce n'est pas de la modestie : c'est la peur que si vous acceptez, vous perdez le contrôle de l'image que vous renvoyez.",
+ bleu:"On reconnaît votre travail, on vous confie une responsabilité de plus. Sous l'emprise du masque, au lieu de savourer, vous pensez déjà à tout ce qui pourrait lâcher si vous n'êtes pas là — et vous reprenez un cran de contrôle. Ce n'est pas une soif de pouvoir : c'est la peur que, si vous relâchez, l'édifice que vous tenez à bout de bras s'effondre, et avec lui l'image de celui ou celle sur qui on peut compter.",
  indigo:"Vous recevez un compliment sur votre travail. Sous l'emprise du masque, la première pensée n'est pas la satisfaction. C'est : « ils n'ont pas vu la partie qui n'était pas parfaite. » Et la satisfaction, si elle vient, ne dure pas.",
  violet:"On vous demande ce que vous voulez — au restaurant, dans un projet, dans une relation. Sous l'emprise du masque, vous commencez par chercher ce que l'autre préférerait, pour répondre en fonction. La question de ce que vous voulez, vous, reste en suspens."
 };
@@ -348,7 +390,7 @@ const AGIT={
  orange:"Il met les émotions à distance avant même qu'elles montent. Il analyse plutôt qu'il ne ressent, il s'occupe plutôt qu'il ne s'arrête.",
  jaune:"Il remplit l'incertitude de prévisions. Il anticipe, planifie, déroule les scénarios — pour ne jamais être pris au dépourvu.",
  vert:"Il surveille le lien en permanence. Il s'adapte, devance les attentes, s'efface un peu — pour préserver la relation à tout prix.",
- bleu:"Il reprend la main sur tout ce qui pourrait échapper. Il vérifie, porte, tient — parce que lâcher semble dangereux. Il a du mal à recevoir de l'aide, à accepter un compliment sans le relativiser, à écouter une critique sans se défendre. Sa colère, quand elle surgit, est souvent de la peur déguisée.",
+ bleu:"Il transforme une capacité naturelle à porter en besoin de tout tenir. Il vérifie, reprend, soutient — parce que lâcher semble dangereux. Il rend difficile de recevoir de l'aide, d'accepter un compliment sans le relativiser, d'entendre une critique sans se justifier. Et la parole qui pourrait entraîner les autres reste en retrait, le temps que « tout soit sûr » — un temps qui ne vient jamais tout à fait. Sa colère, quand elle surgit, est presque toujours de la peur déguisée.",
  indigo:"Il vise toujours plus haut et traque la faille. Il sur-valide, retravaille, doute — même après la réussite.",
  violet:"Il lit les attentes et s'y ajuste. Il endosse le rôle juste, se fond dans le contexte — jusqu'à ne plus très bien savoir où il est, lui."
 };
@@ -507,12 +549,51 @@ const ITEM_INSIGHT={
  "Vi05":"calculer en soi quoi dire, même quand rien ne l'exige."
 };
 
+/* Éclairages scientifiques — affichés UNIQUEMENT sous les phrases extrêmes de "La preuve dans vos propres mots". Mécanismes normalisés comme des apprentissages protecteurs, jamais comme des pathologies. */
+const REF_SCIENCE={
+ "R01":"Notre cerveau apprend à repérer les signaux qui, par le passé, ont précédé un danger. Cette vigilance est une compétence de survie, pas une faiblesse (LeDoux, 1996).",
+ "R02":"Face à l'incertitude, l'esprit cherche des explications — et privilégie parfois l'hypothèse la plus menaçante, car manquer un vrai danger coûterait plus cher que de s'alarmer pour rien (Salkovskis & Warwick, 2001).",
+ "R04":"Se rassurer apaise… quelques minutes. Puis le cerveau redemande une confirmation : plus on vérifie, plus il réclame de vérifier. C'est un automatisme qui s'apprend (Abramowitz et al., 2009).",
+ "R05":"Quand une inquiétude est intense, même une réponse rassurante ne suffit pas à l'éteindre. Le cerveau continue de chercher — non par défaut, mais parce qu'il a appris à rester en alerte (Salkovskis et al., 2002).",
+ "R07":"Nous avons tous tendance à sous-estimer nos ressources face à une difficulté pas encore arrivée. Cette anticipation prudente est une protection héritée de moments où l'on s'est senti vulnérable (Bandura, 1997).",
+ "O01":"Mettre des mots sur ce que l'on ressent est une compétence qui s'apprend. Si personne ne nous l'a transmise, le corps peut parler sans que l'esprit sache encore le traduire (Bagby, Parker & Taylor, 1994).",
+ "O02":"Les sensations physiques sont souvent les premières messagères des émotions. Quand on n'a pas appris à les décoder, elles restent des signaux bruts, en attente de traduction (Frewen et al., 2008).",
+ "O04":"Parler de ce qui est concret et factuel permet de rester en lien sans trop s'exposer. Cette manière de faire s'installe souvent quand partager ses émotions a été, un jour, trop coûteux (Gross & John, 2003).",
+ "O06":"Se retirer d'un échange qui devient émotionnel est une façon de garder le contrôle. Ce réflexe a pu protéger à un moment où l'émotion débordait sans sécurité autour (Hayes et al., 1996).",
+ "O08":"Confondre tristesse, agacement ou fatigue est fréquent quand on n'a pas l'habitude d'explorer son monde intérieur. C'est une compétence qui se cultive, pas un manque (Bagby et al., 1994).",
+ "J01":"Anticiper est précieux : cela nous prépare. Mais quand l'incertitude est difficile à supporter, l'esprit cherche à tout prévoir. Ce besoin se forge là où l'imprévu a été, un temps, insécurisant (Carleton et al., 2007).",
+ "J02":"Le cerveau préfère les situations claires. Face au flou, il mobilise les mêmes circuits que face à un risque — non parce qu'il y a danger, mais parce qu'il ne sait pas quoi anticiper (Grupe & Nitschke, 2013).",
+ "J04":"Passer en revue tous les scénarios est une stratégie de préparation. Elle devient envahissante quand elle a été, autrefois, la seule façon de se sentir prêt face à l'imprévu (Dugas & Ladouceur, 2000).",
+ "J05":"Dans le doute, on surestime souvent le risque d'erreur et on sous-estime sa capacité à rebondir. Cette hésitation est une protection : elle évite de se lancer sans filet (Ladouceur et al., 2000).",
+ "J08":"Quand un petit changement déstabilise, c'est souvent que l'esprit le lit comme le début d'une perte de repères. Cette lecture s'enracine dans des moments où l'imprévu a eu des conséquences lourdes (Carleton et al., 2007).",
+ "V01":"Cette inquiétude reflète un besoin profond de lien sécurisé. Elle prend racine dans les premières relations, où l'on a parfois appris que l'affection pouvait être instable (Bowlby, 1973).",
+ "V02":"Chercher régulièrement à être rassuré·e est une façon de vérifier que le lien tient. Cela se construit souvent dans des relations où les signes d'affection n'étaient pas toujours clairs ou constants (Mikulincer & Shaver, 2007).",
+ "V04":"Percevoir finement l'humeur de l'autre est une compétence développée très tôt, quand anticiper la réaction d'un proche aidait à se sentir en sécurité. Aujourd'hui, ce radar reste allumé (Bowlby, 1973).",
+ "V05":"L'esprit interprète parfois l'absence de signal comme un signal négatif. Cette sensibilité au silence se développe quand, par le passé, un silence a précédé un éloignement (Collins & Feeney, 2004).",
+ "V07":"Éviter le désaccord pour préserver l'harmonie protège la relation à court terme. Cette stratégie s'installe quand on a appris qu'exprimer ce que l'on pense pouvait fragiliser le lien (Overall et al., 2009).",
+ "B01":"Ce réflexe traduit un sens aigu des responsabilités. Il se construit quand laisser faire a pu, par le passé, mener à des conséquences difficiles : reprendre la main devient alors un gage de sécurité (Burger & Cooper, 1979).",
+ "B02":"Déléguer demande de lâcher prise, ce qui peut réveiller une vieille question : « si je ne m'en occupe pas, qui le fera ? » Cette croyance s'enracine souvent là où compter sur soi était la seule option fiable (Rotter, 1966).",
+ "B06":"Quand quelque chose nous échappe, le corps réagit parfois plus vite que la pensée. Cette réaction est la trace de moments où perdre la main a été vécu comme une menace (Langer, 1975).",
+ "B07":"Le sentiment de ne rien pouvoir faire est l'un des plus difficiles à traverser. Il réveille la mémoire d'expériences anciennes où l'on s'est senti démuni — et où l'on a décidé, sans le savoir, de ne plus jamais revivre cela (Seligman, 1975).",
+ "B08":"Quand tout semble s'effondrer, c'est souvent que la protection qui nous portait — tout tenir — vacille. C'est la réaction d'un équilibre qui reposait sur une vigilance constante, et qui, soudain, se relâche (Shapiro & Astin, 1998).",
+ "I02":"Quand on réussit et que le doute persiste, c'est souvent qu'on attribue la réussite aux circonstances plutôt qu'à ses propres compétences. Ce schéma s'apprend là où les compliments étaient rares ou conditionnels (Clance & Imes, 1978).",
+ "I03":"Des attentes très élevées envers soi-même reflètent souvent des standards intériorisés depuis longtemps — une façon de se protéger du jugement en visant toujours plus haut (Frost et al., 1990).",
+ "I04":"Quand une faute mineure ébranle l'estime de soi, c'est que l'esprit a appris à généraliser : une erreur devient un verdict sur la personne entière. Cette sensibilité se construit là où l'erreur avait un coût émotionnel élevé (Beck, 1979).",
+ "I07":"La voix exigeante que l'on entend parfois prolonge des messages reçus plus jeune. Elle s'est installée comme un gardien, pour tenter d'éviter le jugement extérieur en le devançant (Higgins, 1987).",
+ "I08":"Vérifier, retoucher, reprendre : ces gestes visent à écarter le risque d'une critique. Ils soulagent sur l'instant, mais renforcent l'idée que ce qui est fait n'est jamais tout à fait assez (Frost et al., 1990).",
+ "Vi03":"Presque tout le monde ajuste son comportement selon les situations. Quand cet ajustement devient un décalage permanent, c'est souvent qu'on a appris très tôt que montrer qui l'on est vraiment pouvait être risqué (Winnicott, 1960).",
+ "Vi04":"Le sentiment de soi se construit dans le regard des proches. Quand ce regard a été incertain ou changeant, l'identité peut rester floue — on a appris à se définir par l'extérieur plutôt que par l'intérieur (Campbell et al., 1996).",
+ "Vi05":"Anticiper finement ce qu'il convient de dire est une stratégie d'adaptation. Elle se développe dans des environnements où la spontanéité n'était pas toujours bien accueillie (Winnicott, 1960).",
+ "Vi07":"Cette capacité à s'adapter est une intelligence sociale précieuse. Elle devient déroutante quand on s'est tellement ajusté aux autres qu'on ne sait plus où commence le « je » et où finit le rôle (Wood et al., 2008).",
+ "Vi08":"Être présent sans être tout à fait là est une manière de se protéger quand l'environnement a été, à un moment, trop exigeant ou insécurisant. C'est une mise à distance qui a permis de traverser ce qui était difficile (Schauer & Elbert, 2010)."
+};
+
 const LIBERATION={
  rouge:"Il y a en vous quelqu'un qui sait être là — complètement. Ce n'est pas à construire. C'est à libérer.",
  orange:"Sentir n'est pas perdre le contrôle. C'est exactement le contraire — c'est reprendre contact avec ce qui guide vraiment.",
  jaune:"L'incertitude n'est pas un danger — c'est le territoire naturel de la vie. Vous avez toujours eu ce qu'il fallait pour traverser ce que vous ne pouviez pas prévoir.",
  vert:"Vous méritez d'être aimé·e sans rien faire de spécial. Cette certitude — quand elle s'installe — change tout.",
- bleu:"Votre valeur n'est pas conditionnée à ce que vous portez. Vous existez — pleinement — même quand vous lâchez.",
+ bleu:"Votre valeur n'a jamais dépendu de tout ce que vous portez. Quand la peur cesse de tenir les rênes, votre autorité n'a plus besoin de tout contrôler pour exister : elle inspire au lieu de surveiller, et votre parole — enfin libre — entraîne au lieu d'attendre que tout soit sûr.",
  indigo:"Vos intuitions n'avaient pas besoin d'être validées pour être justes. Votre vision du monde n'avait pas besoin d'être approuvée pour être réelle.",
  violet:"Il y a quelqu'un en vous qui n'a jamais eu besoin d'être différent·e pour avoir de la valeur. Le chemin : comprendre que vous n'en avez plus besoin pour la même raison."
 };
@@ -522,7 +603,7 @@ const LIB_CONCRETE={
  orange:["Sentir ce qui vous traverse, et vous en servir comme d'une boussole plutôt que d'un danger.","Dire « je ne vais pas très bien » à quelqu'un — et découvrir que le lien s'en trouve plus vrai.","Retrouver le goût des choses : un plaisir, un élan, une couleur, sans tout passer au crible de la tête."],
  jaune:["Décider sans avoir toutes les réponses — et avancer quand même, avec une confiance tranquille.","Accueillir un imprévu comme une ouverture, non comme une menace à neutraliser.","Goûter une journée non planifiée, et sentir que vous saurez faire face à ce qui vient."],
  vert:["Exprimer un désaccord — et voir que la relation tient, intacte.","Recevoir sans avoir d'abord donné, sans avoir à le mériter.","Vous savoir aimable tel·le que vous êtes, sans avoir à vous effacer pour rester."],
- bleu:["Confier une tâche, et ne pas repasser derrière — sans que rien ne s'effondre.","Vous reposer vraiment, parce que tout ne dépend plus de vos seules épaules.","Guider en élevant les autres, plutôt qu'en portant tout — une autorité qui n'a plus besoin de tout tenir."],
+ bleu:["Confier une tâche et ne pas repasser derrière — et voir que tout tient, sans vous.","Vous reposer vraiment, parce que tout ne dépend plus de vos seules épaules.","Prendre la parole pour inspirer, sans attendre que tout soit sous contrôle — votre voix entraîne au lieu de surveiller."],
  indigo:["Livrer quelque chose d'« assez bien » — et le laisser exister sans le démonter.","Recevoir un compliment, et le garder, sans le minimiser aussitôt.","Suivre votre intuition même à contre-courant, sans avoir besoin qu'on la valide."],
  violet:["Exprimer une préférence vraie — un film, un lieu, une envie — parce qu'elle est la vôtre.","Évoluer, changer d'avis, sans avoir le sentiment de vous trahir.","Vous sentir le même fil constant à travers tous vos rôles — présent·e, à votre place, enfin."]
 };
@@ -601,12 +682,23 @@ const ORIGIN={
 
 const COGNITIVE_BIAS={
  rouge:"Vous surestimez la probabilité qu'une sensation banale soit le signe d'une maladie grave. Ce biais d'amplification est bien documenté dans l'anxiété liée à la santé.",
- orange:"",
+ orange:"Vous traitez l'émotion comme un danger à écarter plutôt qu'un signal à lire — alors vous la mettez à distance avant même de l'avoir ressentie.",
  jaune:"Vous sous-estimez votre capacité à faire face à l'imprévu, ce qui renforce le besoin de tout contrôler à l'avance.",
  vert:"Vous surestimez les signaux de rejet et sous-estimez la solidité de vos liens. C'est le biais d'hypervigilance au rejet.",
- bleu:"Vous surestimez votre capacité à influencer les événements par votre action — ce que les chercheurs appellent l'illusion de contrôle. Ce biais est renforcé par le fait que vous contrôlez effectivement beaucoup de choses, ce qui vous fait croire que tout succès dépend de vous.",
+ bleu:"Vous surestimez à quel point tout dépend de votre action — ce que la recherche nomme l'illusion de contrôle. Comme vous tenez effectivement beaucoup de choses, le biais se renforce : il devient difficile de croire que cela pourrait tenir sans vous. C'est précisément ce qui garde votre leadership en mode défensif, au lieu de le laisser inspirer.",
  indigo:"Vous attribuez vos réussites à la chance ou à la facilité de la tâche, et vos échecs à votre incompétence. Ce biais d'attribution entretient le doute permanent.",
  violet:"Vous avez tendance à penser que les autres attendent de vous une version parfaite, et que toute expression authentique serait décevante."
+};
+
+/* Une source vulgarisée par masque, adossée au "piège mental". Pas de jargon non expliqué. */
+const BIAIS_REF={
+ rouge:"Le corps en alerte « monte le volume » : une sensation banale est perçue en plus gros, plus inquiétante qu'elle n'est. Le savoir ouvre une issue — face à la prochaine sensation, on peut se demander non plus « qu'est-ce que j'ai ? » mais « est-ce le signal, ou l'amplificateur ? ». Cette seule question commence déjà à baisser le volume (Barsky et al., 1988).",
+ orange:"Plus on repousse une émotion, plus elle insiste : c'est l'effet « ours blanc ». La voie n'est donc pas de mieux la fuir, mais de lui laisser un court instant de place — c'est en cessant de lutter qu'elle perd, paradoxalement, son emprise (Wegner, 1987).",
+ jaune:"Face à l'inconnu, l'esprit déroule le pire en croyant se préparer — mais prévoir n'apporte aucune sécurité réelle, seulement de l'usure. Le comprendre ouvre une autre option : laisser un peu de flou exister, et constater qu'on le traverse très bien (Dugas & Ladouceur, 2000).",
+ vert:"Un silence, un délai sont d'abord lus comme un rejet : c'est la sensibilité au rejet, un radar réglé trop fin. Le repérer, c'est pouvoir glisser une autre lecture entre le signal et l'alarme — « et si ce silence ne parlait pas de moi ? ». Ce petit espace suffit à desserrer la peur (Downey & Feldman, 1996).",
+ bleu:"On surestime à quel point tout dépend de soi : une expérience célèbre montre qu'on se sent plus « maître » d'un tirage au sort rien qu'en choisissant son billet — alors que le hasard, lui, ne change pas (Langer, 1975). Le voir, c'est pouvoir trier ce qui dépend vraiment de vous de ce qui n'en dépend pas, et confier le reste sans que tout vacille.",
+ indigo:"La réussite ne « compte » jamais comme preuve : on l'attribue à la chance, et le doute reste intact — c'est le sentiment d'imposture. Le repérer permet d'agir à rebours : noter ses réussites comme des faits, jusqu'à ce que la preuve finisse par peser plus lourd que le doute (Clance & Imes, 1978).",
+ violet:"On finit par se voir avec les yeux qu'on prête aux autres plutôt qu'avec les siens : c'est le « soi-miroir ». En prendre conscience, c'est pouvoir reposer une question oubliée — « et moi, qu'est-ce que j'en pense vraiment ? » — première marche pour redevenir sa propre référence (Cooley, 1902)."
 };
 
 // ══════════════ LECTURE & PROFIL (AMÉLIORÉ) ══════════════
@@ -683,8 +775,11 @@ function detectProfile(scores){
  // 4. Détection de la co‑dominance
  const first = ranked[0];
  const second = ranked[1];
- const gap = zScores[first] - zScores[second];
- const isDyad = gap < DYAD_Z_THRESHOLD;   // écart inférieur au seuil → dyade
+ // Co-dominance = scores indiscernables (écart ≤ 1 SEM) ET 2e masque réellement actif.
+ // Le SEM (≈6.7 pts) est l'incertitude de mesure : en deçà, on ne peut pas départager.
+ const SEM = POP_SD_ESTIMATE * Math.sqrt(1 - PROVISIONAL_ALPHA);
+ const rawGap = (scores[first]||0) - (scores[second]||0);
+ const isDyad = rawGap <= SEM && active.includes(second);
 
  // 5. Profil adaptatif : aucun masque actif
  if (active.length === 0) {
@@ -851,9 +946,10 @@ function buildPortrait(scores,profile,prenom){
  const extremes = getSignatureItems(dom,responses,3);
  const coExtremes = coDom ? getSignatureItems(coDom,responses,3) : null;
 
+ var _MR=['I','II','III','IV','V','VI','VII','VIII']; var _mi=0; var NX=function(){return _MR[_mi++];};
  // MOUVEMENT I – présentation du masque principal (ou des deux)
  html+=`<div class="block">
-  <div class="movement-tag"><span class="num">I</span> · Sept protections, sept manières d'avoir répondu à la vie</div>
+  <div class="movement-tag"><span class="num">${NX()}</span> · Sept protections, sept manières d'avoir répondu à la vie</div>
   <p class="lead">Nous portons tous, en nous, sept peurs. Sept façons de nous être adaptés à un monde qui, un jour, a semblé incertain — sept manières de tenir. Elles sont <strong>universelles</strong> : personne n'y échappe. Ce ne sont pas des cases ni des types de personnalité, mais des <strong>états que l'on traverse</strong>.</p>
   <div class="fears-line">${MASKS.map(m=>`<span class="fear-chip" style="color:${MASK_COLORS[m]};border-color:${MASK_COLORS[m]}55;">${PEUR_NOM[m]}</span>`).join('')}</div>
   <p class="lead">Ce qui change d'une personne à l'autre, c'est laquelle a pris le dessus — selon votre sensibilité, selon votre histoire — jusqu'à devenir une seconde nature, une part de vous qui veille en permanence : votre <strong>masque</strong>.</p>`;
@@ -880,22 +976,22 @@ function buildPortrait(scores,profile,prenom){
 
  // MOUVEMENT II – carte d’identité du premier masque (toujours)
  html+=`<div class="block" style="background:${MASK_PASTELS[dom]};border:1px solid ${mainColor}26;--cid-c:${mainColor};">
-  <div class="movement-tag"><span class="num">II</span> · Votre configuration protectrice</div>
+  <div class="movement-tag"><span class="num">${NX()}</span> · Votre configuration protectrice</div>
   <h2 style="color:${mainColor};">Votre masque dominant : ${mainLabel}</h2>
   <div class="double-def">
    <h3>Un mécanisme de défense</h3>
-   <p>Imaginez une part de vous qui s'est construite il y a longtemps, à une époque où vous aviez besoin d'elle. Elle a pris les commandes d'un domaine précis de votre vie — et elle ne les a jamais rendues. Ce mécanisme vous protège avec une vigilance sans faille. Mais cette protection a un coût : elle retient un élan spontané de votre vraie nature, ${ELAN_SPONTANE[dom]}.</p>
-   ${ORIGIN[dom] ? `<p style="margin-top:14px;">${ORIGIN[dom]}</p>` : ''}
+   <p>Imaginez une part de vous qui s'est construite il y a longtemps, à une époque où vous aviez besoin d'elle. Elle a pris les commandes d'un domaine précis de votre vie — et elle ne les a jamais rendues. Ce mécanisme vous protège avec une vigilance sans faille. Mais cette protection a un coût : elle retient un élan spontané de votre vraie nature — celui que vous allez voir apparaître juste en dessous.</p>
+   <p style="margin-top:14px;">${APPRIS}</p>
    <div class="dd-brace"><div class="dd-avatar" style="background:${mainColor}20;color:${mainColor};">🎭</div><div class="dd-label"><strong>Ce n'est pas vous.</strong> C'est un automatisme que vous avez appris pour ne pas souffrir. Le reconnaître, c'est déjà reprendre contact avec ce qui, en vous, n'a jamais eu besoin de cette protection.</div></div>
   </div>
   <div class="mirror-phrase" style="border-left-color:${mainColor};">${MIRROR[dom]}</div>
+  ${polariteBlock(dom)}
   <div class="cid-grid">
    <div class="cid-row"><div class="cid-k">Sa peur</div><div class="cid-v">${PEUR_NOM[dom]} — ${VOICE[dom].toLowerCase()}</div></div>
    <div class="cid-row"><div class="cid-k">Comment il agit</div><div class="cid-v">${AGIT[dom]}</div></div>
    <div class="cid-row"><div class="cid-k">Quand il s'active</div><div class="cid-v">${SCENE[dom]}</div></div>
    <div class="cid-row"><div class="cid-k">Dans le corps</div><div class="cid-v">Souvent ${CORPORELLES[dom]}</div></div>
-   <div class="cid-row"><div class="cid-k">Ce qu'il protège</div><div class="cid-v">Derrière cet automatisme se tient ${TALENT[dom]}. Le masque n'a jamais été un défaut : c'est ce talent, mis sous garde.</div></div>
-   ${COGNITIVE_BIAS[dom] ? `<div class="cid-row"><div class="cid-k">Piège mental</div><div class="cid-v">${COGNITIVE_BIAS[dom]}</div></div>` : ''}
+   ${COGNITIVE_BIAS[dom] ? `<div class="cid-row"><div class="cid-k">Piège mental</div><div class="cid-v">${COGNITIVE_BIAS[dom]}${BIAIS_REF[dom]?`<div class="ref-sci"><span class="lab">Éclairage</span>${BIAIS_REF[dom]}</div>`:''}</div></div>` : ''}
   </div>
  </div>`;
 
@@ -906,35 +1002,35 @@ function buildPortrait(scores,profile,prenom){
     <h2 style="color:${coColor};">Masque ${coLabel} — ${PEUR_NOM[coDom]}</h2>
     <div class="double-def">
      <h3>Un allié de l’ombre</h3>
-     <p>Ce second masque agit en synergie avec le premier. Il renforce la protection, souvent de manière complémentaire. ${ELAN_SPONTANE[coDom]} est également retenu derrière lui.</p>
-     ${ORIGIN[coDom] ? `<p style="margin-top:14px;">${ORIGIN[coDom]}</p>` : ''}
+     <p>Ce second masque agit en synergie avec le premier. Il renforce la protection, souvent de manière complémentaire. Un élan vous est, là aussi, retenu — visible juste en dessous.</p>
+     <p style="margin-top:14px;">${APPRIS}</p>
     </div>
     <div class="mirror-phrase" style="border-left-color:${coColor};">${MIRROR[coDom]}</div>
+    ${polariteBlock(coDom)}
     <div class="cid-grid">
      <div class="cid-row"><div class="cid-k">Sa peur</div><div class="cid-v">${PEUR_NOM[coDom]} — ${VOICE[coDom].toLowerCase()}</div></div>
      <div class="cid-row"><div class="cid-k">Comment il agit</div><div class="cid-v">${AGIT[coDom]}</div></div>
      <div class="cid-row"><div class="cid-k">Quand il s'active</div><div class="cid-v">${SCENE[coDom]}</div></div>
      <div class="cid-row"><div class="cid-k">Dans le corps</div><div class="cid-v">Souvent ${CORPORELLES[coDom]}</div></div>
-     <div class="cid-row"><div class="cid-k">Ce qu'il protège</div><div class="cid-v">${TALENT[coDom]}</div></div>
-     ${COGNITIVE_BIAS[coDom] ? `<div class="cid-row"><div class="cid-k">Piège mental</div><div class="cid-v">${COGNITIVE_BIAS[coDom]}</div></div>` : ''}
+     ${COGNITIVE_BIAS[coDom] ? `<div class="cid-row"><div class="cid-k">Piège mental</div><div class="cid-v">${COGNITIVE_BIAS[coDom]}${BIAIS_REF[coDom]?`<div class="ref-sci"><span class="lab">Éclairage</span>${BIAIS_REF[coDom]}</div>`:''}</div></div>` : ''}
     </div>
    </div>`;
  }
 
  // MOUVEMENT III – les preuves
  html+=`<div class="block" style="border-left:4px solid ${mainColor};">
-  <div class="movement-tag"><span class="num">III</span> · La preuve, dans vos propres mots</div>
+  <div class="movement-tag"><span class="num">${NX()}</span> · La preuve, dans vos propres mots</div>
   <h2 style="color:${mainColor};">Vous l'avez écrit vous-même</h2>`;
  if(extremes.length){
   html+=`<p class="lead">Tout ce qui précède n'est pas une description générale plaquée sur vous. Voici, parmi vos réponses, celles où vous vous êtes reconnu·e le plus nettement — la signature de votre masque principal :</p><div class="pattern-block" style="margin-top:16px;">`;
-  extremes.forEach(e=>{ const ins=ITEM_INSIGHT[e.item.id]||''; html+=`<div class="item-extreme"><span class="dot" style="background:${mainColor};"></span><div><div class="text">« ${e.item.text} »</div>${ins?`<div class="ins">↳ ${ins}</div>`:''}</div></div>`; });
+  extremes.forEach(e=>{ const ins=ITEM_INSIGHT[e.item.id]||''; const rs=REF_SCIENCE[e.item.id]||''; html+=`<div class="item-extreme"><span class="dot" style="background:${mainColor};"></span><div><div class="text">« ${e.item.text} »</div>${ins?`<div class="ins">↳ ${ins}</div>`:''}${rs?`<div class="ref-sci"><span class="lab">Éclairage</span>${rs}</div>`:''}</div></div>`; });
   html+=`</div>`;
  } else {
   html+=`<p class="lead">Vos réponses dessinent, trait après trait, exactement ce schéma — au point qu'il finit par ressembler à une évidence sur vous-même.</p>`;
  }
  if (isDyad && coExtremes && coExtremes.length) {
   html+=`<p class="lead" style="margin-top:16px;">Et pour votre co‑masque :</p><div class="pattern-block">`;
-  coExtremes.forEach(e=>{ const ins=ITEM_INSIGHT[e.item.id]||''; html+=`<div class="item-extreme"><span class="dot" style="background:${coColor};"></span><div><div class="text">« ${e.item.text} »</div>${ins?`<div class="ins">↳ ${ins}</div>`:''}</div></div>`; });
+  coExtremes.forEach(e=>{ const ins=ITEM_INSIGHT[e.item.id]||''; const rs=REF_SCIENCE[e.item.id]||''; html+=`<div class="item-extreme"><span class="dot" style="background:${coColor};"></span><div><div class="text">« ${e.item.text} »</div>${ins?`<div class="ins">↳ ${ins}</div>`:''}${rs?`<div class="ref-sci"><span class="lab">Éclairage</span>${rs}</div>`:''}</div></div>`; });
   html+=`</div>`;
  }
  html+=`</div>`;
@@ -952,7 +1048,7 @@ function buildPortrait(scores,profile,prenom){
  if(secondaries.length){
   const hasBA=(profile.blocker||profile.amplifier);
   html+=`<div class="block" style="background:transparent;border:none;box-shadow:none;padding:8px 4px 0;">
-   <div class="movement-tag"><span class="num">IV</span> · Vos autres masques actifs</div>
+   <div class="movement-tag"><span class="num">${NX()}</span> · Vos autres masques actifs</div>
    <h2>Le masque ${mainLabel} ne mène pas seul</h2>
    <p class="lead">D'autres protections sont actives chez vous. Chacune a sa propre logique — et ${hasBA?`deux d'entre elles jouent un rôle particulier : l'une <strong>bloque</strong> l'accès aux émotions (Orange), l'autre <strong>amplifie</strong> toutes les peurs (Jaune).`:`elles colorent, elles aussi, votre quotidien.`} Voici chacune, avec vos propres réponses à l'appui.</p>
   </div>`;
@@ -966,7 +1062,7 @@ function buildPortrait(scores,profile,prenom){
  // MOUVEMENT V – espaces libres
  const lows=MASKS.filter(m=>m!==dom && m!==coDom && (scores[m]||0)<MASK_THRESHOLDS[m]).sort((a,b)=>(scores[a]||0)-(scores[b]||0)).slice(0,4);
  html+=`<div class="block" style="border:1px solid rgba(45,122,79,.22);background:rgba(45,122,79,.04);">
-  <div class="movement-tag" style="color:var(--vert);"><span class="num">V</span> · Vos espaces libres</div>
+  <div class="movement-tag" style="color:var(--vert);"><span class="num">${NX()}</span> · Vos espaces libres</div>
   <h2>Vos forces déjà là</h2>
   <p class="lead">Ces domaines ne sont pas des « scores bas ». Ce sont vos <strong>ressources conscientes</strong> — des parties de vous où l’élan circule librement, sans être arrêté par une peur. Elles sont votre point d’appui naturel pour la traversée.</p>`;
  if(lows.length){
@@ -987,14 +1083,13 @@ function buildPortrait(scores,profile,prenom){
    <div class="carte-legend"><strong>Comment lire ces jauges.</strong> Le trait vertical indique votre score. La zone grise va de 0 au seuil au-delà duquel la protection devient active. La zone colorée montre l'espace où la protection peut s'intensifier. Les masques sont classés du plus au moins « au-delà de leur seuil ».</div>
   </div>`;
 
- // MOUVEMENT VI – LIBÉRATION (basé sur le masque principal, mais on pourrait en parler pour les deux)
+ html+=buildOrdreTravail(profile,scores,NX());
+
+ // MOUVEMENT VII – LIBÉRATION
  const sm=STEPMAP[dom];
  html+=`<div class="block" style="--lib-c:${mainColor}40;--lib-bg:${mainColor}0A;border-left:4px solid ${mainColor};">
-  <div class="movement-tag"><span class="num">VI</span> · Ce que la libération rend possible</div>
-  <h2 style="color:${mainColor};">Quand l'élan se libère</h2>
-  <p class="lead">La méthode V.A.L.E.U.R© ne cherche pas à effacer la peur : elle libère ${ELAN_SPONTANE[dom]} que votre masque retenait. Concrètement, pour vous, cela ressemble à ceci :</p>
-  <div class="libc-list">${LIB_CONCRETE[dom].map(x=>`<div class="libc-item"><div class="libc-ic">→</div><div class="libc-t">${x}</div></div>`).join('')}</div>
-  <div class="hope-quote" style="border-left-color:${mainColor};margin-top:22px;font-family:'Cormorant Garamond',serif;font-size:21px;font-style:italic;line-height:1.55;color:var(--text);padding-left:18px;">${LIBERATION[dom]}</div>
+  <div class="movement-tag"><span class="num">${NX()}</span> · Ce que la libération rend possible</div>
+  ${buildCloture(profile,mainColor)}
   <p class="lead">Le chemin se fait en six temps — <em>Voir, Accueillir, Localiser, Explorer, Unifier, Renforcer</em>. Pour vous, le desserrement commence souvent par l'étape <strong style="color:${mainColor};">${sm.mot}</strong> : ${sm.note}</p>
   <div class="vmap">${VALEUR_STEPS.map(s=>`<div class="vmap-cell${s.l===sm.k?' live':''}"><div class="vmap-letter">${s.l}</div><div class="vmap-word">${s.mot}</div><div class="vmap-desc">${s.d}</div>${s.l===sm.k?`<div class="vmap-flag">Votre point d'entrée</div>`:''}</div>`).join('')}</div>
  </div>`;
@@ -1032,7 +1127,8 @@ function secondaryEncart(m,scores,responses){
   <div class="movement-tag" style="color:${c};">Masque actif</div>
   <h2 style="color:${c};">${MASK_LABELS[m]} — ${PEUR_NOM[m]} (${scores[m]||0}%)</h2>
   <p class="lead">${AGIT[m]}</p>
-  <p class="lead" style="font-size:14px;color:var(--text2);">Derrière cette protection se tient ${TALENT[m]}.</p>
+  <p class="lead" style="font-size:14px;color:var(--text2);">${POL_SIGN[m]}</p>
+  ${COGNITIVE_BIAS[m]?`<div class="cid-grid"><div class="cid-row"><div class="cid-k">Piège mental</div><div class="cid-v">${COGNITIVE_BIAS[m]}${BIAIS_REF[m]?`<div class="ref-sci"><span class="lab">Éclairage</span>${BIAIS_REF[m]}</div>`:''}</div></div></div>`:''}
   ${phrasesBlock(m,responses,c)}
  </div>`;
 }
@@ -1044,6 +1140,7 @@ function blockerCard(dom,scores,responses){
   <h2 style="color:${co};">Masque Orange — La fermeture émotionnelle (${scores['orange']||0}%)</h2>
   <p class="lead">Le Masque Orange est un bloqueur de premier ordre : il coupe l'accès à vos émotions, rendant tout travail sur les autres peurs plus difficile. Voici comment il interagit avec votre masque dominant :</p>
   <div class="ba-you">${inter}</div>
+  ${COGNITIVE_BIAS["orange"]?`<div class="cid-grid"><div class="cid-row"><div class="cid-k">Piège mental</div><div class="cid-v">${COGNITIVE_BIAS["orange"]}${BIAIS_REF["orange"]?`<div class="ref-sci"><span class="lab">Éclairage</span>${BIAIS_REF["orange"]}</div>`:''}</div></div></div>`:''}
   ${phrasesBlock('orange',responses,co)}
  </div>`;
 }
@@ -1055,52 +1152,106 @@ function amplifierCard(dom,scores,responses){
   <h2 style="color:${cj};">Masque Jaune — L'intolérance à l'incertitude (${scores['jaune']||0}%)</h2>
   <p class="lead">Le Masque Jaune ne crée pas de nouvelle peur : il augmente l'intensité de toutes les autres. Voici comment il amplifie votre masque dominant :</p>
   <div class="ba-you">${inter}</div>
+  ${COGNITIVE_BIAS["jaune"]?`<div class="cid-grid"><div class="cid-row"><div class="cid-k">Piège mental</div><div class="cid-v">${COGNITIVE_BIAS["jaune"]}${BIAIS_REF["jaune"]?`<div class="ref-sci"><span class="lab">Éclairage</span>${BIAIS_REF["jaune"]}</div>`:''}</div></div></div>`:''}
   ${phrasesBlock('jaune',responses,cj)}
  </div>`;
 }
 
 // ── PROFIL PAN-MASQUE
 function buildPanContent(scores,profile,responses,spa){
- const act=profile.active||[];
- const sub=profile.spread<=10?'une suradaptation profonde':'une activation généralisée';
+ const R=['I','II','III','IV','V','VI','VII','VIII']; let mi=0; const NX=()=>R[mi++];
+ const act=(profile.active||[]).slice().sort((a,b)=>(scores[b]||0)-(scores[a]||0));
+ const tight=profile.spread<=10;
+ const sub=tight?'une suradaptation profonde':'une activation généralisée';
+
+ // ── MOUVEMENT I — Configuration
  let html=`<div class="block">
-  <div class="movement-tag"><span class="num">I</span> · Une configuration particulière</div>
+  <div class="movement-tag"><span class="num">${NX()}</span> · Une configuration particulière</div>
   <p class="lead">Nous portons tous, en nous, sept peurs — sept manières universelles de nous être adaptés à la vie.</p>
   <div class="fears-line">${MASKS.map(m=>`<span class="fear-chip" style="color:${MASK_COLORS[m]};border-color:${MASK_COLORS[m]}55;">${PEUR_NOM[m]}</span>`).join('')}</div>
   <div class="reveal" style="margin-top:22px;">
    <div class="reveal-pre">Chez vous, aucune ne mène vraiment seule</div>
-   <div class="reveal-name" style="color:var(--gold-ink);">${profile.spread<=10?'Suradaptation':'Activation généralisée'}</div>
+   <div class="reveal-name" style="color:var(--gold-ink);">${tight?'Suradaptation':'Activation généralisée'}</div>
    <div class="reveal-peur">${act.length} protections actives, très proches en intensité</div>
   </div>
-  <p class="lead" style="margin-top:18px;">Ce n'est pas un masque qui a pris le dessus, mais presque tous, en même temps. C'est le signe d'${sub} : pour faire face, vous avez appris à mobiliser plusieurs protections à la fois, en permanence. C'est épuisant, et le plus souvent invisible de l'extérieur — car tout est tenu. Derrière cette suradaptation, il y a quelqu'un, en vous, qui attend simplement de pouvoir exister sans avoir à tout contrôler.</p>
+  <p class="lead" style="margin-top:18px;">Ce n'est pas un masque qui a pris le dessus, mais presque tous, en même temps. C'est le signe d'${sub} : pour faire face, vous avez appris à mobiliser plusieurs protections à la fois, en permanence. C'est épuisant, et le plus souvent invisible de l'extérieur — car tout est tenu. Derrière cette suradaptation, il y a quelqu'un, en vous, qui attend simplement de pouvoir exister sans avoir à tout porter.</p>
   <div class="reminder-box" style="text-align:left;margin-top:16px;">Quand plusieurs protections sont aussi sollicitées en même temps, votre système nerveux est rarement au repos. Ce portrait n'est pas un diagnostic : si cet état de tension dure, en parler à une personne de confiance ou à un·e professionnel·le peut beaucoup aider.</div>
  </div>`;
 
- html+=`<div class="block">
-  <div class="movement-tag"><span class="num">II</span> · Vos protections actives, une par une</div>
+ // ── MOUVEMENT II — Chaque protection, en détail (parité avec le profil dominant)
+ html+=`<div class="block" style="background:transparent;border:none;box-shadow:none;padding:8px 4px 0;">
+  <div class="movement-tag"><span class="num">${NX()}</span> · Vos protections, une par une</div>
   <h2>Toutes présentes, toutes significatives</h2>
-  <p class="lead">Aucune ne domine narrativement les autres. Pour chacune, voici la peur qu'elle porte et la réponse où vous vous êtes le plus reconnu·e :</p>`;
+  <p class="lead">Dans une configuration comme la vôtre, aucune protection ne mérite d'être résumée en une ligne. Voici chacune en détail — sa peur, sa manière d'agir, ce qu'elle protège — et, à chaque fois, la réponse où vous vous êtes le plus reconnu·e.</p>
+ </div>`;
  act.forEach(m=>{
   const c=MASK_COLORS[m];
-  const phr=getSignatureItems(m,responses,1);
-  html+=`<div style="border-left:3px solid ${c};padding:12px 16px;margin:12px 0;background:${MASK_PASTELS[m]};border-radius:0 8px 8px 0;">
-   <div style="font-weight:600;color:${c};margin-bottom:4px;">${MASK_LABELS[m]} — ${PEUR_NOM[m]} · ${scores[m]||0}%</div>
-   <div style="font-size:13.5px;color:var(--text2);line-height:1.6;">${AGIT[m]}</div>
-   ${phr.length?`<div style="font-size:13.5px;color:var(--text);font-style:italic;margin-top:6px;">« ${phr[0].item.text} »</div>`:''}
+  html+=`<div class="block" style="background:${MASK_PASTELS[m]};border:1px solid ${c}26;--cid-c:${c};">
+   <h3 style="color:${c};font-size:25px;margin-bottom:4px;">Masque ${MASK_LABELS[m]} — ${PEUR_NOM[m]}</h3>
+   <div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:${c};margin-bottom:14px;">Protection active · ${scores[m]||0}%</div>
+   <div class="mirror-phrase" style="border-left-color:${c};">${MIRROR[m]}</div>
+   ${polariteBlock(m)}
+   <div class="cid-grid">
+    <div class="cid-row"><div class="cid-k">Sa peur</div><div class="cid-v">${PEUR_NOM[m]} — ${VOICE[m].toLowerCase()}</div></div>
+    <div class="cid-row"><div class="cid-k">Comment il agit</div><div class="cid-v">${AGIT[m]}</div></div>
+    <div class="cid-row"><div class="cid-k">Dans le corps</div><div class="cid-v">Souvent ${CORPORELLES[m]}</div></div>
+    ${COGNITIVE_BIAS[m]?`<div class="cid-row"><div class="cid-k">Piège mental</div><div class="cid-v">${COGNITIVE_BIAS[m]}${BIAIS_REF[m]?`<div class="ref-sci"><span class="lab">Éclairage</span>${BIAIS_REF[m]}</div>`:''}</div></div>`:''}
+   </div>
+   ${phrasesBlock(m,responses,c)}
   </div>`;
  });
- html+=`</div>`;
 
+ // ── MOUVEMENT III — Bloqueur & amplificateur (rôles systémiques)
+ if(profile.blocker||profile.amplifier){
+  html+=`<div class="block" style="background:transparent;border:none;box-shadow:none;padding:8px 4px 0;">
+   <div class="movement-tag"><span class="num">${NX()}</span> · Deux rôles particuliers</div>
+   <h2>Le bloqueur et l'amplificateur</h2>
+   <p class="lead">Parmi vos protections actives, ${(profile.blocker&&profile.amplifier)?'deux jouent':'une joue'} un rôle à part : ${profile.blocker?'le Masque Orange <strong>bloque</strong> l’accès aux émotions':''}${(profile.blocker&&profile.amplifier)?', et ':''}${profile.amplifier?'le Masque Jaune <strong>amplifie</strong> toutes les autres peurs':''}. Les comprendre éclaire pourquoi l’ensemble pèse autant.</p>
+  </div>`;
+  if(profile.blocker){
+   const co=MASK_COLORS['orange'];
+   const inter=BLOCKER_INTERACTION[profile.dom]||'';
+   html+=`<div class="block" style="border-left:4px solid ${co};">
+    <div class="movement-tag" style="color:${co};">Votre bloqueur</div>
+    <h2 style="color:${co};">Masque Orange — La fermeture émotionnelle (${scores['orange']||0}%)</h2>
+    <p class="lead">Le Masque Orange est un bloqueur : il coupe l'accès à vos émotions. Or, dans une configuration aussi mobilisée, c'est précisément le ressenti qui permettrait de relâcher les autres protections — on ne traverse pas ce qu'on ne sent pas. C'est ce qui rend l'ensemble si difficile à desserrer seul·e.</p>
+    ${inter?`<div class="ba-you">${inter}</div>`:''}
+    ${phrasesBlock('orange',responses,co)}
+   </div>`;
+  }
+  if(profile.amplifier){
+   const cj=MASK_COLORS['jaune'];
+   const inter=AMPLIFIER_INTERACTION[profile.dom]||'';
+   html+=`<div class="block" style="border-left:4px solid ${cj};">
+    <div class="movement-tag" style="color:${cj};">Votre amplificateur</div>
+    <h2 style="color:${cj};">Masque Jaune — L'intolérance à l'incertitude (${scores['jaune']||0}%)</h2>
+    <p class="lead">Le Masque Jaune ne crée pas de peur nouvelle : il monte le volume de toutes les autres. Dans une configuration déjà très active, il agit comme un multiplicateur — c'est souvent lui qui transforme une vigilance soutenable en épuisement permanent.</p>
+    ${inter?`<div class="ba-you">${inter}</div>`:''}
+    ${phrasesBlock('jaune',responses,cj)}
+   </div>`;
+  }
+ }
+
+ // ── MOUVEMENT IV — Valorisation : lucidité & sensibilité
+ html+=`<div class="block" style="border-left:4px solid var(--gold);background:linear-gradient(135deg,rgba(201,168,76,.09),rgba(201,168,76,.02));">
+  <div class="movement-tag"><span class="num">${NX()}</span> · Votre force, derrière la fatigue</div>
+  <h2 style="color:var(--gold-ink);">Une sensibilité élevée, une lucidité rare</h2>
+  <p class="lead">Une configuration comme la vôtre n'est pas un « moins bon » résultat, ni un défaut. C'est le signe d'une <strong>sensibilité élevée</strong> et d'une <strong>lucidité peu commune</strong> : vous percevez beaucoup, sur plusieurs plans à la fois, et vous vous êtes adapté·e à presque tout. Peu de gens tiennent autant de fronts en même temps.</p>
+  <p class="lead">Le coût, c'est l'épuisement — cette vigilance qui ne se repose jamais. Mais la ressource est exactement la même faculté : aujourd'hui, votre sensibilité est tournée vers l'<strong>extérieur</strong> (anticiper, contrôler, plaire, se protéger). Tout le travail V.A.L.E.U.R© consiste à la réorienter vers l'<strong>intérieur</strong> — la mettre au service de votre présence à vous-même plutôt que d'une surveillance permanente. La même finesse, libérée, devient votre plus grande force.</p>
+ </div>`;
+
+ // ── MOUVEMENT V — Espaces libres
  const lows=MASKS.filter(m=>(scores[m]||0)<MASK_THRESHOLDS[m]).sort((a,b)=>(scores[a]||0)-(scores[b]||0)).slice(0,3);
  if(lows.length){
   html+=`<div class="block" style="border:1px solid rgba(45,122,79,.22);background:rgba(45,122,79,.04);">
-   <div class="movement-tag" style="color:var(--vert);"><span class="num">III</span> · Vos espaces libres</div>
+   <div class="movement-tag" style="color:var(--vert);"><span class="num">${NX()}</span> · Vos espaces libres</div>
    <h2>Là où la peur n'a pas pris le dessus</h2>
-   <p class="lead">Même dans une configuration aussi mobilisée, certaines protections restent sous leur seuil. Ce sont vos points d'appui — la preuve qu'une part de vous fonctionne déjà sans la peur.</p>
+   <p class="lead">Même dans une configuration aussi mobilisée, certaines protections restent sous leur seuil. Ce sont vos points d'appui — la preuve qu'une part de vous fonctionne déjà sans la peur. C'est par eux que la traversée commence.</p>
    <div class="appui-grid">${lows.map(m=>`<div class="appui-card"><div class="appui-h"><span class="d" style="background:${MASK_COLORS[m]};"></span><span style="font-weight:600;color:var(--text);">${RESOURCE_LABELS[m]}</span><span style="font-size:11px;color:var(--text3);margin-left:auto;">espace libre : ${100-(scores[m]||0)}%</span></div><p>${(100-(scores[m]||0))>=70?RESOURCE_STRONG[m]:RESOURCE_MODERATE[m]}</p></div>`).join('')}</div>
   </div>`;
  }
 
+ // ── Carte complète
  html+=`<div class="carte-block" style="background:transparent;padding:24px 0 0;margin:0;">
    <p class="lead" style="margin-bottom:6px;">Votre paysage complet — chaque masque lu par rapport à <em>son propre seuil</em> :</p>
    <div class="toile-wrapper"><canvas id="toile-canvas" width="340" height="340"></canvas></div>
@@ -1108,17 +1259,22 @@ function buildPanContent(scores,profile,responses,spa){
    <div class="carte-legend"><strong>Comment lire ces jauges.</strong> Le trait vertical indique votre score ; la zone grise va de 0 au seuil d'activation. Ici, presque toutes les protections franchissent leur seuil — d'où la configuration généralisée.</div>
   </div>`;
 
+ // ── Ordre de travail
+ html+=buildOrdreTravail(profile,scores,NX());
+
+ // ── Le chemin
  html+=`<div class="block" style="border-left:4px solid var(--gold);">
-  <div class="movement-tag"><span class="num">IV</span> · Le chemin</div>
+  <div class="movement-tag"><span class="num">${NX()}</span> · Le chemin</div>
   <h2>Desserrer, une protection à la fois</h2>
   <p class="lead">Face à une activation généralisée, le travail V.A.L.E.U.R© ne cherche pas à tout désamorcer d'un coup. Il commence par le SPA — votre présence à vous-même — et desserre les protections une par une, en prenant appui sur vos espaces libres. La boussole, ici, c'est votre SPA : c'est lui qui guide la traversée.</p>
-  <div class="vmap">${VALEUR_STEPS.map(s=>`<div class="vmap-cell"><div class="vmap-letter">${s.l}</div><div class="vmap-word">${s.mot}</div><div class="vmap-desc">${s.d}</div></div>`).join('')}</div>
+  <div class="vmap">${VALEUR_STEPS.map((s,i)=>`<div class="vmap-cell${i===0?' live':''}"><div class="vmap-letter">${s.l}</div><div class="vmap-word">${s.mot}</div><div class="vmap-desc">${s.d}</div>${i===0?`<div class="vmap-flag">Votre point d'entrée</div>`:''}</div>`).join('')}</div>
  </div>`;
 
  html+=`<div class="rituel-block">
   <h3>Un geste pour créer la distance</h3>
   <p>Donner un nom à ces automatismes — « mes gardiens », « mon système d'alerte » — aide à les reconnaître quand ils s'activent, et à se rappeler qu'ils ne sont pas vous. Ce sont des <strong>états que l'on traverse</strong>, pas votre identité.</p>
  </div>`;
+ html+=`<div class="block" style="border-left:4px solid var(--gold);"><div class="movement-tag"><span class="num">${NX()}</span> · Pour finir</div>${buildCloture(profile,"var(--gold)")}</div>`;
  return html;
 }
 
@@ -1135,8 +1291,72 @@ function buildAdaptatifContent(scores,spa){
  <div class="block" style="border:1px solid rgba(45,122,79,.22);background:rgba(45,122,79,.04);"><div class="movement-tag" style="color:${g};">Votre boussole</div><h2>Espace de liberté — ${spa}%</h2><p class="lead">La part de vos réactions qui vient de vous, et non d'une peur. Chez vous, cet espace est déjà large.</p></div>`;
 }
 
+function buildOrdreTravail(profile,scores,num){
+ const dom=profile.dom, coDom=profile.coDom, isPan=profile.type==='pan';
+ const steps=[]; const seen={};
+ function add(m,titre,vlet,vmot,why){ if(seen[m]) return; seen[m]=1; steps.push({m,titre,vlet,vmot,why}); }
+ if(profile.blocker) add('orange',"Rouvrir l'accès aux émotions",'A','Accueillir',"On ne traverse pas ce qu'on ne sent pas. Tant que le Masque Orange tient les émotions à distance, les autres protections ne se desserrent qu'en surface. C'est la première porte — et elle change tout.");
+ if(profile.amplifier) add('jaune',"Baisser le volume de l'alarme",'E','Explorer',"Le Masque Jaune amplifie toutes les autres peurs. En baissant son intensité, l'urgence retombe et chaque protection devient abordable. On désamorce le multiplicateur avant de toucher au reste.");
+ if(isPan){
+  add(dom,"Desserrer les protections meneuses, une à une",STEPMAP[dom].k,STEPMAP[dom].mot,"Dans une configuration où plusieurs protections sont actives, on avance de la plus intense à la plus légère — jamais tout à la fois — en prenant appui, à chaque pas, sur vos espaces libres.");
+ } else {
+  const sm=STEPMAP[dom]; add(dom,"Desserrer le masque "+MASK_LABELS[dom],sm.k,sm.mot,sm.note);
+  if(coDom){ const sc=STEPMAP[coDom]; add(coDom,"Desserrer le masque "+MASK_LABELS[coDom],sc.k,sc.mot,sc.note); }
+ }
+ const rows=steps.map((st,i)=>{ const c=MASK_COLORS[st.m]; return `<div class="ordre-step"><div class="ordre-num" style="background:${c};">${i+1}</div><div class="ordre-body"><div class="ordre-head"><span class="ordre-titre" style="color:${c};">${st.titre}</span><span class="ordre-vbadge">${st.vlet} · ${st.vmot}</span></div><div class="ordre-why">${st.why}</div></div></div>`; }).join('');
+ return `<div class="block" style="border-left:4px solid var(--gold);">
+  <div class="movement-tag"><span class="num">${num}</span> · Par où commencer</div>
+  <h2 style="color:var(--gold-ink);">Votre ordre de travail</h2>
+  <p class="lead">On ne libère pas un masque en le visant de front. La méthode V.A.L.E.U.R© suit un ordre précis — celui qui rend le changement possible là où la volonté seule échoue : d'abord rouvrir le ressenti, puis baisser l'alarme, puis desserrer les protections qui mènent. Voici, pour vous, cet ordre.</p>
+  <div class="ordre-list">${rows}</div>
+  <div class="reminder-box" style="text-align:left;margin-top:18px;">À chaque étape, vos <strong>espaces libres</strong> servent d'appui : ce sont les forces déjà disponibles sur lesquelles le travail prend appui pour desserrer, en douceur, ce qui s'est verrouillé. C'est cet ordre — le ressenti d'abord, l'alarme ensuite, les meneurs enfin — qui fait de V.A.L.E.U.R© une méthode qui libère là où l'effort seul s'épuise.</div>
+ </div>`;
+}
+
+const APPRIS = "Cette protection ne dit rien d'un défaut : c'est une réponse qui s'est apprise, tôt, à un moment où elle a été la plus juste possible. Le quand et le comment vous appartiennent — ils se déplieront, à votre rythme, dans l'accompagnement. Ce qui compte ici : ce qui a été appris peut être réappris.";
+const PROTECTION_VERBE = {rouge:"en surveillant le corps",orange:"en tenant les émotions à distance",jaune:"en anticipant l'imprévu",vert:"en veillant sur le lien",bleu:"en gardant le contrôle",indigo:"en visant l'irréprochable",violet:"en s'adaptant à chacun"};
+const POL_BRIDGE = {
+ rouge:"La même acuité qui scrute le danger pourrait savourer le vivant : une seule sensibilité, deux usages.",
+ orange:"La même profondeur qui se met à distance pourrait servir de boussole : un seul ressenti, deux directions.",
+ jaune:"Le même esprit qui anticipe le pire pourrait préparer le meilleur : une seule lucidité, deux emplois.",
+ vert:"La même attention qui guette le rejet pourrait nourrir des liens vivants : une seule sensibilité au lien, deux versants.",
+ bleu:"La même autorité qui verrouille tout pourrait entraîner et élever : une seule force, selon qu'elle surveille ou qu'elle inspire.",
+ indigo:"La même exigence qui traque la faille pourrait viser le juste : un seul sens de l'excellence, deux visages.",
+ violet:"La même finesse qui se fond dans les attentes pourrait dessiner votre singularité : une seule sensibilité, deux orientations."
+};
+const POL_SIGN = {
+ rouge:"Votre vigilance n'est pas une faille : c'est une présence au corps, mobilisée pour guetter au lieu d'habiter.",
+ orange:"Votre retrait n'est pas une froideur : c'est une intensité émotionnelle, mise à l'abri pour ne plus déborder.",
+ jaune:"Votre besoin de prévoir n'est pas un excès : c'est un sens du détail et de la fiabilité, tendu par la peur du vide.",
+ vert:"Votre vigilance relationnelle n'est pas une dépendance : c'est une capacité d'amour profond, retournée en inquiétude.",
+ bleu:"Votre besoin de tenir n'est pas un défaut de caractère : c'est une capacité à porter et à guider, restée en mode défense.",
+ indigo:"Votre perfectionnisme n'est pas un défaut : c'est une intégrité exigeante, tournée contre vous plutôt qu'au service de votre œuvre.",
+ violet:"Votre talent d'adaptation n'est pas un effacement : c'est une intelligence fine des autres, exercée au prix de vous-même."
+};
+function polariteBlock(m){
+ const c=MASK_COLORS[m];
+ return `<div class="polarite" style="--pol-c:${c}14;--pol-ink:${c};">
+   <div class="pol-side pol-protection"><div class="pol-lab">La protection</div><div class="pol-txt">Protéger ${PROTECTION_VERBE[m]}.</div></div>
+   <div class="pol-link"><span class="sym">⇋</span></div>
+   <div class="pol-side pol-elan"><div class="pol-lab">L'élan retenu</div><div class="pol-txt">${ELAN_SPONTANE[m]}.</div></div>
+  </div>
+  <div class="pol-bridge">${POL_BRIDGE[m]}</div>
+  <div class="pol-sign">${POL_SIGN[m]}</div>`;
+}
+
+function buildCloture(profile,col){
+ const A=(profile.active&&profile.active.length)?profile.active:[profile.dom];
+ const elans=A.map(m=>`<div class="elan-row"><span class="elan-dot" style="background:${MASK_COLORS[m]};"></span><div class="elan-body"><span class="elan-mask" style="color:${MASK_COLORS[m]};">Masque ${MASK_LABELS[m]}</span> — libère ${ELAN_SPONTANE[m]}.</div></div>`).join('');
+ return `<h2 style="color:${col};">Ce portrait ne parlait pas de vous</h2>
+  <p class="clot-p">Si quelque chose, en vous lisant, a résisté — « ce n'est pas tout à fait moi » —, c'est bon signe : une protection n'aime pas être vue. Ce portrait n'a pas décrit qui vous êtes, mais votre <strong>double défensif</strong> — des masques hérités d'un passé où ils ont été utiles. Vous les avez pris pour vous ; ils n'ont jamais été vous.</p>
+  <p class="clot-p">Derrière chacun, un élan vivant, capturé par une peur et détourné de sa direction :</p>
+  <div class="elans-list">${elans}</div>
+  <p class="cloture-emphase">Toute la singularité de V.A.L.E.U.R© tient là : ce portrait ne dit pas qui vous êtes, mais ce qui vous empêche de l'être. Et rien n'est gravé — une protection est un apprentissage ; ce qui s'apprend se desserre.</p>
+  <p class="clot-p">Le chemin ne vous demandera pas de devenir un autre, mais de <strong>débarrasser votre nature de ce qui l'encombre</strong>, une protection à la fois. Sous tous ces masques, il y a quelqu'un que rien n'a jamais empêché d'exister.</p>`;
+}
+
 function closing(){
- return `<div class="footer-legal">Les seuils d'activation sont fondés sur la littérature des instruments de référence. La détermination du masque dominant utilise une standardisation intra‑sujet (z‑score). La future version intégrera des percentiles communs et des T‑scores. La co‑dominance est détectée lorsque l'écart entre les deux premiers z‑scores est inférieur à ${DYAD_Z_THRESHOLD} (provisoire, basé sur alpha = ${PROVISIONAL_ALPHA}).<br>La détection d'inattention (items pièges, cohérence, straight‑lining) sera intégrée au questionnaire de passation.</div><p style="text-align:center;margin-top:24px;" class="no-print"><button class="btn-print" onclick="window.print()">Enregistrer en PDF</button></p>`;
+ return `<div class="footer-legal">Les seuils d'activation sont fondés sur la littérature des instruments de référence. La détermination du masque dominant utilise une standardisation intra‑sujet (z‑score). La future version intégrera des percentiles communs et des T‑scores. La co‑dominance est détectée lorsque l'écart entre les deux scores de tête est inférieur à l'erreur‑type de mesure (SEM ≈ ${(POP_SD_ESTIMATE*Math.sqrt(1-PROVISIONAL_ALPHA)).toFixed(1)} points, provisoire, basé sur alpha = ${PROVISIONAL_ALPHA}), les deux masques étant alors statistiquement indiscernables.<br>La détection d'inattention (items pièges, cohérence, straight‑lining) sera intégrée au questionnaire de passation.</div><p style="text-align:center;margin-top:24px;" class="no-print"><button class="btn-print" onclick="window.print()">Enregistrer en PDF</button></p>`;
 }
 </script>
 </body>
