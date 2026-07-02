@@ -1448,7 +1448,6 @@
             font-weight: 700;
         }
 
-        /* Nouveau bloc insight premium */
         .insight-premium {
             background: linear-gradient(135deg, #FDFBF5 0%, #F4EDDE 100%);
             border: 2px solid var(--gold);
@@ -1533,7 +1532,6 @@
             }
         }
 
-        /* Styles pour la section protections dominantes */
         .dominant-grid {
             display: flex;
             gap: 20px;
@@ -1657,7 +1655,7 @@
         };
         const SCENE = {
             rouge: "Vous ressentez une douleur inhabituelle. Une demi-heure plus tard, sous l'emprise du masque, vous avez consulté trois sites, envisagé quatre diagnostics, et votre cœur bat un peu plus vite. Vous n'avez pas choisi cette réaction. Elle a été plus rapide que vous.",
-            orange: "Quelqu'un vous demande comment vous allez vraiment. Sous l'emprise du masque, vous répondez « bien » avant même d'avoir cherché la réponse. Quelque chose s'est fermé tout seul — avant que vous ne décidiez de l'ouvrir ou non.",
+            orange: "Quelqu'un vous demande comment vous allez vraiment. Sous l'emprise du masque, vous répondez « bien » avant même d'avoir cherché la réponse.",
             jaune: "Un projet change de forme à la dernière minute. Objectivement, rien de grave — mais sous l'emprise du masque, quelque chose en vous s'active. Vous recalculez, vous réorganisez, vous anticipez les conséquences. Vous n'avez pas décidé de le faire. C'est parti tout seul.",
             vert: "Vous sentez une tension dans une relation. L'autre n'a rien dit, mais votre système s'est mis en alerte : le masque a pris les commandes, vous n'êtes plus en contrôle de la relation. Et depuis, vous cherchez ce que vous avez bien pu faire, ce que vous pourriez corriger, ce qui ramènerait l'apaisement.",
             bleu: "On reconnaît votre travail, on vous confie une responsabilité de plus. Sous l'emprise du masque, au lieu de savourer, vous pensez déjà à tout ce qui pourrait lâcher si vous n'êtes pas là — et vous reprenez un cran de contrôle. Ce n'est pas une soif de pouvoir : c'est la peur que, si vous relâchez, l'édifice que vous tenez à bout de bras s'effondre, et avec lui l'image de celui ou celle sur qui on peut compter.",
@@ -1901,9 +1899,9 @@
             { id: "Vi02", mask: "violet", inv: false,
             text: "J'ai du mal à dire ce qui compte vraiment pour moi." },
             { id: "Vi03", mask: "violet", inv: false,
-                text: "Mon comportement en public ne reflète pas ce que je suis à l'intérieur." },
+            text: "Mon comportement en public ne reflète pas ce que je suis à l'intérieur." },
             { id: "Vi04", mask: "violet", inv: false,
-                text: "Seul·e, sans le regard des autres, j'ai du mal à savoir qui je suis." },
+            text: "Seul·e, sans le regard des autres, j'ai du mal à savoir qui je suis." },
             { id: "Vi05", mask: "violet", inv: false,
                 text: "Je calcule intérieurement ce que je dois dire ou faire, même quand rien ne m'y oblige." },
             { id: "Vi06", mask: "violet", inv: false,
@@ -1922,41 +1920,108 @@
                 text: "Je me montre tel·le que je suis plutôt que de jouer un rôle." }
         ];
         const ITEM_INSIGHT = {
-            "R01": "surveiller le corps comme s'il fallait y guetter une menace.",
-            "R02": "lire une sensation banale comme le signe d'une maladie sérieuse.",
-            "R04": "vérifier pour s'apaiser un instant — puis le doute repart.",
-            "R05": "la réassurance ne tient pas : c'est le doute lui-même qui est intolérable.",
-            "R07": "redouter une catastrophe à laquelle on se croit incapable de faire face.",
-            "O01": "sentir, mais sans trouver les mots du ressenti.",
-            "O06": "se détacher dès que l'émotion monte dans l'échange.",
-            "O04": "préférer les faits à ce qui touche de près.",
-            "J01": "avoir besoin de savoir d'avance pour se sentir en sécurité.",
-            "J04": "dérouler tous les scénarios sans pouvoir s'arrêter.",
-            "J02": "l'ambiguïté qui met mal à l'aise.",
-            "V01": "redouter que les proches s'éloignent.",
-            "V04": "un radar toujours allumé sur l'humeur de l'autre.",
-            "V07": "se taire pour ne pas risquer le lien.",
-            "B02": "la confiance qui cède devant le besoin de garder la main.",
-            "B06": "la perte de maîtrise qui déclenche une vive irritation.",
-            "B07": "l'impuissance vécue comme presque insupportable.",
-            "I03": "placer la barre si haut qu'elle reste hors d'atteinte.",
-            "I07": "un dialogue intérieur d'une grande sévérité.",
-            "I02": "douter de soi jusque dans la réussite.",
-            "Vi03": "un écart entre le moi montré et le moi vécu.",
-            "Vi08": "vivre un peu en retrait, à côté de soi.",
-            "Vi07": "changer tant selon les contextes qu'on ne sait plus lequel est le vrai.",
-            "O08": "sentir une tension sans pouvoir nommer l'émotion dessous.",
-            "O02": "un corps tendu, mais l'émotion reste illisible.",
-            "J08": "un imprévu mineur qui semble tout remettre en cause.",
-            "J05": "l'incertitude qui empêche de passer à l'action.",
-            "V05": "un silence de l'autre aussitôt lu comme un retrait.",
-            "V02": "un besoin récurrent d'être rassuré·e sur l'affection reçue.",
-            "B08": "la perte de contrôle vécue comme un effondrement.",
-            "B01": "reprendre la main dès que ce n'est pas fait à sa façon.",
-            "I04": "une petite erreur qui fait vaciller toute la valeur de soi.",
-            "I08": "revenir sans fin sur un travail pourtant terminé.",
-            "Vi04": "sans le regard des autres, du mal à savoir qui l'on est.",
-            "Vi05": "calculer en soi quoi dire, même quand rien ne l'exige."
+            "R01": "surveiller le corps comme s'il fallait y guetter une menace",
+            "R02": "interpréter une sensation banale comme le signe d'une maladie sérieuse",
+            "R03": "estimer vos risques de tomber malade plus élevés que ceux des autres",
+            "R04": "chercher à vous rassurer en vérifiant vos symptômes, même si l'apaisement ne dure pas",
+            "R05": "continuer à douter de votre santé même après avoir été rassuré·e",
+            "R06": "laisser une sensation corporelle occuper votre esprit au point de vous empêcher de vous concentrer",
+            "R07": "redouter une catastrophe médicale que vous pensez ne pas pouvoir affronter",
+            "R08": "consacrer du temps à vous examiner physiquement pour vous assurer que tout va bien",
+            "R09": "ne pas vous sentir pleinement tranquille à propos de votre corps",
+            "R10": "avoir du mal à attribuer une gêne passagère à quelque chose de banal",
+            "R11": "recevoir de votre entourage le reflet que vous vous préoccupez trop de votre santé",
+            "R12": "laisser les pensées liées à la maladie s'imposer à vous sans pouvoir les écarter",
+            "O01": "sentir sans réussir à mettre des mots précis sur le ressenti",
+            "O02": "ressentir des tensions corporelles sans savoir quelle émotion les accompagne",
+            "O03": "avoir du mal à expliquer vos émotions à vos proches",
+            "O04": "préférer parler de faits concrets plutôt que de ce qui vous touche personnellement",
+            "O05": "rester sans images ni scènes précises quand vous repensez à un moment vécu",
+            "O06": "vous détacher ou changer de sujet dès qu'une discussion devient émotionnelle",
+            "O07": "rester sans grande réaction intérieure lors d'événements forts",
+            "O08": "ne pas savoir distinguer si vous êtes triste, agacé·e ou autre chose quand vous êtes tendu·e",
+            "O09": "ne pas toujours repérer vos émotions au moment où elles surgissent",
+            "O10": "ne pas prendre le temps de comprendre ce qui vous touche",
+            "O11": "ne pas parvenir à décrire vos états intérieurs à une personne de confiance",
+            "O12": "préférer vous occuper plutôt que de rester avec vos ressentis",
+            "J01": "avoir besoin de savoir à l'avance comment les choses vont se passer",
+            "J02": "vous sentir mal à l'aise face aux situations floues ou ambiguës",
+            "J03": "planifier en détail pour ne rien laisser au hasard",
+            "J04": "passer en revue tous les scénarios possibles sans pouvoir vous arrêter",
+            "J05": "hésiter à passer à l'action quand l'issue est incertaine",
+            "J06": "vous sentir désorganisé·e par l'incertitude",
+            "J07": "éviter les situations dont vous ne pouvez pas prévoir le déroulement",
+            "J08": "vous sentir déstabilisé·e par un imprévu, même mineur",
+            "J09": "voir l'incertitude perturber votre sommeil ou votre détente",
+            "J10": "ne pas vous sentir à l'aise face à une situation imprévue",
+            "J11": "avoir du mal à décider sans avoir toutes les informations",
+            "J12": "ne pas considérer l'inconnu comme une part normale et acceptable de la vie",
+            "V01": "redouter que vos proches s'éloignent de vous",
+            "V02": "avoir besoin d'être rassuré·e régulièrement sur l'affection qu'on vous porte",
+            "V03": "avoir l'impression de tenir aux autres plus qu'ils ne tiennent à vous",
+            "V04": "rester très attentif·ve au moindre changement d'humeur de vos proches",
+            "V05": "interpréter le silence ou le retard d'un proche comme un signe de détachement",
+            "V06": "avoir besoin de savoir où en est la relation pour vous sentir tranquille",
+            "V07": "préférer vous taire plutôt que de risquer un désaccord qui abîmerait le lien",
+            "V08": "faire beaucoup d'efforts pour être apprécié·e",
+            "V09": "tout faire pour éviter de vous retrouver seul·e",
+            "V10": "rester dans des relations insatisfaisantes plutôt que d'affronter la solitude",
+            "V11": "ne pas vous sentir en sécurité dans vos liens quand vous êtes loin de vos proches",
+            "V12": "ne pas oser exprimer un désaccord sans craindre pour la relation",
+            "B01": "reprendre la main quand les choses ne sont pas faites à votre façon",
+            "B02": "préférer garder le contrôle plutôt que de déléguer",
+            "B03": "tendre à diriger et à organiser pour les autres, même sans qu'on vous le demande",
+            "B04": "supporter difficilement qu'on vous dicte votre conduite ou vos choix",
+            "B05": "avoir besoin de sentir que les choses dépendent de vous pour être à l'aise",
+            "B06": "réagir avec une forte irritation quand un événement vous échappe",
+            "B07": "vivre l'impuissance comme presque insupportable",
+            "B08": "vous sentir complètement démuni·e quand vous perdez le contrôle",
+            "B09": "redouter de dépendre entièrement de quelqu'un d'autre",
+            "B10": "avoir envie de tout abandonner quand vous ne pouvez rien faire face à un problème",
+            "B11": "ne pas parvenir à laisser les autres gérer sans vérifier",
+            "B12": "ne pas vivre sereinement les situations où vous n'avez pas la main",
+            "I01": "avoir l'impression de paraître plus compétent·e que vous ne l'êtes réellement",
+            "I02": "douter de votre compétence même quand vous réussissez",
+            "I03": "vous fixer des exigences tellement élevées qu'elles sont rarement atteintes",
+            "I04": "laisser une petite erreur ébranler votre sentiment de valeur",
+            "I05": "attribuer vos réussites à la chance ou à la facilité de la tâche",
+            "I06": "avoir besoin de l'approbation des autres pour vous sentir légitime",
+            "I07": "entretenir un discours intérieur très critique envers vous-même",
+            "I08": "revenir sans fin sur un travail terminé, jamais tout à fait sûr·e de sa qualité",
+            "I09": "vous comparer aux autres et vous trouver souvent en dessous",
+            "I10": "préférer ne pas vous lancer plutôt que de risquer un échec visible",
+            "I11": "ne pas vous sentir pleinement compétent·e et légitime dans vos domaines",
+            "I12": "avoir du mal à être satisfait·e d'un travail quand il n'est pas parfait",
+            "Vi01": "avoir une image de vous qui change fortement d'un jour à l'autre",
+            "Vi02": "ne pas savoir dire ce qui compte vraiment pour vous",
+            "Vi03": "montrer un comportement en public qui ne reflète pas ce que vous êtes à l'intérieur",
+            "Vi04": "avoir du mal à savoir qui vous êtes sans le regard des autres",
+            "Vi05": "calculer intérieurement ce que vous devez dire ou faire",
+            "Vi06": "avoir mis de côté vos goûts ou aspirations pour correspondre aux attentes des autres",
+            "Vi07": "changer tellement selon les contextes que vous ne savez plus qui est le vrai vous",
+            "Vi08": "vivre en mode automatique, un peu à côté de vous-même",
+            "Vi09": "regretter une version de vous plus spontanée et authentique",
+            "Vi10": "ne pas vous connaître pleinement, dans vos forces comme vos limites",
+            "Vi11": "ne pas toujours rester fidèle à vos valeurs quand c'est difficile",
+            "Vi12": "ne pas vous montrer tel·le que vous êtes, par peur de jouer un rôle"
+        };
+        const VOICE_NARRATIVE = {
+            rouge: "Mon corps n'est jamais vraiment en sécurité. Je dois rester aux aguets. Si je baisse la garde, quelque chose pourrait m'échapper.",
+            orange: "Je gère. Je ne ressens pas — je gère. Si je laisse entrer cette émotion, je ne sais pas comment ça va finir.",
+            jaune: "Si je n'ai pas tout prévu, je ne suis pas en sécurité. Je dois contrôler chaque détail, anticiper chaque issue. Sinon, l'angoisse monte.",
+            vert: "Est-ce que je compte vraiment pour eux ? Si je décevais, resteraient-ils ? Je dois m'assurer que oui.",
+            bleu: "Si je ne m'en occupe pas, qui le fera ? Je ne peux pas lâcher maintenant. Et si tout s'effondrait par ma faute ?",
+            indigo: "Ce n'est pas assez bien. Il doit y avoir une faille. Je dois la trouver avant qu'on ne la découvre.",
+            violet: "Est-ce qu'ils m'aimeraient s'ils savaient qui je suis vraiment ? Je joue si bien mes rôles que je ne sais plus lequel est moi."
+        };
+        const SCENARIO_COMMENT = {
+            rouge: "Ce n'est pas la douleur elle-même qui inquiète : c'est l'histoire qu'elle raconte, et que votre esprit écrit sans vous.",
+            orange: "Quelque chose en vous s'est fermé avant même que vous ne décidiez de l'ouvrir ou non — comme un réflexe de protection qui agit plus vite que votre volonté.",
+            jaune: "Votre cerveau a appris qu'un imprévu pouvait être une menace. Alors il planifie, recalcule, anticipe — pour ne jamais être pris au dépourvu.",
+            vert: "Ce n'est pas la peur de l'autre qui est en jeu : c'est une vieille insécurité qui vous fait croire que le lien dépend de votre perfection.",
+            bleu: "Cette vigilance est le fruit d'un apprentissage ancien : votre système nerveux a enregistré que le seul moyen d'être en sécurité était de tout tenir. Il continue d'appliquer cette règle, même quand ce n'est plus nécessaire.",
+            indigo: "Ce regard critique n'est pas de l'orgueil : c'est une sentinelle intérieure qui veille, persuadée qu'une erreur invisible pourrait tout remettre en cause.",
+            violet: "Vous avez si bien appris à lire les attentes que vous avez fini par perdre de vue les vôtres. Ce n'est pas un défaut : c'est une intelligence sociale qui s'est retournée contre vous."
         };
         const REF_SCIENCE = {
             "R01": "Notre cerveau apprend à repérer les signaux qui, par le passé, ont précédé un danger. Cette vigilance est une compétence de survie, pas une faiblesse (LeDoux, 1996).",
@@ -2355,43 +2420,43 @@
             return directLow || invHigh;
         }
 
-        function buildDynamicMiroir(mask, responses) {
+        function buildNarrativeMiroir(mask, responses) {
             const strongDirect = getStrongestItems(mask, responses, 2, 'direct');
-            const strongInv = getStrongestItems(mask, responses, 1, 'inverse');
-            if (strongDirect.length === 0 && strongInv.length === 0) return MIRROR[mask];
-            let phrases = [];
-            if (strongDirect.length > 0) {
-                strongDirect.forEach((e, i) => {
-                    const txt = `« ${e.item.text} » (noté ${e.raw}/4)`;
-                    const insight = ITEM_INSIGHT[e.item.id] ? ` — ${ITEM_INSIGHT[e.item.id]}` : '';
-                    phrases.push(txt + insight);
-                });
+            if (strongDirect.length === 0) return MIRROR[mask];
+            const insights = strongDirect.map(e => ITEM_INSIGHT[e.item.id] || e.item.text.toLowerCase());
+            let phrase;
+            if (insights.length >= 2) {
+                phrase = `Sous l'emprise du masque ${MASK_LABELS[mask]}, votre quotidien est marqué par deux tendances profondes : ${insights[0]}, et ${insights[1]}.`;
+            } else {
+                phrase = `Sous l'emprise du masque ${MASK_LABELS[mask]}, une dynamique s'installe : ${insights[0]}.`;
             }
-            if (strongInv.length > 0) {
-                const e = strongInv[0];
-                phrases.push(
-                    `Pourtant, à « ${e.item.text} », vous avez répondu ${e.raw}/4.`);
+            const weak = getWeakestItem(mask, responses);
+            if (weak) {
+                let weakDesc = ITEM_INSIGHT[weak.item.id] || weak.item.text.toLowerCase();
+                if (weak.item.inv) {
+                    if (weakDesc.startsWith('ne pas ')) {
+                        weakDesc = weakDesc.replace('ne pas ', '');
+                    } else if (weakDesc.startsWith('n\'') && weakDesc.includes('pas')) {
+                        weakDesc = weakDesc.replace(/n'/, '').replace(/ pas/, '');
+                    }
+                    phrase += ` Pourtant, dans certains moments, cette emprise se relâche : vous parvenez davantage à ${weakDesc}, ce qui constitue une brèche précieuse.`;
+                } else {
+                    phrase += ` Pourtant, dans certains moments, cette emprise se relâche : vous montrez moins de propension à ${weakDesc}, ce qui constitue une brèche précieuse.`;
+                }
             }
-            const mirrorText =
-                `Sous l'emprise du masque ${MASK_LABELS[mask]}, ${phrases.join(' ')}`;
-            return mirrorText;
+            return phrase;
         }
 
-        function buildDynamicVoice(mask, responses) {
-            const strong = getStrongestItems(mask, responses, 1, 'direct');
-            if (strong.length > 0) {
-                const e = strong[0];
-                return `« ${e.item.text} » — cette phrase vous a semblé juste à ${e.raw}/4. C'est la voix du masque ${MASK_LABELS[mask]}.`;
-            }
-            return VOICE[mask];
+        function buildNarrativeVoice(mask, responses) {
+            if (getStrongestItems(mask, responses, 1, 'direct').length === 0) return VOICE[mask];
+            return `« ${VOICE_NARRATIVE[mask]} »`;
         }
 
-        function buildDynamicScenario(mask, profile, responses) {
-            const strong = getStrongestItems(mask, responses, 1, 'direct');
+        function buildNarrativeScenario(mask, profile, responses) {
             let base = SCENE[mask] || '';
-            if (strong.length > 0 && base) {
-                base +=
-                    ` (Cet épisode fait écho à votre réponse : « ${strong[0].item.text} » à ${strong[0].raw}/4.)`;
+            const comment = SCENARIO_COMMENT[mask] || '';
+            if (comment) {
+                base += ` ${comment}`;
             }
             return base;
         }
@@ -2405,18 +2470,23 @@
             return baseAction;
         }
 
-        function buildContraste(mask, responses) {
+        function buildNarrativeContraste(mask, responses) {
             const weak = getWeakestItem(mask, responses);
             if (!weak) return '';
-            const score = weak.raw;
+            let insight = ITEM_INSIGHT[weak.item.id] || weak.item.text.toLowerCase();
             if (!weak.item.inv) {
-                return `Vous avez répondu ${score}/4 à « ${weak.item.text} ». Cela montre une zone où la protection est moins rigide — une brèche dans l'armure.`;
+                return `Vous montrez moins de propension à ${insight}. C'est une zone où la protection est moins rigide.`;
             } else {
-                return `Vous avez répondu ${score}/4 à « ${weak.item.text} » (item inversé). Cela indique que, même avec le masque actif, une partie de vous ne s'y conforme pas totalement.`;
+                if (insight.startsWith('ne pas ')) {
+                    insight = insight.replace('ne pas ', '');
+                } else if (insight.startsWith('n\'') && insight.includes('pas')) {
+                    insight = insight.replace(/n'/, '').replace(/ pas/, '');
+                }
+                return `Vous êtes capable de ${insight}. Cela indique que, même avec le masque actif, une partie de vous ne s'y conforme pas totalement.`;
             }
         }
 
-        function buildExecutiveInsight(profile, scores, responses, spa, hasItems) {
+        function buildNarrativeInsight(profile, scores, responses, spa, hasItems) {
             const dom = profile.dom;
             const coDom = profile.coDom;
             const type = profile.type;
@@ -2439,10 +2509,8 @@
                 if (hasItems) {
                     const strongItems = getStrongestItems(dom, responses, 2, 'direct');
                     if (strongItems.length > 0) {
-                        const phrases = strongItems.map(e => `« ${e.item.text} » (noté ${e.raw}/4)`)
-                            .join(' et ');
-                        mainText =
-                            `${intro}. Vous avez même noté ${phrases}. Cette réaction est devenue automatique — et c'est exactement la signature du masque ${MASK_LABELS[dom]}.`;
+                        const insights = strongItems.map(e => ITEM_INSIGHT[e.item.id] || e.item.text.toLowerCase());
+                        mainText = `${intro}. Cela vous a conduit à ${insights.join(' et à ')}. Cette réaction est devenue automatique — et c'est exactement la signature du masque ${MASK_LABELS[dom]}.`;
                     } else {
                         mainText =
                             `${intro}. Il vous protège de la peur de ${PEUR_NOM[dom].toLowerCase()} en ${PROTECTION_VERBE[dom]}, et il le fait sans vous demander votre avis.`;
@@ -2543,7 +2611,7 @@
     <p class="cover-tagline-attr">— Céline Bourbon</p>
   </div>`;
 
-            html += buildExecutiveInsight(profile, scores, responses, spa, hasItems);
+            html += buildNarrativeInsight(profile, scores, responses, spa, hasItems);
 
             html += `<div class="manifeste">
     <h2>« C’est plus fort que vous. »</h2>
@@ -2625,21 +2693,21 @@
                 html += polariteBlock(m);
                 if (hasItems) {
                     html +=
-                        `<div class="mirror-phrase" style="border-color:${color};">${buildDynamicMiroir(m,responses)}</div>`;
+                        `<div class="mirror-phrase" style="border-color:${color};">${buildNarrativeMiroir(m,responses)}</div>`;
                 } else {
                     html +=
                         `<div class="mirror-phrase" style="border-color:${color};">${MIRROR[m]}</div>`;
                 }
                 if (hasItems) {
                     html +=
-                        `<div class="voice-phrase">${buildDynamicVoice(m,responses)}</div>`;
+                        `<div class="voice-phrase">${buildNarrativeVoice(m,responses)}</div>`;
                 } else {
                     html += `<div class="voice-phrase">« ${VOICE[m]} »</div>`;
                 }
                 html +=
-                    `<p class="lead" style="margin-top:12px;">${buildDynamicScenario(m,profile,responses)}</p>`;
+                    `<p class="lead" style="margin-top:12px;">${buildNarrativeScenario(m,profile,responses)}</p>`;
                 if (hasItems) {
-                    const contraste = buildContraste(m, responses);
+                    const contraste = buildNarrativeContraste(m, responses);
                     if (contraste) html +=
                         `<div class="reminder-box" style="margin-top:18px;">💡 ${contraste}</div>`;
                 }
@@ -2665,28 +2733,12 @@
                     const inter = BLOCKER_INTERACTION[profile.dom] || '';
                     html +=
                         `<div style="margin:16px 0;"><h3 style="color:${MASK_COLORS['orange']};">Blocage par le Masque Orange</h3><p class="lead">${inter}</p>`;
-                    if (hasItems) {
-                        const strongO = getStrongestItems('orange', responses, 1, 'direct');
-                        const strongD = getStrongestItems(profile.dom, responses, 1, 'direct');
-                        if (strongO.length && strongD.length) {
-                            html +=
-                                `<p class="lead" style="margin-top:8px;">Cela se voit dans vos réponses : vous avez noté « ${strongO[0].item.text} » à ${strongO[0].raw}/4, et « ${strongD[0].item.text} » à ${strongD[0].raw}/4. Le contrôle et l'émotion se court-circuitent.</p>`;
-                        }
-                    }
                     html += `</div>`;
                 }
                 if (amplifier) {
                     const inter = AMPLIFIER_INTERACTION[profile.dom] || '';
                     html +=
                         `<div style="margin:16px 0;"><h3 style="color:${MASK_COLORS['jaune']};">Amplification par le Masque Jaune</h3><p class="lead">${inter}</p>`;
-                    if (hasItems) {
-                        const strongJ = getStrongestItems('jaune', responses, 1, 'direct');
-                        const strongD = getStrongestItems(profile.dom, responses, 1, 'direct');
-                        if (strongJ.length && strongD.length) {
-                            html +=
-                                `<p class="lead" style="margin-top:8px;">Vos réponses le montrent : « ${strongJ[0].item.text} » (${strongJ[0].raw}/4) et « ${strongD[0].item.text} » (${strongD[0].raw}/4) s'alimentent mutuellement.</p>`;
-                        }
-                    }
                     html += `</div>`;
                 }
                 html += `</div>`;
